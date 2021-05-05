@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{5493b845-6488-4b9e-993c-8504bf4c6f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{473b0f66-5ac3-4438-b6ac-205bd1448808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\win_manager">
+      <UniqueIdentifier>{b1389c78-f5e2-4c2a-96ae-6bd925325f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\containers">
+      <UniqueIdentifier>{ef5fb914-d954-4a85-9a3c-ac64c0c2a139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\containers\piston">
+      <UniqueIdentifier>{476b6a7b-b308-426d-8d06-338d938ac122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d">
+      <UniqueIdentifier>{f9e53a06-2818-45ed-b6f3-433abb93d70b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{0611a227-1b7f-46a7-879c-d07006c25350}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\assets">
+      <UniqueIdentifier>{43074cee-c6c5-487a-8518-481f9ef0c66e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\assets\asset">
+      <UniqueIdentifier>{a44451cd-21ec-40fe-a316-ef2ba5e30bae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\assets\mesh">
+      <UniqueIdentifier>{a4f1d58a-3e9f-4747-8869-5c5d4976b09a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\utils">
+      <UniqueIdentifier>{b703f639-535d-4cf2-90db-09b203a202c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\utils\inc">
+      <UniqueIdentifier>{2635da53-c6e2-41c2-aa0a-df1a454469fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\utils\src">
+      <UniqueIdentifier>{1d5d1fdb-bca3-4c4a-8bb9-e01854a9bfc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\d3d">
+      <UniqueIdentifier>{3fcc3864-9453-49cb-be2a-486f9546b466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable">
+      <UniqueIdentifier>{6fc42b97-5f01-4dde-a242-2364dfc79db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\shader">
+      <UniqueIdentifier>{755ccdec-eda5-4f87-9467-4c11485b7f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\input_layout">
+      <UniqueIdentifier>{77cbf194-006d-4b4b-8b81-7a1c552045ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\const_buffer">
+      <UniqueIdentifier>{b2e948ba-a2ff-446f-9703-10ec745d9bf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\drawable">
+      <UniqueIdentifier>{fc7ca1c5-4133-4ce1-a503-52b459d58e2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\bindable">
+      <UniqueIdentifier>{38f23a62-ce2d-4923-b1b9-9f627e920474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\d3d\id3d">
+      <UniqueIdentifier>{e9a8756a-8231-43f4-99f9-f917f7ea3830}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="win_main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_d3d.cpp">
+      <Filter>inc\d3d\d3d</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_win_manager.cpp">
+      <Filter>inc\win_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_mesh.cpp">
+      <Filter>inc\assets\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_mesh_d3d.cpp">
+      <Filter>inc\assets\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_mesh_obj.cpp">
+      <Filter>inc\assets\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_drawable.cpp">
+      <Filter>inc\d3d\drawable</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="grng_piston.h">
+      <Filter>inc\containers\piston</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_utils.h">
+      <Filter>inc\utils\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_bindable.h">
+      <Filter>inc\d3d\bindable\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_d3d.h">
+      <Filter>inc\d3d\d3d</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_const_buffer.h">
+      <Filter>inc\d3d\bindable\const_buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_win_manager.h">
+      <Filter>inc\win_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_asset.h">
+      <Filter>inc\assets\asset</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_mesh.h">
+      <Filter>inc\assets\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_frag_shader.h">
+      <Filter>inc\d3d\bindable\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_geom_shader.h">
+      <Filter>inc\d3d\bindable\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_shader.h">
+      <Filter>inc\d3d\bindable\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_vert_shader.h">
+      <Filter>inc\d3d\bindable\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_input_layout.h">
+      <Filter>inc\d3d\bindable\input_layout</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_drawable.h">
+      <Filter>inc\d3d\drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="igrng_d3d.h">
+      <Filter>inc\d3d\d3d\id3d</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="shader.hlsl">
+      <Filter>shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="shader1.hlsl">
+      <Filter>shaders</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
