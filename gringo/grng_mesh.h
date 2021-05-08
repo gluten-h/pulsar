@@ -55,6 +55,7 @@ private:
 private:
 	void		remove_mesh_memory();
 	void		load_mesh_obj(const char *file);
+	void		create_buffer();
 
 public:
 	grng_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format) : GRNG_DRAWABLE(), GRNG_ASSET()
@@ -67,12 +68,11 @@ public:
 		this->remove_mesh_memory();
 	}
 
-	void			set_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format);
-	void			set_primitive_topology(const D3D_PRIMITIVE_TOPOLOGY &primitive_topology);
+	void		set_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format);
+	void		set_primitive_topology(const D3D_PRIMITIVE_TOPOLOGY &primitive_topology);
 
-	void			bind() override;
-	void			draw() override;
-	void			create_buffer() override;
+	void		bind() override;
+	void		draw() override;
 };
 
 

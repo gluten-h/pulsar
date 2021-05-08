@@ -24,8 +24,6 @@ public:
 	{
 		
 	}
-
-	virtual void		create_buffer() = 0;
 };
 
 

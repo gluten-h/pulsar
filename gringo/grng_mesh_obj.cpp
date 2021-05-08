@@ -35,7 +35,7 @@ void		grng_mesh::load_mesh_obj(const char *file)
 		if (split[0] == "vt")
 		{
 			float uv_x = std::stof(split[1]);
-			float uv_y = std::stof(split[2]);
+			float uv_y = 1.0f - std::stof(split[2]);
 
 			uvs.push_back(uv_x);
 			uvs.push_back(uv_y);
@@ -86,7 +86,7 @@ void		grng_mesh::load_mesh_obj(const char *file)
 				}
 
 				this->mesh.verts.push_back(vert);
-				this->mesh.indices.push_back(this->mesh.indices.size());
+				this->mesh.indices.push_back((UINT32)this->mesh.indices.size());
 			}
 		}
 	}

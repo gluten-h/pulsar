@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="grng_d3d.cpp" />
     <ClCompile Include="grng_drawable.cpp" />
+    <ClCompile Include="grng_gfx.cpp" />
     <ClCompile Include="grng_mesh.cpp" />
     <ClCompile Include="grng_mesh_d3d.cpp" />
     <ClCompile Include="grng_mesh_obj.cpp" />
@@ -163,19 +164,31 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grng_asset.h" />
+    <ClInclude Include="grng_assets.h" />
     <ClInclude Include="grng_bindable.h" />
+    <ClInclude Include="grng_bindables.h" />
+    <ClInclude Include="grng_camera.h" />
+    <ClInclude Include="grng_components.h" />
     <ClInclude Include="grng_const_buffer.h" />
     <ClInclude Include="grng_d3d.h" />
     <ClInclude Include="grng_drawable.h" />
+    <ClInclude Include="grng_drawables.h" />
     <ClInclude Include="grng_frag_shader.h" />
     <ClInclude Include="grng_geom_shader.h" />
+    <ClInclude Include="grng_gfx.h" />
     <ClInclude Include="grng_input_layout.h" />
     <ClInclude Include="grng_mesh.h" />
     <ClInclude Include="grng_piston.h" />
+    <ClInclude Include="grng_sampler.h" />
     <ClInclude Include="grng_shader.h" />
+    <ClInclude Include="grng_shaders.h" />
+    <ClInclude Include="grng_texture.h" />
     <ClInclude Include="grng_utils.h" />
     <ClInclude Include="grng_vert_shader.h" />
+    <ClInclude Include="grng_vert_transform.h" />
     <ClInclude Include="grng_win_manager.h" />
+    <ClInclude Include="grng_obj.h" />
+    <ClInclude Include="grng_component_transform.h" />
     <ClInclude Include="igrng_d3d.h" />
   </ItemGroup>
   <ItemGroup>
@@ -183,12 +196,18 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="shader1.hlsl">
+    <FxCompile Include="shader1.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </Text>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

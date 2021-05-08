@@ -18,14 +18,14 @@ void		grng_mesh::create_buffer()
 	ZeroMemory(&vbd, sizeof(D3D11_BUFFER_DESC));
 	ZeroMemory(&ibd, sizeof(D3D11_BUFFER_DESC));
 
-	vbd.ByteWidth = sizeof(grng_mesh::GRNG_MESH_DATA::GRNG_VERT_DATA) * this->mesh.verts.size();
+	vbd.ByteWidth = sizeof(grng_mesh::GRNG_MESH_DATA::GRNG_VERT_DATA) * (UINT32)this->mesh.verts.size();
 	vbd.StructureByteStride = sizeof(grng_mesh::GRNG_MESH_DATA::GRNG_VERT_DATA);
 	vbd.Usage = D3D11_USAGE_DEFAULT;
 	vbd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	vbd.CPUAccessFlags = 0u;
 	vbd.MiscFlags = 0u;
 
-	ibd.ByteWidth = sizeof(UINT32) * this->mesh.indices.size();
+	ibd.ByteWidth = sizeof(UINT32) * (UINT32)this->mesh.indices.size();
 	ibd.StructureByteStride = sizeof(UINT32);
 	ibd.Usage = D3D11_USAGE_DEFAULT;
 	ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;

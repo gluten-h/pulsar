@@ -3,17 +3,12 @@
 #include "grng_d3d.h"
 
 
-class igrng_d3d
+class igrng_d3d : public GRNG_D3D
 {
-protected:
-	static ID3D11Device				*device;
-	static ID3D11DeviceContext		*device_context;
-
 private:
 	void		init_d3d()
 	{
-		igrng_d3d::device = GRNG_D3D::get_device();
-		igrng_d3d::device_context = GRNG_D3D::get_device_context();
+		GRNG_D3D::create();
 	}
 
 public:

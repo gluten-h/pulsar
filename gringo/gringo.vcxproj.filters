@@ -64,6 +64,27 @@
     <Filter Include="inc\d3d\d3d\id3d">
       <UniqueIdentifier>{e9a8756a-8231-43f4-99f9-f917f7ea3830}</UniqueIdentifier>
     </Filter>
+    <Filter Include="inc\d3d\drawable\drawable_obj">
+      <UniqueIdentifier>{ed6cd22d-6f83-4223-bd4f-05863dc0b944}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components">
+      <UniqueIdentifier>{e3da5a10-39cf-476e-8e40-b13d8db34251}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\transform">
+      <UniqueIdentifier>{90131e27-97bf-4bc9-bab8-54a2268fb564}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\assets\texture">
+      <UniqueIdentifier>{f471c02c-7675-4e31-b24c-affd6a14cdf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\sampler">
+      <UniqueIdentifier>{d3990f1a-e57e-49d0-8a21-a6a8331fac6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\camera">
+      <UniqueIdentifier>{51cef2e1-373c-402b-b5e6-7493531c3fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\gfx">
+      <UniqueIdentifier>{cd888c99-9071-4279-9d12-ef9bf2d5eb5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="win_main.cpp">
@@ -71,9 +92,6 @@
     </ClCompile>
     <ClCompile Include="grng_d3d.cpp">
       <Filter>inc\d3d\d3d</Filter>
-    </ClCompile>
-    <ClCompile Include="grng_win_manager.cpp">
-      <Filter>inc\win_manager</Filter>
     </ClCompile>
     <ClCompile Include="grng_mesh.cpp">
       <Filter>inc\assets\mesh</Filter>
@@ -86,6 +104,12 @@
     </ClCompile>
     <ClCompile Include="grng_drawable.cpp">
       <Filter>inc\d3d\drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_win_manager.cpp">
+      <Filter>inc\win_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_gfx.cpp">
+      <Filter>inc\d3d\gfx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,9 +127,6 @@
     </ClInclude>
     <ClInclude Include="grng_const_buffer.h">
       <Filter>inc\d3d\bindable\const_buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="grng_win_manager.h">
-      <Filter>inc\win_manager</Filter>
     </ClInclude>
     <ClInclude Include="grng_asset.h">
       <Filter>inc\assets\asset</Filter>
@@ -134,15 +155,52 @@
     <ClInclude Include="igrng_d3d.h">
       <Filter>inc\d3d\d3d\id3d</Filter>
     </ClInclude>
+    <ClInclude Include="grng_obj.h">
+      <Filter>inc\d3d\drawable\drawable_obj</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_component_transform.h">
+      <Filter>inc\components\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_components.h">
+      <Filter>inc\components</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_texture.h">
+      <Filter>inc\assets\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_sampler.h">
+      <Filter>inc\d3d\bindable\sampler</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_assets.h">
+      <Filter>inc\assets</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_bindables.h">
+      <Filter>inc\d3d\bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_shaders.h">
+      <Filter>inc\d3d\bindable\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_drawables.h">
+      <Filter>inc\d3d\drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_camera.h">
+      <Filter>inc\components\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_win_manager.h">
+      <Filter>inc\win_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_vert_transform.h">
+      <Filter>inc\components\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_gfx.h">
+      <Filter>inc\d3d\gfx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader.hlsl">
       <Filter>shaders</Filter>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="shader1.hlsl">
+    <FxCompile Include="shader1.hlsl">
       <Filter>shaders</Filter>
-    </Text>
+    </FxCompile>
   </ItemGroup>
 </Project>

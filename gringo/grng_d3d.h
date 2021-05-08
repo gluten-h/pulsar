@@ -27,19 +27,25 @@ using namespace DirectX;
 
 class grng_d3d
 {
-private:
-	static IDXGIFactory				*idxgi_factory;
+protected:
+	static bool						is_initialized;
 
+	static IDXGIFactory				*idxgi_factory;
 	static ID3D11Device				*device;
 	static ID3D11DeviceContext		*device_context;
 
 public:
 	static void				create()
 	{
+		if (grng_d3d::is_initialized)
+			return;
+
 		HRESULT hr;
 
 		hr = CreateDXGIFactory(IID_IDXGIFactory, (void**)&grng_d3d::idxgi_factory);
 		hr = D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, NULL, NULL, NULL, D3D11_SDK_VERSION, &grng_d3d::device, NULL, &grng_d3d::device_context);
+
+		grng_d3d::is_initialized = true;
 	}
 
 	static void				destroy()

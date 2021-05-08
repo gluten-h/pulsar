@@ -1,8 +1,10 @@
 #pragma once
 
 
-#include "grng_d3d.h"
+#include "igrng_d3d.h"
 #include "grng_piston.h"
+#include "grng_components.h"
+#include "grng_gfx.h"
 
 #include <algorithm>
 #include <unordered_map>
@@ -13,7 +15,7 @@
 #define GRNG_WIN_CLASS_NAME L"gringo"
 
 
-typedef struct						grng_win
+struct								grng_win
 {
 	HWND							hwnd = NULL;
 	void							(*win_proc)(UINT, void*) = NULL;
@@ -28,18 +30,36 @@ typedef struct						grng_win
 	ID3D11DepthStencilState			*depth_stencil_state = NULL;
 	ID3D11DepthStencilView			*depth_stencil_view = NULL;
 	D3D11_VIEWPORT					viewport;
-}									GRNG_WIN;
 
-class grng_wm
+
+	GRNG_CAMERA						*curr_camera = NULL;
+
+
+	void		bind() const
+	{
+		ID3D11DeviceContext *device_context = GRNG_D3D::get_device_context();
+
+		device_context->OMSetRenderTargets(1, &this->back_buffer, this->depth_stencil_view);
+		device_context->OMSetDepthStencilState(this->depth_stencil_state, 1u);
+		device_context->RSSetViewports(1, &this->viewport);
+		device_context->ClearRenderTargetView(this->back_buffer, D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f));
+		device_context->ClearDepthStencilView(this->depth_stencil_view, D3D11_CLEAR_DEPTH, 1.0f, 0u);
+
+
+		this->curr_camera->update(this->viewport.Width, this->viewport.Height);
+		GRNG_GFX::set_camera(this->curr_camera);
+	}
+};
+
+using GRNG_WIN = grng_win;
+
+
+class grng_wm : public IGRNG_D3D
 {
 private:
 	static HINSTANCE			h_instance;
 	static WNDCLASSEX			wc;
 	static MSG					msg;
-
-	static IDXGIFactory			*idxgi_factory;
-	static ID3D11Device			*device;
-	static ID3D11DeviceContext	*device_context;
 
 	static GRNG_PISTON<GRNG_WIN, GRNG_MAX_WIN_COUNT>			win;
 	static std::unordered_map<HWND, int>						hwnd_map;
@@ -87,13 +107,6 @@ private:
 		grng_wm::wc.hIconSm = NULL;
 		grng_wm::wc.hbrBackground = CreateSolidBrush(RGB(0, 0, 0));
 		RegisterClassEx(&grng_wm::wc);
-	}
-
-	static void			init_d3d()
-	{
-		grng_wm::idxgi_factory = GRNG_D3D::get_idxgi_factory();
-		grng_wm::device = GRNG_D3D::get_device();
-		grng_wm::device_context = GRNG_D3D::get_device_context();
 	}
 
 	static void			init_win()
@@ -151,8 +164,8 @@ private:
 public:
 	static void			create(const HINSTANCE h_instance)
 	{
+		IGRNG_D3D();
 		grng_wm::init_wnd_class(h_instance);
-		grng_wm::init_d3d();
 		grng_wm::init_win();
 	}
 
@@ -240,7 +253,7 @@ public:
 	static void			destroy_win_secure(unsigned int win_id)
 	{
 		GRNG_WIN *win_ptr = grng_wm::win.get_secure(win_id);
-		if (win_id >= GRNG_MAX_WIN_COUNT || !win_ptr)
+		if (!win_ptr)
 			return;
 
 		grng_wm::destroy_win_memory(win_id);
@@ -267,6 +280,21 @@ public:
 	static const GRNG_IPISTON<GRNG_WIN, GRNG_MAX_WIN_COUNT>		*get_iwin()
 	{
 		return (grng_wm::iwin);
+	}
+
+
+	static void			set_camera_secure(unsigned int win_id, GRNG_CAMERA &cam)
+	{
+		GRNG_WIN *win_ptr = grng_wm::win.get_secure(win_id);
+		if (!win_ptr)
+			return;
+		win_ptr->curr_camera = &cam;
+	}
+
+	static void			set_camera(unsigned int win_id, GRNG_CAMERA &cam)
+	{
+		GRNG_WIN *win_ptr = grng_wm::win.get(win_id);
+		win_ptr->curr_camera = &cam;
 	}
 };
 

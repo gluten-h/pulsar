@@ -5,18 +5,8 @@
 
 class grng_bindable : public IGRNG_D3D
 {
-private:
-	void	init_d3d()
-	{
-		grng_bindable::device = GRNG_D3D::get_device();
-		grng_bindable::device_context = GRNG_D3D::get_device_context();
-	}
-
 public:
-	grng_bindable() : IGRNG_D3D()
-	{
-		this->init_d3d();
-	}
+	grng_bindable() : IGRNG_D3D(){ }
 	virtual void		bind() = 0;
 };
 

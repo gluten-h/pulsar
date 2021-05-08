@@ -1,6 +1,5 @@
 #pragma once
 
-#include "grng_d3d.h"
 #include "grng_bindable.h"
 
 
@@ -105,10 +104,12 @@ using GRNG_CONST_BUFFER = grng_const_buffer<T>;
 
 
 template <typename T>
-class grng_vert_const_buffer : public grng_const_buffer<T>
+class grng_vert_const_buffer : public GRNG_CONST_BUFFER<T>
 {
 public:
-	grng_vert_const_buffer(const T &data) : grng_const_buffer<T>(data){ }
+	grng_vert_const_buffer() : GRNG_CONST_BUFFER<T>(){ }
+	grng_vert_const_buffer(const T &data) : GRNG_CONST_BUFFER<T>(data){ }
+
 
 	void	bind() override
 	{
@@ -121,10 +122,12 @@ using GRNG_VERT_CONST_BUFFER = grng_vert_const_buffer<T>;
 
 
 template <typename T>
-class grng_frag_const_buffer : public grng_const_buffer<T>
+class grng_frag_const_buffer : public GRNG_CONST_BUFFER<T>
 {
 public:
-	grng_frag_const_buffer(const T &data) : grng_const_buffer<T>(data){ }
+	grng_frag_const_buffer() : GRNG_CONST_BUFFER<T>(){ }
+	grng_frag_const_buffer(const T &data) : GRNG_CONST_BUFFER<T>(data){ }
+
 
 	void	bind() override
 	{

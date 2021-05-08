@@ -21,6 +21,8 @@ void		grng_mesh::set_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format)
 		case GRNG_MESH_FILE_FORMAT::GRNG_MESH_FILE_OBJ:
 		{
 			this->load_mesh_obj(file);
+			this->create_buffer();
+
 			break;
 		}
 	}
