@@ -18,20 +18,18 @@ private:
 		grng_shader::remove_shader_memory();
 	}
 
-	void		set_shader_memory(const LPCWSTR shader_file, const LPCSTR entry)
+	void		set_shader_memory(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines)
 	{
-		grng_shader::set_shader_memory(shader_file, entry, GRNG_GEOM_SHADER_TARGET);
+		grng_shader::set_shader_memory(shader_file, entry, GRNG_GEOM_SHADER_TARGET, defines);
 		HRESULT hr = this->device->CreateGeometryShader(this->shader_blob->GetBufferPointer(), this->shader_blob->GetBufferSize(), NULL, &this->shader);
 	}
 
 public:
-	grng_geom_shader() = delete;
-	grng_geom_shader(const grng_geom_shader &gs) = delete;
-	grng_geom_shader(grng_geom_shader &&gs) = delete;
-	grng_geom_shader(const LPCWSTR shader_file, const LPCSTR entry) : GRNG_SHADER(shader_file, entry, GRNG_GEOM_SHADER_TARGET)
+	grng_geom_shader() : GRNG_SHADER(){ }
+	grng_geom_shader(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines) : GRNG_SHADER()
 	{
 		this->type = GRNG_SHADER_TYPE::GRNG_GEOM_SHADER;
-		this->set_shader_memory(shader_file, entry);
+		this->set_shader_memory(shader_file, entry, defines);
 	}
 
 	~grng_geom_shader()
@@ -40,16 +38,23 @@ public:
 	}
 
 
-	void		set_shader(const LPCWSTR shader_file, const LPCSTR entry) override
+	void		set(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines) override
 	{
 		this->remove_shader_memory();
-		this->set_shader_memory(shader_file, entry);
+		this->set_shader_memory(shader_file, entry, defines);
 	}
+
 
 	void		bind() override
 	{
 		this->device_context->GSSetShader(this->shader, NULL, 0u);
 	}
+
+	void		destroy() override
+	{
+		this->remove_shader_memory();
+	}
+
 
 	const void	*get_shader() const
 	{

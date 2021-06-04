@@ -24,9 +24,6 @@ private:
 	}
 
 public:
-	grng_input_layout() = delete;
-	grng_input_layout(const grng_input_layout& il) = delete;
-	grng_input_layout(grng_input_layout &&il) = delete;
 	grng_input_layout(ID3DBlob *shader_blob, const D3D11_INPUT_ELEMENT_DESC *ied, UINT ied_num_elements) : GRNG_BINDABLE()
 	{
 		this->set_input_layout_memory(shader_blob, ied, ied_num_elements);
@@ -41,6 +38,11 @@ public:
 	void	bind() override
 	{
 		this->device_context->IASetInputLayout(this->input_layout);
+	}
+
+	void	destroy() override
+	{
+		this->remove_input_layout();
 	}
 };
 

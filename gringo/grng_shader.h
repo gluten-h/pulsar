@@ -1,6 +1,7 @@
 #pragma once
 
 #include "grng_bindable.h"
+#include "grng_shader_include.h"
 
 
 enum class			GRNG_SHADER_TYPE
@@ -14,6 +15,11 @@ enum class			GRNG_SHADER_TYPE
 #define GRNG_VERT_SHADER_TARGET "vs_5_0"
 #define GRNG_GEOM_SHADER_TARGET "gs_5_0"
 #define GRNG_FRAG_SHADER_TARGET "ps_5_0"
+
+
+#define GRNG_VERT_ENTRY "vert"
+#define GRNG_GEOM_ENTRY "geom"
+#define GRNG_FRAG_ENTRY "frag"
 
 
 class grng_shader : public GRNG_BINDABLE
@@ -31,19 +37,14 @@ protected:
 		}
 	}
 
-	void	set_shader_memory(const LPCWSTR shader_file, const LPCSTR entry, const LPCSTR target)
+	void	set_shader_memory(const LPCWSTR shader_file, const LPCSTR entry, const LPCSTR target, const D3D_SHADER_MACRO *defines)
 	{
-		HRESULT hr = D3DCompileFromFile(shader_file, NULL, NULL, entry, target, NULL, NULL, &this->shader_blob, NULL);
+		GRNG_SHADER_INCLUDE s_inc;
+		HRESULT hr = D3DCompileFromFile(shader_file, defines, &s_inc, entry, target, NULL, NULL, &this->shader_blob, NULL);
 	}
 
 public:
-	grng_shader() = delete;
-	grng_shader(const grng_shader &s) = delete;
-	grng_shader(grng_shader &&s) = delete;
-	grng_shader(const LPCWSTR shader_file, const LPCSTR entry, const LPCSTR target) : GRNG_BINDABLE()
-	{
-		this->set_shader_memory(shader_file, entry, target);
-	}
+	grng_shader() : GRNG_BINDABLE(){ }
 
 	~grng_shader()
 	{
@@ -56,7 +57,7 @@ public:
 		return (this->shader_blob);
 	}
 
-	virtual void		set_shader(const LPCWSTR shader_file, const LPCSTR entry) = 0;
+	virtual void		set(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines) = 0;
 	virtual const void	*get_shader() const = 0;
 };
 

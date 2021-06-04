@@ -1,14 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="src">
-      <UniqueIdentifier>{5493b845-6488-4b9e-993c-8504bf4c6f76}</UniqueIdentifier>
-    </Filter>
     <Filter Include="inc">
       <UniqueIdentifier>{473b0f66-5ac3-4438-b6ac-205bd1448808}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\win_manager">
-      <UniqueIdentifier>{b1389c78-f5e2-4c2a-96ae-6bd925325f2e}</UniqueIdentifier>
     </Filter>
     <Filter Include="inc\containers">
       <UniqueIdentifier>{ef5fb914-d954-4a85-9a3c-ac64c0c2a139}</UniqueIdentifier>
@@ -34,32 +28,11 @@
     <Filter Include="inc\utils">
       <UniqueIdentifier>{b703f639-535d-4cf2-90db-09b203a202c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="inc\utils\inc">
-      <UniqueIdentifier>{2635da53-c6e2-41c2-aa0a-df1a454469fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\utils\src">
-      <UniqueIdentifier>{1d5d1fdb-bca3-4c4a-8bb9-e01854a9bfc9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="inc\d3d\d3d">
       <UniqueIdentifier>{3fcc3864-9453-49cb-be2a-486f9546b466}</UniqueIdentifier>
     </Filter>
-    <Filter Include="inc\d3d\bindable">
-      <UniqueIdentifier>{6fc42b97-5f01-4dde-a242-2364dfc79db2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\d3d\bindable\shader">
-      <UniqueIdentifier>{755ccdec-eda5-4f87-9467-4c11485b7f61}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\d3d\bindable\input_layout">
-      <UniqueIdentifier>{77cbf194-006d-4b4b-8b81-7a1c552045ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\d3d\bindable\const_buffer">
-      <UniqueIdentifier>{b2e948ba-a2ff-446f-9703-10ec745d9bf8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="inc\d3d\drawable">
       <UniqueIdentifier>{fc7ca1c5-4133-4ce1-a503-52b459d58e2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\d3d\bindable\bindable">
-      <UniqueIdentifier>{38f23a62-ce2d-4923-b1b9-9f627e920474}</UniqueIdentifier>
     </Filter>
     <Filter Include="inc\d3d\d3d\id3d">
       <UniqueIdentifier>{e9a8756a-8231-43f4-99f9-f917f7ea3830}</UniqueIdentifier>
@@ -76,19 +49,106 @@
     <Filter Include="inc\assets\texture">
       <UniqueIdentifier>{f471c02c-7675-4e31-b24c-affd6a14cdf7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="inc\d3d\bindable\sampler">
-      <UniqueIdentifier>{d3990f1a-e57e-49d0-8a21-a6a8331fac6f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="inc\components\camera">
       <UniqueIdentifier>{51cef2e1-373c-402b-b5e6-7493531c3fe6}</UniqueIdentifier>
     </Filter>
     <Filter Include="inc\d3d\gfx">
       <UniqueIdentifier>{cd888c99-9071-4279-9d12-ef9bf2d5eb5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="renderer">
+      <UniqueIdentifier>{326ac4b1-1167-477e-93bc-acf09d724c2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\inc">
+      <UniqueIdentifier>{78d77f56-73b0-43e8-ba37-28f29d5a086f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\src">
+      <UniqueIdentifier>{5493b845-6488-4b9e-993c-8504bf4c6f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\windows">
+      <UniqueIdentifier>{b1389c78-f5e2-4c2a-96ae-6bd925325f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\windows\win_manager">
+      <UniqueIdentifier>{e9408c8e-cd48-46ac-87b1-8378673609e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\windows\window">
+      <UniqueIdentifier>{f43f6fb6-752e-4d14-88f9-fb82b95a072e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\inc\deferred_buffer">
+      <UniqueIdentifier>{316527d8-acae-4cba-8364-4d5c9dc41638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\texture2d">
+      <UniqueIdentifier>{91890ce6-d602-448e-8a22-5a6c70da4295}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\material">
+      <UniqueIdentifier>{e2303559-2654-4ff3-ab7f-811fb0b4fc12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\gb_pass">
+      <UniqueIdentifier>{f363b9d4-0f9c-444e-85c4-a6761d28a55f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\deferred">
+      <UniqueIdentifier>{fc72ed61-d6ba-449d-8466-862f9bc47be2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\light">
+      <UniqueIdentifier>{c21b460a-0567-4d9f-bc3c-695f97177691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\inc\light_manager">
+      <UniqueIdentifier>{b06feb30-21ca-46a3-8565-7d53c25e49bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\scene">
+      <UniqueIdentifier>{52b9cb19-2920-4226-a1ac-0b16d111f4d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\shader_include">
+      <UniqueIdentifier>{bb7f65da-3fc6-4d97-8903-981a795dc09a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\deferred\light">
+      <UniqueIdentifier>{ed778b78-a856-4907-86a0-4e41d1be254a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\containers\manager">
+      <UniqueIdentifier>{388994ba-edf3-4a0b-be85-cba3c20fe863}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\inc\drawable_manager">
+      <UniqueIdentifier>{2f43801e-5621-4669-b56d-8dde518661eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable">
+      <UniqueIdentifier>{6fc42b97-5f01-4dde-a242-2364dfc79db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\shader">
+      <UniqueIdentifier>{755ccdec-eda5-4f87-9467-4c11485b7f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\input_layout">
+      <UniqueIdentifier>{77cbf194-006d-4b4b-8b81-7a1c552045ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\const_buffer">
+      <UniqueIdentifier>{b2e948ba-a2ff-446f-9703-10ec745d9bf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\bindable">
+      <UniqueIdentifier>{38f23a62-ce2d-4923-b1b9-9f627e920474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\sampler">
+      <UniqueIdentifier>{d3990f1a-e57e-49d0-8a21-a6a8331fac6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\render_texture">
+      <UniqueIdentifier>{69d642bf-8c36-432e-b88e-70606f5e0cab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\d3d\bindable\depth_stencil">
+      <UniqueIdentifier>{2e5231c0-fcbf-4a30-b75c-e4b9b952502e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\camera\shader_camera">
+      <UniqueIdentifier>{4f5dc803-cdc2-4777-82e0-3b4b54ab2769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\input">
+      <UniqueIdentifier>{50538a7b-ca4d-40bb-a4f6-c04310b394bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\input\mouse">
+      <UniqueIdentifier>{16d24fab-c868-4e9d-a7a2-98884c2dcd1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\cam_controller">
+      <UniqueIdentifier>{dac8d5fe-d79d-4f52-8039-0802ceb43682}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="win_main.cpp">
-      <Filter>src</Filter>
+      <Filter>renderer\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_d3d.cpp">
       <Filter>inc\d3d\d3d</Filter>
@@ -105,19 +165,37 @@
     <ClCompile Include="grng_drawable.cpp">
       <Filter>inc\d3d\drawable</Filter>
     </ClCompile>
-    <ClCompile Include="grng_win_manager.cpp">
-      <Filter>inc\win_manager</Filter>
-    </ClCompile>
     <ClCompile Include="grng_gfx.cpp">
       <Filter>inc\d3d\gfx</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_win_manager.cpp">
+      <Filter>inc\windows\win_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_db_get.cpp">
+      <Filter>renderer\inc\deferred_buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_obj.cpp">
+      <Filter>inc\d3d\drawable\drawable_obj</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_light_manager.cpp">
+      <Filter>renderer\inc\light_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_camera.cpp">
+      <Filter>inc\components\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_mouse.cpp">
+      <Filter>inc\components\input\mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_math.cpp">
+      <Filter>inc\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="cam_controller.cpp">
+      <Filter>renderer\cam_controller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grng_piston.h">
       <Filter>inc\containers\piston</Filter>
-    </ClInclude>
-    <ClInclude Include="grng_utils.h">
-      <Filter>inc\utils\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_bindable.h">
       <Filter>inc\d3d\bindable\bindable</Filter>
@@ -158,7 +236,7 @@
     <ClInclude Include="grng_obj.h">
       <Filter>inc\d3d\drawable\drawable_obj</Filter>
     </ClInclude>
-    <ClInclude Include="grng_component_transform.h">
+    <ClInclude Include="grng_transform.h">
       <Filter>inc\components\transform</Filter>
     </ClInclude>
     <ClInclude Include="grng_components.h">
@@ -185,22 +263,111 @@
     <ClInclude Include="grng_camera.h">
       <Filter>inc\components\camera</Filter>
     </ClInclude>
-    <ClInclude Include="grng_win_manager.h">
-      <Filter>inc\win_manager</Filter>
-    </ClInclude>
-    <ClInclude Include="grng_vert_transform.h">
+    <ClInclude Include="grng_shader_transform.h">
       <Filter>inc\components\transform</Filter>
     </ClInclude>
     <ClInclude Include="grng_gfx.h">
       <Filter>inc\d3d\gfx</Filter>
     </ClInclude>
+    <ClInclude Include="grng_render_texture.h">
+      <Filter>inc\d3d\bindable\render_texture</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_texture2d.h">
+      <Filter>inc\components\texture2d</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_win_manager.h">
+      <Filter>inc\windows\win_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_window.h">
+      <Filter>inc\windows\window</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_depth_stencil.h">
+      <Filter>inc\d3d\bindable\depth_stencil</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_deferred_buffer.h">
+      <Filter>renderer\inc\deferred_buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_material.h">
+      <Filter>inc\components\material</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_light.h">
+      <Filter>inc\components\light</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_point_light.h">
+      <Filter>inc\components\light</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_light_manager.h">
+      <Filter>renderer\inc\light_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_lights.h">
+      <Filter>inc\components\light</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_shader_include.h">
+      <Filter>inc\components\shader_include</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_utils.h">
+      <Filter>inc\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_dir_light.h">
+      <Filter>inc\components\light</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_scene.h">
+      <Filter>inc\components\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_manager.h">
+      <Filter>inc\containers\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_drawable_manager.h">
+      <Filter>renderer\inc\drawable_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_scene_def.h">
+      <Filter>inc\components\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_shader_camera.h">
+      <Filter>inc\components\camera\shader_camera</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_deffered_def.h">
+      <Filter>renderer\inc\deferred_buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_material_def.h">
+      <Filter>inc\components\material</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_math.h">
+      <Filter>inc\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_mouse.h">
+      <Filter>inc\components\input\mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_input.h">
+      <Filter>inc\components\input</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_window_def.h">
+      <Filter>inc\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="cam_controller.h">
+      <Filter>renderer\cam_controller</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="shader.hlsl">
-      <Filter>shaders</Filter>
+    <FxCompile Include="deferred_fs.hlsl">
+      <Filter>shaders\deferred</Filter>
     </FxCompile>
-    <FxCompile Include="shader1.hlsl">
-      <Filter>shaders</Filter>
+    <FxCompile Include="deferred_vs.hlsl">
+      <Filter>shaders\deferred</Filter>
     </FxCompile>
+    <FxCompile Include="g_buffer_pass_vs.hlsl">
+      <Filter>shaders\gb_pass</Filter>
+    </FxCompile>
+    <FxCompile Include="g_buffer_pass_fs.hlsl">
+      <Filter>shaders\gb_pass</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="point_light.hlsli">
+      <Filter>shaders\deferred\light</Filter>
+    </None>
+    <None Include="dir_light.hlsli">
+      <Filter>shaders\deferred\light</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@ class grng_const_buffer : public GRNG_BINDABLE
 {
 protected:
 	ID3D11Buffer			*buffer = NULL;
+	UINT					slot = 0u;
 	const T					*data_ptr = NULL;
 	size_t					data_size = 0;
 
@@ -29,7 +30,7 @@ private:
 		sd.pSysMem = &data;
 		sd.SysMemPitch = 0u;
 		sd.SysMemSlicePitch = 0u;
-		this->device->CreateBuffer(&bd, &sd, &this->buffer);
+		HRESULT hr = this->device->CreateBuffer(&bd, &sd, &this->buffer);
 	}
 
 	void	set_data_memory()
@@ -42,7 +43,7 @@ private:
 		bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		bd.MiscFlags = 0u;
 
-		this->device->CreateBuffer(&bd, NULL, &this->buffer);
+		HRESULT hr = this->device->CreateBuffer(&bd, NULL, &this->buffer);
 	}
 
 
@@ -56,20 +57,24 @@ private:
 	}
 
 public:
-	grng_const_buffer(const grng_const_buffer &cb) = delete;
-	grng_const_buffer(grng_const_buffer &&cb) = delete;
-
-	grng_const_buffer() : GRNG_BINDABLE()
+	grng_const_buffer(UINT slot) : GRNG_BINDABLE()
 	{
 		this->set_data_memory();
+		this->set_slot(slot);
 	}
 
-	grng_const_buffer(const T &data) : GRNG_BINDABLE()
+	grng_const_buffer(const T &data, UINT slot) : GRNG_BINDABLE()
 	{
 		this->set_data_memory(data);
+		this->set_slot(slot);
 	}
 
 	~grng_const_buffer()
+	{
+		this->remove_data_memory();
+	}
+
+	void	destroy() override
 	{
 		this->remove_data_memory();
 	}
@@ -97,6 +102,11 @@ public:
 		this->remove_data_memory();
 		this->set_data_memory(data);
 	}
+
+	void	set_slot(UINT slot)
+	{
+		this->slot = slot;
+	}
 };
 
 template <typename T>
@@ -107,13 +117,13 @@ template <typename T>
 class grng_vert_const_buffer : public GRNG_CONST_BUFFER<T>
 {
 public:
-	grng_vert_const_buffer() : GRNG_CONST_BUFFER<T>(){ }
-	grng_vert_const_buffer(const T &data) : GRNG_CONST_BUFFER<T>(data){ }
+	grng_vert_const_buffer(UINT slot = 0u) : GRNG_CONST_BUFFER<T>(slot){ }
+	grng_vert_const_buffer(const T &data, UINT slot = 0u) : GRNG_CONST_BUFFER<T>(data, slot){ }
 
 
 	void	bind() override
 	{
-		this->device_context->VSSetConstantBuffers(0u, 1, &this->buffer);
+		this->device_context->VSSetConstantBuffers(this->slot, 1, &this->buffer);
 	}
 };
 
@@ -125,13 +135,13 @@ template <typename T>
 class grng_frag_const_buffer : public GRNG_CONST_BUFFER<T>
 {
 public:
-	grng_frag_const_buffer() : GRNG_CONST_BUFFER<T>(){ }
-	grng_frag_const_buffer(const T &data) : GRNG_CONST_BUFFER<T>(data){ }
+	grng_frag_const_buffer(UINT slot = 0u) : GRNG_CONST_BUFFER<T>(slot){ }
+	grng_frag_const_buffer(const T &data, UINT slot = 0u) : GRNG_CONST_BUFFER<T>(data, slot){ }
 
 
 	void	bind() override
 	{
-		this->device_context->PSSetConstantBuffers(0u, 1, &this->buffer);
+		this->device_context->PSSetConstantBuffers(this->slot, 1, &this->buffer);
 	}
 };
 

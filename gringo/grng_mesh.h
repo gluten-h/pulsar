@@ -68,6 +68,11 @@ public:
 		this->remove_mesh_memory();
 	}
 
+	void		destroy() override
+	{
+		this->remove_mesh_memory();
+	}
+
 	void		set_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format);
 	void		set_primitive_topology(const D3D_PRIMITIVE_TOPOLOGY &primitive_topology);
 

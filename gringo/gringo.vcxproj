@@ -118,12 +118,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>./imgui/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,12 +138,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>./imgui/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,16 +155,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="grng_camera.cpp" />
     <ClCompile Include="grng_d3d.cpp" />
+    <ClCompile Include="grng_db_get.cpp" />
     <ClCompile Include="grng_drawable.cpp" />
     <ClCompile Include="grng_gfx.cpp" />
+    <ClCompile Include="grng_light_manager.cpp" />
+    <ClCompile Include="grng_math.cpp" />
     <ClCompile Include="grng_mesh.cpp" />
     <ClCompile Include="grng_mesh_d3d.cpp" />
     <ClCompile Include="grng_mesh_obj.cpp" />
+    <ClCompile Include="grng_mouse.cpp" />
+    <ClCompile Include="grng_obj.cpp" />
     <ClCompile Include="grng_win_manager.cpp" />
     <ClCompile Include="win_main.cpp" />
+    <ClCompile Include="cam_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="grng_mouse.h" />
     <ClInclude Include="grng_asset.h" />
     <ClInclude Include="grng_assets.h" />
     <ClInclude Include="grng_bindable.h" />
@@ -171,43 +181,100 @@
     <ClInclude Include="grng_components.h" />
     <ClInclude Include="grng_const_buffer.h" />
     <ClInclude Include="grng_d3d.h" />
+    <ClInclude Include="grng_deferred_buffer.h" />
+    <ClInclude Include="grng_deffered_def.h" />
+    <ClInclude Include="grng_depth_stencil.h" />
+    <ClInclude Include="grng_dir_light.h" />
     <ClInclude Include="grng_drawable.h" />
     <ClInclude Include="grng_drawables.h" />
+    <ClInclude Include="grng_drawable_manager.h" />
     <ClInclude Include="grng_frag_shader.h" />
     <ClInclude Include="grng_geom_shader.h" />
     <ClInclude Include="grng_gfx.h" />
     <ClInclude Include="grng_input_layout.h" />
+    <ClInclude Include="grng_light.h" />
+    <ClInclude Include="grng_lights.h" />
+    <ClInclude Include="grng_light_manager.h" />
+    <ClInclude Include="grng_manager.h" />
+    <ClInclude Include="grng_material.h" />
+    <ClInclude Include="grng_material_def.h" />
+    <ClInclude Include="grng_math.h" />
     <ClInclude Include="grng_mesh.h" />
     <ClInclude Include="grng_piston.h" />
+    <ClInclude Include="grng_point_light.h" />
+    <ClInclude Include="grng_render_texture.h" />
     <ClInclude Include="grng_sampler.h" />
+    <ClInclude Include="grng_scene.h" />
+    <ClInclude Include="grng_scene_def.h" />
     <ClInclude Include="grng_shader.h" />
     <ClInclude Include="grng_shaders.h" />
+    <ClInclude Include="grng_shader_camera.h" />
+    <ClInclude Include="grng_shader_include.h" />
     <ClInclude Include="grng_texture.h" />
+    <ClInclude Include="grng_texture2d.h" />
     <ClInclude Include="grng_utils.h" />
     <ClInclude Include="grng_vert_shader.h" />
-    <ClInclude Include="grng_vert_transform.h" />
+    <ClInclude Include="grng_shader_transform.h" />
+    <ClInclude Include="grng_window.h" />
+    <ClInclude Include="grng_window_def.h" />
     <ClInclude Include="grng_win_manager.h" />
     <ClInclude Include="grng_obj.h" />
-    <ClInclude Include="grng_component_transform.h" />
+    <ClInclude Include="grng_transform.h" />
     <ClInclude Include="igrng_d3d.h" />
+    <ClInclude Include="grng_input.h" />
+    <ClInclude Include="cam_controller.h" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="shader.hlsl">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </FxCompile>
-    <FxCompile Include="shader1.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
+    <FxCompile Include="deferred_fs.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compute</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compute</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4.0</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compute</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
+    <FxCompile Include="deferred_vs.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="g_buffer_pass_fs.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="g_buffer_pass_vs.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dir_light.hlsli">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="point_light.hlsli">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

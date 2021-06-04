@@ -7,6 +7,7 @@ class grng_sampler : public GRNG_BINDABLE
 {
 private:
 	ID3D11SamplerState		*sampler = NULL;
+	UINT					slot = 0u;
 
 
 	void		set_sampler_memory()
@@ -31,11 +32,10 @@ private:
 	}
 
 public:
-	grng_sampler(const grng_sampler &s) = delete;
-	grng_sampler(grng_sampler &&s) = delete;
-	grng_sampler() : GRNG_BINDABLE()
+	grng_sampler(UINT slot = 0u) : GRNG_BINDABLE()
 	{
 		this->set_sampler_memory();
+		this->set_slot(slot);
 	}
 
 	~grng_sampler()
@@ -43,10 +43,20 @@ public:
 		this->remove_sampler_memory();
 	}
 
+	void		set_slot(UINT slot)
+	{
+		this->slot = slot;
+	}
+
 
 	void		bind() override
 	{
-		this->device_context->PSSetSamplers(0u, 1u, &this->sampler);
+		this->device_context->PSSetSamplers(this->slot, 1u, &this->sampler);
+	}
+
+	void		destroy() override
+	{
+		this->remove_sampler_memory();
 	}
 };
 

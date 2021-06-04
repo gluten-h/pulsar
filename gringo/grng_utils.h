@@ -3,6 +3,12 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <memory>
+
+
+#define GRNG_MACRO_MAX_LEN 1024
+
+#define GRNG_MACRO_NAME(m) #m
 
 
 class grng_utils
@@ -16,10 +22,9 @@ public:
 
 		while (std::getline(ss, line, delim))
 			vec.push_back(line);
-	
+
 		return (vec);
 	}
 };
-
 
 using GRNG_UTILS = grng_utils;

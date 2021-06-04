@@ -2,7 +2,8 @@
 
 #include "igrng_d3d.h"
 #include "grng_const_buffer.h"
-#include "grng_components.h"
+#include "grng_bindable.h"
+#include "grng_shader_transform.h"
 
 #include <memory>
 #include <vector>
@@ -13,8 +14,8 @@ class grng_drawable : public IGRNG_D3D
 protected:
 	std::vector <GRNG_BINDABLE*>	bindables;
 
-	static GRNG_VERT_TRANSFORM								vert_transform;
-	static GRNG_VERT_CONST_BUFFER<GRNG_VERT_TRANSFORM>		transform_cbuffer;
+	GRNG_SHADER_TRANSFORM									vert_transform;
+	static GRNG_VERT_CONST_BUFFER<GRNG_SHADER_TRANSFORM>	transform_cbuffer;
 
 public:
 	grng_drawable(const grng_drawable &d) = delete;
