@@ -12,7 +12,12 @@ class grng_gfx
 {
 private:
 	static int				curr_win_id;
-	static float			win_fps[GRNG_MAX_WIN_COUNT];
+	static HWND				curr_hwnd;
+	
+	static float			delta_time;
+	static float			fps;
+	static time_point<high_resolution_clock>	last_frame_time;
+
 	static GRNG_CAMERA		*curr_camera;
 
 public:
@@ -21,25 +26,39 @@ public:
 		grng_gfx::curr_camera = cam;
 	}
 
-	static void				set_win(int id)
+	static void				set_curr_win(int id, HWND hwnd)
 	{
 		grng_gfx::curr_win_id = id;
+		grng_gfx::curr_hwnd = hwnd;
 	}
 
-	static void				set_fps(float fps)
+	static void				set_delta_time()
 	{
-		grng_gfx::win_fps[grng_gfx::curr_win_id] = fps;
+		grng_gfx::delta_time = duration_cast<duration<double, std::milli>>(high_resolution_clock::now() - grng_gfx::last_frame_time).count();
+		grng_gfx::fps = (1.0f / grng_gfx::delta_time) * 1000.0f;
+		grng_gfx::delta_time /= 1000.0f;
+		grng_gfx::last_frame_time = high_resolution_clock::now();
 	}
 
+
+	static HWND				get_curr_hwnd()
+	{
+		return (grng_gfx::curr_hwnd);
+	}
 
 	static GRNG_CAMERA		*get_curr_camera()
 	{
 		return (grng_gfx::curr_camera);
 	}
 
+	static float			get_delta_time()
+	{
+		return (grng_gfx::delta_time);
+	}
+
 	static float			get_fps()
 	{
-		return (grng_gfx::win_fps[grng_gfx::curr_win_id]);
+		return (grng_gfx::fps);
 	}
 };
 

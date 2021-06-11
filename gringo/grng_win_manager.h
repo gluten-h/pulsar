@@ -10,6 +10,7 @@
 
 #include <algorithm>
 #include <unordered_map>
+#include <mutex>
 
 
 class grng_wm : public IGRNG_D3D
@@ -17,11 +18,15 @@ class grng_wm : public IGRNG_D3D
 private:
 	static HINSTANCE			h_instance;
 	static WNDCLASSEX			wc;
-	static MSG					msg;
 
 	static GRNG_PISTON<GRNG_WINDOW, GRNG_MAX_WIN_COUNT>				win;
 	static std::unordered_map<HWND, int>							hwnd_map;
 	static const GRNG_IPISTON<GRNG_WINDOW, GRNG_MAX_WIN_COUNT>		*iwin;
+
+	static std::mutex			&mouse_mutex;
+
+	static time_point<high_resolution_clock>	mouse_update_start;
+	static time_point<high_resolution_clock>	mouse_input_start;
 
 
 	static LRESULT CALLBACK	win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
@@ -44,32 +49,32 @@ private:
 			}
 			case WM_LBUTTONDOWN:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_lmb(true);
+				GRNG_INPUT::GRNG_MOUSE::set_lmb_down();
 				break;
 			}
 			case WM_LBUTTONUP:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_lmb(false);
+				GRNG_INPUT::GRNG_MOUSE::set_lmb_up();
 				break;
 			}
 			case WM_RBUTTONDOWN:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_rmb(true);
+				GRNG_INPUT::GRNG_MOUSE::set_rmb_down();
 				break;
 			}
 			case WM_RBUTTONUP:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_rmb(false);
+				GRNG_INPUT::GRNG_MOUSE::set_rmb_up();
 				break;
 			}
 			case WM_MBUTTONDOWN:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_mmb(true);
+				GRNG_INPUT::GRNG_MOUSE::set_mmb_down();
 				break;
 			}
 			case WM_MBUTTONUP:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_mmb(false);
+				GRNG_INPUT::GRNG_MOUSE::set_mmb_up();
 				break;
 			}
 			case WM_INPUT:
@@ -82,8 +87,10 @@ private:
 				{
 					POINT g_pos;
 					GetCursorPos(&g_pos);
-
+				
+					grng_wm::mouse_mutex.lock();
 					GRNG_INPUT::GRNG_MOUSE::set_delta(ri->data.mouse.lLastX, ri->data.mouse.lLastY);
+					grng_wm::mouse_mutex.unlock();
 					GRNG_INPUT::GRNG_MOUSE::set_global_pos(g_pos.x, g_pos.y);
 				}
 			
@@ -126,10 +133,7 @@ private:
 		rid.usUsage = 0x02;
 		rid.dwFlags = 0;
 		rid.hwndTarget = NULL;
-		if (RegisterRawInputDevices(&rid, 1u, sizeof(RAWINPUTDEVICE)) == FALSE)
-		{
-			bool breakpoint = 1;
-		}
+		RegisterRawInputDevices(&rid, 1u, sizeof(RAWINPUTDEVICE));
 	}
 
 	static void			init_win()
@@ -166,14 +170,32 @@ public:
 	}
 
 
-	static int			create_window(const LPCWSTR win_name, const DWORD win_style, int x, int y, int w, int h, WIN_PROC_DEF win_proc, void *win_proc_data, WIN_UPDATE_DEF win_update, void *win_update_data)
+	static bool			win_event()
+	{
+		GRNG_INPUT::GRNG_MOUSE::reset_input();
+
+		static MSG msg;
+
+		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
+			if (msg.message == WM_QUIT)
+				return (false);
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+
+		return (true);
+	}
+
+
+	static int			create_window(const LPCWSTR win_name, const DWORD win_style, int x, int y, int w, int h, GRNG_WIN_PROC_DEF win_proc, void *win_proc_data)
 	{
 		if (grng_wm::iwin->size >= GRNG_MAX_WIN_COUNT)
 			return (-1);
 
 		GRNG_WINDOW *win_ptr = grng_wm::win.get(grng_wm::win.next_id());
 
-		win_ptr->create(win_name, win_style, x, y, w, h, win_proc, win_proc_data, win_update, win_update_data, grng_wm::h_instance);
+		win_ptr->create(win_name, win_style, x, y, w, h, win_proc, win_proc_data, grng_wm::h_instance);
 		int win_id = grng_wm::win.add(*win_ptr);
 		grng_wm::hwnd_map[win_ptr->hwnd] = win_id;
 		win_ptr->win_id = win_id;
@@ -196,26 +218,16 @@ public:
 	}
 
 
-	static bool			win_event()
-	{
-		GRNG_INPUT::GRNG_MOUSE::set_delta(0, 0);
-
-		while (PeekMessage(&grng_wm::msg, NULL, 0, 0, PM_REMOVE))
-		{
-			if (grng_wm::msg.message == WM_QUIT)
-				return (false);
-			TranslateMessage(&grng_wm::msg);
-			DispatchMessage(&grng_wm::msg);
-		}
-
-		return (true);
-	}
-
-
 	static const GRNG_IPISTON<GRNG_WINDOW, GRNG_MAX_WIN_COUNT>		*get_iwin()
 	{
 		return (grng_wm::iwin);
 	}
+
+
+	static void			add_win_update_secure(unsigned int win_id, GRNG_WIN_UPDATE_DEF win_update, void *win_update_data);
+	static void			add_win_update(unsigned int win_id, GRNG_WIN_UPDATE_DEF win_update, void *win_update_data);
+	static void			remove_win_update_secure(unsigned int win_id, GRNG_WIN_UPDATE_DEF win_update);
+	static void			remove_win_update(unsigned int win_id, GRNG_WIN_UPDATE_DEF win_update);
 
 
 	static void			set_camera_secure(unsigned int win_id, GRNG_CAMERA &cam)
@@ -250,4 +262,3 @@ public:
 
 
 using GRNG_WM = grng_wm;
-

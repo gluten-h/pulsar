@@ -124,7 +124,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>./imgui/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -144,7 +144,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>./imgui/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -166,8 +166,10 @@
     <ClCompile Include="grng_mesh_d3d.cpp" />
     <ClCompile Include="grng_mesh_obj.cpp" />
     <ClCompile Include="grng_mouse.cpp" />
+    <ClCompile Include="grng_mouse_button.cpp" />
     <ClCompile Include="grng_obj.cpp" />
     <ClCompile Include="grng_win_manager.cpp" />
+    <ClCompile Include="grng_wm_update.cpp" />
     <ClCompile Include="win_main.cpp" />
     <ClCompile Include="cam_controller.cpp" />
   </ItemGroup>

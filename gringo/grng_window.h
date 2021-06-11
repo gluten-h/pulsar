@@ -6,24 +6,21 @@
 #include "grng_camera.h"
 #include "grng_scene.h"
 
+#include <unordered_map>
 #include <chrono>
 
 using namespace std::chrono;
-
-
-typedef void (*WIN_PROC_DEF)(UINT, WPARAM, void*);
-typedef void (*WIN_UPDATE_DEF)(void*);
 
 
 struct								grng_window : public IGRNG_D3D
 {
 	int								win_id = -1;
 	HWND							hwnd = NULL;
-	WIN_PROC_DEF					win_proc = NULL;
+	GRNG_WIN_PROC_DEF				win_proc = NULL;
 	void							*win_proc_data = NULL;
 
-	WIN_UPDATE_DEF					win_update = NULL;
-	void							*win_update_data = NULL;
+	std::unordered_map<GRNG_WIN_UPDATE_DEF, void*>		win_update;
+
 
 	IDXGISwapChain					*swap_chain = NULL;
 	ID3D11Texture2D					*back_buffer_texture = NULL;
@@ -32,8 +29,6 @@ struct								grng_window : public IGRNG_D3D
 
 	GRNG_CAMERA						*curr_camera = NULL;
 	GRNG_SCENE						*curr_scene = NULL;
-
-	milliseconds					begin_frame;
 
 
 	grng_window() : IGRNG_D3D(){ }
@@ -57,14 +52,12 @@ struct								grng_window : public IGRNG_D3D
 
 	void		update()
 	{
-		this->begin_frame = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
-		GRNG_GFX::set_win(this->win_id);
-
+		GRNG_GFX::set_curr_win(this->win_id, this->hwnd);
 		if (this->curr_camera)
 			GRNG_GFX::set_curr_camera(this->curr_camera);
 
-		if (this->win_update)
-			this->win_update(this->win_update_data);
+		for (auto &it : this->win_update)
+			it.first(it.second);
 	}
 
 	void		draw_g_pass()
@@ -94,12 +87,11 @@ struct								grng_window : public IGRNG_D3D
 
 	void		present()
 	{
-		this->swap_chain->Present(1, 0);
-		GRNG_GFX::set_fps((duration_cast<milliseconds>(system_clock::now().time_since_epoch()) - this->begin_frame).count() / 1000.0f);
+		this->swap_chain->Present(1u, 0u);
 	}
 
 
-	void		create(const LPCWSTR win_name, const DWORD win_style, int x, int y, int w, int h, WIN_PROC_DEF win_proc, void *win_proc_data, WIN_UPDATE_DEF win_update, void *win_update_data, HINSTANCE h_instance)
+	void		create(const LPCWSTR win_name, const DWORD win_style, int x, int y, int w, int h, GRNG_WIN_PROC_DEF win_proc, void *win_proc_data, HINSTANCE h_instance)
 	{
 		HRESULT hr;
 
@@ -110,9 +102,6 @@ struct								grng_window : public IGRNG_D3D
 		this->hwnd = hwnd;
 		this->win_proc = win_proc;
 		this->win_proc_data = win_proc_data;
-
-		this->win_update = win_update;
-		this->win_update_data = win_update_data;
 
 		DXGI_SWAP_CHAIN_DESC scd;
 		ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
@@ -129,8 +118,6 @@ struct								grng_window : public IGRNG_D3D
 		hr = this->device->CreateRenderTargetView(this->back_buffer_texture, NULL, &this->back_buffer);
 
 		this->deferred_buffer.set_deferred_buffer((float)w, (float)h);
-
-		this->begin_frame = milliseconds::zero();
 	}
 
 	void		destroy()
@@ -140,8 +127,7 @@ struct								grng_window : public IGRNG_D3D
 		this->win_proc = NULL;
 		this->win_proc_data = NULL;
 
-		this->win_update = NULL;
-		this->win_update_data = NULL;
+		this->win_update.clear();
 
 		if (this->swap_chain)
 		{
@@ -163,6 +149,17 @@ struct								grng_window : public IGRNG_D3D
 
 		this->curr_camera = NULL;
 		this->curr_scene = NULL;
+	}
+
+
+	void		add_update(GRNG_WIN_UPDATE_DEF win_update, void *win_update_data)
+	{
+		this->win_update[win_update] = win_update_data;
+	}
+
+	void		remove_update(GRNG_WIN_UPDATE_DEF win_update)
+	{
+		this->win_update.erase(win_update);
 	}
 
 

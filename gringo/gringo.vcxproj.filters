@@ -192,6 +192,12 @@
     <ClCompile Include="cam_controller.cpp">
       <Filter>renderer\cam_controller</Filter>
     </ClCompile>
+    <ClCompile Include="grng_wm_update.cpp">
+      <Filter>inc\windows\win_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_mouse_button.cpp">
+      <Filter>inc\components\input\mouse</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grng_piston.h">
