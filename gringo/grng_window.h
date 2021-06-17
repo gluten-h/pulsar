@@ -19,6 +19,8 @@ struct								grng_window : public IGRNG_D3D
 	GRNG_WIN_PROC_DEF				win_proc = NULL;
 	void							*win_proc_data = NULL;
 
+	bool							is_cursor_clamped = false;
+
 	std::unordered_map<GRNG_WIN_UPDATE_DEF, void*>		win_update;
 
 
@@ -52,9 +54,9 @@ struct								grng_window : public IGRNG_D3D
 
 	void		update()
 	{
-		GRNG_GFX::set_curr_win(this->win_id, this->hwnd);
+		GRNG_GFX::set_curr_win_event(this->win_id, this->hwnd);
 		if (this->curr_camera)
-			GRNG_GFX::set_curr_camera(this->curr_camera);
+			GRNG_GFX::set_curr_camera_event(this->curr_camera);
 
 		for (auto &it : this->win_update)
 			it.first(it.second);
@@ -171,6 +173,32 @@ struct								grng_window : public IGRNG_D3D
 	void		set_scene(GRNG_SCENE &scene)
 	{
 		this->curr_scene = &scene;
+	}
+
+
+	void		hide_cursor()
+	{
+		while (ShowCursor(FALSE) >= 0);
+	}
+
+	void		show_cursor()
+	{
+		while (ShowCursor(TRUE) > 0);
+	}
+
+	void		clamp_cursor()
+	{
+		RECT rect;
+		GetClientRect(this->hwnd, &rect);
+		MapWindowPoints(this->hwnd, NULL, reinterpret_cast<POINT*>(&rect), 2u);
+		ClipCursor(&rect);
+		this->is_cursor_clamped = true;
+	}
+
+	void		free_cursor()
+	{
+		ClipCursor(NULL);
+		this->is_cursor_clamped = false;
 	}
 };
 

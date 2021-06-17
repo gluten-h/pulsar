@@ -145,6 +145,18 @@
     <Filter Include="renderer\cam_controller">
       <UniqueIdentifier>{dac8d5fe-d79d-4f52-8039-0802ceb43682}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shaders\utils">
+      <UniqueIdentifier>{1acbdc15-3e69-45f2-9e09-1758d93f33ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\utils\normal_mapping">
+      <UniqueIdentifier>{5fb9dae9-531c-45fb-89d3-6f6b826046f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\utils\brdf">
+      <UniqueIdentifier>{0b5e3f1f-4e7f-45d4-881e-fa3e998edd9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\utils\gamma">
+      <UniqueIdentifier>{4c3f941c-55c6-46d3-bb01-e59acd97742a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="win_main.cpp">
@@ -367,6 +379,9 @@
     <FxCompile Include="g_buffer_pass_fs.hlsl">
       <Filter>shaders\gb_pass</Filter>
     </FxCompile>
+    <FxCompile Include="g_buffer_pass_gs.hlsl">
+      <Filter>shaders\gb_pass</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="point_light.hlsli">
@@ -374,6 +389,18 @@
     </None>
     <None Include="dir_light.hlsli">
       <Filter>shaders\deferred\light</Filter>
+    </None>
+    <None Include="cook_torrance.hlsli">
+      <Filter>shaders\utils\brdf</Filter>
+    </None>
+    <None Include="normal_mapping.hlsli">
+      <Filter>shaders\utils\normal_mapping</Filter>
+    </None>
+    <None Include="oren_nayar.hlsli">
+      <Filter>shaders\utils\brdf</Filter>
+    </None>
+    <None Include="gamma_correction.hlsli">
+      <Filter>shaders\utils\gamma</Filter>
     </None>
   </ItemGroup>
 </Project>

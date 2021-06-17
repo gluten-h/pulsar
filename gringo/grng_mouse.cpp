@@ -16,6 +16,3 @@ bool			GRNG_INPUT::grng_mouse::b_mmb_down = false;
 bool			GRNG_INPUT::grng_mouse::b_lmb_up = false;
 bool			GRNG_INPUT::grng_mouse::b_rmb_up = false;
 bool			GRNG_INPUT::grng_mouse::b_mmb_up = false;
-
-std::mutex		GRNG_INPUT::grng_mouse::mtx;
-bool			GRNG_INPUT::grng_mouse::is_initialized = false;

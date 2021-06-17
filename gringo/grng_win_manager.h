@@ -23,11 +23,6 @@ private:
 	static std::unordered_map<HWND, int>							hwnd_map;
 	static const GRNG_IPISTON<GRNG_WINDOW, GRNG_MAX_WIN_COUNT>		*iwin;
 
-	static std::mutex			&mouse_mutex;
-
-	static time_point<high_resolution_clock>	mouse_update_start;
-	static time_point<high_resolution_clock>	mouse_input_start;
-
 
 	static LRESULT CALLBACK	win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 	{
@@ -49,32 +44,48 @@ private:
 			}
 			case WM_LBUTTONDOWN:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_lmb_down();
+				GRNG_INPUT::GRNG_MOUSE::set_lmb_down_event();
 				break;
 			}
 			case WM_LBUTTONUP:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_lmb_up();
+				GRNG_INPUT::GRNG_MOUSE::set_lmb_up_event();
 				break;
 			}
 			case WM_RBUTTONDOWN:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_rmb_down();
+				GRNG_INPUT::GRNG_MOUSE::set_rmb_down_event();
 				break;
 			}
 			case WM_RBUTTONUP:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_rmb_up();
+				GRNG_INPUT::GRNG_MOUSE::set_rmb_up_event();
 				break;
 			}
 			case WM_MBUTTONDOWN:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_mmb_down();
+				GRNG_INPUT::GRNG_MOUSE::set_mmb_down_event();
 				break;
 			}
 			case WM_MBUTTONUP:
 			{
-				GRNG_INPUT::GRNG_MOUSE::set_mmb_up();
+				GRNG_INPUT::GRNG_MOUSE::set_mmb_up_event();
+				break;
+			}
+			case WM_ACTIVATE:
+			{
+				if (w_param & WA_ACTIVE || w_param & WA_CLICKACTIVE)
+				{
+					if (win_ptr->is_cursor_clamped)
+						win_ptr->clamp_cursor();
+				}
+				else
+				{
+					GRNG_INPUT::GRNG_MOUSE::set_lmb_up_event();
+					GRNG_INPUT::GRNG_MOUSE::set_rmb_up_event();
+					GRNG_INPUT::GRNG_MOUSE::set_mmb_up_event();
+				}
+
 				break;
 			}
 			case WM_INPUT:
@@ -88,10 +99,8 @@ private:
 					POINT g_pos;
 					GetCursorPos(&g_pos);
 				
-					grng_wm::mouse_mutex.lock();
-					GRNG_INPUT::GRNG_MOUSE::set_delta(ri->data.mouse.lLastX, ri->data.mouse.lLastY);
-					grng_wm::mouse_mutex.unlock();
-					GRNG_INPUT::GRNG_MOUSE::set_global_pos(g_pos.x, g_pos.y);
+					GRNG_INPUT::GRNG_MOUSE::set_delta_event(ri->data.mouse.lLastX, ri->data.mouse.lLastY);
+					GRNG_INPUT::GRNG_MOUSE::set_global_pos_event(g_pos.x, g_pos.y);
 				}
 			
 				break;
@@ -211,7 +220,6 @@ public:
 	
 		grng_wm::destroy_win_memory(win_id);
 	}
-	
 	static void			destroy_win(unsigned int win_id)
 	{
 		grng_wm::destroy_win_memory(win_id);
@@ -237,7 +245,6 @@ public:
 			return;
 		win_ptr->set_camera(cam);
 	}
-
 	static void			set_camera(unsigned int win_id, GRNG_CAMERA &cam)
 	{
 		GRNG_WINDOW *win_ptr = grng_wm::win.get(win_id);
@@ -252,11 +259,63 @@ public:
 			return;
 		win_ptr->set_scene(scene);
 	}
-
 	static void			set_scene(unsigned int win_id, GRNG_SCENE &scene)
 	{
 		GRNG_WINDOW *win_ptr = grng_wm::win.get(win_id);
 		win_ptr->set_scene(scene);
+	}
+
+
+	static void			clamp_cursor_secure(unsigned int win_id)
+	{
+		GRNG_WINDOW *win_ptr = grng_wm::win.get_secure(win_id);
+		if (!win_ptr)
+			return;
+		win_ptr->clamp_cursor();
+	}
+	static void			clamp_cursor(unsigned int win_id)
+	{
+		GRNG_WINDOW *win_ptr = grng_wm::win.get(win_id);
+		win_ptr->clamp_cursor();
+	}
+
+	static void			free_cursor_secure(unsigned int win_id)
+	{
+		GRNG_WINDOW *win_ptr = grng_wm::win.get_secure(win_id);
+		if (!win_ptr)
+			return;
+		win_ptr->free_cursor();
+	}
+	static void			free_cursor(unsigned int win_id)
+	{
+		GRNG_WINDOW *win_ptr = grng_wm::win.get(win_id);
+		win_ptr->free_cursor();
+	}
+
+	static void			hide_cursor_secure(unsigned int win_id)
+	{
+		GRNG_WINDOW *win_ptr = grng_wm::win.get_secure(win_id);
+		if (!win_ptr)
+			return;
+		win_ptr->hide_cursor();
+	}
+	static void			hide_cursor(unsigned int win_id)
+	{
+		GRNG_WINDOW *win_ptr = grng_wm::win.get(win_id);
+		win_ptr->hide_cursor();
+	}
+
+	static void			show_cursor_secure(unsigned int win_id)
+	{
+		GRNG_WINDOW *win_ptr = grng_wm::win.get_secure(win_id);
+		if (!win_ptr)
+			return;
+		win_ptr->show_cursor();
+	}
+	static void			show_cursor(unsigned int win_id)
+	{
+		GRNG_WINDOW *win_ptr = grng_wm::win.get(win_id);
+		win_ptr->show_cursor();
 	}
 };
 

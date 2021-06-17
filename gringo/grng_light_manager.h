@@ -46,6 +46,7 @@ public:
 
 	void		bind() override
 	{
+		this->update_shader_light_scene();
 		this->light_scene_cbuffer.update(this->light_scene);
 		this->light_scene_cbuffer.bind();
 	}

@@ -21,12 +21,12 @@ private:
 	static GRNG_CAMERA		*curr_camera;
 
 public:
-	static void				set_curr_camera(GRNG_CAMERA *cam)
+	static void				set_curr_camera_event(GRNG_CAMERA *cam)
 	{
 		grng_gfx::curr_camera = cam;
 	}
 
-	static void				set_curr_win(int id, HWND hwnd)
+	static void				set_curr_win_event(int id, HWND hwnd)
 	{
 		grng_gfx::curr_win_id = id;
 		grng_gfx::curr_hwnd = hwnd;
@@ -44,6 +44,11 @@ public:
 	static HWND				get_curr_hwnd()
 	{
 		return (grng_gfx::curr_hwnd);
+	}
+
+	static int				get_curr_win_id()
+	{
+		return (grng_gfx::curr_win_id);
 	}
 
 	static GRNG_CAMERA		*get_curr_camera()

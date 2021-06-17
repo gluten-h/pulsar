@@ -10,14 +10,12 @@
 #include <vector>
 
 
-#define GRNG_DEFERRED_CAM_SLOT 1u
-
-
 enum GRNG_G_BUFFER_TYPE
 {
 	GRNG_G_BUFFER_POS,
 	GRNG_G_BUFFER_ALBEDO,
 	GRNG_G_BUFFER_NORMAL,
+	GRNG_G_BUFFER_RMA,
 	GRNG_G_BUFFER_COUNT
 };
 
@@ -50,7 +48,7 @@ private:
 		this->ds.destroy();
 		this->rtv_data.clear();
 
-		this->deferred_fs.destroy();
+		this->deferred_vs.destroy();
 		this->deferred_fs.destroy();
 	}
 

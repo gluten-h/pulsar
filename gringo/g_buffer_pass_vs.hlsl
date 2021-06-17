@@ -8,7 +8,7 @@ cbuffer transform_cb : register (b0)
 };
 
 
-struct v_out
+struct vs_out
 {
     float4 pos : SV_POSITION;
     float4 world_pos : POSITION;
@@ -16,9 +16,9 @@ struct v_out
     float2 uv : UV;
 };
 
-v_out       vert(float3 pos : POSITION, float3 normal : NORMAL, float2 uv : UV)
+vs_out       vert(float3 pos : POSITION, float3 normal : NORMAL, float2 uv : UV)
 {
-    v_out output;
+    vs_out output;
 
     output.pos = mul(proj, mul(view, mul(model, float4(pos, 1.0f))));
     output.world_pos = mul(model, float4(pos, 1.0f));

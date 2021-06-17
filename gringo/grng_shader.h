@@ -3,6 +3,9 @@
 #include "grng_bindable.h"
 #include "grng_shader_include.h"
 
+#include <iostream>
+#include <fstream>
+
 
 enum class			GRNG_SHADER_TYPE
 {
@@ -39,8 +42,22 @@ protected:
 
 	void	set_shader_memory(const LPCWSTR shader_file, const LPCSTR entry, const LPCSTR target, const D3D_SHADER_MACRO *defines)
 	{
+		ID3DBlob *err_msg;
 		GRNG_SHADER_INCLUDE s_inc;
-		HRESULT hr = D3DCompileFromFile(shader_file, defines, &s_inc, entry, target, NULL, NULL, &this->shader_blob, NULL);
+		HRESULT hr = D3DCompileFromFile(shader_file, defines, &s_inc, entry, target, NULL, NULL, &this->shader_blob, &err_msg);
+		if (hr != S_OK)
+		{
+			std::ofstream os("resources/log.txt");
+			os.clear();
+
+			const char *error = static_cast<const char*>(err_msg->GetBufferPointer());
+			bool breakpoint = 1;
+
+			os << error << '\n';
+
+			os.close();
+			exit(0);
+		}
 	}
 
 public:

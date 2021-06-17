@@ -10,8 +10,8 @@ private:
 	XMFLOAT3		color = XMFLOAT3(1.0f, 1.0f, 1.0f);
 	
 	float			const_att = 1.0f;
-	float			linear_att = 1.0f;
-	float			quad_att = 1.0f;
+	float			linear_att = 0.14f;
+	float			quad_att = 0.07f;
 
 
 	void		set_params(const XMFLOAT3 &pos, const XMFLOAT3 &color, float const_att, float linear_att, float quad_att)
@@ -25,7 +25,7 @@ private:
 	}
 
 public:
-	grng_point_light(const XMFLOAT3 &pos, const XMFLOAT3 &color, float const_att, float linear_att, float quad_att) : GRNG_LIGHT()
+	grng_point_light(const XMFLOAT3 &pos, const XMFLOAT3 &color, float const_att = 1.0f, float linear_att = 0.14f, float quad_att = 0.07f) : GRNG_LIGHT()
 	{
 		this->type = GRNG_LIGHT_TYPE_POINT;
 		this->set_params(pos, color, const_att, linear_att, quad_att);
@@ -67,6 +67,17 @@ public:
 	void		set_quad_attenuation(float quad_att)
 	{
 		this->quad_att = quad_att;
+	}
+
+
+	XMFLOAT3	&get_pos()
+	{
+		return (this->pos);
+	}
+
+	XMFLOAT3	&get_color()
+	{
+		return (this->color);
 	}
 
 

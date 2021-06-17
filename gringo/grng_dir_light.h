@@ -42,6 +42,17 @@ public:
 	}
 
 
+	XMFLOAT3	&get_dir()
+	{
+		return (this->dir);
+	}
+
+	XMFLOAT3	&get_color()
+	{
+		return (this->color);
+	}
+
+
 	void		set_shader_light(GRNG_SHADER_LIGHT &sl) override
 	{
 		sl.type = this->type;

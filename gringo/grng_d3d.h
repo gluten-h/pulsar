@@ -34,8 +34,6 @@ protected:
 	static ID3D11Device				*device;
 	static ID3D11DeviceContext		*device_context;
 
-
-
 public:
 	static void				create()
 	{

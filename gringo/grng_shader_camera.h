@@ -10,4 +10,7 @@ typedef struct			grng_shader_camera
 
 	XMFLOAT3			cam_dir;
 	float				pd1;
+
+	float				gamma;
+	float				pd2[3];
 }						GRNG_SHADER_CAMERA;

@@ -17,9 +17,11 @@ private:
 	XMMATRIX					view_matrix = XMMatrixIdentity();
 	XMMATRIX					proj_matrix = XMMatrixIdentity();
 
-	float fov_rad = 0.0f;
-	float z_near = 0.0f;
-	float z_far = 0.0f;
+	float		fov_rad = 1.57f;
+	float		z_near = 0.0f;
+	float		z_far = 1000.0f;
+
+	float		gamma = 2.2f;
 
 
 	static GRNG_FRAG_CONST_BUFFER<GRNG_SHADER_CAMERA>		cam_cbuffer;
@@ -34,8 +36,6 @@ private:
 		XMMATRIX transform_mat = this->transform.get_transform_matrix();
 
 		XMVECTOR forward_vec = XMVector3NormalizeEst(transform_mat.r[2]);
-		//XMVECTOR right_vec = XMVector3NormalizeEst(XMVector3Cross(XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f), forward_vec));
-		//XMVECTOR up_vec = XMVector3NormalizeEst(XMVector3Cross(forward_vec, right_vec));
 		XMVECTOR right_vec = XMVector3NormalizeEst(transform_mat.r[0]);
 		XMVECTOR up_vec = XMVector3NormalizeEst(transform_mat.r[1]);
 
@@ -56,12 +56,14 @@ private:
 	{
 		grng_camera::shader_cam.cam_pos = this->transform.position;
 		grng_camera::shader_cam.cam_dir = this->forward;
+		grng_camera::shader_cam.gamma = this->gamma;
+
 		grng_camera::cam_cbuffer.update(grng_camera::shader_cam);
 		grng_camera::cam_cbuffer.bind();
 	}
 
 public:
-	grng_camera(const GRNG_COMPONENT_TRANSFORM &transform, float fov_rad, float z_near, float z_far)
+	grng_camera(const GRNG_COMPONENT_TRANSFORM &transform, float fov_rad, float z_near, float z_far, float gamma = 2.2f)
 	{
 		this->transform = transform;
 		this->update_view_matrix();
@@ -69,7 +71,7 @@ public:
 		this->fov_rad = fov_rad;
 		this->z_near = z_near;
 		this->z_far = z_far;
-
+		this->gamma = gamma;
 
 		grng_camera::cam_cbuffer.set_slot(GRNG_DEFERRED_CAM_SLOT);
 	}
@@ -119,6 +121,34 @@ public:
 	GRNG_COMPONENT_TRANSFORM		&get_transform()
 	{
 		return (this->transform);
+	}
+
+
+	void				set_z_near(float z_near)
+	{
+		this->z_near = z_near;
+	}
+	float				get_z_near() const
+	{
+		return (this->z_near);
+	}
+
+	void				set_z_far(float z_far)
+	{
+		this->z_far = z_far;
+	}
+	float				get_z_far() const
+	{
+		return (this->z_far);
+	}
+
+	void				set_gamma(float gamma)
+	{
+		this->gamma = gamma;
+	}
+	float				get_gamma() const
+	{
+		return (this->gamma);
 	}
 };
 

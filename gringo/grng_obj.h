@@ -35,11 +35,21 @@ private:
 	void		update_material()
 	{
 		this->shader_material.albedo_color = this->material->albedo_color;
+		this->shader_material.albedo_map_srgb = this->material->albedo_map_srgb;
+		this->shader_material.normal_factor = this->material->normal_factor;
+		this->shader_material.roughness = this->material->roughness;
+		this->shader_material.metalness = this->material->metalness;
+		this->shader_material.ao = this->material->ao;
 
 		this->material_cbuffer.update(this->shader_material);
 		this->material_cbuffer.bind();
 
-		this->material->albedo.bind();
+		this->material->albedo_map.bind();
+		this->material->normal_map.bind();
+		this->material->roughness_map.bind();
+		this->material->metalness_map.bind();
+		this->material->ao_map.bind();
+
 		this->material_sampler.bind();
 	}
 
