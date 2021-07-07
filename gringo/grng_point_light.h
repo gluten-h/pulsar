@@ -25,9 +25,13 @@ private:
 	}
 
 public:
+	grng_point_light() : GRNG_LIGHT()
+	{
+		this->type = GRNG_LIGHT_TYPE::POINT;
+	}
 	grng_point_light(const XMFLOAT3 &pos, const XMFLOAT3 &color, float const_att = 1.0f, float linear_att = 0.14f, float quad_att = 0.07f) : GRNG_LIGHT()
 	{
-		this->type = GRNG_LIGHT_TYPE_POINT;
+		this->type = GRNG_LIGHT_TYPE::POINT;
 		this->set_params(pos, color, const_att, linear_att, quad_att);
 	}
 
@@ -83,12 +87,19 @@ public:
 
 	void		set_shader_light(GRNG_SHADER_LIGHT &sl) override
 	{
-		sl.type = this->type;
+		sl.type = (int)this->type;
 
 		sl.pos = this->pos;
 		sl.color = this->color;
 
 		sl.attenuation = XMFLOAT4(this->const_att, this->linear_att, this->quad_att, 1.0f);
+	}
+
+	static GRNG_LIGHT		*create_manager_ptr()
+	{
+		grng_point_light *light = new grng_point_light;
+
+		return (light);
 	}
 };
 

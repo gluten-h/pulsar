@@ -1,12 +1,13 @@
 #pragma once
 
+#include "grng_component.h"
 #include "grng_transform.h"
 #include "grng_const_buffer.h"
 #include "grng_shader_camera.h"
 #include "grng_deffered_def.h"
 
 
-class grng_camera
+class grng_camera : public GRNG_COMPONENT
 {
 private:
 	GRNG_COMPONENT_TRANSFORM	transform;
@@ -63,7 +64,17 @@ private:
 	}
 
 public:
-	grng_camera(const GRNG_COMPONENT_TRANSFORM &transform, float fov_rad, float z_near, float z_far, float gamma = 2.2f)
+	grng_camera() : GRNG_COMPONENT()
+	{
+		this->type = GRNG_COMPONENT_TYPE::CAMERA;
+	}
+	grng_camera(const GRNG_COMPONENT_TRANSFORM &transform, float fov_rad, float z_near, float z_far, float gamma = 2.2f) : GRNG_COMPONENT()
+	{
+		this->type = GRNG_COMPONENT_TYPE::CAMERA;
+		this->set(transform, fov_rad, z_near, z_far, gamma);
+	}
+
+	void	set(const GRNG_COMPONENT_TRANSFORM &transform, float fov_rad, float z_near, float z_far, float gamma = 2.2f)
 	{
 		this->transform = transform;
 		this->update_view_matrix();
@@ -149,6 +160,14 @@ public:
 	float				get_gamma() const
 	{
 		return (this->gamma);
+	}
+
+
+	static GRNG_COMPONENT		*create_manager_ptr()
+	{
+		grng_camera	*cam = new grng_camera;
+
+		return (cam);
 	}
 };
 

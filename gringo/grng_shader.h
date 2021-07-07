@@ -7,14 +7,6 @@
 #include <fstream>
 
 
-enum class			GRNG_SHADER_TYPE
-{
-	GRNG_SHADER_UNSPECIFIED,
-	GRNG_VERT_SHADER,
-	GRNG_GEOM_SHADER,
-	GRNG_FRAG_SHADER
-};
-
 #define GRNG_VERT_SHADER_TARGET "vs_5_0"
 #define GRNG_GEOM_SHADER_TARGET "gs_5_0"
 #define GRNG_FRAG_SHADER_TARGET "ps_5_0"
@@ -28,7 +20,6 @@ enum class			GRNG_SHADER_TYPE
 class grng_shader : public GRNG_BINDABLE
 {
 protected:
-	GRNG_SHADER_TYPE		type = GRNG_SHADER_TYPE::GRNG_SHADER_UNSPECIFIED;
 	ID3DBlob				*shader_blob = NULL;
 
 	void			remove_shader_memory()

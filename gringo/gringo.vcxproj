@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -125,6 +125,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -145,6 +146,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -158,25 +160,41 @@
     <ClCompile Include="grng_camera.cpp" />
     <ClCompile Include="grng_d3d.cpp" />
     <ClCompile Include="grng_db_get.cpp" />
-    <ClCompile Include="grng_drawable.cpp" />
+    <ClCompile Include="grng_entity.cpp" />
     <ClCompile Include="grng_gfx.cpp" />
     <ClCompile Include="grng_light_manager.cpp" />
+    <ClCompile Include="grng_manager_ptr.cpp" />
     <ClCompile Include="grng_math.cpp" />
     <ClCompile Include="grng_mesh.cpp" />
     <ClCompile Include="grng_mesh_d3d.cpp" />
     <ClCompile Include="grng_mesh_obj.cpp" />
     <ClCompile Include="grng_mouse.cpp" />
     <ClCompile Include="grng_mouse_button.cpp" />
-    <ClCompile Include="grng_obj.cpp" />
+    <ClCompile Include="grng_object.cpp" />
+    <ClCompile Include="grng_scene.cpp" />
+    <ClCompile Include="grng_window.cpp" />
+    <ClCompile Include="grng_window_draw.cpp" />
+    <ClCompile Include="grng_window_misc.cpp" />
+    <ClCompile Include="grng_window_update.cpp" />
+    <ClCompile Include="grng_window_cursor.cpp" />
     <ClCompile Include="grng_win_manager.cpp" />
+    <ClCompile Include="grng_wm_cursor.cpp" />
+    <ClCompile Include="grng_wm_misc.cpp" />
+    <ClCompile Include="grng_wm_resources.cpp" />
     <ClCompile Include="grng_wm_update.cpp" />
+    <ClCompile Include="grng_wm_window.cpp" />
+    <ClCompile Include="grng_wm_win_proc.cpp" />
     <ClCompile Include="win_main.cpp" />
     <ClCompile Include="cam_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="grng_bindable_manager.h" />
+    <ClInclude Include="grng_component.h" />
+    <ClInclude Include="grng_component_manager.h" />
+    <ClInclude Include="grng_cubemap.h" />
+    <ClInclude Include="grng_def.h" />
+    <ClInclude Include="grng_material_shader.h" />
     <ClInclude Include="grng_mouse.h" />
-    <ClInclude Include="grng_asset.h" />
-    <ClInclude Include="grng_assets.h" />
     <ClInclude Include="grng_bindable.h" />
     <ClInclude Include="grng_bindables.h" />
     <ClInclude Include="grng_camera.h" />
@@ -187,9 +205,9 @@
     <ClInclude Include="grng_deffered_def.h" />
     <ClInclude Include="grng_depth_stencil.h" />
     <ClInclude Include="grng_dir_light.h" />
-    <ClInclude Include="grng_drawable.h" />
-    <ClInclude Include="grng_drawables.h" />
-    <ClInclude Include="grng_drawable_manager.h" />
+    <ClInclude Include="grng_entity.h" />
+    <ClInclude Include="grng_entities.h" />
+    <ClInclude Include="grng_entity_manager.h" />
     <ClInclude Include="grng_frag_shader.h" />
     <ClInclude Include="grng_geom_shader.h" />
     <ClInclude Include="grng_gfx.h" />
@@ -208,6 +226,7 @@
     <ClInclude Include="grng_sampler.h" />
     <ClInclude Include="grng_scene.h" />
     <ClInclude Include="grng_scene_def.h" />
+    <ClInclude Include="grng_scene_manager.h" />
     <ClInclude Include="grng_shader.h" />
     <ClInclude Include="grng_shaders.h" />
     <ClInclude Include="grng_shader_camera.h" />
@@ -216,15 +235,16 @@
     <ClInclude Include="grng_texture2d.h" />
     <ClInclude Include="grng_utils.h" />
     <ClInclude Include="grng_vert_shader.h" />
-    <ClInclude Include="grng_shader_transform.h" />
+    <ClInclude Include="grng_transform_shader.h" />
     <ClInclude Include="grng_window.h" />
     <ClInclude Include="grng_window_def.h" />
     <ClInclude Include="grng_win_manager.h" />
-    <ClInclude Include="grng_obj.h" />
+    <ClInclude Include="grng_object.h" />
     <ClInclude Include="grng_transform.h" />
     <ClInclude Include="igrng_d3d.h" />
     <ClInclude Include="grng_input.h" />
     <ClInclude Include="cam_controller.h" />
+    <ClInclude Include="grng_manager_ptr.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="deferred_fs.hlsl">
@@ -246,6 +266,12 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="env_map_vs.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="g_buffer_pass_gs.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>
@@ -301,6 +327,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
+    <None Include="packages.config" />
     <None Include="point_light.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
@@ -308,5 +335,14 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\directxtex_desktop_2017.2021.6.10.1\build\native\directxtex_desktop_2017.targets" Condition="Exists('..\packages\directxtex_desktop_2017.2021.6.10.1\build\native\directxtex_desktop_2017.targets')" />
+    <Import Project="..\packages\directxtex_desktop_win10.2021.6.10.1\build\native\directxtex_desktop_win10.targets" Condition="Exists('..\packages\directxtex_desktop_win10.2021.6.10.1\build\native\directxtex_desktop_win10.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\directxtex_desktop_2017.2021.6.10.1\build\native\directxtex_desktop_2017.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtex_desktop_2017.2021.6.10.1\build\native\directxtex_desktop_2017.targets'))" />
+    <Error Condition="!Exists('..\packages\directxtex_desktop_win10.2021.6.10.1\build\native\directxtex_desktop_win10.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtex_desktop_win10.2021.6.10.1\build\native\directxtex_desktop_win10.targets'))" />
+  </Target>
 </Project>

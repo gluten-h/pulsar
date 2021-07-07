@@ -3,7 +3,7 @@
 #include "igrng_d3d.h"
 
 
-class grng_texture2d : public IGRNG_D3D
+class grng_texture2d : public GRNG_ID3D
 {
 private:
 	ID3D11Texture2D		*texture = NULL;
@@ -45,8 +45,8 @@ public:
 		return (*this);
 	}
 
-	grng_texture2d() :IGRNG_D3D(){ }
-	grng_texture2d(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags) : IGRNG_D3D()
+	grng_texture2d() : GRNG_ID3D(){ }
+	grng_texture2d(float width, float height, DXGI_FORMAT format, UINT bind_flags = 0u, UINT cpu_access_flags = 0u) : GRNG_ID3D()
 	{
 		this->set_texture_memory(width, height, format, bind_flags, cpu_access_flags);
 	}
@@ -56,7 +56,7 @@ public:
 		this->remove_texture_memory();
 	}
 
-	void				set_texture(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
+	void				set_texture(float width, float height, DXGI_FORMAT format, UINT bind_flags = 0u, UINT cpu_access_flags = 0u)
 	{
 		this->remove_texture_memory();
 		this->set_texture_memory(width, height, format, bind_flags, cpu_access_flags);

@@ -1,10 +1,9 @@
 #pragma once
 
 #include "grng_manager.h"
-#include "grng_bindables.h"
+#include "grng_manager_ptr.h"
 #include "grng_lights.h"
-#include "grng_scene_def.h"
-#include "grng_deffered_def.h"
+#include "grng_def.h"
 
 
 class grng_light_manager : public GRNG_MANAGER<GRNG_LIGHT, GRNG_MAX_LIGHT_COUNT>
@@ -27,13 +26,15 @@ private:
 	}
 
 
-	void		add_event(int added_id) override
+	void		add_event(int added_id, GRNG_LIGHT &data) override
 	{
+		data.id = added_id;
 		this->update_shader_light_scene();
 	}
 
-	void		remove_event(int removed_id) override
+	void		remove_event(int removed_id, GRNG_LIGHT &data) override
 	{
+		data.id = -1;
 		this->update_shader_light_scene();
 	}
 
@@ -43,8 +44,15 @@ public:
 		grng_light_manager::light_scene_cbuffer.set_slot(GRNG_DEFERRED_LIGHT_SLOT);
 	}
 
+	GRNG_LIGHT		*add(const GRNG_LIGHT_TYPE &type)
+	{
+		if (!this->is_available())
+			return (NULL);
 
-	void		bind() override
+		return (this->add_manager(GRNG_MANAGER_PTR::create_ptr(type)));
+	}
+
+	void			bind()
 	{
 		this->update_shader_light_scene();
 		this->light_scene_cbuffer.update(this->light_scene);

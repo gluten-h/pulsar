@@ -156,7 +156,7 @@ public:
 	}
 
 
-	decltype(auto)			get_ipiston() const
+	const GRNG_IPISTON<T, MAX_SIZE>		*get_ipiston() const
 	{
 		return (&this->ipiston);
 	}

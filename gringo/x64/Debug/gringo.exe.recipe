@@ -5,7 +5,11 @@
       <FullPath>D:\vs_project\gringo\x64\Debug\gringo.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\vs_project\gringo\x64\Debug\env_map_vs.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>

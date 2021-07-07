@@ -59,9 +59,14 @@ public:
 		return (*this);
 	}
 
-	grng_render_texture() : GRNG_BINDABLE(){ }
+	grng_render_texture() : GRNG_BINDABLE()
+	{
+		this->type = GRNG_BINDABLE_TYPE::RENDER_TEXTURE;
+	}
 	grng_render_texture(ID3D11Texture2D *texture, UINT slot = 0u) : GRNG_BINDABLE()
 	{
+		this->type = GRNG_BINDABLE_TYPE::RENDER_TEXTURE;
+
 		this->set_rt_memory(texture);
 		this->set_slot(slot);
 	}
@@ -71,7 +76,7 @@ public:
 		this->remove_rt_memory();
 	}
 
-	void		set_render_texture(ID3D11Texture2D *texture)
+	void		set(ID3D11Texture2D *texture)
 	{
 		this->remove_rt_memory();
 		this->set_rt_memory(texture);
@@ -91,6 +96,14 @@ public:
 	ID3D11ShaderResourceView	*get_shader_resource()
 	{
 		return (this->texture_srv);
+	}
+
+
+	static GRNG_BINDABLE		*create_manager_ptr()
+	{
+		grng_render_texture *rt = new grng_render_texture;
+
+		return (rt);
 	}
 
 

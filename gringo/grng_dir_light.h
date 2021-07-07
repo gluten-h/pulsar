@@ -19,9 +19,19 @@ private:
 	}
 
 public:
+	void		operator=(const grng_dir_light &l)
+	{
+		this->dir = l.dir;
+		this->color = l.color;
+	}
+
+	grng_dir_light() :GRNG_LIGHT()
+	{
+		this->type = GRNG_LIGHT_TYPE::DIR;
+	}
 	grng_dir_light(const XMFLOAT3 &dir, const XMFLOAT3 &color) : GRNG_LIGHT()
 	{
-		this->type = GRNG_LIGHT_TYPE_DIR;
+		this->type = GRNG_LIGHT_TYPE::DIR;
 		this->set_params(dir, color);
 	}
 
@@ -55,10 +65,17 @@ public:
 
 	void		set_shader_light(GRNG_SHADER_LIGHT &sl) override
 	{
-		sl.type = this->type;
+		sl.type = (int)this->type;
 
 		sl.dir = this->dir;
 		sl.color = this->color;
+	}
+
+	static GRNG_LIGHT		*create_manager_ptr()
+	{
+		grng_dir_light *light = new grng_dir_light;
+
+		return (light);
 	}
 };
 

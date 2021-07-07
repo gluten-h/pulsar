@@ -25,10 +25,14 @@ private:
 	}
 
 public:
-	grng_frag_shader() : GRNG_SHADER(){ }
+	grng_frag_shader() : GRNG_SHADER()
+	{
+		this->type = GRNG_BINDABLE_TYPE::FRAG_SHADER;
+	}
 	grng_frag_shader(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines) : GRNG_SHADER()
 	{
-		this->type = GRNG_SHADER_TYPE::GRNG_FRAG_SHADER;
+		this->type = GRNG_BINDABLE_TYPE::FRAG_SHADER;
+
 		this->set_shader_memory(shader_file, entry, defines);
 	}
 
@@ -42,6 +46,14 @@ public:
 	{
 		this->remove_shader_memory();
 		this->set_shader_memory(shader_file, entry, defines);
+	}
+
+
+	static GRNG_BINDABLE		*create_manager_ptr()
+	{
+		grng_frag_shader *fs = new grng_frag_shader;
+
+		return (fs);
 	}
 
 

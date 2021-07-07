@@ -1,29 +1,46 @@
 #pragma once
 
 #include "grng_light_manager.h"
-#include "grng_drawable_manager.h"
+#include "grng_entity_manager.h"
+#include "grng_cubemap.h"
+#include "grng_mesh.h"
+#include "grng_def.h"
 
 
 class grng_scene
 {
 private:
+	friend class grng_scene_manager;
+
+private:
+	int						id = -1;
+
 	GRNG_LIGHT_MANAGER		light_manager;
-	GRNG_DRAWABLE_MANAGER	drawable_manager;
+	GRNG_ENTITY_MANAGER		entity_manager;
+
+	GRNG_CUBEMAP			*env_map = NULL;
+	static GRNG_MESH		skybox_mesh;
 
 public:
-	int				add_light(GRNG_LIGHT &light)
+	int					get_id() const
 	{
-		return (this->light_manager.add(light));
+		return (this->id);
 	}
 
-	void			remove_light(unsigned int id)
+
+	GRNG_LIGHT			*add_light(const GRNG_LIGHT_TYPE &type)
 	{
-		this->light_manager.remove_secure(id);
+		return (this->light_manager.add(type));
 	}
 
 	void			remove_light(GRNG_LIGHT &light)
 	{
 		this->light_manager.remove_secure(light);
+	}
+
+	void			remove_light(unsigned int id)
+	{
+		this->light_manager.remove_secure(id);
 	}
 
 	GRNG_LIGHT		*get_light(unsigned int id)
@@ -32,30 +49,44 @@ public:
 	}
 
 
-	int				add_drawable(GRNG_DRAWABLE &drawable)
+	GRNG_ENTITY			*add_entity(const GRNG_ENTITY_TYPE &type)
 	{
-		return (this->drawable_manager.add(drawable));
+		GRNG_ENTITY *entity = this->entity_manager.add(type);
+		entity->scene_id = this->id;
+
+		return (entity);
 	}
 
-	void			remove_drawable(unsigned int id)
+	void			remove_entity(GRNG_ENTITY &drawable)
 	{
-		this->drawable_manager.remove_secure(id);
+		this->entity_manager.remove_secure(drawable);
 	}
 
-	void			remove_drawable(GRNG_DRAWABLE &drawable)
+	void			remove_entity(unsigned int id)
 	{
-		this->drawable_manager.remove_secure(drawable);
+		this->entity_manager.remove_secure(id);
 	}
 
-	GRNG_DRAWABLE	*get_drawable(unsigned int id)
+	GRNG_ENTITY		*get_entity(unsigned int id)
 	{
-		return (this->drawable_manager.get_data_secure(id));
+		return (this->entity_manager.get_data_secure(id));
+	}
+
+
+	void			set_env_map(GRNG_CUBEMAP &env_map)
+	{
+		this->env_map = &env_map;
+	}
+
+	GRNG_CUBEMAP	*get_env_map()
+	{
+		return (this->env_map);
 	}
 
 
 	void			draw()
 	{
-		this->drawable_manager.draw();
+		this->entity_manager.draw();
 	}
 
 	void			bind()

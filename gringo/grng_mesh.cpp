@@ -12,7 +12,7 @@ void		grng_mesh::remove_mesh_memory()
 		this->i_buffer->Release();
 }
 
-void		grng_mesh::set_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format)
+void		grng_mesh::set(const char *file, GRNG_MESH_FILE_FORMAT file_format)
 {
 	this->remove_mesh_memory();
 

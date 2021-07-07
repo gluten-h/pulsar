@@ -1,9 +1,9 @@
 #pragma once
 
-#include "grng_asset.h"
+#include "grng_bindable.h"
 
 
-class grng_texture : public GRNG_ASSET
+class grng_texture : public GRNG_BINDABLE
 {
 private:
 	ID3D11ShaderResourceView		*texture_srv = NULL;
@@ -33,9 +33,14 @@ public:
 		return (*this);
 	}
 
-	grng_texture() : GRNG_ASSET(){ }
-	grng_texture(const LPCWSTR file, UINT slot = 0u) : GRNG_ASSET()
+	grng_texture() : GRNG_BINDABLE()
 	{
+		this->type = GRNG_BINDABLE_TYPE::TEXTURE;
+	}
+	grng_texture(const LPCWSTR file, UINT slot = 0u) : GRNG_BINDABLE()
+	{
+		this->type = GRNG_BINDABLE_TYPE::TEXTURE;
+
 		this->set_texture_memory(file);
 		this->set_slot(slot);
 	}
@@ -45,7 +50,7 @@ public:
 		this->remove_texture_memory();
 	}
 
-	void		set_texture(const LPCWSTR file)
+	void		set(const LPCWSTR file)
 	{
 		this->remove_texture_memory();
 		this->set_texture_memory(file);
@@ -54,6 +59,14 @@ public:
 	void		set_slot(UINT slot)
 	{
 		this->slot = slot;
+	}
+
+
+	static GRNG_BINDABLE		*create_manager_ptr()
+	{
+		grng_texture *tex = new grng_texture;
+
+		return (tex);
 	}
 
 

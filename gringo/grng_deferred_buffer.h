@@ -20,7 +20,7 @@ enum GRNG_G_BUFFER_TYPE
 };
 
 
-class grng_deferred_buffer : public IGRNG_D3D
+class grng_deferred_buffer : public GRNG_ID3D
 {
 private:
 	GRNG_TEXTURE2D			rt_texture[GRNG_G_BUFFER_COUNT];
@@ -66,7 +66,7 @@ public:
 		return (*this);
 	}
 
-	grng_deferred_buffer() : IGRNG_D3D()
+	grng_deferred_buffer() : GRNG_ID3D()
 	{
 		this->deferred_vs.set(L"deferred_vs.hlsl", GRNG_VERT_ENTRY, NULL);
 		this->deferred_fs.set(L"deferred_fs.hlsl", GRNG_FRAG_ENTRY, NULL);
@@ -87,12 +87,12 @@ public:
 		while (++i < GRNG_G_BUFFER_COUNT)
 		{
 			this->rt_texture[i].set_texture(width, height, DXGI_FORMAT_R32G32B32A32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE, 0u);
-			this->rt[i].set_render_texture(this->rt_texture[i].get_texture());
+			this->rt[i].set(this->rt_texture[i].get_texture());
 			this->rt[i].set_slot(i);
 
 			this->rtv_data.push_back(this->rt[i].get_render_target());
 		}
-		this->ds.set_depth_stencil(width, height);
+		this->ds.set(width, height);
 
 		this->viewport.TopLeftX = 0.0f;
 		this->viewport.TopLeftY = 0.0f;

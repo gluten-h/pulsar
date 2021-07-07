@@ -1,10 +1,8 @@
 
-#include "grng_d3d.h"
-#include "grng_bindables.h"
-#include "grng_assets.h"
-#include "grng_drawables.h"
-#include "grng_scene.h"
 #include "grng_win_manager.h"
+#include "grng_scene_manager.h"
+#include "grng_bindable_manager.h"
+#include "grng_component_manager.h"
 
 #include "cam_controller.h"
 
@@ -13,98 +11,106 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 {
 	GRNG_D3D::create();
 	GRNG_WM::create(h_instance);
+	GRNG_MP::create();
 
 	ID3D11Device *device = GRNG_D3D::get_device();
 	ID3D11DeviceContext *device_context = GRNG_D3D::get_device_context();
 	auto *iwin = GRNG_WM::get_iwin();
 
-	GRNG_COMPONENT_TRANSFORM cam_transform = GRNG_COMPONENT_TRANSFORM(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 1.0f, 1.0f));
-	GRNG_CAMERA camera(cam_transform, grng_deg2rad(75.0f), 0.001f, D3D11_FLOAT32_MAX);
-	GRNG_CAM_CONTROLLER cam_controller{ 5.0f, 6.0f, 0.8f, 0.75f, { cam_transform.rotation.x, cam_transform.rotation.y } };
 
 	int win0 = GRNG_WM::create_window(L"gringo0", WS_VISIBLE | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, NULL, NULL);
-	//int win1 = GRNG_WM::create_window(L"gringo1", WS_VISIBLE | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 640, 480, NULL, NULL);
+
+
+	GRNG_CAMERA &camera = *(GRNG_CAMERA*)GRNG_CM.add(GRNG_COMPONENT_TYPE::CAMERA);
+	GRNG_COMPONENT_TRANSFORM cam_transform = GRNG_COMPONENT_TRANSFORM(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 1.0f, 1.0f));
+	camera.set(cam_transform, grng_deg2rad(75.0f), 0.001f, D3D11_FLOAT32_MAX);
+	GRNG_CAM_CONTROLLER cam_controller{ 5.0f, 6.0f, 0.8f, 0.75f, { cam_transform.rotation.x, cam_transform.rotation.y } };
+	GRNG_WM::set_camera(win0, camera);
 
 	GRNG_WM::add_win_update(win0, grng_cam_controller, &cam_controller);
 
-	GRNG_WM::set_camera(win0, camera);
+
+	GRNG_SCENE &scene = *GRNG_SM.add();
+	GRNG_WM::set_scene(win0, scene);
+
+	GRNG_CUBEMAP &env_map = *(GRNG_CUBEMAP*)GRNG_BM.add(GRNG_BINDABLE_TYPE::CUBEMAP);
+	scene.set_env_map(env_map);
 
 
-	GRNG_VERT_SHADER gb_pass_vs(L"g_buffer_pass_vs.hlsl", GRNG_VERT_ENTRY, NULL);
-	GRNG_GEOM_SHADER gb_pass_gs(L"g_buffer_pass_gs.hlsl", GRNG_GEOM_ENTRY, NULL);
-	GRNG_FRAG_SHADER gb_pass_fs(L"g_buffer_pass_fs.hlsl", GRNG_FRAG_ENTRY, NULL);
+	GRNG_VERT_SHADER &gb_pass_vs = *(GRNG_VERT_SHADER*)GRNG_BM.add(GRNG_BINDABLE_TYPE::VERT_SHADER);
+	GRNG_GEOM_SHADER &gb_pass_gs = *(GRNG_GEOM_SHADER*)GRNG_BM.add(GRNG_BINDABLE_TYPE::GEOM_SHADER);
+	GRNG_FRAG_SHADER &gb_pass_fs = *(GRNG_FRAG_SHADER*)GRNG_BM.add(GRNG_BINDABLE_TYPE::FRAG_SHADER);
+
+	gb_pass_vs.set(L"g_buffer_pass_vs.hlsl", GRNG_VERT_ENTRY, NULL);
+	gb_pass_gs.set(L"g_buffer_pass_gs.hlsl", GRNG_GEOM_ENTRY, NULL);
+	gb_pass_fs.set(L"g_buffer_pass_fs.hlsl", GRNG_FRAG_ENTRY, NULL);
 
 
-	GRNG_MESH cube_mesh("resources/meshes/cube.obj", GRNG_MESH_FILE_FORMAT::GRNG_MESH_FILE_OBJ);
-	GRNG_MESH sph_mesh("resources/meshes/sphere64.obj", GRNG_MESH_FILE_FORMAT::GRNG_MESH_FILE_OBJ);
+	GRNG_MESH &cube_mesh = *(GRNG_MESH*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MESH);
+	GRNG_MESH &sph_mesh = *(GRNG_MESH*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MESH);
+	cube_mesh.set("resources/meshes/cube.obj", GRNG_MESH_FILE_FORMAT::GRNG_MESH_FILE_OBJ);
+	sph_mesh.set("resources/meshes/sphere64.obj", GRNG_MESH_FILE_FORMAT::GRNG_MESH_FILE_OBJ);
 
 
-	GRNG_OBJ cube_obj;
+	GRNG_OBJECT &cube_obj = *(GRNG_OBJECT*)scene.add_entity(GRNG_ENTITY_TYPE::OBJECT);
+	GRNG_OBJECT &sph_obj = *(GRNG_OBJECT*)scene.add_entity(GRNG_ENTITY_TYPE::OBJECT);
+	GRNG_OBJECT &sph1_obj = *(GRNG_OBJECT*)scene.add_entity(GRNG_ENTITY_TYPE::OBJECT);
+	GRNG_OBJECT &sph2_obj = *(GRNG_OBJECT*)scene.add_entity(GRNG_ENTITY_TYPE::OBJECT);
+
+
 	cube_obj.set_mesh(cube_mesh);
 
-	GRNG_MATERIAL cube_mat;
-	cube_mat.albedo_map.set_texture(L"resources/textures/p3.jpg");
-	cube_mat.normal_map.set_texture(L"resources/textures/brick00/normal.png");
+	GRNG_MATERIAL &cube_mat = *(GRNG_MATERIAL*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MATERIAL);
+	cube_mat.albedo_map.set(L"resources/textures/p3.jpg");
+	cube_mat.normal_map.set(L"resources/textures/brick00/normal.png");
 	cube_mat.normal_factor = 1.0f;
 	cube_obj.set_material(cube_mat);
 
 
-	GRNG_OBJ sph_obj;
 	sph_obj.set_mesh(sph_mesh);
 
-	GRNG_MATERIAL sph_mat;
-	sph_mat.albedo_map.set_texture(L"resources/textures/brick00/albedo.png");
-	sph_mat.normal_map.set_texture(L"resources/textures/brick00/normal.png");
+	GRNG_MATERIAL &sph_mat = *(GRNG_MATERIAL*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MATERIAL);
+	sph_mat.albedo_map.set(L"resources/textures/brick00/albedo.png");
+	sph_mat.normal_map.set(L"resources/textures/brick00/normal.png");
 	sph_mat.normal_factor = 1.0f;
-	sph_mat.roughness_map.set_texture(L"resources/textures/brick00/roughness.png");
+	sph_mat.roughness_map.set(L"resources/textures/brick00/roughness.png");
 	sph_mat.metalness = 0.0f;
-	sph_mat.ao_map.set_texture(GRNG_STD_QUAD_WHITE);
+	sph_mat.ao_map.set(GRNG_STD_QUAD_WHITE);
 	sph_mat.ao = 0.01f;
 	sph_obj.set_material(sph_mat);
 
 
-	GRNG_OBJ sph1_obj;
 	sph1_obj.set_mesh(sph_mesh);
 
-	GRNG_MATERIAL sph1_mat;
-	sph1_mat.albedo_map.set_texture(L"resources/textures/metal00/albedo.png");
-	sph1_mat.normal_map.set_texture(L"resources/textures/metal00/normal.png");
+	GRNG_MATERIAL &sph1_mat = *(GRNG_MATERIAL*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MATERIAL);;
+	sph1_mat.albedo_map.set(L"resources/textures/metal00/albedo.png");
+	sph1_mat.normal_map.set(L"resources/textures/metal00/normal.png");
 	sph1_mat.normal_factor = 5.0f;
-	sph1_mat.roughness_map.set_texture(L"resources/textures/metal00/roughness.png");
-	sph1_mat.metalness_map.set_texture(L"resources/textures/metal00/metalness.png");
-	sph1_mat.ao_map.set_texture(GRNG_STD_QUAD_WHITE);
+	sph1_mat.roughness_map.set(L"resources/textures/metal00/roughness.png");
+	sph1_mat.metalness_map.set(L"resources/textures/metal00/metalness.png");
+	sph1_mat.ao_map.set(GRNG_STD_QUAD_WHITE);
 	sph1_mat.ao = 0.01f;
 	sph1_obj.set_material(sph1_mat);
 
 
-	GRNG_OBJ sph2_obj;
 	sph2_obj.set_mesh(sph_mesh);
 
-	GRNG_MATERIAL sph2_mat;
-	sph2_mat.albedo_map.set_texture(L"resources/textures/wood00/albedo.png");
-	sph2_mat.normal_map.set_texture(L"resources/textures/wood00/normal.png");
+	GRNG_MATERIAL &sph2_mat = *(GRNG_MATERIAL*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MATERIAL);;
+	sph2_mat.albedo_map.set(L"resources/textures/wood00/albedo.png");
+	sph2_mat.normal_map.set(L"resources/textures/wood00/normal.png");
 	sph2_mat.normal_factor = 4.0f;
-	sph2_mat.roughness_map.set_texture(L"resources/textures/wood00/roughness.png");
-	sph2_mat.metalness_map.set_texture(L"resources/textures/wood00/metalness.png");
-	sph2_mat.ao_map.set_texture(GRNG_STD_QUAD_WHITE);
+	sph2_mat.roughness_map.set(L"resources/textures/wood00/roughness.png");
+	sph2_mat.metalness_map.set(L"resources/textures/wood00/metalness.png");
+	sph2_mat.ao_map.set(GRNG_STD_QUAD_WHITE);
 	sph2_mat.ao = 0.01f;
 	sph2_obj.set_material(sph2_mat);
 
 
-	GRNG_POINT_LIGHT pl1(XMFLOAT3(-5.0f, -2.0f, -1.0f), XMFLOAT3(0.15f, 0.15f, 1.0f), 1.0f, 0.005f, 0.0007f);
-	GRNG_DIR_LIGHT dl1(XMFLOAT3(0.0f, -0.25f, 1.0f), XMFLOAT3(1.0f, 1.0f, 0.5f));
+	GRNG_POINT_LIGHT &pl1 = *(GRNG_POINT_LIGHT*)scene.add_light(GRNG_LIGHT_TYPE::POINT);
+	GRNG_DIR_LIGHT &dl1 = *(GRNG_DIR_LIGHT*)scene.add_light(GRNG_LIGHT_TYPE::DIR);
 
-
-	GRNG_SCENE scene;
-	GRNG_WM::set_scene(win0, scene);
-
-	int pl1_id = scene.add_light(pl1);
-	int dl1_id = scene.add_light(dl1);
-
-	int cube_id = scene.add_drawable(cube_obj);
-	int sph_id = scene.add_drawable(sph_obj);
-	int sph1_id = scene.add_drawable(sph1_obj);
-	int sph2_id = scene.add_drawable(sph2_obj);
+	pl1.set(XMFLOAT3(-5.0f, -2.0f, -1.0f), XMFLOAT3(0.15f, 0.15f, 1.0f), 1.0f, 0.005f, 0.0007f);
+	dl1.set(XMFLOAT3(0.0f, -0.25f, 1.0f), XMFLOAT3(1.0f, 1.0f, 0.5f));
 
 
 	D3D11_INPUT_ELEMENT_DESC ied[] =
@@ -114,7 +120,8 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 		{ "UV", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	};
 
-	GRNG_INPUT_LAYOUT input_layout(gb_pass_vs.get_shader_blob(), ied, (UINT)std::size(ied));
+	GRNG_INPUT_LAYOUT &input_layout = *(GRNG_INPUT_LAYOUT*)GRNG_BM.add(GRNG_BINDABLE_TYPE::INPUT_LAYOUT);
+	input_layout.set(gb_pass_vs.get_shader_blob(), ied, (UINT)std::size(ied));
 
 
 	cube_obj.add_bindable(gb_pass_vs);
@@ -173,6 +180,7 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 		GRNG_GFX::set_delta_time();
 	}
 
+	GRNG_MP::destroy();
 	GRNG_WM::destroy();
 	GRNG_D3D::destroy();
 

@@ -34,6 +34,8 @@ private:
 public:
 	grng_sampler(UINT slot = 0u) : GRNG_BINDABLE()
 	{
+		this->type = GRNG_BINDABLE_TYPE::SAMPLER;
+
 		this->set_sampler_memory();
 		this->set_slot(slot);
 	}
@@ -46,6 +48,14 @@ public:
 	void		set_slot(UINT slot)
 	{
 		this->slot = slot;
+	}
+
+
+	static GRNG_BINDABLE		*create_manager_ptr()
+	{
+		grng_sampler *s = new grng_sampler;
+
+		return (s);
 	}
 
 

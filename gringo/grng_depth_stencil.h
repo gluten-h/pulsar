@@ -73,9 +73,14 @@ public:
 		return (*this);
 	}
 
-	grng_depth_stencil() : GRNG_BINDABLE(){ }
+	grng_depth_stencil() : GRNG_BINDABLE()
+	{
+		this->type = GRNG_BINDABLE_TYPE::DEPTH_STENCIL;
+	}
 	grng_depth_stencil(float width, float height) : GRNG_BINDABLE()
 	{
+		this->type = GRNG_BINDABLE_TYPE::DEPTH_STENCIL;
+
 		this->set_ds_memory(width, height);
 	}
 
@@ -84,7 +89,7 @@ public:
 		this->remove_ds_memory();
 	}
 
-	void		set_depth_stencil(float width, float height)
+	void			set(float width, float height)
 	{
 		this->remove_ds_memory();
 		this->set_ds_memory(width, height);
@@ -107,10 +112,15 @@ public:
 	}
 
 
-	void		bind() override
+	static GRNG_BINDABLE		*create_manager_ptr()
 	{
-		
+		grng_depth_stencil *ds = new grng_depth_stencil;
+
+		return (ds);
 	}
+
+
+	void		bind() override{ }
 
 	void		destroy() override
 	{

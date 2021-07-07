@@ -25,10 +25,14 @@ private:
 	}
 
 public:
-	grng_vert_shader() : GRNG_SHADER(){ }
+	grng_vert_shader() : GRNG_SHADER()
+	{
+		this->type = GRNG_BINDABLE_TYPE::VERT_SHADER;
+	}
 	grng_vert_shader(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines) : GRNG_SHADER()
 	{
-		this->type = GRNG_SHADER_TYPE::GRNG_VERT_SHADER;
+		this->type = GRNG_BINDABLE_TYPE::VERT_SHADER;
+
 		this->set_shader_memory(shader_file, entry, defines);
 	}
 
@@ -42,6 +46,14 @@ public:
 	{
 		this->remove_shader_memory();
 		this->set_shader_memory(shader_file, entry, defines);
+	}
+
+
+	static GRNG_BINDABLE		*create_ptr()
+	{
+		grng_vert_shader *vs = new grng_vert_shader;
+
+		return (vs);
 	}
 
 

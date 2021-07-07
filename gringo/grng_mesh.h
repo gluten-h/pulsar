@@ -1,7 +1,6 @@
 #pragma once
 
-#include "grng_asset.h"
-#include "grng_drawable.h"
+#include "grng_component.h"
 
 #include <iostream>
 #include <fstream>
@@ -15,7 +14,7 @@ enum class GRNG_MESH_FILE_FORMAT
 };
 
 
-class grng_mesh : public GRNG_DRAWABLE, public GRNG_ASSET
+class grng_mesh : public GRNG_COMPONENT
 {
 private:
 	struct GRNG_MESH_DATA
@@ -58,26 +57,34 @@ private:
 	void		create_buffer();
 
 public:
-	grng_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format) : GRNG_DRAWABLE(), GRNG_ASSET()
+	grng_mesh() : GRNG_COMPONENT()
 	{
-		this->type = GRNG_ASSET_TYPE::GRNG_MESH;
-		this->set_mesh(file, file_format);
+		this->type = GRNG_COMPONENT_TYPE::MESH;
+	}
+	grng_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format) : GRNG_COMPONENT()
+	{
+		this->type = GRNG_COMPONENT_TYPE::MESH;
+		this->set(file, file_format);
 	}
 	~grng_mesh()
 	{
 		this->remove_mesh_memory();
 	}
 
-	void		destroy() override
+
+	static GRNG_COMPONENT		*create_manager_ptr()
 	{
-		this->remove_mesh_memory();
+		grng_mesh *mesh = new grng_mesh;
+
+		return (mesh);
 	}
 
-	void		set_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format);
+
+	void		set(const char *file, GRNG_MESH_FILE_FORMAT file_format);
 	void		set_primitive_topology(const D3D_PRIMITIVE_TOPOLOGY &primitive_topology);
 
-	void		bind() override;
-	void		draw() override;
+	void		bind();
+	void		draw();
 };
 
 

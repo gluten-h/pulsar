@@ -1,85 +1,103 @@
 #pragma once
 
 #include "grng_piston.h"
+#include "grng_utils.h"
 
 #include <unordered_map>
 #include <stdexcept>
+#include <string>
 
 
 template <typename T, size_t MAX_SIZE>
 class grng_manager
 {
 protected:
-	GRNG_PISTON<T*, MAX_SIZE>			data;
-	const GRNG_IPISTON<T*, MAX_SIZE>	*idata = this->data.get_ipiston();
-	std::unordered_map<T*, int>			data_id_map;
+	GRNG_PISTON<T*, MAX_SIZE>				data;
+	const GRNG_IPISTON<T*, MAX_SIZE>		*idata = this->data.get_ipiston();
+	std::unordered_map<T*, int>				data_id_map;
 
 
-	virtual void		add_event(int added_id) = 0;
-	virtual void		remove_event(int removed_id) = 0;
+	virtual void		add_event(int added_id, T &data) = 0;
+	virtual void		remove_event(int removed_id, T &data) = 0;
 
-private:
-	void		remove_data(T &data)
+
+	bool	is_exists(T *data)
 	{
-		int id = this->data_id_map.at(&data);
-		this->data_id_map.erase(&data);
-		this->data.remove_secure(id);
-		
-		this->remove_event(id);
+		try
+		{
+			this->data_id_map.at(data);
+			return (true);
+		}
+		catch (const std::out_of_range &ex)
+		{
+			return (false);
+		}
+	}
+
+	bool	is_exists(int id)
+	{
+		return (this->data.get_secure(id) != NULL);
+	}
+
+	bool	is_available()
+	{
+		return (this->idata->size < MAX_SIZE);
+	}
+
+
+	T		*add_manager(T *data)
+	{
+		int id = this->data.add(data);
+		this->data_id_map[data] = id;
+		this->add_event(id, *data);
+
+		return (data);
+	}
+
+	void	remove_manager(T *data)
+	{
+		int id = this->data_id_map.at(data);
+
+		this->data_id_map.erase(data);
+		this->data.remove(id);
+		this->remove_event(id, *data);
+
+		delete data;
 	}
 
 public:
 	grng_manager(){ }
 	~grng_manager()
 	{
+		for (auto &it : this->data_id_map)
+			delete it.first;
 		this->data_id_map.clear();
-	}
-
-
-	int		add(T &data)
-	{
-		try
-		{
-			int id = this->data_id_map.at(&data);
-			return (-1);
-		}
-		catch (const std::out_of_range &ex){ }
-
-		if (this->idata->size >= MAX_SIZE)
-			return (-1);
-
-		int id = this->data.add(&data);
-		this->data_id_map[&data] = id;
-		this->add_event(id);
-
-		return (id);
 	}
 
 	void		remove_secure(T &data)
 	{
-		try
-		{
-			this->data_id_map.at(&data);
-			this->remove_data(data);
-		}
-		catch (const std::out_of_range &ex)
-		{
+		if (!this->is_exists(&data))
 			return;
-		}
+
+		this->remove_manager(&data);
+	}
+
+	void		remove(T &data)
+	{
+		this->remove_manager(&data);
 	}
 
 	void		remove_secure(unsigned int id)
 	{
-		T **data_ptr = this->data.get_secure(id);
-		if (!data_ptr)
+		if (!this->is_exists(id))
 			return;
-		this->remove_data(**data_ptr);
+
+		this->remove_manager(*this->data.get(id));
 	}
 
 	void		remove(unsigned int id)
 	{
-		T **data_ptr = this->data.get(id);
-		this->remove_data(**data_ptr);
+		this->remove_manager(*this->data.get(id));
 	}
 
 
@@ -94,12 +112,8 @@ public:
 
 	T			*get_data(unsigned int id)
 	{
-		T **data_ptr = this->data.get(id);
-		return (*data_ptr);
+		return (*this->data.get(id));
 	}
-
-
-	virtual void		bind() = 0;
 };
 
 template <typename T, size_t MAX_SIZE>

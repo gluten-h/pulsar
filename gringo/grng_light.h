@@ -4,10 +4,11 @@
 #include "grng_scene_def.h"
 
 
-enum GRNG_LIGHT_TYPE
+enum class GRNG_LIGHT_TYPE : int
 {
-	GRNG_LIGHT_TYPE_POINT,
-	GRNG_LIGHT_TYPE_DIR
+	NONE = -1,
+	POINT = 0,
+	DIR = 1
 };
 
 
@@ -38,15 +39,31 @@ typedef struct			grgn_shader_light_scene
 }						GRNG_SHADER_LIGHT_SCENE;
 
 
-class grng_light : public IGRNG_D3D
+class grng_light : public GRNG_ID3D
 {
+private:
+	friend class grng_light_manager;
+
 protected:
-	int			type = -1;
+	GRNG_LIGHT_TYPE			type = GRNG_LIGHT_TYPE::NONE;
+	int						id = -1;
 
 public:
-	grng_light() : IGRNG_D3D(){ }
+	grng_light(const grng_light &l) = delete;
+	grng_light(grng_light &&l) = delete;
+	grng_light() : GRNG_ID3D(){ }
 
-	virtual void		set_shader_light(GRNG_SHADER_LIGHT &sl) = 0;
+	GRNG_LIGHT_TYPE			get_type() const
+	{
+		return (this->type);
+	}
+
+	int						get_id() const
+	{
+		return (this->id);
+	}
+
+	virtual void			set_shader_light(GRNG_SHADER_LIGHT &sl) = 0;
 };
 
 using GRNG_LIGHT = grng_light;
