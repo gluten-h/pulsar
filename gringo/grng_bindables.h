@@ -1,6 +1,6 @@
 #pragma once
 
-#include "grng_const_buffer.h"
+#include "grng_const_buffers.h"
 #include "grng_texture.h"
 #include "grng_input_layout.h"
 #include "grng_shaders.h"

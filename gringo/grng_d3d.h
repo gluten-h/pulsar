@@ -55,7 +55,7 @@ public:
 
 	static void				destroy()
 	{
-		grng_d3d::idxgi_factory->Release();
+		int ref = grng_d3d::idxgi_factory->Release();
 		grng_d3d::device->Release();
 		grng_d3d::device_context->Release();
 	}

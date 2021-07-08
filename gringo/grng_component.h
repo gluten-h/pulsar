@@ -1,6 +1,6 @@
 #pragma once
 
-#include "igrng_d3d.h"
+#include "grng_id3d.h"
 
 
 enum class GRNG_COMPONENT_TYPE

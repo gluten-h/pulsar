@@ -158,10 +158,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="grng_camera.cpp" />
+    <ClCompile Include="grng_cubemap.cpp" />
+    <ClCompile Include="grng_cubemap_data.cpp" />
+    <ClCompile Include="grng_cubemap_dds.cpp" />
     <ClCompile Include="grng_d3d.cpp" />
     <ClCompile Include="grng_db_get.cpp" />
+    <ClCompile Include="grng_depth_stencil.cpp" />
+    <ClCompile Include="grng_depth_stencil_data.cpp" />
+    <ClCompile Include="grng_depth_stencil_get.cpp" />
     <ClCompile Include="grng_entity.cpp" />
+    <ClCompile Include="grng_frag_shader.cpp" />
+    <ClCompile Include="grng_frag_shader_data.cpp" />
+    <ClCompile Include="grng_geom_shader.cpp" />
+    <ClCompile Include="grng_geom_shader_data.cpp" />
     <ClCompile Include="grng_gfx.cpp" />
+    <ClCompile Include="grng_id3d.cpp" />
+    <ClCompile Include="grng_input_layout.cpp" />
+    <ClCompile Include="grng_input_layout_data.cpp" />
     <ClCompile Include="grng_light_manager.cpp" />
     <ClCompile Include="grng_manager_ptr.cpp" />
     <ClCompile Include="grng_math.cpp" />
@@ -171,7 +184,19 @@
     <ClCompile Include="grng_mouse.cpp" />
     <ClCompile Include="grng_mouse_button.cpp" />
     <ClCompile Include="grng_object.cpp" />
+    <ClCompile Include="grng_render_texture.cpp" />
+    <ClCompile Include="grng_render_texture_data.cpp" />
+    <ClCompile Include="grng_render_texture_get.cpp" />
+    <ClCompile Include="grng_sampler.cpp" />
+    <ClCompile Include="grng_sampler_data.cpp" />
     <ClCompile Include="grng_scene.cpp" />
+    <ClCompile Include="grng_shader_data.cpp" />
+    <ClCompile Include="grng_texture.cpp" />
+    <ClCompile Include="grng_texture2d.cpp" />
+    <ClCompile Include="grng_texture2d_data.cpp" />
+    <ClCompile Include="grng_texture_data.cpp" />
+    <ClCompile Include="grng_vert_shader.cpp" />
+    <ClCompile Include="grng_vert_shader_data.cpp" />
     <ClCompile Include="grng_window.cpp" />
     <ClCompile Include="grng_window_draw.cpp" />
     <ClCompile Include="grng_window_misc.cpp" />
@@ -191,8 +216,10 @@
     <ClInclude Include="grng_bindable_manager.h" />
     <ClInclude Include="grng_component.h" />
     <ClInclude Include="grng_component_manager.h" />
+    <ClInclude Include="grng_const_buffers.h" />
     <ClInclude Include="grng_cubemap.h" />
     <ClInclude Include="grng_def.h" />
+    <ClInclude Include="grng_frag_const_buffer.h" />
     <ClInclude Include="grng_material_shader.h" />
     <ClInclude Include="grng_mouse.h" />
     <ClInclude Include="grng_bindable.h" />
@@ -234,6 +261,7 @@
     <ClInclude Include="grng_texture.h" />
     <ClInclude Include="grng_texture2d.h" />
     <ClInclude Include="grng_utils.h" />
+    <ClInclude Include="grng_vert_const_buffer.h" />
     <ClInclude Include="grng_vert_shader.h" />
     <ClInclude Include="grng_transform_shader.h" />
     <ClInclude Include="grng_window.h" />
@@ -241,7 +269,7 @@
     <ClInclude Include="grng_win_manager.h" />
     <ClInclude Include="grng_object.h" />
     <ClInclude Include="grng_transform.h" />
-    <ClInclude Include="igrng_d3d.h" />
+    <ClInclude Include="grng_id3d.h" />
     <ClInclude Include="grng_input.h" />
     <ClInclude Include="cam_controller.h" />
     <ClInclude Include="grng_manager_ptr.h" />

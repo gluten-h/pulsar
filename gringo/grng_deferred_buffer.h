@@ -32,36 +32,19 @@ private:
 
 	GRNG_SAMPLER			sampler;
 
-
 	GRNG_VERT_SHADER		deferred_vs;
 	GRNG_FRAG_SHADER		deferred_fs;
 
-
-	void		remove_db_memory()
-	{
-		int i = -1;
-		while (++i < GRNG_G_BUFFER_COUNT)
-		{
-			this->rt_texture[i].destroy();
-			this->rt[i].destroy();
-		}
-		this->ds.destroy();
-		this->rtv_data.clear();
-
-		this->deferred_vs.destroy();
-		this->deferred_fs.destroy();
-	}
-
 public:
-	grng_deferred_buffer	&operator=(const grng_deferred_buffer &win)
+	grng_deferred_buffer	&operator=(const grng_deferred_buffer &db)
 	{
 		int i = -1;
 		while (++i < GRNG_G_BUFFER_COUNT)
 		{
-			this->rt_texture[i] = win.rt_texture[i];
-			this->rt[i] = win.rt[i];
+			this->rt_texture[i] = db.rt_texture[i];
+			this->rt[i] = db.rt[i];
 		}
-		this->ds = win.ds;
+		this->ds = db.ds;
 
 		return (*this);
 	}
@@ -70,15 +53,6 @@ public:
 	{
 		this->deferred_vs.set(L"deferred_vs.hlsl", GRNG_VERT_ENTRY, NULL);
 		this->deferred_fs.set(L"deferred_fs.hlsl", GRNG_FRAG_ENTRY, NULL);
-	}
-	~grng_deferred_buffer()
-	{
-		this->remove_db_memory();
-	}
-
-	void		destroy()
-	{
-		this->remove_db_memory();
 	}
 
 	void		set_deferred_buffer(float width, float height)

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "igrng_d3d.h"
+#include "grng_id3d.h"
 #include "grng_window.h"
 #include "grng_window_def.h"
 #include "grng_piston.h"

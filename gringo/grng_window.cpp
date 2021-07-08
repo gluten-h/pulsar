@@ -56,8 +56,6 @@ void		grng_window::destroy()
 		this->back_buffer = NULL;
 	}
 
-	this->deferred_buffer.destroy();
-
 	this->curr_camera = NULL;
 	this->curr_scene = NULL;
 }

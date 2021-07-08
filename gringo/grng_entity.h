@@ -1,7 +1,7 @@
 #pragma once
 
-#include "igrng_d3d.h"
-#include "grng_const_buffer.h"
+#include "grng_id3d.h"
+#include "grng_const_buffers.h"
 #include "grng_bindable.h"
 #include "grng_transform_shader.h"
 

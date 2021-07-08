@@ -1,6 +1,6 @@
 #pragma once
 
-#include "igrng_d3d.h"
+#include "grng_id3d.h"
 
 
 class grng_component_transform
@@ -24,9 +24,6 @@ public:
 
 	void	update_transform_matrix()
 	{
-		/*this->transform_mat = XMMatrixTranspose(XMMatrixScaling(this->scale.x, this->scale.y, this->scale.z)
-												* XMMatrixRotationRollPitchYaw(this->rotation.x, this->rotation.y, this->rotation.z)
-												* XMMatrixTranslation(this->position.x, this->position.y, this->position.z));*/
 		this->transform_mat = XMMatrixScaling(this->scale.x, this->scale.y, this->scale.z)
 												* XMMatrixRotationRollPitchYaw(this->rotation.x, this->rotation.y, this->rotation.z)
 												* XMMatrixTranslation(this->position.x, this->position.y, this->position.z);

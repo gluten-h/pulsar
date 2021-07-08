@@ -2,7 +2,7 @@
 
 #include "grng_component.h"
 #include "grng_transform.h"
-#include "grng_const_buffer.h"
+#include "grng_const_buffers.h"
 #include "grng_shader_camera.h"
 #include "grng_deffered_def.h"
 

@@ -71,7 +71,6 @@ public:
 		this->remove_mesh_memory();
 	}
 
-
 	static GRNG_COMPONENT		*create_manager_ptr()
 	{
 		grng_mesh *mesh = new grng_mesh;

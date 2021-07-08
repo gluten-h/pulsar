@@ -20,47 +20,22 @@
 class grng_shader : public GRNG_BINDABLE
 {
 protected:
-	ID3DBlob				*shader_blob = NULL;
+	ID3DBlob		*shader_blob = NULL;
 
-	void			remove_shader_memory()
-	{
-		if (shader_blob)
-		{
-			this->shader_blob->Release();
-			this->shader_blob = NULL;
-		}
-	}
 
-	void	set_shader_memory(const LPCWSTR shader_file, const LPCSTR entry, const LPCSTR target, const D3D_SHADER_MACRO *defines)
-	{
-		ID3DBlob *err_msg;
-		GRNG_SHADER_INCLUDE s_inc;
-		HRESULT hr = D3DCompileFromFile(shader_file, defines, &s_inc, entry, target, NULL, NULL, &this->shader_blob, &err_msg);
-		if (hr != S_OK)
-		{
-			std::ofstream os("resources/log.txt");
-			os.clear();
-
-			const char *error = static_cast<const char*>(err_msg->GetBufferPointer());
-			bool breakpoint = 1;
-
-			os << error << '\n';
-
-			os.close();
-			exit(0);
-		}
-	}
+	void			remove_shader_memory();
+	void			set_shader_memory(const LPCWSTR shader_file, const LPCSTR entry, const LPCSTR target, const D3D_SHADER_MACRO *defines);
 
 public:
+	grng_shader		&operator=(const grng_shader &s) = delete;
+	grng_shader(const grng_shader &s) = delete;
 	grng_shader() : GRNG_BINDABLE(){ }
-
 	~grng_shader()
 	{
 		this->remove_shader_memory();
 	}
 
-
-	ID3DBlob			*get_shader_blob() const
+	ID3DBlob		*get_shader_blob() const
 	{
 		return (this->shader_blob);
 	}

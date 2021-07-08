@@ -1,7 +1,6 @@
 #pragma once
 
-#include "igrng_d3d.h"
-//#include "grng_scene_manager.h"
+#include "grng_id3d.h"
 
 #include <unordered_map>
 
@@ -49,7 +48,6 @@ public:
 	}
 
 	virtual void		bind() = 0;
-	virtual void		destroy() = 0;
 };
 
 using GRNG_BINDABLE = grng_bindable;

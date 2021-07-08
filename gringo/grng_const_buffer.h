@@ -12,7 +12,7 @@ protected:
 	const T					*data_ptr = NULL;
 	size_t					data_size = 0;
 
-private:
+
 	void	set_data_memory(const T &data)
 	{
 		this->data_ptr = &data;
@@ -51,30 +51,29 @@ private:
 	{
 		if (this->buffer)
 		{
-			this->buffer->Release();
-			this->buffer = NULL;
+			ULONG ref_count = this->buffer->Release();
+			if (ref_count == 0)
+				this->buffer = NULL;
 		}
 	}
 
 public:
-	grng_const_buffer(UINT slot) : GRNG_BINDABLE()
+	grng_const_buffer	&operator=(const grng_const_buffer &b) = delete;
+	grng_const_buffer(const grng_const_buffer &b) = delete;
+
+	grng_const_buffer(UINT slot = 0u) : GRNG_BINDABLE()
 	{
 		this->set_data_memory();
 		this->set_slot(slot);
 	}
 
-	grng_const_buffer(const T &data, UINT slot) : GRNG_BINDABLE()
+	grng_const_buffer(const T &data, UINT slot = 0u) : GRNG_BINDABLE()
 	{
 		this->set_data_memory(data);
 		this->set_slot(slot);
 	}
 
 	~grng_const_buffer()
-	{
-		this->remove_data_memory();
-	}
-
-	void	destroy() override
 	{
 		this->remove_data_memory();
 	}
@@ -111,67 +110,3 @@ public:
 
 template <typename T>
 using GRNG_CONST_BUFFER = grng_const_buffer<T>;
-
-
-template <typename T>
-class grng_vert_const_buffer : public GRNG_CONST_BUFFER<T>
-{
-public:
-	grng_vert_const_buffer(UINT slot = 0u) : GRNG_CONST_BUFFER<T>(slot)
-	{
-		this->type = GRNG_BINDABLE_TYPE::VERT_CONST_BUFFER;
-	}
-	grng_vert_const_buffer(const T &data, UINT slot = 0u) : GRNG_CONST_BUFFER<T>(data, slot)
-	{
-		this->type = GRNG_BINDABLE_TYPE::VERT_CONST_BUFFER;
-	}
-
-
-	static GRNG_BINDABLE		*create_manager_ptr()
-	{
-		grng_vert_const_buffer *buffer = new grng_vert_const_buffer;
-
-		return (buffer);
-	}
-
-
-	void	bind() override
-	{
-		this->device_context->VSSetConstantBuffers(this->slot, 1, &this->buffer);
-	}
-};
-
-template <typename T>
-using GRNG_VERT_CONST_BUFFER = grng_vert_const_buffer<T>;
-
-
-template <typename T>
-class grng_frag_const_buffer : public GRNG_CONST_BUFFER<T>
-{
-public:
-	grng_frag_const_buffer(UINT slot = 0u) : GRNG_CONST_BUFFER<T>(slot)
-	{
-		this->type = GRNG_BINDABLE_TYPE::FRAG_CONST_BUFFER;
-	}
-	grng_frag_const_buffer(const T &data, UINT slot = 0u) : GRNG_CONST_BUFFER<T>(data, slot)
-	{
-		this->type = GRNG_BINDABLE_TYPE::FRAG_CONST_BUFFER;
-	}
-
-
-	static GRNG_BINDABLE		*create_manager_ptr()
-	{
-		grng_frag_const_buffer *buffer = new grng_frag_const_buffer;
-
-		return (buffer);
-	}
-
-
-	void	bind() override
-	{
-		this->device_context->PSSetConstantBuffers(this->slot, 1, &this->buffer);
-	}
-};
-
-template <typename T>
-using GRNG_FRAG_CONST_BUFFER = grng_frag_const_buffer<T>;
