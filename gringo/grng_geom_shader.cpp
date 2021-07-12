@@ -27,6 +27,7 @@ grng_geom_shader		&grng_geom_shader::operator=(const grng_geom_shader &s)
 
 grng_geom_shader::grng_geom_shader(const grng_geom_shader &s) : GRNG_SHADER()
 {
+	this->type = GRNG_BINDABLE_TYPE::GEOM_SHADER;
 	this->copy_assign(s);
 }
 

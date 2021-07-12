@@ -2,7 +2,17 @@
 #include "grng_cubemap.h"
 
 
-void		grng_cubemap::remove_cubemap_memory()
+void		grng_cubemap::remove_tex2d_memory()
+{
+	if (this->tex2d)
+	{
+		ULONG ref_count = this->tex2d->Release();
+		if (ref_count == 0)
+			this->tex2d = NULL;
+	}
+}
+
+void		grng_cubemap::remove_cubemap_srv_memory()
 {
 	if (this->cubemap_srv)
 	{
@@ -12,30 +22,37 @@ void		grng_cubemap::remove_cubemap_memory()
 	}
 }
 
-void		grng_cubemap::set_cubemap_memory(LPCWSTR dds_path)
+void		grng_cubemap::remove_cubemap_memory()
 {
-	D3DX11_IMAGE_LOAD_INFO info;
-	info.MiscFlags = D3D11_RESOURCE_MISC_TEXTURECUBE;
-
-	ID3D11Texture2D *tex = NULL;
-	HRESULT hr = D3DX11CreateTextureFromFile(this->device, dds_path, &info, NULL, (ID3D11Resource**)&tex, NULL);
-
-	D3D11_TEXTURE2D_DESC td;
-	tex->GetDesc(&td);
-
-	D3D11_SHADER_RESOURCE_VIEW_DESC vd;
-	vd.Format = td.Format;
-	vd.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
-	vd.TextureCube.MipLevels = 1u;
-	vd.TextureCube.MostDetailedMip = 0u;
-
-	hr = this->device->CreateShaderResourceView(tex, &vd, &this->cubemap_srv);
+	this->remove_tex2d_memory();
+	this->remove_cubemap_srv_memory();
 }
 
-void		grng_cubemap::set(LPCWSTR *wic_path, LPCWSTR output_dds_path)
+void		grng_cubemap::set_cubemap_memory(LPCWSTR dds_path)
+{
+	HRESULT hr = CreateDDSTextureFromFileEx(this->device, dds_path, 6u, D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, 0u,
+											D3D11_RESOURCE_MISC_TEXTURECUBE, false, (ID3D11Resource**)&this->tex2d, &this->cubemap_srv);
+}
+
+void		grng_cubemap::set(LPCWSTR *wic_path, LPCWSTR output_dds_path, GRNG_CUBEMAP_DDS dds_behavior)
 {
 	this->remove_cubemap_memory();
-	this->create_dds_cubemap(wic_path, output_dds_path);
+	switch (dds_behavior)
+	{
+		case GRNG_CUBEMAP_DDS::OVERWRITE:
+		{
+			this->create_dds_cubemap(wic_path, output_dds_path);
+			break;
+		}
+		case GRNG_CUBEMAP_DDS::KEEP_IF_EXISTS:
+		{
+			std::wstring out_path(output_dds_path);
+			if (std::filesystem::exists(out_path))
+				break;
+			this->create_dds_cubemap(wic_path, output_dds_path);
+			break;
+		}
+	}
 	this->set_cubemap_memory(output_dds_path);
 }
 

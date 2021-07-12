@@ -29,6 +29,7 @@ public:
 
 	grng_frag_const_buffer(const grng_frag_const_buffer &b) : GRNG_CONST_BUFFER<T>()
 	{
+		this->type = GRNG_BINDABLE_TYPE::FRAG_CONST_BUFFER;
 		this->copy_assign(b);
 	}
 	grng_frag_const_buffer(UINT slot = 0u) : GRNG_CONST_BUFFER<T>(slot)
@@ -49,7 +50,7 @@ public:
 	}
 
 
-	void	bind() override
+	void	bind() const override
 	{
 		this->device_context->PSSetConstantBuffers(this->slot, 1, &this->buffer);
 	}

@@ -44,7 +44,7 @@ public:
 		grng_light_manager::light_scene_cbuffer.set_slot(GRNG_DEFERRED_LIGHT_SLOT);
 	}
 
-	GRNG_LIGHT		*add(const GRNG_LIGHT_TYPE &type)
+	GRNG_LIGHT		*add(GRNG_LIGHT_TYPE type)
 	{
 		if (!this->is_available())
 			return (NULL);

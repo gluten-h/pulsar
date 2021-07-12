@@ -22,6 +22,7 @@ grng_sampler		&grng_sampler::operator=(const grng_sampler &s)
 
 grng_sampler::grng_sampler(const grng_sampler &s) : GRNG_BINDABLE()
 {
+	this->type = GRNG_BINDABLE_TYPE::SAMPLER;
 	this->copy_assign(s);
 }
 

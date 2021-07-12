@@ -2,14 +2,11 @@
 
 #include "grng_light_manager.h"
 #include "grng_entity_manager.h"
-#include "grng_cubemap.h"
-#include "grng_mesh.h"
-#include "grng_def.h"
+#include "grng_skybox.h"
 
 
 class grng_scene
 {
-private:
 	friend class grng_scene_manager;
 
 private:
@@ -18,8 +15,7 @@ private:
 	GRNG_LIGHT_MANAGER		light_manager;
 	GRNG_ENTITY_MANAGER		entity_manager;
 
-	GRNG_CUBEMAP			*env_map = NULL;
-	static GRNG_MESH		skybox_mesh;
+	GRNG_SKYBOX				skybox;
 
 public:
 	int					get_id() const
@@ -75,18 +71,23 @@ public:
 
 	void			set_env_map(GRNG_CUBEMAP &env_map)
 	{
-		this->env_map = &env_map;
+		this->skybox.set_env_map(env_map);
 	}
 
-	GRNG_CUBEMAP	*get_env_map()
+	void			set_skybox_mesh(GRNG_MESH &mesh)
 	{
-		return (this->env_map);
+		this->skybox.set_mesh(mesh);
 	}
 
 
 	void			draw()
 	{
 		this->entity_manager.draw();
+	}
+
+	void			draw_skybox()
+	{
+		this->skybox.draw();
 	}
 
 	void			bind()

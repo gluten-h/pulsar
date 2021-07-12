@@ -2,12 +2,17 @@
 #include "grng_texture.h"
 
 
-void			grng_texture::set_texture_memory(const LPCWSTR file)
+void		grng_texture::remove_texture2d_memory()
 {
-	HRESULT hr = D3DX11CreateShaderResourceViewFromFile(this->device, file, NULL, NULL, &this->texture_srv, NULL);
+	if (this->texture2d)
+	{
+		ULONG ref_count = this->texture2d->Release();
+		if (ref_count == 0)
+			this->texture2d = NULL;
+	}
 }
 
-void			grng_texture::remove_texture_memory()
+void		grng_texture::remove_texture_srv_memory()
 {
 	if (this->texture_srv)
 	{
@@ -17,6 +22,16 @@ void			grng_texture::remove_texture_memory()
 	}
 }
 
+void			grng_texture::remove_texture_memory()
+{
+	this->remove_texture2d_memory();
+	this->remove_texture_srv_memory();
+}
+
+void			grng_texture::set_texture_memory(const LPCWSTR file)
+{
+	HRESULT hr = CreateWICTextureFromFile(this->device, file, (ID3D11Resource**)&this->texture2d, &this->texture_srv);
+}
 
 void			grng_texture::set(const LPCWSTR file)
 {

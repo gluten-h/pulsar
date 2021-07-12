@@ -31,13 +31,15 @@ public:
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::VERT_CONST_BUFFER] = GRNG_VERT_CONST_BUFFER<int>::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::FRAG_CONST_BUFFER] = GRNG_FRAG_CONST_BUFFER<int>::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::TEXTURE] = GRNG_TEXTURE::create_manager_ptr;
-		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::DEPTH_STENCIL] = GRNG_DEPTH_STENCIL::create_manager_ptr;
+		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::DEPTH_STENCIL_VIEW] = GRNG_DEPTH_STENCIL_VIEW::create_manager_ptr;
+		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::DEPTH_STENCIL_STATE] = GRNG_DEPTH_STENCIL_STATE::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::INPUT_LAYOUT] = GRNG_INPUT_LAYOUT::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::RENDER_TEXTURE] = GRNG_RENDER_TEXTURE::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::VERT_SHADER] = GRNG_VERT_SHADER::create_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::GEOM_SHADER] = GRNG_GEOM_SHADER::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::FRAG_SHADER] = GRNG_FRAG_SHADER::create_manager_ptr;
-		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::CUBEMAP] = grng_cubemap::create_manager_ptr;
+		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::CUBEMAP] = GRNG_CUBEMAP::create_manager_ptr;
+		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::RASTERIZER_STATE] = GRNG_RASTERIZER_STATE::create_manager_ptr;
 
 		grng_manager_ptr::entity_ptr[GRNG_ENTITY_TYPE::OBJECT] = GRNG_OBJECT::create_manager_ptr;
 

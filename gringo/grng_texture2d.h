@@ -23,7 +23,7 @@ public:
 
 	void				set_texture(float width, float height, DXGI_FORMAT format, UINT bind_flags = 0u, UINT cpu_access_flags = 0u);
 
-	ID3D11Texture2D		*get_texture() const
+	ID3D11Texture2D		*get_texture()
 	{
 		return (this->texture);
 	}

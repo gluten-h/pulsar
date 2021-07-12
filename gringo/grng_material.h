@@ -21,8 +21,8 @@ public:
 	GRNG_TEXTURE	metalness_map = GRNG_STD_QUAD_WHITE_TEX;
 	float			metalness = 1.0f;
 
-	GRNG_TEXTURE	ao_map = GRNG_STD_QUAD_BLACK_TEX;
-	float			ao = 1.0f;
+	GRNG_TEXTURE	ao_map = GRNG_STD_QUAD_WHITE_TEX;
+	float			ao = 0.0f;
 
 
 	grng_material() : GRNG_COMPONENT()

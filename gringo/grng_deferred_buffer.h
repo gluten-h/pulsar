@@ -25,14 +25,15 @@ class grng_deferred_buffer : public GRNG_ID3D
 private:
 	GRNG_TEXTURE2D			rt_texture[GRNG_G_BUFFER_COUNT];
 	GRNG_RENDER_TEXTURE		rt[GRNG_G_BUFFER_COUNT];
-	GRNG_DEPTH_STENCIL		ds;
+	GRNG_DS_VIEW			ds_view;
+	GRNG_DS_STATE			ds_state;
 	D3D11_VIEWPORT			viewport = { 0 };
 
 	std::vector<ID3D11RenderTargetView*>	rtv_data;
 
 	GRNG_SAMPLER			sampler;
 
-	GRNG_VERT_SHADER		deferred_vs;
+	GRNG_VERT_SHADER		deferred_vs;			//		MAYBE MAKE THESE STATIC
 	GRNG_FRAG_SHADER		deferred_fs;
 
 public:
@@ -44,7 +45,8 @@ public:
 			this->rt_texture[i] = db.rt_texture[i];
 			this->rt[i] = db.rt[i];
 		}
-		this->ds = db.ds;
+		this->ds_view = db.ds_view;
+		this->ds_state = db.ds_state;
 
 		return (*this);
 	}
@@ -66,7 +68,8 @@ public:
 
 			this->rtv_data.push_back(this->rt[i].get_render_target());
 		}
-		this->ds.set(width, height);
+		this->ds_view.set(width, height);
+		this->ds_state.set(TRUE, D3D11_COMPARISON_LESS, D3D11_DEPTH_WRITE_MASK_ALL);
 
 		this->viewport.TopLeftX = 0.0f;
 		this->viewport.TopLeftY = 0.0f;
@@ -84,10 +87,10 @@ public:
 		{
 			this->device_context->ClearRenderTargetView(this->rt[i].get_render_target(), D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f));
 		}
-		this->device_context->ClearDepthStencilView(this->ds.get_ds_view(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
+		this->device_context->ClearDepthStencilView(this->ds_view.get_view(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
 
-		this->device_context->OMSetRenderTargets(GRNG_G_BUFFER_COUNT, this->rtv_data.data(), this->ds.get_ds_view());
-		this->device_context->OMSetDepthStencilState(this->ds.get_ds_state(), 1u);
+		this->device_context->OMSetRenderTargets(GRNG_G_BUFFER_COUNT, this->rtv_data.data(), this->ds_view.get_view());
+		this->ds_state.bind();
 		this->device_context->RSSetViewports(1, &this->viewport);
 	}
 
@@ -109,7 +112,8 @@ public:
 
 	GRNG_TEXTURE2D				&get_render_texture_texture(UINT type);
 	GRNG_RENDER_TEXTURE			&get_render_texture(UINT type);
-	GRNG_DEPTH_STENCIL			&get_depth_stencil();
+	GRNG_DS_VIEW				&get_ds_view();
+	GRNG_DS_STATE				&get_ds_state();
 	D3D11_VIEWPORT				&get_viewport();
 };
 

@@ -85,9 +85,6 @@
     <Filter Include="shaders\utils\gamma">
       <UniqueIdentifier>{4c3f941c-55c6-46d3-bb01-e59acd97742a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="shaders\env_map">
-      <UniqueIdentifier>{702f1ed1-58d6-4b4f-8a94-61c145d478eb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="inc\windows\window\src">
       <UniqueIdentifier>{37d240c3-6307-4e0f-a52d-191bfeeaf429}</UniqueIdentifier>
     </Filter>
@@ -193,12 +190,6 @@
     <Filter Include="inc\core\bindable\cubemap\src">
       <UniqueIdentifier>{35bea2cd-db0a-4714-80f7-c0b5f282b36a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="inc\core\bindable\depth_stencil\inc">
-      <UniqueIdentifier>{318e481c-446e-46f9-88c6-bf4e1f02b665}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\bindable\depth_stencil\src">
-      <UniqueIdentifier>{5db31c6c-c802-4ea0-82f9-7bdd8c06dd40}</UniqueIdentifier>
-    </Filter>
     <Filter Include="inc\core\bindable\input_layout\inc">
       <UniqueIdentifier>{c14bdf14-e513-45bc-9115-1c0d22b1bf1c}</UniqueIdentifier>
     </Filter>
@@ -216,15 +207,6 @@
     </Filter>
     <Filter Include="inc\core\bindable\sampler\src">
       <UniqueIdentifier>{14d911ca-a40a-4565-ab3a-964ee47327cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\bindable\shader\vert">
-      <UniqueIdentifier>{2643a906-c957-4b56-8314-7babbe696a8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\bindable\shader\vert\inc">
-      <UniqueIdentifier>{bd5558ef-f74b-41ac-9146-ac9498eced05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\bindable\shader\vert\src">
-      <UniqueIdentifier>{ac1dd171-1480-4203-9a78-f93a47c650ea}</UniqueIdentifier>
     </Filter>
     <Filter Include="inc\core\bindable\shader\geom_shader">
       <UniqueIdentifier>{ca0953fe-a209-49a6-867b-72559f109923}</UniqueIdentifier>
@@ -259,6 +241,60 @@
     <Filter Include="inc\components\texture2d\src">
       <UniqueIdentifier>{11e9aa64-afa7-4040-94dc-2f008e316641}</UniqueIdentifier>
     </Filter>
+    <Filter Include="inc\components\skybox">
+      <UniqueIdentifier>{146bdaee-27c8-4400-b37a-3ef22aecffda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\mesh\inc">
+      <UniqueIdentifier>{44806272-8b33-49a1-b8a5-a4bcaa75c007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\mesh\src">
+      <UniqueIdentifier>{6d2fa5f2-9717-49d5-bdc7-89c343e34843}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\skybox">
+      <UniqueIdentifier>{702f1ed1-58d6-4b4f-8a94-61c145d478eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\rasterizer_state">
+      <UniqueIdentifier>{0edcef44-7204-4dd9-89fb-6204d1544bd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\shader\vert_shader">
+      <UniqueIdentifier>{2643a906-c957-4b56-8314-7babbe696a8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\shader\vert_shader\inc">
+      <UniqueIdentifier>{bd5558ef-f74b-41ac-9146-ac9498eced05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\shader\vert_shader\src">
+      <UniqueIdentifier>{ac1dd171-1480-4203-9a78-f93a47c650ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\rasterizer_state\inc">
+      <UniqueIdentifier>{8d744ca7-9f10-46ea-9f08-f9f97e864883}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\rasterizer_state\src">
+      <UniqueIdentifier>{8d4ce108-aeb6-44e7-a218-57c11ae082ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\depth_stencil\depth_stencil_state">
+      <UniqueIdentifier>{aecffcfb-57f4-40d3-bbbf-6ca236746d3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\depth_stencil\depth_stencil_state\inc">
+      <UniqueIdentifier>{36ceff1e-c907-437c-8c56-08292411bede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\depth_stencil\depth_stencil_state\src">
+      <UniqueIdentifier>{b7384e1b-2add-4588-83ed-0813c482917b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\depth_stencil\depth_stencil_view">
+      <UniqueIdentifier>{bdc43550-6817-41bb-9043-16332997b224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\depth_stencil\depth_stencil_view\inc">
+      <UniqueIdentifier>{318e481c-446e-46f9-88c6-bf4e1f02b665}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\depth_stencil\depth_stencil_view\src">
+      <UniqueIdentifier>{5db31c6c-c802-4ea0-82f9-7bdd8c06dd40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\skybox\inc">
+      <UniqueIdentifier>{3c324064-d617-4b70-9a90-2d383cc2508a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\components\skybox\src">
+      <UniqueIdentifier>{fa1a673c-5a6f-4d73-b1dd-a04699a7ab93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="win_main.cpp">
@@ -267,22 +303,13 @@
     <ClCompile Include="grng_d3d.cpp">
       <Filter>inc\core\d3d</Filter>
     </ClCompile>
-    <ClCompile Include="grng_mesh.cpp">
-      <Filter>inc\components\mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="grng_mesh_d3d.cpp">
-      <Filter>inc\components\mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="grng_mesh_obj.cpp">
-      <Filter>inc\components\mesh</Filter>
-    </ClCompile>
     <ClCompile Include="grng_entity.cpp">
       <Filter>inc\core\entity</Filter>
     </ClCompile>
     <ClCompile Include="grng_gfx.cpp">
       <Filter>inc\core\gfx</Filter>
     </ClCompile>
-    <ClCompile Include="grng_db_get.cpp">
+    <ClCompile Include="grng_deferred_buffer_get.cpp">
       <Filter>renderer\inc\deferred_buffer</Filter>
     </ClCompile>
     <ClCompile Include="grng_object.cpp">
@@ -305,9 +332,6 @@
     </ClCompile>
     <ClCompile Include="grng_mouse_button.cpp">
       <Filter>inc\core\input\mouse</Filter>
-    </ClCompile>
-    <ClCompile Include="grng_scene.cpp">
-      <Filter>inc\core\scene</Filter>
     </ClCompile>
     <ClCompile Include="grng_window_cursor.cpp">
       <Filter>inc\windows\window\src</Filter>
@@ -363,14 +387,14 @@
     <ClCompile Include="grng_cubemap_dds.cpp">
       <Filter>inc\core\bindable\cubemap\src</Filter>
     </ClCompile>
-    <ClCompile Include="grng_depth_stencil.cpp">
-      <Filter>inc\core\bindable\depth_stencil\src</Filter>
+    <ClCompile Include="grng_depth_stencil_view.cpp">
+      <Filter>inc\core\bindable\depth_stencil\depth_stencil_view\src</Filter>
     </ClCompile>
-    <ClCompile Include="grng_depth_stencil_data.cpp">
-      <Filter>inc\core\bindable\depth_stencil\src</Filter>
+    <ClCompile Include="grng_depth_stencil_view_data.cpp">
+      <Filter>inc\core\bindable\depth_stencil\depth_stencil_view\src</Filter>
     </ClCompile>
-    <ClCompile Include="grng_depth_stencil_get.cpp">
-      <Filter>inc\core\bindable\depth_stencil\src</Filter>
+    <ClCompile Include="grng_depth_stencil_view_get.cpp">
+      <Filter>inc\core\bindable\depth_stencil\depth_stencil_view\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_input_layout.cpp">
       <Filter>inc\core\bindable\input_layout\src</Filter>
@@ -394,10 +418,10 @@
       <Filter>inc\core\bindable\sampler\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_vert_shader.cpp">
-      <Filter>inc\core\bindable\shader\vert\src</Filter>
+      <Filter>inc\core\bindable\shader\vert_shader\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_vert_shader_data.cpp">
-      <Filter>inc\core\bindable\shader\vert\src</Filter>
+      <Filter>inc\core\bindable\shader\vert_shader\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_geom_shader.cpp">
       <Filter>inc\core\bindable\shader\geom_shader\src</Filter>
@@ -423,6 +447,39 @@
     <ClCompile Include="grng_id3d.cpp">
       <Filter>inc\core\d3d\id3d</Filter>
     </ClCompile>
+    <ClCompile Include="grng_mesh_data.cpp">
+      <Filter>inc\components\mesh\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_mesh_d3d.cpp">
+      <Filter>inc\components\mesh\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_mesh_obj.cpp">
+      <Filter>inc\components\mesh\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_mesh.cpp">
+      <Filter>inc\components\mesh\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_rasterizer_state.cpp">
+      <Filter>inc\core\bindable\rasterizer_state\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_rasterizer_state_data.cpp">
+      <Filter>inc\core\bindable\rasterizer_state\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_depth_stencil_state.cpp">
+      <Filter>inc\core\bindable\depth_stencil\depth_stencil_state\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_depth_stencil_state_data.cpp">
+      <Filter>inc\core\bindable\depth_stencil\depth_stencil_state\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_skybox_def.cpp">
+      <Filter>inc\components\skybox\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_skybox.cpp">
+      <Filter>inc\components\skybox\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_skybox_data.cpp">
+      <Filter>inc\components\skybox\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grng_piston.h">
@@ -433,9 +490,6 @@
     </ClInclude>
     <ClInclude Include="grng_d3d.h">
       <Filter>inc\core\d3d</Filter>
-    </ClInclude>
-    <ClInclude Include="grng_mesh.h">
-      <Filter>inc\components\mesh</Filter>
     </ClInclude>
     <ClInclude Include="grng_entity.h">
       <Filter>inc\core\entity</Filter>
@@ -578,8 +632,8 @@
     <ClInclude Include="grng_cubemap.h">
       <Filter>inc\core\bindable\cubemap\inc</Filter>
     </ClInclude>
-    <ClInclude Include="grng_depth_stencil.h">
-      <Filter>inc\core\bindable\depth_stencil\inc</Filter>
+    <ClInclude Include="grng_depth_stencil_view.h">
+      <Filter>inc\core\bindable\depth_stencil\depth_stencil_view\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_input_layout.h">
       <Filter>inc\core\bindable\input_layout\inc</Filter>
@@ -591,7 +645,7 @@
       <Filter>inc\core\bindable\sampler\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_vert_shader.h">
-      <Filter>inc\core\bindable\shader\vert\inc</Filter>
+      <Filter>inc\core\bindable\shader\vert_shader\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_geom_shader.h">
       <Filter>inc\core\bindable\shader\geom_shader\inc</Filter>
@@ -604,6 +658,21 @@
     </ClInclude>
     <ClInclude Include="grng_texture2d.h">
       <Filter>inc\components\texture2d\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_mesh.h">
+      <Filter>inc\components\mesh\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rasterizer_state.h">
+      <Filter>inc\core\bindable\rasterizer_state\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_depth_stencil_state.h">
+      <Filter>inc\core\bindable\depth_stencil\depth_stencil_state\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_depth_stencil.h">
+      <Filter>inc\core\bindable\depth_stencil</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_skybox.h">
+      <Filter>inc\components\skybox\inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -622,8 +691,11 @@
     <FxCompile Include="g_buffer_pass_gs.hlsl">
       <Filter>shaders\gb_pass</Filter>
     </FxCompile>
-    <FxCompile Include="env_map_vs.hlsl">
-      <Filter>shaders\env_map</Filter>
+    <FxCompile Include="skybox_vs.hlsl">
+      <Filter>shaders\skybox</Filter>
+    </FxCompile>
+    <FxCompile Include="skybox_fs.hlsl">
+      <Filter>shaders\skybox</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

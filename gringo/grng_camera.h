@@ -10,7 +10,7 @@
 class grng_camera : public GRNG_COMPONENT
 {
 private:
-	GRNG_COMPONENT_TRANSFORM	transform;
+	GRNG_TRANSFORM				transform;
 	XMFLOAT3					forward = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	XMFLOAT3					right = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	XMFLOAT3					up = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -68,13 +68,13 @@ public:
 	{
 		this->type = GRNG_COMPONENT_TYPE::CAMERA;
 	}
-	grng_camera(const GRNG_COMPONENT_TRANSFORM &transform, float fov_rad, float z_near, float z_far, float gamma = 2.2f) : GRNG_COMPONENT()
+	grng_camera(const GRNG_TRANSFORM &transform, float fov_rad, float z_near, float z_far, float gamma = 2.2f) : GRNG_COMPONENT()
 	{
 		this->type = GRNG_COMPONENT_TYPE::CAMERA;
 		this->set(transform, fov_rad, z_near, z_far, gamma);
 	}
 
-	void	set(const GRNG_COMPONENT_TRANSFORM &transform, float fov_rad, float z_near, float z_far, float gamma = 2.2f)
+	void	set(const GRNG_TRANSFORM &transform, float fov_rad, float z_near, float z_far, float gamma = 2.2f)
 	{
 		this->transform = transform;
 		this->update_view_matrix();
@@ -129,7 +129,7 @@ public:
 		return (this->up);
 	}
 
-	GRNG_COMPONENT_TRANSFORM		&get_transform()
+	GRNG_TRANSFORM		&get_transform()
 	{
 		return (this->transform);
 	}

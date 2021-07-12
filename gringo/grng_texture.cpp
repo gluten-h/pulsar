@@ -4,8 +4,12 @@
 
 void			grng_texture::copy_assign(const grng_texture &t)
 {
+	this->texture2d = t.texture2d;
 	this->texture_srv = t.texture_srv;
 	this->slot = t.slot;
+
+	if (this->texture2d)
+		this->texture2d->AddRef();
 	if (this->texture_srv)
 		this->texture_srv->AddRef();
 }
@@ -13,8 +17,10 @@ void			grng_texture::copy_assign(const grng_texture &t)
 
 grng_texture	&grng_texture::operator=(const grng_texture &t)
 {
+	if (this->texture2d != t.texture2d)
+		this->remove_texture2d_memory();
 	if (this->texture_srv != t.texture_srv)
-		this->remove_texture_memory();
+		this->remove_texture_srv_memory();
 	this->copy_assign(t);
 
 	return (*this);
@@ -22,6 +28,7 @@ grng_texture	&grng_texture::operator=(const grng_texture &t)
 
 grng_texture::grng_texture(const grng_texture &t) : GRNG_BINDABLE()
 {
+	this->type = GRNG_BINDABLE_TYPE::TEXTURE;
 	this->copy_assign(t);
 }
 

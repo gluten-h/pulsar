@@ -25,7 +25,7 @@ public:
 
 	static GRNG_BINDABLE	*create_manager_ptr();
 
-	void		bind() override
+	void		bind() const override
 	{
 		this->device_context->IASetInputLayout(this->input_layout);
 	}

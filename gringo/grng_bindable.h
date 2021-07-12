@@ -11,14 +11,16 @@ enum class GRNG_BINDABLE_TYPE
 	VERT_CONST_BUFFER,
 	FRAG_CONST_BUFFER,
 	TEXTURE,
-	DEPTH_STENCIL,
+	DEPTH_STENCIL_VIEW,
+	DEPTH_STENCIL_STATE,
 	INPUT_LAYOUT,
 	RENDER_TEXTURE,
 	SAMPLER,
 	VERT_SHADER,
 	GEOM_SHADER,
 	FRAG_SHADER,
-	CUBEMAP
+	CUBEMAP,
+	RASTERIZER_STATE
 };
 
 
@@ -47,7 +49,7 @@ public:
 		return (this->id);
 	}
 
-	virtual void		bind() = 0;
+	virtual void		bind() const = 0;
 };
 
 using GRNG_BINDABLE = grng_bindable;

@@ -29,6 +29,8 @@ void		grng_window::create(const LPCWSTR win_name, const DWORD win_style, int x, 
 	hr = this->device->CreateRenderTargetView(this->back_buffer_texture, NULL, &this->back_buffer);
 
 	this->deferred_buffer.set_deferred_buffer((float)w, (float)h);
+
+	this->skybox_ds_state.set(TRUE, D3D11_COMPARISON_LESS_EQUAL, D3D11_DEPTH_WRITE_MASK_ZERO);
 }
 
 void		grng_window::destroy()

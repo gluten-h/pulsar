@@ -8,4 +8,5 @@
 #include "grng_render_texture.h"
 #include "grng_depth_stencil.h"
 #include "grng_cubemap.h"
+#include "grng_rasterizer_state.h"
 

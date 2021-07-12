@@ -3,7 +3,7 @@
 #include "grng_id3d.h"
 
 
-class grng_component_transform
+class grng_transform
 {
 private:
 	XMMATRIX	transform_mat = XMMatrixIdentity();
@@ -14,8 +14,24 @@ public:
 	XMFLOAT3	scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
 
 public:
-	grng_component_transform(){ }
-	grng_component_transform(const XMFLOAT3 &position, const XMFLOAT3 &rotation, const XMFLOAT3 &scale)
+	grng_transform		&operator=(const grng_transform &t)
+	{
+		this->transform_mat = t.transform_mat;
+		this->position = t.position;
+		this->rotation = t.rotation;
+		this->scale = t.scale;
+
+		return (*this);
+	}
+	grng_transform(const grng_transform &t)
+	{
+		this->transform_mat = t.transform_mat;
+		this->position = t.position;
+		this->rotation = t.rotation;
+		this->scale = t.scale;
+	}
+	grng_transform(){ }
+	grng_transform(const XMFLOAT3 &position, const XMFLOAT3 &rotation, const XMFLOAT3 &scale)
 	{
 		this->position = position;
 		this->rotation = rotation;
@@ -36,4 +52,4 @@ public:
 	}
 };
 
-using GRNG_COMPONENT_TRANSFORM = grng_component_transform;
+using GRNG_TRANSFORM = grng_transform;

@@ -42,7 +42,7 @@ public:
 		return (manager);
 	}
 
-	GRNG_BINDABLE		*add(const GRNG_BINDABLE_TYPE &type)
+	GRNG_BINDABLE		*add(GRNG_BINDABLE_TYPE type)
 	{
 		if (!this->is_available())
 			return (NULL);

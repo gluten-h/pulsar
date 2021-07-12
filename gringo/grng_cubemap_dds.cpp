@@ -27,5 +27,7 @@ void		grng_cubemap::create_dds_cubemap(LPCWSTR *wic_path, LPCWSTR output_dds_pat
 	meta_data.format = img[0].format;
 	meta_data.dimension = TEX_DIMENSION_TEXTURE2D;
 
+	bool c = meta_data.IsCubemap();
+
 	HRESULT hr = SaveToDDSFile(img, 6u, meta_data, DDS_FLAGS_NONE, output_dds_path);
 }

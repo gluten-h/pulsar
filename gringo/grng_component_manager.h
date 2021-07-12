@@ -30,7 +30,7 @@ public:
 		return (manager);
 	}
 
-	GRNG_COMPONENT		*add(const GRNG_COMPONENT_TYPE &type)
+	GRNG_COMPONENT		*add(GRNG_COMPONENT_TYPE type)
 	{
 		if (!this->is_available())
 			return (NULL);

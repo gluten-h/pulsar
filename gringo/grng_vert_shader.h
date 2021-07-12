@@ -26,7 +26,7 @@ public:
 
 	static GRNG_BINDABLE		*create_ptr();
 
-	void		bind() override
+	void		bind() const override
 	{
 		this->device_context->VSSetShader(this->shader, NULL, 0u);
 	}

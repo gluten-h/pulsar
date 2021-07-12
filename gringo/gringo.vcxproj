@@ -162,10 +162,12 @@
     <ClCompile Include="grng_cubemap_data.cpp" />
     <ClCompile Include="grng_cubemap_dds.cpp" />
     <ClCompile Include="grng_d3d.cpp" />
-    <ClCompile Include="grng_db_get.cpp" />
-    <ClCompile Include="grng_depth_stencil.cpp" />
-    <ClCompile Include="grng_depth_stencil_data.cpp" />
-    <ClCompile Include="grng_depth_stencil_get.cpp" />
+    <ClCompile Include="grng_deferred_buffer_get.cpp" />
+    <ClCompile Include="grng_depth_stencil_view.cpp" />
+    <ClCompile Include="grng_depth_stencil_view_data.cpp" />
+    <ClCompile Include="grng_depth_stencil_view_get.cpp" />
+    <ClCompile Include="grng_depth_stencil_state.cpp" />
+    <ClCompile Include="grng_depth_stencil_state_data.cpp" />
     <ClCompile Include="grng_entity.cpp" />
     <ClCompile Include="grng_frag_shader.cpp" />
     <ClCompile Include="grng_frag_shader_data.cpp" />
@@ -179,18 +181,26 @@
     <ClCompile Include="grng_manager_ptr.cpp" />
     <ClCompile Include="grng_math.cpp" />
     <ClCompile Include="grng_mesh.cpp" />
+    <ClCompile Include="grng_mesh_data.cpp" />
     <ClCompile Include="grng_mesh_d3d.cpp" />
     <ClCompile Include="grng_mesh_obj.cpp" />
     <ClCompile Include="grng_mouse.cpp" />
     <ClCompile Include="grng_mouse_button.cpp" />
     <ClCompile Include="grng_object.cpp" />
+    <ClCompile Include="grng_rasterizer_state.cpp" />
+    <ClCompile Include="grng_rasterizer_state_data.cpp" />
     <ClCompile Include="grng_render_texture.cpp" />
     <ClCompile Include="grng_render_texture_data.cpp" />
     <ClCompile Include="grng_render_texture_get.cpp" />
     <ClCompile Include="grng_sampler.cpp" />
     <ClCompile Include="grng_sampler_data.cpp" />
-    <ClCompile Include="grng_scene.cpp" />
     <ClCompile Include="grng_shader_data.cpp" />
+    <ClCompile Include="grng_skybox.cpp" />
+    <ClCompile Include="grng_skybox_data.cpp" />
+    <ClCompile Include="grng_skybox_def.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="grng_texture.cpp" />
     <ClCompile Include="grng_texture2d.cpp" />
     <ClCompile Include="grng_texture2d_data.cpp" />
@@ -219,6 +229,8 @@
     <ClInclude Include="grng_const_buffers.h" />
     <ClInclude Include="grng_cubemap.h" />
     <ClInclude Include="grng_def.h" />
+    <ClInclude Include="grng_depth_stencil.h" />
+    <ClInclude Include="grng_depth_stencil_state.h" />
     <ClInclude Include="grng_frag_const_buffer.h" />
     <ClInclude Include="grng_material_shader.h" />
     <ClInclude Include="grng_mouse.h" />
@@ -230,7 +242,7 @@
     <ClInclude Include="grng_d3d.h" />
     <ClInclude Include="grng_deferred_buffer.h" />
     <ClInclude Include="grng_deffered_def.h" />
-    <ClInclude Include="grng_depth_stencil.h" />
+    <ClInclude Include="grng_depth_stencil_view.h" />
     <ClInclude Include="grng_dir_light.h" />
     <ClInclude Include="grng_entity.h" />
     <ClInclude Include="grng_entities.h" />
@@ -249,6 +261,7 @@
     <ClInclude Include="grng_mesh.h" />
     <ClInclude Include="grng_piston.h" />
     <ClInclude Include="grng_point_light.h" />
+    <ClInclude Include="grng_rasterizer_state.h" />
     <ClInclude Include="grng_render_texture.h" />
     <ClInclude Include="grng_sampler.h" />
     <ClInclude Include="grng_scene.h" />
@@ -258,6 +271,10 @@
     <ClInclude Include="grng_shaders.h" />
     <ClInclude Include="grng_shader_camera.h" />
     <ClInclude Include="grng_shader_include.h" />
+    <ClInclude Include="grng_skybox.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="grng_texture.h" />
     <ClInclude Include="grng_texture2d.h" />
     <ClInclude Include="grng_utils.h" />
@@ -295,11 +312,21 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
-    <FxCompile Include="env_map_vs.hlsl">
+    <FxCompile Include="skybox_fs.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="skybox_vs.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="g_buffer_pass_gs.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Geometry</ShaderType>
@@ -365,6 +392,9 @@
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\directxtex_desktop_2017.2021.6.10.1\build\native\directxtex_desktop_2017.targets" Condition="Exists('..\packages\directxtex_desktop_2017.2021.6.10.1\build\native\directxtex_desktop_2017.targets')" />
     <Import Project="..\packages\directxtex_desktop_win10.2021.6.10.1\build\native\directxtex_desktop_win10.targets" Condition="Exists('..\packages\directxtex_desktop_win10.2021.6.10.1\build\native\directxtex_desktop_win10.targets')" />
+    <Import Project="..\packages\directxtk_desktop_win10.2021.6.10.1\build\native\directxtk_desktop_win10.targets" Condition="Exists('..\packages\directxtk_desktop_win10.2021.6.10.1\build\native\directxtk_desktop_win10.targets')" />
+    <Import Project="..\packages\Microsoft.XAudio2.Redist.1.2.4\build\native\Microsoft.XAudio2.Redist.targets" Condition="Exists('..\packages\Microsoft.XAudio2.Redist.1.2.4\build\native\Microsoft.XAudio2.Redist.targets')" />
+    <Import Project="..\packages\directxtk_desktop_2017.2021.6.10.1\build\native\directxtk_desktop_2017.targets" Condition="Exists('..\packages\directxtk_desktop_2017.2021.6.10.1\build\native\directxtk_desktop_2017.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -372,5 +402,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\directxtex_desktop_2017.2021.6.10.1\build\native\directxtex_desktop_2017.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtex_desktop_2017.2021.6.10.1\build\native\directxtex_desktop_2017.targets'))" />
     <Error Condition="!Exists('..\packages\directxtex_desktop_win10.2021.6.10.1\build\native\directxtex_desktop_win10.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtex_desktop_win10.2021.6.10.1\build\native\directxtex_desktop_win10.targets'))" />
+    <Error Condition="!Exists('..\packages\directxtk_desktop_win10.2021.6.10.1\build\native\directxtk_desktop_win10.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk_desktop_win10.2021.6.10.1\build\native\directxtk_desktop_win10.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.XAudio2.Redist.1.2.4\build\native\Microsoft.XAudio2.Redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.XAudio2.Redist.1.2.4\build\native\Microsoft.XAudio2.Redist.targets'))" />
+    <Error Condition="!Exists('..\packages\directxtk_desktop_2017.2021.6.10.1\build\native\directxtk_desktop_2017.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtk_desktop_2017.2021.6.10.1\build\native\directxtk_desktop_2017.targets'))" />
   </Target>
 </Project>

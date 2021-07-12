@@ -22,6 +22,8 @@
 #include <DirectXMath.h>
 
 #include <DirectXTex.h>
+#include <DDSTextureLoader.h>
+#include <WICTextureLoader.h>
 
 using namespace DirectX;
 
@@ -47,6 +49,7 @@ public:
 
 		HRESULT hr;
 
+		hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
 		hr = CreateDXGIFactory(IID_IDXGIFactory, (void**)&grng_d3d::idxgi_factory);
 		hr = D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, NULL, NULL, NULL, D3D11_SDK_VERSION, &grng_d3d::device, NULL, &grng_d3d::device_context);
 

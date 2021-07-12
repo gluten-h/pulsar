@@ -27,6 +27,7 @@ grng_vert_shader		&grng_vert_shader::operator=(const grng_vert_shader &s)
 
 grng_vert_shader::grng_vert_shader(const grng_vert_shader &s) : GRNG_SHADER()
 {
+	this->type = GRNG_BINDABLE_TYPE::VERT_SHADER;
 	this->copy_assign(s);
 }
 

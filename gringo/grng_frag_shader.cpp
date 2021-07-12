@@ -27,6 +27,7 @@ grng_frag_shader		&grng_frag_shader::operator=(const grng_frag_shader &s)
 
 grng_frag_shader::grng_frag_shader(const grng_frag_shader &s) : GRNG_SHADER()
 {
+	this->type = GRNG_BINDABLE_TYPE::FRAG_SHADER;
 	this->copy_assign(s);
 }
 

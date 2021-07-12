@@ -21,6 +21,7 @@ grng_input_layout		&grng_input_layout::operator=(const grng_input_layout &il)
 
 grng_input_layout::grng_input_layout(const grng_input_layout &il) : GRNG_BINDABLE()
 {
+	this->type = GRNG_BINDABLE_TYPE::INPUT_LAYOUT;
 	this->copy_assign(il);
 }
 
@@ -32,7 +33,6 @@ grng_input_layout::grng_input_layout() : GRNG_BINDABLE()
 grng_input_layout::grng_input_layout(ID3DBlob *shader_blob, const D3D11_INPUT_ELEMENT_DESC *ied, UINT ied_num_elements) : GRNG_BINDABLE()
 {
 	this->type = GRNG_BINDABLE_TYPE::INPUT_LAYOUT;
-
 	this->set_input_layout_memory(shader_blob, ied, ied_num_elements);
 }
 

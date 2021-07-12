@@ -13,7 +13,7 @@ void		grng_cam_controller(void *data)
 	const XMFLOAT3 &cam_forward = cam->get_forward();
 	const XMFLOAT3 &cam_right = cam->get_right();
 	const XMFLOAT3 &cam_up = cam->get_up();
-	GRNG_COMPONENT_TRANSFORM &transform = cam->get_transform();
+	GRNG_TRANSFORM &transform = cam->get_transform();
 
 	float delta_time = GRNG_GFX::get_delta_time();
 	bool is_rmb_pressed = GRNG_INPUT::GRNG_MOUSE::rmb_pressed();

@@ -10,7 +10,7 @@
 
 enum class GRNG_MESH_FILE_FORMAT
 {
-	GRNG_MESH_FILE_OBJ
+	OBJ
 };
 
 
@@ -35,6 +35,7 @@ private:
 		std::vector<UINT32>				indices;
 		t_mesh_specs					mesh_specs;
 
+
 		void	clear()
 		{
 			this->verts.clear();
@@ -48,36 +49,27 @@ private:
 	GRNG_MESH_DATA	mesh;
 
 	D3D_PRIMITIVE_TOPOLOGY		primitive_topology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+
 	ID3D11Buffer				*v_buffer = NULL;
 	ID3D11Buffer				*i_buffer = NULL;
 
 private:
+	void		remove_v_buffer_memory();
+	void		remove_i_buffer_memory();
 	void		remove_mesh_memory();
 	void		load_mesh_obj(const char *file);
 	void		create_buffer();
 
+	void		copy_assign(const grng_mesh &m);
+
 public:
-	grng_mesh() : GRNG_COMPONENT()
-	{
-		this->type = GRNG_COMPONENT_TYPE::MESH;
-	}
-	grng_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format) : GRNG_COMPONENT()
-	{
-		this->type = GRNG_COMPONENT_TYPE::MESH;
-		this->set(file, file_format);
-	}
-	~grng_mesh()
-	{
-		this->remove_mesh_memory();
-	}
+	grng_mesh	&operator=(const grng_mesh &m);
+	grng_mesh(const grng_mesh &m);
+	grng_mesh();
+	grng_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format);
+	~grng_mesh();
 
-	static GRNG_COMPONENT		*create_manager_ptr()
-	{
-		grng_mesh *mesh = new grng_mesh;
-
-		return (mesh);
-	}
-
+	static GRNG_COMPONENT		*create_manager_ptr();
 
 	void		set(const char *file, GRNG_MESH_FILE_FORMAT file_format);
 	void		set_primitive_topology(const D3D_PRIMITIVE_TOPOLOGY &primitive_topology);

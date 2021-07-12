@@ -1,4 +1,21 @@
-﻿  grng_depth_stencil_data.cpp
-D:\vs_project\gringo\gringo\grng_depth_stencil_data.cpp(15,13): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-D:\vs_project\gringo\gringo\grng_depth_stencil_data.cpp(16,14): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+﻿  win_main.cpp
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<GRNG_ENTITY,4096>::is_exists(T *)'
+          with
+          [
+              T=GRNG_ENTITY
+          ]
+D:\vs_project\gringo\gringo\grng_manager.h(79): message : see reference to function template instantiation 'bool grng_manager<GRNG_ENTITY,4096>::is_exists(T *)' being compiled
+          with
+          [
+              T=GRNG_ENTITY
+          ]
+D:\vs_project\gringo\gringo\grng_entity_manager.h(10): message : see reference to class template instantiation 'grng_manager<GRNG_ENTITY,4096>' being compiled
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable
   gringo.vcxproj -> D:\vs_project\gringo\x64\Debug\gringo.exe

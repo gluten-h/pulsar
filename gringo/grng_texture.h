@@ -6,12 +6,15 @@
 class grng_texture : public GRNG_BINDABLE
 {
 private:
+	ID3D11Texture2D					*texture2d = NULL;
 	ID3D11ShaderResourceView		*texture_srv = NULL;
 	UINT							slot = 0u;
 
 
-	void		set_texture_memory(const LPCWSTR file);
+	void		remove_texture2d_memory();
+	void		remove_texture_srv_memory();
 	void		remove_texture_memory();
+	void		set_texture_memory(const LPCWSTR file);
 
 	void		copy_assign(const grng_texture &t);
 
@@ -27,7 +30,7 @@ public:
 
 	static GRNG_BINDABLE		*create_manager_ptr();
 
-	void		bind() override
+	void		bind() const override
 	{
 		this->device_context->PSSetShaderResources(this->slot, 1u, &this->texture_srv);
 	}

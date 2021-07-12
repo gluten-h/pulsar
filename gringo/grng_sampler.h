@@ -26,7 +26,7 @@ public:
 	static GRNG_BINDABLE	*create_manager_ptr();
 
 
-	void		bind() override
+	void		bind() const override
 	{
 		this->device_context->PSSetSamplers(this->slot, 1u, &this->sampler);
 	}

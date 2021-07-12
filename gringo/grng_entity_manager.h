@@ -22,7 +22,7 @@ private:
 public:
 	grng_entity_manager() : GRNG_MANAGER<GRNG_ENTITY, GRNG_MAX_ENTITY_COUNT>(){ }
 
-	GRNG_ENTITY		*add(const GRNG_ENTITY_TYPE &type)
+	GRNG_ENTITY		*add(GRNG_ENTITY_TYPE type)
 	{
 		if (!this->is_available())
 			return (NULL);

@@ -2,7 +2,7 @@
 
 #include "grng_id3d.h"
 #include "grng_const_buffers.h"
-#include "grng_bindable.h"
+#include "grng_transform.h"
 #include "grng_transform_shader.h"
 
 #include <vector>
@@ -40,6 +40,9 @@ protected:
 	}
 
 public:
+	GRNG_TRANSFORM		transform;
+
+
 	grng_entity(const grng_entity &e) = delete;
 	grng_entity(grng_entity &&e) = delete;
 	grng_entity() : GRNG_ID3D(){ }

@@ -22,7 +22,7 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 
 
 	GRNG_CAMERA &camera = *(GRNG_CAMERA*)GRNG_CM.add(GRNG_COMPONENT_TYPE::CAMERA);
-	GRNG_COMPONENT_TRANSFORM cam_transform = GRNG_COMPONENT_TRANSFORM(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 1.0f, 1.0f));
+	GRNG_TRANSFORM cam_transform = GRNG_TRANSFORM(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 1.0f, 1.0f));
 	camera.set(cam_transform, grng_deg2rad(75.0f), 0.001f, D3D11_FLOAT32_MAX);
 	GRNG_CAM_CONTROLLER cam_controller{ 5.0f, 6.0f, 0.8f, 0.75f, { cam_transform.rotation.x, cam_transform.rotation.y } };
 	GRNG_WM::set_camera(win0, camera);
@@ -34,6 +34,7 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	GRNG_WM::set_scene(win0, scene);
 
 	GRNG_CUBEMAP &env_map = *(GRNG_CUBEMAP*)GRNG_BM.add(GRNG_BINDABLE_TYPE::CUBEMAP);
+	env_map.set(L"resources/cubemaps/cm00/cm00.dds");
 	scene.set_env_map(env_map);
 
 
@@ -46,19 +47,13 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	gb_pass_fs.set(L"g_buffer_pass_fs.hlsl", GRNG_FRAG_ENTRY, NULL);
 
 
-	GRNG_MESH &cube_mesh = *(GRNG_MESH*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MESH);
-	GRNG_MESH &sph_mesh = *(GRNG_MESH*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MESH);
-	cube_mesh.set("resources/meshes/cube.obj", GRNG_MESH_FILE_FORMAT::GRNG_MESH_FILE_OBJ);
-	sph_mesh.set("resources/meshes/sphere64.obj", GRNG_MESH_FILE_FORMAT::GRNG_MESH_FILE_OBJ);
-
-
 	GRNG_OBJECT &cube_obj = *(GRNG_OBJECT*)scene.add_entity(GRNG_ENTITY_TYPE::OBJECT);
 	GRNG_OBJECT &sph_obj = *(GRNG_OBJECT*)scene.add_entity(GRNG_ENTITY_TYPE::OBJECT);
 	GRNG_OBJECT &sph1_obj = *(GRNG_OBJECT*)scene.add_entity(GRNG_ENTITY_TYPE::OBJECT);
 	GRNG_OBJECT &sph2_obj = *(GRNG_OBJECT*)scene.add_entity(GRNG_ENTITY_TYPE::OBJECT);
 
 
-	cube_obj.set_mesh(cube_mesh);
+	cube_obj.set_mesh(GRNG_STD_CUBE_MESH);
 
 	GRNG_MATERIAL &cube_mat = *(GRNG_MATERIAL*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MATERIAL);
 	cube_mat.albedo_map.set(L"resources/textures/p3.jpg");
@@ -67,7 +62,7 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	cube_obj.set_material(cube_mat);
 
 
-	sph_obj.set_mesh(sph_mesh);
+	sph_obj.set_mesh(GRNG_STD_SPHERE64_MESH);
 
 	GRNG_MATERIAL &sph_mat = *(GRNG_MATERIAL*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MATERIAL);
 	sph_mat.albedo_map.set(L"resources/textures/brick00/albedo.png");
@@ -75,12 +70,11 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	sph_mat.normal_factor = 1.0f;
 	sph_mat.roughness_map.set(L"resources/textures/brick00/roughness.png");
 	sph_mat.metalness = 0.0f;
-	sph_mat.ao_map.set(GRNG_STD_QUAD_WHITE);
 	sph_mat.ao = 0.01f;
 	sph_obj.set_material(sph_mat);
 
 
-	sph1_obj.set_mesh(sph_mesh);
+	sph1_obj.set_mesh(GRNG_STD_SPHERE64_MESH);
 
 	GRNG_MATERIAL &sph1_mat = *(GRNG_MATERIAL*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MATERIAL);;
 	sph1_mat.albedo_map.set(L"resources/textures/metal00/albedo.png");
@@ -88,12 +82,11 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	sph1_mat.normal_factor = 5.0f;
 	sph1_mat.roughness_map.set(L"resources/textures/metal00/roughness.png");
 	sph1_mat.metalness_map.set(L"resources/textures/metal00/metalness.png");
-	sph1_mat.ao_map.set(GRNG_STD_QUAD_WHITE);
 	sph1_mat.ao = 0.01f;
 	sph1_obj.set_material(sph1_mat);
 
 
-	sph2_obj.set_mesh(sph_mesh);
+	sph2_obj.set_mesh(GRNG_STD_SPHERE64_MESH);
 
 	GRNG_MATERIAL &sph2_mat = *(GRNG_MATERIAL*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MATERIAL);;
 	sph2_mat.albedo_map.set(L"resources/textures/wood00/albedo.png");
@@ -101,7 +94,6 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	sph2_mat.normal_factor = 4.0f;
 	sph2_mat.roughness_map.set(L"resources/textures/wood00/roughness.png");
 	sph2_mat.metalness_map.set(L"resources/textures/wood00/metalness.png");
-	sph2_mat.ao_map.set(GRNG_STD_QUAD_WHITE);
 	sph2_mat.ao = 0.01f;
 	sph2_obj.set_material(sph2_mat);
 
@@ -172,8 +164,7 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 			sph2_obj.transform.rotation = XMFLOAT3(sph2_obj.transform.rotation.x + delta_time * 0.25f, sph2_obj.transform.rotation.y + delta_time * 0.25f, sph2_obj.transform.rotation.z + delta_time * 0.25f);
 
 			win->update();
-			win->draw_g_pass();
-			win->draw_deferred();
+			win->draw();
 
 			win->present();
 		}

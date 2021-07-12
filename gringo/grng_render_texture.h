@@ -40,7 +40,7 @@ public:
 		this->device_context->OMSetRenderTargets(1u, &this->texture_rtv, depth_stencil_view);
 	}
 
-	void		bind() override
+	void		bind() const override
 	{
 		this->device_context->PSSetShaderResources(this->slot, 1u, &this->texture_srv);
 	}

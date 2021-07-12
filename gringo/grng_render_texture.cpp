@@ -28,6 +28,7 @@ grng_render_texture		&grng_render_texture::operator=(const grng_render_texture &
 
 grng_render_texture::grng_render_texture(const grng_render_texture &rt) : GRNG_BINDABLE()
 {
+	this->type = GRNG_BINDABLE_TYPE::RENDER_TEXTURE;
 	this->copy_assign(rt);
 }
 
