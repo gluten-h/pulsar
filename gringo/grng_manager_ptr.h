@@ -8,9 +8,6 @@
 #include <unordered_map>
 
 
-#define GRNG_MP GRNG_MANAGER_PTR
-
-
 typedef GRNG_BINDABLE *(*GRNG_MANAGER_PTR_BINDABLE)(void);
 typedef GRNG_ENTITY *(*GRNG_MANAGER_PTR_ENTITY)(void);
 typedef GRNG_LIGHT *(*GRNG_MANAGER_PTR_LIGHT)(void);
@@ -35,11 +32,12 @@ public:
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::DEPTH_STENCIL_STATE] = GRNG_DEPTH_STENCIL_STATE::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::INPUT_LAYOUT] = GRNG_INPUT_LAYOUT::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::RENDER_TEXTURE] = GRNG_RENDER_TEXTURE::create_manager_ptr;
-		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::VERT_SHADER] = GRNG_VERT_SHADER::create_ptr;
+		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::VERT_SHADER] = GRNG_VERT_SHADER::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::GEOM_SHADER] = GRNG_GEOM_SHADER::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::FRAG_SHADER] = GRNG_FRAG_SHADER::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::CUBEMAP] = GRNG_CUBEMAP::create_manager_ptr;
 		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::RASTERIZER_STATE] = GRNG_RASTERIZER_STATE::create_manager_ptr;
+		grng_manager_ptr::bindable_ptr[GRNG_BINDABLE_TYPE::RENDER_TARGET] = GRNG_RENDER_TARGET::create_manager_ptr;
 
 		grng_manager_ptr::entity_ptr[GRNG_ENTITY_TYPE::OBJECT] = GRNG_OBJECT::create_manager_ptr;
 
@@ -48,7 +46,11 @@ public:
 
 		grng_manager_ptr::component_ptr[GRNG_COMPONENT_TYPE::CAMERA] = GRNG_CAMERA::create_manager_ptr;
 		grng_manager_ptr::component_ptr[GRNG_COMPONENT_TYPE::MATERIAL] = GRNG_MATERIAL::create_manager_ptr;
+		grng_manager_ptr::component_ptr[GRNG_COMPONENT_TYPE::SKYBOX_MATERIAL] = GRNG_SKYBOX_MATERIAL::create_manager_ptr;
 		grng_manager_ptr::component_ptr[GRNG_COMPONENT_TYPE::MESH] = GRNG_MESH::create_manager_ptr;
+
+
+		GRNG_RESOURCE_MANAGER::add_terminate(grng_manager_ptr::destroy);
 	}
 
 	static void		destroy()
@@ -81,3 +83,4 @@ public:
 };
 
 using GRNG_MANAGER_PTR = grng_manager_ptr;
+using GRNG_MP = GRNG_MANAGER_PTR;

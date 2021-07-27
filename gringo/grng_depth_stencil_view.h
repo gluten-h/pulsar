@@ -6,6 +6,9 @@
 class grng_depth_stencil_view : public GRNG_BINDABLE
 {
 private:
+	friend class grng_manager_ptr;
+
+private:
 	ID3D11Texture2D				*ds_texture = NULL;
 	ID3D11DepthStencilView		*ds_view = NULL;
 
@@ -17,6 +20,8 @@ private:
 	void						remove_ds_memory();
 
 	void						copy_assign(const grng_depth_stencil_view &dsv);
+
+	static GRNG_BINDABLE		*create_manager_ptr();
 
 public:
 	grng_depth_stencil_view			&operator=(const grng_depth_stencil_view &dsv);
@@ -30,7 +35,10 @@ public:
 	ID3D11Texture2D				*get_texture();
 	ID3D11DepthStencilView		*get_view();
 
-	static GRNG_BINDABLE		*create_manager_ptr();
+	void						clear()
+	{
+		this->device_context->ClearDepthStencilView(this->ds_view, D3D11_CLEAR_DEPTH, 1.0f, 0u);
+	}
 
 	void						bind() const override{ }
 };

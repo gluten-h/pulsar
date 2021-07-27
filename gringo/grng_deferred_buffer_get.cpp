@@ -12,6 +12,11 @@ GRNG_RENDER_TEXTURE			&grng_deferred_buffer::get_render_texture(UINT type)
 	return (this->rt[type]);
 }
 
+GRNG_RENDER_TEXTURE			&grng_deferred_buffer::get_hdr_buffer()
+{
+	return (this->rt_hdr);
+}
+
 GRNG_DS_VIEW				&grng_deferred_buffer::get_ds_view()
 {
 	return (this->ds_view);

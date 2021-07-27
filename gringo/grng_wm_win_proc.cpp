@@ -2,18 +2,18 @@
 #include "grng_win_manager.h"
 
 
-LRESULT CALLBACK		grng_wm::win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+LRESULT CALLBACK		grng_win_manager::win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-	int win_id = grng_wm::hwnd_map[hwnd];
-	GRNG_WINDOW *win_ptr = grng_wm::win.get(win_id);
+	int win_id = grng_win_manager::hwnd_map[hwnd];
+	GRNG_WINDOW *win_ptr = grng_win_manager::win.get(win_id);
 
 	switch (msg)
 	{
 		case WM_CLOSE:
 		{
-			grng_wm::destroy_win_memory(win_id);
+			grng_win_manager::destroy_win_memory(win_id);
 			DestroyWindow(hwnd);
-			if (grng_wm::iwin->size <= 0)
+			if (grng_win_manager::iwin->size <= 0)
 			{
 				PostQuitMessage(0);
 				return (0);

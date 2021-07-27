@@ -6,6 +6,9 @@
 class grng_frag_shader : public GRNG_SHADER
 {
 private:
+	friend class grng_manager_ptr;
+
+private:
 	ID3D11PixelShader			*shader = NULL;
 
 
@@ -15,6 +18,8 @@ private:
 
 	void						copy_assign(const grng_frag_shader &s);
 
+	static GRNG_BINDABLE		*create_manager_ptr();
+
 public:
 	grng_frag_shader			&operator=(const grng_frag_shader &s);
 	grng_frag_shader(const grng_frag_shader &s);
@@ -23,8 +28,6 @@ public:
 	~grng_frag_shader();
 
 	void						set(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines) override;
-
-	static GRNG_BINDABLE		*create_manager_ptr();
 
 	void		bind() const override
 	{

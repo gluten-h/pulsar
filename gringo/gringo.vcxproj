@@ -43,14 +43,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -157,7 +157,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="grng_resource_manager.cpp" />
     <ClCompile Include="grng_camera.cpp" />
+    <ClCompile Include="grng_camera_data.cpp" />
+    <ClCompile Include="grng_camera_def.cpp" />
+    <ClCompile Include="grng_camera_get.cpp" />
+    <ClCompile Include="grng_camera_update.cpp" />
     <ClCompile Include="grng_cubemap.cpp" />
     <ClCompile Include="grng_cubemap_data.cpp" />
     <ClCompile Include="grng_cubemap_dds.cpp" />
@@ -168,17 +173,22 @@
     <ClCompile Include="grng_depth_stencil_view_get.cpp" />
     <ClCompile Include="grng_depth_stencil_state.cpp" />
     <ClCompile Include="grng_depth_stencil_state_data.cpp" />
-    <ClCompile Include="grng_entity.cpp" />
+    <ClCompile Include="grng_dir_light.cpp" />
+    <ClCompile Include="grng_dir_light_data.cpp" />
+    <ClCompile Include="grng_dir_light_get.cpp" />
+    <ClCompile Include="grng_exception.cpp" />
     <ClCompile Include="grng_frag_shader.cpp" />
     <ClCompile Include="grng_frag_shader_data.cpp" />
     <ClCompile Include="grng_geom_shader.cpp" />
     <ClCompile Include="grng_geom_shader_data.cpp" />
     <ClCompile Include="grng_gfx.cpp" />
+    <ClCompile Include="grng_gfx_exception.cpp" />
     <ClCompile Include="grng_id3d.cpp" />
     <ClCompile Include="grng_input_layout.cpp" />
     <ClCompile Include="grng_input_layout_data.cpp" />
     <ClCompile Include="grng_light_manager.cpp" />
     <ClCompile Include="grng_manager_ptr.cpp" />
+    <ClCompile Include="grng_material.cpp" />
     <ClCompile Include="grng_math.cpp" />
     <ClCompile Include="grng_mesh.cpp" />
     <ClCompile Include="grng_mesh_data.cpp" />
@@ -187,13 +197,23 @@
     <ClCompile Include="grng_mouse.cpp" />
     <ClCompile Include="grng_mouse_button.cpp" />
     <ClCompile Include="grng_object.cpp" />
+    <ClCompile Include="grng_point_light.cpp" />
+    <ClCompile Include="grng_point_light_data.cpp" />
+    <ClCompile Include="grng_point_light_get.cpp" />
     <ClCompile Include="grng_rasterizer_state.cpp" />
     <ClCompile Include="grng_rasterizer_state_data.cpp" />
+    <ClCompile Include="grng_render_target.cpp" />
+    <ClCompile Include="grng_render_target_data.cpp" />
+    <ClCompile Include="grng_render_target_misc.cpp" />
     <ClCompile Include="grng_render_texture.cpp" />
     <ClCompile Include="grng_render_texture_data.cpp" />
     <ClCompile Include="grng_render_texture_get.cpp" />
     <ClCompile Include="grng_sampler.cpp" />
     <ClCompile Include="grng_sampler_data.cpp" />
+    <ClCompile Include="grng_scene_draw.cpp" />
+    <ClCompile Include="grng_scene_entity.cpp" />
+    <ClCompile Include="grng_scene_light.cpp" />
+    <ClCompile Include="grng_scene_skybox.cpp" />
     <ClCompile Include="grng_shader_data.cpp" />
     <ClCompile Include="grng_skybox.cpp" />
     <ClCompile Include="grng_skybox_data.cpp" />
@@ -201,10 +221,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="grng_skybox_material.cpp" />
     <ClCompile Include="grng_texture.cpp" />
     <ClCompile Include="grng_texture2d.cpp" />
     <ClCompile Include="grng_texture2d_data.cpp" />
     <ClCompile Include="grng_texture_data.cpp" />
+    <ClCompile Include="grng_transform.cpp" />
+    <ClCompile Include="grng_utils.cpp" />
     <ClCompile Include="grng_vert_shader.cpp" />
     <ClCompile Include="grng_vert_shader_data.cpp" />
     <ClCompile Include="grng_window.cpp" />
@@ -212,6 +235,7 @@
     <ClCompile Include="grng_window_misc.cpp" />
     <ClCompile Include="grng_window_update.cpp" />
     <ClCompile Include="grng_window_cursor.cpp" />
+    <ClCompile Include="grng_win_exception.cpp" />
     <ClCompile Include="grng_win_manager.cpp" />
     <ClCompile Include="grng_wm_cursor.cpp" />
     <ClCompile Include="grng_wm_misc.cpp" />
@@ -224,14 +248,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grng_bindable_manager.h" />
+    <ClInclude Include="grng_camera_post_effects_shader.h" />
     <ClInclude Include="grng_component.h" />
     <ClInclude Include="grng_component_manager.h" />
     <ClInclude Include="grng_const_buffers.h" />
     <ClInclude Include="grng_cubemap.h" />
     <ClInclude Include="grng_def.h" />
+    <ClInclude Include="grng_def_cubemaps.h" />
+    <ClInclude Include="grng_def_exc_macros.h" />
+    <ClInclude Include="grng_def_materials.h" />
+    <ClInclude Include="grng_def_meshes.h" />
+    <ClInclude Include="grng_def_misc.h" />
+    <ClInclude Include="grng_def_skybox.h" />
+    <ClInclude Include="grng_def_skybox_materials.h" />
+    <ClInclude Include="grng_def_textures.h" />
     <ClInclude Include="grng_depth_stencil.h" />
     <ClInclude Include="grng_depth_stencil_state.h" />
+    <ClInclude Include="grng_exception.h" />
+    <ClInclude Include="grng_exc_macros.h" />
     <ClInclude Include="grng_frag_const_buffer.h" />
+    <ClInclude Include="grng_gfx_exception.h" />
+    <ClInclude Include="grng_gfx_exc_macros.h" />
     <ClInclude Include="grng_material_shader.h" />
     <ClInclude Include="grng_mouse.h" />
     <ClInclude Include="grng_bindable.h" />
@@ -259,22 +296,31 @@
     <ClInclude Include="grng_material_def.h" />
     <ClInclude Include="grng_math.h" />
     <ClInclude Include="grng_mesh.h" />
+    <ClInclude Include="grng_pass.h" />
     <ClInclude Include="grng_piston.h" />
     <ClInclude Include="grng_point_light.h" />
     <ClInclude Include="grng_rasterizer_state.h" />
+    <ClInclude Include="grng_def_rasterizer_states.h" />
+    <ClInclude Include="grng_render_target.h" />
     <ClInclude Include="grng_render_texture.h" />
+    <ClInclude Include="grng_resource_manager.h" />
+    <ClInclude Include="grng_rg_input.h" />
+    <ClInclude Include="grng_rg_output.h" />
     <ClInclude Include="grng_sampler.h" />
     <ClInclude Include="grng_scene.h" />
     <ClInclude Include="grng_scene_def.h" />
     <ClInclude Include="grng_scene_manager.h" />
     <ClInclude Include="grng_shader.h" />
     <ClInclude Include="grng_shaders.h" />
-    <ClInclude Include="grng_shader_camera.h" />
+    <ClInclude Include="grng_camera_deferred_shader.h" />
     <ClInclude Include="grng_shader_include.h" />
     <ClInclude Include="grng_skybox.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="grng_skybox_material.h" />
+    <ClInclude Include="grng_skybox_material_def.h" />
+    <ClInclude Include="grng_skybox_material_shader.h" />
     <ClInclude Include="grng_texture.h" />
     <ClInclude Include="grng_texture2d.h" />
     <ClInclude Include="grng_utils.h" />
@@ -283,6 +329,8 @@
     <ClInclude Include="grng_transform_shader.h" />
     <ClInclude Include="grng_window.h" />
     <ClInclude Include="grng_window_def.h" />
+    <ClInclude Include="grng_win_exception.h" />
+    <ClInclude Include="grng_win_exc_macros.h" />
     <ClInclude Include="grng_win_manager.h" />
     <ClInclude Include="grng_object.h" />
     <ClInclude Include="grng_transform.h" />
@@ -290,6 +338,7 @@
     <ClInclude Include="grng_input.h" />
     <ClInclude Include="cam_controller.h" />
     <ClInclude Include="grng_manager_ptr.h" />
+    <ClInclude Include="render_graph.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="deferred_fs.hlsl">
@@ -340,6 +389,22 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
+    <FxCompile Include="post_effects_fs.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="post_effects_vs.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="g_buffer_pass_fs.hlsl">
@@ -384,6 +449,10 @@
     </None>
     <None Include="packages.config" />
     <None Include="point_light.hlsli">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </None>
+    <None Include="tone_mapping.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>

@@ -6,6 +6,9 @@
 class grng_vert_shader : public GRNG_SHADER
 {
 private:
+	friend class grng_manager_ptr;
+
+private:
 	ID3D11VertexShader			*shader = NULL;
 
 	void						remove_vert_shader_memory();
@@ -14,6 +17,8 @@ private:
 
 	void						copy_assign(const grng_vert_shader &s);
 
+	static GRNG_BINDABLE		*create_manager_ptr();
+
 public:
 	grng_vert_shader			&operator=(const grng_vert_shader &s);
 	grng_vert_shader(const grng_vert_shader &s);
@@ -21,10 +26,7 @@ public:
 	grng_vert_shader(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines);
 	~grng_vert_shader();
 
-
 	void						set(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines) override;
-
-	static GRNG_BINDABLE		*create_ptr();
 
 	void		bind() const override
 	{

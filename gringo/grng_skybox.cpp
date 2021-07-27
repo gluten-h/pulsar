@@ -6,7 +6,6 @@ void		grng_skybox::copy_assign(const grng_skybox &s)
 {
 	this->env_map = s.env_map;
 	this->mesh = s.mesh;
-	this->vert_transform = s.vert_transform;
 }
 
 

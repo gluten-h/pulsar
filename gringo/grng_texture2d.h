@@ -1,6 +1,7 @@
 #pragma once
 
 #include "grng_id3d.h"
+#include "grng_exc_macros.h"
 
 
 class grng_texture2d : public GRNG_ID3D

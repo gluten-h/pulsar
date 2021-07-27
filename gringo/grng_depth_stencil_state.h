@@ -6,6 +6,9 @@
 class grng_depth_stencil_state : public GRNG_BINDABLE
 {
 private:
+	friend class grng_manager_ptr;
+
+private:
 	ID3D11DepthStencilState		*ds_state = NULL;
 
 
@@ -13,6 +16,8 @@ private:
 	void		remove_ds_memory();
 
 	void		copy_assign(const grng_depth_stencil_state &dss);
+
+	static GRNG_BINDABLE		*create_manager_ptr();
 
 public:
 	grng_depth_stencil_state		&operator=(const grng_depth_stencil_state &dss);
@@ -22,9 +27,6 @@ public:
 
 	void						set(BOOL depth_enable, D3D11_COMPARISON_FUNC depth_comp_func, D3D11_DEPTH_WRITE_MASK depth_write_mask);
 	ID3D11DepthStencilState		*get_state();
-
-	static GRNG_BINDABLE		*create_manager_ptr();
-
 
 	void		bind() const override
 	{

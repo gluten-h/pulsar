@@ -41,7 +41,7 @@ grng_mesh::grng_mesh() : GRNG_COMPONENT()
 	this->type = GRNG_COMPONENT_TYPE::MESH;
 }
 
-grng_mesh::grng_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format) : GRNG_COMPONENT()
+grng_mesh::grng_mesh(LPCWSTR file, GRNG_MESH_FILE_FORMAT file_format) : GRNG_COMPONENT()
 {
 	this->type = GRNG_COMPONENT_TYPE::MESH;
 	this->set(file, file_format);

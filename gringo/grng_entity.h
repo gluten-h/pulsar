@@ -1,9 +1,7 @@
 #pragma once
 
 #include "grng_id3d.h"
-#include "grng_const_buffers.h"
 #include "grng_transform.h"
-#include "grng_transform_shader.h"
 
 #include <vector>
 #include <unordered_set>
@@ -29,9 +27,6 @@ protected:
 	int								scene_id = -1;
 
 	std::unordered_set<GRNG_BINDABLE*>		bindables;
-
-	GRNG_SHADER_TRANSFORM									vert_transform;
-	static GRNG_VERT_CONST_BUFFER<GRNG_SHADER_TRANSFORM>	transform_cbuffer;
 
 
 	void		erase_bindable(GRNG_BINDABLE &bindable)

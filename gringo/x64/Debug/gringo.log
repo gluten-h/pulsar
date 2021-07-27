@@ -1,21 +1,29 @@
-﻿  win_main.cpp
+﻿  grng_cubemap_data.cpp
+  win_main.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_cubemap_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file win_main.cpp)
 D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
           with
           [
               _Rep=double
-          ]
-D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list
-D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute
-D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<GRNG_ENTITY,4096>::is_exists(T *)'
+          ] (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_cubemap_data.cpp(33,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
           with
           [
-              T=GRNG_ENTITY
-          ]
-D:\vs_project\gringo\gringo\grng_manager.h(79): message : see reference to function template instantiation 'bool grng_manager<GRNG_ENTITY,4096>::is_exists(T *)' being compiled
+              T=int
+          ] (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
           with
           [
-              T=GRNG_ENTITY
-          ]
-D:\vs_project\gringo\gringo\grng_entity_manager.h(10): message : see reference to class template instantiation 'grng_manager<GRNG_ENTITY,4096>' being compiled
-D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable
+              T=int
+          ] (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_vert_const_buffer.h(8): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=int
+          ] (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_manager_ptr.h(28): message : see reference to class template instantiation 'grng_vert_const_buffer<int>' being compiled (compiling source file win_main.cpp)
   gringo.vcxproj -> D:\vs_project\gringo\x64\Debug\gringo.exe

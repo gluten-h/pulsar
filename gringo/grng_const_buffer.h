@@ -15,6 +15,8 @@ protected:
 
 	void	set_data_memory(const T &data)
 	{
+		HRESULT hr;
+
 		this->data_ptr = &data;
 		this->data_size = sizeof(data);
 
@@ -30,11 +32,13 @@ protected:
 		sd.pSysMem = &data;
 		sd.SysMemPitch = 0u;
 		sd.SysMemSlicePitch = 0u;
-		HRESULT hr = this->device->CreateBuffer(&bd, &sd, &this->buffer);
+		GRNG_GFX_ASSERT(this->device->CreateBuffer(&bd, &sd, &this->buffer));
 	}
 
 	void	set_data_memory()
 	{
+		HRESULT hr;
+
 		D3D11_BUFFER_DESC bd;
 		bd.ByteWidth = sizeof(T);
 		bd.StructureByteStride = 0u;
@@ -43,7 +47,7 @@ protected:
 		bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		bd.MiscFlags = 0u;
 
-		HRESULT hr = this->device->CreateBuffer(&bd, NULL, &this->buffer);
+		GRNG_GFX_ASSERT(this->device->CreateBuffer(&bd, NULL, &this->buffer));
 	}
 
 
@@ -81,7 +85,7 @@ public:
 	void	update()
 	{
 		D3D11_MAPPED_SUBRESOURCE ms;
-		this->device_context->Map(this->buffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &ms);
+		GRNG_GFX_ASSERT(this->device_context->Map(this->buffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &ms));
 		memcpy(ms.pData, this->data_ptr, this->data_size);
 		this->device_context->Unmap(this->buffer, 0u);
 	}
@@ -91,7 +95,7 @@ public:
 		this->data_size = sizeof(data);
 
 		D3D11_MAPPED_SUBRESOURCE ms;
-		this->device_context->Map(this->buffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &ms);
+		GRNG_GFX_ASSERT(this->device_context->Map(this->buffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &ms));
 		memcpy(ms.pData, &data, sizeof(data));
 		this->device_context->Unmap(this->buffer, 0u);
 	}

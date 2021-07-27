@@ -17,13 +17,13 @@ void				grng_render_texture::set_rt_memory(ID3D11Texture2D *texture)
 	rtvd.Format = td.Format;
 	rtvd.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
 	rtvd.Texture2D.MipSlice = 0u;
-	hr = this->device->CreateRenderTargetView(texture, &rtvd, &this->texture_rtv);
+	GRNG_GFX_ASSERT(this->device->CreateRenderTargetView(texture, &rtvd, &this->texture_rtv));
 
 	srvd.Format = td.Format;
 	srvd.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 	srvd.Texture2D.MipLevels = 1u;
 	srvd.Texture2D.MostDetailedMip = 0u;
-	hr = this->device->CreateShaderResourceView(texture, &srvd, &this->texture_srv);
+	GRNG_GFX_ASSERT(this->device->CreateShaderResourceView(texture, &srvd, &this->texture_srv));
 }
 
 void						grng_render_texture::remove_rtv()

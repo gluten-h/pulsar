@@ -7,6 +7,9 @@ template <typename T>
 class grng_frag_const_buffer : public GRNG_CONST_BUFFER<T>
 {
 private:
+	friend class grng_manager_ptr;
+
+private:
 	void		copy_assign(const grng_frag_const_buffer &b)
 	{
 		this->buffer = b.buffer;
@@ -15,6 +18,13 @@ private:
 		this->data_size = b.data_size;
 		if (this->buffer)
 			this->buffer->AddRef();
+	}
+	
+	static GRNG_BINDABLE		*create_manager_ptr()
+	{
+		grng_frag_const_buffer *buffer = new grng_frag_const_buffer;
+
+		return (buffer);
 	}
 
 public:
@@ -39,14 +49,6 @@ public:
 	grng_frag_const_buffer(const T &data, UINT slot = 0u) : GRNG_CONST_BUFFER<T>(data, slot)
 	{
 		this->type = GRNG_BINDABLE_TYPE::FRAG_CONST_BUFFER;
-	}
-
-
-	static GRNG_BINDABLE		*create_manager_ptr()
-	{
-		grng_frag_const_buffer *buffer = new grng_frag_const_buffer;
-
-		return (buffer);
 	}
 
 

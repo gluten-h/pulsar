@@ -4,6 +4,8 @@
 
 void				grng_sampler::set_sampler_memory()
 {
+	HRESULT hr;
+
 	D3D11_SAMPLER_DESC sd;
 	ZeroMemory(&sd, sizeof(D3D11_SAMPLER_DESC));
 	sd.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
@@ -11,7 +13,7 @@ void				grng_sampler::set_sampler_memory()
 	sd.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	sd.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 
-	HRESULT hr = this->device->CreateSamplerState(&sd, &this->sampler);
+	GRNG_GFX_ASSERT(this->device->CreateSamplerState(&sd, &this->sampler));
 }
 
 void				grng_sampler::remove_sampler_memory()

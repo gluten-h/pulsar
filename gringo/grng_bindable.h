@@ -1,6 +1,7 @@
 #pragma once
 
 #include "grng_id3d.h"
+#include "grng_exc_macros.h"
 
 #include <unordered_map>
 
@@ -20,7 +21,8 @@ enum class GRNG_BINDABLE_TYPE
 	GEOM_SHADER,
 	FRAG_SHADER,
 	CUBEMAP,
-	RASTERIZER_STATE
+	RASTERIZER_STATE,
+	RENDER_TARGET
 };
 
 

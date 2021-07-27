@@ -6,6 +6,9 @@
 class grng_texture : public GRNG_BINDABLE
 {
 private:
+	friend class grng_manager_ptr;
+
+private:
 	ID3D11Texture2D					*texture2d = NULL;
 	ID3D11ShaderResourceView		*texture_srv = NULL;
 	UINT							slot = 0u;
@@ -18,6 +21,8 @@ private:
 
 	void		copy_assign(const grng_texture &t);
 
+	static GRNG_BINDABLE		*create_manager_ptr();
+
 public:
 	grng_texture	&operator=(const grng_texture &t);
 	grng_texture(const grng_texture &t);
@@ -27,8 +32,6 @@ public:
 
 	void		set(const LPCWSTR file);
 	void		set_slot(UINT slot);
-
-	static GRNG_BINDABLE		*create_manager_ptr();
 
 	void		bind() const override
 	{

@@ -17,6 +17,9 @@ enum class GRNG_MESH_FILE_FORMAT
 class grng_mesh : public GRNG_COMPONENT
 {
 private:
+	friend class grng_manager_ptr;
+
+private:
 	struct GRNG_MESH_DATA
 	{
 		struct GRNG_VERT_DATA
@@ -57,21 +60,21 @@ private:
 	void		remove_v_buffer_memory();
 	void		remove_i_buffer_memory();
 	void		remove_mesh_memory();
-	void		load_mesh_obj(const char *file);
+	void		load_mesh_obj(LPCWSTR file);
 	void		create_buffer();
 
 	void		copy_assign(const grng_mesh &m);
+
+	static GRNG_COMPONENT		*create_manager_ptr();
 
 public:
 	grng_mesh	&operator=(const grng_mesh &m);
 	grng_mesh(const grng_mesh &m);
 	grng_mesh();
-	grng_mesh(const char *file, GRNG_MESH_FILE_FORMAT file_format);
+	grng_mesh(LPCWSTR file, GRNG_MESH_FILE_FORMAT file_format);
 	~grng_mesh();
 
-	static GRNG_COMPONENT		*create_manager_ptr();
-
-	void		set(const char *file, GRNG_MESH_FILE_FORMAT file_format);
+	void		set(LPCWSTR file, GRNG_MESH_FILE_FORMAT file_format);
 	void		set_primitive_topology(const D3D_PRIMITIVE_TOPOLOGY &primitive_topology);
 
 	void		bind();

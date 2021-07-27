@@ -18,7 +18,7 @@ void				grng_texture2d::set_texture_memory(float width, float height, DXGI_FORMA
 	td.BindFlags = bind_flags;
 	td.CPUAccessFlags = cpu_access_flags;
 	td.MiscFlags = 0u;
-	hr = this->device->CreateTexture2D(&td, NULL, &this->texture);
+	GRNG_GFX_ASSERT(this->device->CreateTexture2D(&td, NULL, &this->texture));
 }
 
 void				grng_texture2d::remove_texture_memory()

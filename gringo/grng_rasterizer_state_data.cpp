@@ -14,6 +14,8 @@ void		grng_rasterizer_state::remove_rs_memory()
 
 void		grng_rasterizer_state::set_rs_memory(D3D11_FILL_MODE fill_mode, D3D11_CULL_MODE cull_mode)
 {
+	HRESULT hr;
+
 	D3D11_RASTERIZER_DESC rsd;
 	ZeroMemory(&rsd, sizeof(D3D11_RASTERIZER_DESC));
 
@@ -28,7 +30,7 @@ void		grng_rasterizer_state::set_rs_memory(D3D11_FILL_MODE fill_mode, D3D11_CULL
 	rsd.MultisampleEnable = FALSE;
 	rsd.AntialiasedLineEnable = FALSE;
 
-	HRESULT hr = this->device->CreateRasterizerState(&rsd, &this->rs);
+	GRNG_GFX_ASSERT(this->device->CreateRasterizerState(&rsd, &this->rs));
 }
 
 void					grng_rasterizer_state::set(D3D11_FILL_MODE fill_mode, D3D11_CULL_MODE cull_mode)

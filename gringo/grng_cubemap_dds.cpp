@@ -4,6 +4,8 @@
 
 void		grng_cubemap::create_dds_cubemap(LPCWSTR *wic_path, LPCWSTR output_dds_path)
 {
+	HRESULT hr;
+
 	std::unique_ptr<ScratchImage> scratch_img[6];
 	Image img[6];
 
@@ -12,7 +14,7 @@ void		grng_cubemap::create_dds_cubemap(LPCWSTR *wic_path, LPCWSTR output_dds_pat
 	for (size_t i = 0; i < 6; i++)
 	{
 		scratch_img[i] = std::make_unique<ScratchImage>();
-		HRESULT hr = LoadFromWICFile(wic_path[i], WIC_FLAGS_NONE, NULL, *scratch_img[i]);
+		GRNG_GFX_ASSERT(LoadFromWICFile(wic_path[i], WIC_FLAGS_NONE, NULL, *scratch_img[i]));
 		img[i] = *scratch_img[i]->GetImage(0, 0, 0);
 	}
 
@@ -27,7 +29,5 @@ void		grng_cubemap::create_dds_cubemap(LPCWSTR *wic_path, LPCWSTR output_dds_pat
 	meta_data.format = img[0].format;
 	meta_data.dimension = TEX_DIMENSION_TEXTURE2D;
 
-	bool c = meta_data.IsCubemap();
-
-	HRESULT hr = SaveToDDSFile(img, 6u, meta_data, DDS_FLAGS_NONE, output_dds_path);
+	GRNG_GFX_ASSERT(SaveToDDSFile(img, 6u, meta_data, DDS_FLAGS_NONE, output_dds_path));
 }

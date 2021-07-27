@@ -2,33 +2,35 @@
 #include "grng_win_manager.h"
 
 
-HINSTANCE							grng_wm::h_instance = NULL;
-WNDCLASSEX							grng_wm::wc = { 0 };
+HINSTANCE							grng_win_manager::h_instance = NULL;
+WNDCLASSEX							grng_win_manager::wc = { 0 };
 
-GRNG_PISTON<GRNG_WINDOW, GRNG_MAX_WIN_COUNT>			grng_wm::win;
-std::unordered_map<HWND, int>							grng_wm::hwnd_map;
-const GRNG_IPISTON<GRNG_WINDOW, GRNG_MAX_WIN_COUNT>		*grng_wm::iwin;
+GRNG_PISTON<GRNG_WINDOW, GRNG_MAX_WIN_COUNT>			grng_win_manager::win;
+std::unordered_map<HWND, int>							grng_win_manager::hwnd_map;
+const GRNG_IPISTON<GRNG_WINDOW, GRNG_MAX_WIN_COUNT>		*grng_win_manager::iwin;
 
 
 
-void			grng_wm::create(const HINSTANCE h_instance)
+void			grng_win_manager::create(const HINSTANCE h_instance)
 {
 	GRNG_ID3D();
-	grng_wm::init_wnd_class(h_instance);
-	grng_wm::init_win();
+	grng_win_manager::init_wnd_class(h_instance);
+	grng_win_manager::init_win();
+
+	GRNG_RESOURCE_MANAGER::add_terminate(grng_win_manager::destroy);
 }
 
-void			grng_wm::destroy()
+void			grng_win_manager::destroy()
 {
 	int i = -1;
 	while (++i < GRNG_MAX_WIN_COUNT)
 	{
-		if (grng_wm::win.get_secure(i))
-			grng_wm::destroy_win_memory(i);
+		if (grng_win_manager::win.get_secure(i))
+			grng_win_manager::destroy_win_memory(i);
 	}
 }
 
-bool			grng_wm::win_event()
+bool			grng_win_manager::win_event()
 {
 	GRNG_INPUT::GRNG_MOUSE::reset_input();
 

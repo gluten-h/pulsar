@@ -30,8 +30,10 @@ void		grng_cubemap::remove_cubemap_memory()
 
 void		grng_cubemap::set_cubemap_memory(LPCWSTR dds_path)
 {
-	HRESULT hr = CreateDDSTextureFromFileEx(this->device, dds_path, 6u, D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, 0u,
-											D3D11_RESOURCE_MISC_TEXTURECUBE, false, (ID3D11Resource**)&this->tex2d, &this->cubemap_srv);
+	HRESULT hr;
+
+	GRNG_GFX_ASSERT(CreateDDSTextureFromFileEx(this->device, dds_path, 6u, D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, 0u,
+											D3D11_RESOURCE_MISC_TEXTURECUBE, false, (ID3D11Resource**)&this->tex2d, &this->cubemap_srv));
 }
 
 void		grng_cubemap::set(LPCWSTR *wic_path, LPCWSTR output_dds_path, GRNG_CUBEMAP_DDS dds_behavior)
@@ -46,8 +48,7 @@ void		grng_cubemap::set(LPCWSTR *wic_path, LPCWSTR output_dds_path, GRNG_CUBEMAP
 		}
 		case GRNG_CUBEMAP_DDS::KEEP_IF_EXISTS:
 		{
-			std::wstring out_path(output_dds_path);
-			if (std::filesystem::exists(out_path))
+			if (std::filesystem::exists(output_dds_path))
 				break;
 			this->create_dds_cubemap(wic_path, output_dds_path);
 			break;

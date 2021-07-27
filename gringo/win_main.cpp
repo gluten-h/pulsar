@@ -1,4 +1,5 @@
 
+#include "grng_exc_macros.h"
 #include "grng_win_manager.h"
 #include "grng_scene_manager.h"
 #include "grng_bindable_manager.h"
@@ -13,17 +14,15 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	GRNG_WM::create(h_instance);
 	GRNG_MP::create();
 
-	ID3D11Device *device = GRNG_D3D::get_device();
-	ID3D11DeviceContext *device_context = GRNG_D3D::get_device_context();
+
 	auto *iwin = GRNG_WM::get_iwin();
 
-
-	int win0 = GRNG_WM::create_window(L"gringo0", WS_VISIBLE | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, NULL, NULL);
+	int win0 = GRNG_WM::create_window("gringo0", WS_VISIBLE | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, NULL, NULL);
 
 
 	GRNG_CAMERA &camera = *(GRNG_CAMERA*)GRNG_CM.add(GRNG_COMPONENT_TYPE::CAMERA);
 	GRNG_TRANSFORM cam_transform = GRNG_TRANSFORM(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 1.0f, 1.0f));
-	camera.set(cam_transform, grng_deg2rad(75.0f), 0.001f, D3D11_FLOAT32_MAX);
+	camera.set(cam_transform, grng_deg2rad(75.0f));
 	GRNG_CAM_CONTROLLER cam_controller{ 5.0f, 6.0f, 0.8f, 0.75f, { cam_transform.rotation.x, cam_transform.rotation.y } };
 	GRNG_WM::set_camera(win0, camera);
 
@@ -33,9 +32,9 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	GRNG_SCENE &scene = *GRNG_SM.add();
 	GRNG_WM::set_scene(win0, scene);
 
-	GRNG_CUBEMAP &env_map = *(GRNG_CUBEMAP*)GRNG_BM.add(GRNG_BINDABLE_TYPE::CUBEMAP);
-	env_map.set(L"resources/cubemaps/cm00/cm00.dds");
-	scene.set_env_map(env_map);
+	GRNG_SKYBOX_MATERIAL &skybox_mat = *(GRNG_SKYBOX_MATERIAL*)GRNG_CM.add(GRNG_COMPONENT_TYPE::SKYBOX_MATERIAL);
+	skybox_mat.env_map.set(L"resources/cubemaps/cm00/cm00.dds");
+	scene.set_skybox_material(skybox_mat);
 
 
 	GRNG_VERT_SHADER &gb_pass_vs = *(GRNG_VERT_SHADER*)GRNG_BM.add(GRNG_BINDABLE_TYPE::VERT_SHADER);
@@ -67,7 +66,7 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	GRNG_MATERIAL &sph_mat = *(GRNG_MATERIAL*)GRNG_CM.add(GRNG_COMPONENT_TYPE::MATERIAL);
 	sph_mat.albedo_map.set(L"resources/textures/brick00/albedo.png");
 	sph_mat.normal_map.set(L"resources/textures/brick00/normal.png");
-	sph_mat.normal_factor = 1.0f;
+	sph_mat.normal_factor = 1.5f;
 	sph_mat.roughness_map.set(L"resources/textures/brick00/roughness.png");
 	sph_mat.metalness = 0.0f;
 	sph_mat.ao = 0.01f;

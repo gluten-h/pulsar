@@ -6,6 +6,9 @@
 class grng_rasterizer_state : public GRNG_BINDABLE
 {
 private:
+	friend class grng_manager_ptr;
+
+private:
 	ID3D11RasterizerState		*rs = NULL;
 
 
@@ -13,6 +16,8 @@ private:
 	void		set_rs_memory(D3D11_FILL_MODE fill_mode, D3D11_CULL_MODE cull_mode);
 
 	void		copy_assign(const grng_rasterizer_state &rs);
+
+	static GRNG_BINDABLE	*create_manager_ptr();
 
 public:
 	grng_rasterizer_state		&operator=(const grng_rasterizer_state &rs);
@@ -22,9 +27,6 @@ public:
 
 	void					set(D3D11_FILL_MODE fill_mode, D3D11_CULL_MODE cull_mode);
 	ID3D11RasterizerState	*get();
-
-	static GRNG_BINDABLE	*create_manager_ptr();
-
 
 	void		bind() const override
 	{

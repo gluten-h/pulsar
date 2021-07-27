@@ -21,11 +21,11 @@ void				grng_depth_stencil_view::set_ds_memory(float width, float height)
 	td.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 	td.CPUAccessFlags = 0u;
 	td.MiscFlags = 0u;
-	hr = this->device->CreateTexture2D(&td, NULL, &this->ds_texture);
+	GRNG_GFX_ASSERT(this->device->CreateTexture2D(&td, NULL, &this->ds_texture));
 
 	dsvd.Format = DXGI_FORMAT_D32_FLOAT;
 	dsvd.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-	hr = this->device->CreateDepthStencilView(this->ds_texture, &dsvd, &this->ds_view);
+	GRNG_GFX_ASSERT(this->device->CreateDepthStencilView(this->ds_texture, &dsvd, &this->ds_view));
 }
 
 void						grng_depth_stencil_view::remove_ds_texture_memory()

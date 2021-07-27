@@ -6,6 +6,9 @@
 class grng_input_layout : public GRNG_BINDABLE
 {
 private:
+	friend class grng_manager_ptr;
+
+private:
 	ID3D11InputLayout	*input_layout = NULL;
 
 
@@ -13,6 +16,8 @@ private:
 	void					set_input_layout_memory(ID3DBlob *shader_blob, const D3D11_INPUT_ELEMENT_DESC *ied, UINT ied_num_elements);
 
 	void					copy_assign(const grng_input_layout &il);
+
+	static GRNG_BINDABLE	*create_manager_ptr();
 
 public:
 	grng_input_layout		&operator=(const grng_input_layout &il);
@@ -22,8 +27,6 @@ public:
 	~grng_input_layout();
 
 	void					set(ID3DBlob *shader_blob, const D3D11_INPUT_ELEMENT_DESC *ied, UINT ied_num_elements);
-
-	static GRNG_BINDABLE	*create_manager_ptr();
 
 	void		bind() const override
 	{

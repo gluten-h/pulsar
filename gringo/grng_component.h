@@ -1,6 +1,7 @@
 #pragma once
 
 #include "grng_id3d.h"
+#include "grng_exc_macros.h"
 
 
 enum class GRNG_COMPONENT_TYPE
@@ -8,6 +9,7 @@ enum class GRNG_COMPONENT_TYPE
 	NONE,
 	CAMERA,
 	MATERIAL,
+	SKYBOX_MATERIAL,
 	MESH
 };
 

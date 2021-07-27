@@ -25,7 +25,6 @@ private:
 		}
 	}
 
-
 	void		add_event(int added_id, GRNG_LIGHT &data) override
 	{
 		data.id = added_id;

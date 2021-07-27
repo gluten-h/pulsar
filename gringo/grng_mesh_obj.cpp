@@ -2,7 +2,7 @@
 #include "grng_mesh.h"
 
 
-void		grng_mesh::load_mesh_obj(const char *file)
+void		grng_mesh::load_mesh_obj(LPCWSTR file)
 {
 	std::vector<float> verts;
 	std::vector<float> normals;

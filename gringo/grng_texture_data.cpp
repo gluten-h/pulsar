@@ -30,7 +30,9 @@ void			grng_texture::remove_texture_memory()
 
 void			grng_texture::set_texture_memory(const LPCWSTR file)
 {
-	HRESULT hr = CreateWICTextureFromFile(this->device, file, (ID3D11Resource**)&this->texture2d, &this->texture_srv);
+	HRESULT hr;
+
+	GRNG_GFX_ASSERT(CreateWICTextureFromFile(this->device, file, (ID3D11Resource**)&this->texture2d, &this->texture_srv));
 }
 
 void			grng_texture::set(const LPCWSTR file)

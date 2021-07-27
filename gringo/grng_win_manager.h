@@ -13,7 +13,7 @@
 #include <mutex>
 
 
-class grng_wm : public GRNG_ID3D
+class grng_win_manager : public GRNG_ID3D
 {
 private:
 	static HINSTANCE			h_instance;
@@ -36,7 +36,7 @@ public:
 	static bool			win_event();
 
 
-	static int			create_window(const LPCWSTR win_name, const DWORD win_style, int x, int y, int w, int h, GRNG_WIN_PROC_DEF win_proc, void *win_proc_data);
+	static int			create_window(const LPCTSTR win_name, const DWORD win_style, int x, int y, int w, int h, GRNG_WIN_PROC_DEF win_proc, void *win_proc_data);
 	static void			destroy_win_secure(unsigned int win_id);
 	static void			destroy_win(unsigned int win_id);
 	static const GRNG_IPISTON<GRNG_WINDOW, GRNG_MAX_WIN_COUNT>		*get_iwin();
@@ -62,4 +62,5 @@ public:
 };
 
 
-using GRNG_WM = grng_wm;
+using GRNG_WIN_MANAGER = grng_win_manager;
+using GRNG_WM = GRNG_WIN_MANAGER;

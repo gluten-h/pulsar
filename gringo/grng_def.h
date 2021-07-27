@@ -1,51 +1,9 @@
 #pragma once
 
-#include "grng_scene_def.h"
-#include "grng_texture.h"
-#include "grng_cubemap.h"
-#include "grng_mesh.h"
-#include "grng_rasterizer_state.h"
-
-
-#define GRNG_STD_QUAD_WHITE_PATH L"resources/std/grng_quad_white.png"
-#define GRNG_STD_QUAD_BLACK_PATH L"resources/std/grng_quad_black.png"
-#define GRNG_STD_QUAD_NORMAL_PATH L"resources/std/grng_quad_normal.png"
-
-#define GRNG_STD_CUBEMAP_BLACK_PATH L"resources/std/grng_cubemap_black.dds"
-#define GRNG_STD_CUBEMAP_WHITE_PATH L"resources/std/grng_cubemap_white.dds"
-
-
-#define GRNG_STD_CUBE_OBJ_PATH "resources/std/grng_cube.obj"
-
-#define GRNG_STD_SPHERE16_OBJ_PATH "resources/std/grng_sphere16.obj"
-#define GRNG_STD_SPHERE32_OBJ_PATH "resources/std/grng_sphere32.obj"
-#define GRNG_STD_SPHERE64_OBJ_PATH "resources/std/grng_sphere64.obj"
-
-
-#define GRNG_SKYBOX_VS_PATH L"skybox_vs.hlsl"
-#define GRNG_SKYBOX_FS_PATH L"skybox_fs.hlsl"
-
-
-const GRNG_TEXTURE GRNG_STD_QUAD_WHITE_TEX = GRNG_TEXTURE(GRNG_STD_QUAD_WHITE_PATH);
-const GRNG_TEXTURE GRNG_STD_QUAD_BLACK_TEX = GRNG_TEXTURE(GRNG_STD_QUAD_BLACK_PATH);
-const GRNG_TEXTURE GRNG_STD_QUAD_NORMAL_TEX = GRNG_TEXTURE(GRNG_STD_QUAD_NORMAL_PATH);
-
-const GRNG_CUBEMAP GRNG_STD_CUBEMAP_BLACK = GRNG_CUBEMAP(GRNG_STD_CUBEMAP_BLACK_PATH);
-const GRNG_CUBEMAP GRNG_STD_CUBEMAP_WHITE = GRNG_CUBEMAP(GRNG_STD_CUBEMAP_WHITE_PATH);
-
-
-const GRNG_MESH GRNG_STD_CUBE_MESH = GRNG_MESH(GRNG_STD_CUBE_OBJ_PATH, GRNG_MESH_FILE_FORMAT::OBJ);
-
-const GRNG_MESH GRNG_STD_SPHERE16_MESH = GRNG_MESH(GRNG_STD_SPHERE16_OBJ_PATH, GRNG_MESH_FILE_FORMAT::OBJ);
-const GRNG_MESH GRNG_STD_SPHERE32_MESH = GRNG_MESH(GRNG_STD_SPHERE32_OBJ_PATH, GRNG_MESH_FILE_FORMAT::OBJ);
-const GRNG_MESH GRNG_STD_SPHERE64_MESH = GRNG_MESH(GRNG_STD_SPHERE64_OBJ_PATH, GRNG_MESH_FILE_FORMAT::OBJ);
-
-
-const GRNG_RASTERIZER_STATE GRNG_STD_BACK_FACE_CULL_RS = GRNG_RASTERIZER_STATE(D3D11_FILL_SOLID, D3D11_CULL_BACK);
-const GRNG_RASTERIZER_STATE GRNG_STD_FRONT_FACE_CULL_RS = GRNG_RASTERIZER_STATE(D3D11_FILL_SOLID, D3D11_CULL_FRONT);
-
-
-#define GRNG_MAX_SCENE_COUNT 64
-#define GRNG_MAX_BINDABLE_COUNT 256
-
-#define GRNG_MAX_CAMERA_COUNT 8
+#include "grng_def_textures.h"
+#include "grng_def_meshes.h"
+#include "grng_def_materials.h"
+#include "grng_def_cubemaps.h"
+#include "grng_def_skybox.h"
+#include "grng_def_rasterizer_states.h"
+#include "grng_def_misc.h"

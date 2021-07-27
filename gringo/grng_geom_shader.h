@@ -6,14 +6,19 @@
 class grng_geom_shader : public GRNG_SHADER
 {
 private:
-	ID3D11GeometryShader	*shader = NULL;
+	friend class grng_manager_ptr;
+
+private:
+	ID3D11GeometryShader		*shader = NULL;
 
 
-	void		remove_geom_shader_memory();
-	void		remove_shader_memory();
-	void		set_shader_memory(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines);
+	void						remove_geom_shader_memory();
+	void						remove_shader_memory();
+	void						set_shader_memory(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines);
 
-	void		copy_assign(const grng_geom_shader &s);
+	void						copy_assign(const grng_geom_shader &s);
+
+	static GRNG_BINDABLE		*create_manager_ptr();
 
 public:
 	grng_geom_shader	&operator=(const grng_geom_shader &s);
@@ -23,8 +28,6 @@ public:
 	~grng_geom_shader();
 
 	void		set(const LPCWSTR shader_file, const LPCSTR entry, const D3D_SHADER_MACRO *defines) override;
-
-	static GRNG_BINDABLE		*create_manager_ptr();
 
 	void		bind() const override
 	{

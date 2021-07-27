@@ -11,7 +11,7 @@
 Texture2D gb_position : register(t0);
 Texture2D gb_albedo : register(t1);
 Texture2D gb_normal : register(t2);
-Texture2D gb_rma : register(t3);
+Texture2D gb_rmae : register(t3);
 
 SamplerState smpl : register(s0);
 
@@ -78,9 +78,12 @@ float4		frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 	float3 albedo = gb_albedo.Sample(smpl, uv).xyz;
 	albedo = lerp(albedo, srgb_to_linear(albedo, cam_gamma), gb_albedo.Sample(smpl, uv).w);
 	float3 normal = gb_normal.Sample(smpl, uv).xyz;
-	float roughness = gb_rma.Sample(smpl, uv).x;
-	float metalness = gb_rma.Sample(smpl, uv).y;
-	float ao = gb_rma.Sample(smpl, uv).z;
+	
+	float4 rmae = gb_rmae.Sample(smpl, uv);
+	float roughness = rmae.x;
+	float metalness = rmae.y;
+	float ao = rmae.z;
+	float exposure = rmae.w;
 	
 	float3 view_dir = normalize(cam_pos - pos);
 	float3 ambient = albedo * ao;
@@ -129,7 +132,7 @@ float4		frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 		
 		color += float4((k_diff * diff_brdf + spec_brdf) * radiance * n_dot_l, 1.0f);
 	}
-	color = float4(gamma_correction(color.xyz, cam_gamma).xyz, 1.0f);
+	color = float4(color.xyz, exposure);
 
 	return (color);
 }

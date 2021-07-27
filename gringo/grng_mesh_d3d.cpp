@@ -40,8 +40,8 @@ void		grng_mesh::create_buffer()
 	isd.pSysMem = this->mesh.indices.data();
 
 	HRESULT hr;
-	hr = this->device->CreateBuffer(&vbd, &vsd, &this->v_buffer);
-	hr = this->device->CreateBuffer(&ibd, &isd, &this->i_buffer);
+	GRNG_GFX_ASSERT(this->device->CreateBuffer(&vbd, &vsd, &this->v_buffer));
+	GRNG_GFX_ASSERT(this->device->CreateBuffer(&ibd, &isd, &this->i_buffer));
 }
 
 void		grng_mesh::draw()

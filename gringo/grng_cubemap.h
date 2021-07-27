@@ -16,6 +16,9 @@ enum class GRNG_CUBEMAP_DDS
 class grng_cubemap : GRNG_BINDABLE
 {
 private:
+	friend class grng_manager_ptr;
+
+private:
 	ID3D11Texture2D					*tex2d = NULL;
 	ID3D11ShaderResourceView		*cubemap_srv = NULL;
 	UINT							slot = 0u;
@@ -30,6 +33,8 @@ private:
 
 	void		copy_assign(const grng_cubemap &c);
 
+	static GRNG_BINDABLE		*create_manager_ptr();
+
 public:
 	grng_cubemap	&operator=(const grng_cubemap &c);
 	grng_cubemap(const grng_cubemap &c);
@@ -41,8 +46,6 @@ public:
 	void		set(LPCWSTR *wic_path, LPCWSTR output_dds_path, GRNG_CUBEMAP_DDS dds_behavior = GRNG_CUBEMAP_DDS::OVERWRITE);
 	void		set(LPCWSTR dds_path);
 	void		set_slot(UINT slot);
-
-	static GRNG_BINDABLE		*create_manager_ptr();
 
 	void		bind() const override
 	{

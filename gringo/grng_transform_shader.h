@@ -3,7 +3,7 @@
 #include "grng_id3d.h"
 
 
-struct grng_shader_transform
+struct grng_transform_shader
 {
 	XMMATRIX		model = XMMatrixIdentity();
 	XMMATRIX		view = XMMatrixIdentity();
@@ -11,4 +11,4 @@ struct grng_shader_transform
 	XMMATRIX		norm = XMMatrixIdentity();
 };
 
-using GRNG_SHADER_TRANSFORM = grng_shader_transform;
+using GRNG_TRANSFORM_SHADER = grng_transform_shader;

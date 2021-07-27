@@ -4,6 +4,8 @@
 
 void		grng_depth_stencil_state::set_ds_memory(BOOL depth_enable, D3D11_COMPARISON_FUNC depth_comp_func, D3D11_DEPTH_WRITE_MASK depth_write_mask)
 {
+	HRESULT hr;
+
 	D3D11_DEPTH_STENCIL_DESC dsd;
 	ZeroMemory(&dsd, sizeof(D3D11_DEPTH_STENCIL_DESC));
 
@@ -11,7 +13,7 @@ void		grng_depth_stencil_state::set_ds_memory(BOOL depth_enable, D3D11_COMPARISO
 	dsd.DepthFunc = depth_comp_func;
 	dsd.DepthWriteMask = depth_write_mask;
 
-	HRESULT hr = this->device->CreateDepthStencilState(&dsd, &this->ds_state);
+	GRNG_GFX_ASSERT(this->device->CreateDepthStencilState(&dsd, &this->ds_state));
 }
 
 void		grng_depth_stencil_state::remove_ds_memory()
