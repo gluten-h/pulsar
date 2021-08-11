@@ -41,24 +41,28 @@ public:
 	grng_skybox();
 
 	void		set_material(const GRNG_SKYBOX_MATERIAL &mat);
+	void		set_material(GRNG_SKYBOX_MATERIAL *mat);
 	void		set_mesh(const GRNG_MESH &mesh);
+	void		set_mesh(GRNG_MESH *mesh);
 
 	void		draw()
 	{
 		if (!this->mesh || !this->material)
 			return;
 
-		this->transform.bind();
-		this->material->bind();
+		this->transform.bind(GRNG_BIND_SCOPE::LOCAL);
+		this->material->bind(GRNG_BIND_SCOPE::LOCAL);
 
-		grng_skybox::vs.bind();
-		grng_skybox::fs.bind();
-		grng_skybox::sampler.bind();
-		grng_skybox::input_layout.bind();
+		grng_skybox::vs.bind(GRNG_BIND_SCOPE::LOCAL);
+		grng_skybox::fs.bind(GRNG_BIND_SCOPE::LOCAL);
+		grng_skybox::sampler.bind(GRNG_BIND_SCOPE::LOCAL);
+		grng_skybox::input_layout.bind(GRNG_BIND_SCOPE::LOCAL);
 
-		GRNG_STD_FRONT_FACE_CULL_RS.bind();
-		this->mesh->bind();
+		GRNG_STD_FRONT_FACE_CULL_RS.bind(GRNG_BIND_SCOPE::LOCAL);
+		this->mesh->bind(GRNG_BIND_SCOPE::LOCAL);
 		this->mesh->draw();
+
+		GRNG_BINDABLE::unbind_local();
 	}
 };
 

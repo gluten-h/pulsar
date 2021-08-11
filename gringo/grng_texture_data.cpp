@@ -46,9 +46,17 @@ void			grng_texture::set_slot(UINT slot)
 	this->slot = slot;
 }
 
-GRNG_BINDABLE	*grng_texture::create_manager_ptr()
+
+grng_texture	*grng_texture::create()
 {
 	grng_texture *tex = new grng_texture;
+	tex->id = GRNG_BM.add(tex);
+	if (tex->id == -1)
+	{
+		delete tex;
+		return (NULL);
+	}
+	tex->is_alloc = true;
 
 	return (tex);
 }

@@ -1,42 +1,30 @@
 #pragma once
 
 #include "grng_manager.h"
-#include "grng_manager_ptr.h"
-#include "grng_entities.h"
-#include "grng_def.h"
+#include "grng_def_scene.h"
 
 
-class grng_entity_manager : public GRNG_MANAGER<GRNG_ENTITY, GRNG_MAX_ENTITY_COUNT>
+#define GRNG_EM GRNG_ENTITY_MANAGER::get()
+
+
+class grng_entity;
+
+
+class grng_entity_manager : public GRNG_MANAGER<grng_entity, GRNG_MAX_ENTITY_COUNT>
 {
-private:
-	void		add_event(int added_id, GRNG_ENTITY &data) override
-	{
-		data.id = added_id;
-	}
-
-	void		remove_event(int removed_id, GRNG_ENTITY &data) override
-	{
-		data.id = -1;
-	}
-
 public:
-	grng_entity_manager() : GRNG_MANAGER<GRNG_ENTITY, GRNG_MAX_ENTITY_COUNT>(){ }
-
-	GRNG_ENTITY		*add(GRNG_ENTITY_TYPE type)
+	static grng_entity_manager		&get()
 	{
-		if (!this->is_available())
-			return (NULL);
+		static grng_entity_manager manager;
 
-		return (this->add_manager(GRNG_MANAGER_PTR::create_ptr(type)));
+		return (manager);
 	}
 
-	void		draw()
+	int		add(grng_entity *entity)
 	{
-		int i = -1;
-		while (++i < this->idata->size)
-		{
-			(*this->idata->data[i].data)->draw();
-		}
+		if (!this->is_available(entity))
+			return (-1);
+		return (this->add_manager(entity));
 	}
 };
 

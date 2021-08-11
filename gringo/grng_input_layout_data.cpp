@@ -25,9 +25,16 @@ void				grng_input_layout::set(ID3DBlob *shader_blob, const D3D11_INPUT_ELEMENT_
 	this->set_input_layout_memory(shader_blob, ied, ied_num_elements);
 }
 
-GRNG_BINDABLE		*grng_input_layout::create_manager_ptr()
+grng_input_layout	*grng_input_layout::create()
 {
 	grng_input_layout *il = new grng_input_layout;
+	il->id = GRNG_BM.add(il);
+	if (il->id == -1)
+	{
+		delete il;
+		return (NULL);
+	}
+	il->is_alloc = true;
 
 	return (il);
 }

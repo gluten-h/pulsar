@@ -32,9 +32,17 @@ void				grng_frag_shader::set(const LPCWSTR shader_file, const LPCSTR entry, con
 	this->set_shader_memory(shader_file, entry, defines);
 }
 
-GRNG_BINDABLE		*grng_frag_shader::create_manager_ptr()
+
+grng_frag_shader	*grng_frag_shader::create()
 {
 	grng_frag_shader *fs = new grng_frag_shader;
+	fs->id = GRNG_BM.add(fs);
+	if (fs->id == -1)
+	{
+		delete fs;
+		return (NULL);
+	}
+	fs->is_alloc = true;
 
 	return (fs);
 }

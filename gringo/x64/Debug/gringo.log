@@ -1,29 +1,1920 @@
-﻿  grng_cubemap_data.cpp
-  win_main.cpp
+﻿  cam_controller.cpp
+  grng_bindable.cpp
+  grng_camera.cpp
+  grng_camera_data.cpp
+  grng_camera_def.cpp
+  grng_camera_get.cpp
+  grng_camera_update.cpp
+  grng_cubemap.cpp
+  grng_cubemap_data.cpp
+  grng_cubemap_dds.cpp
+  grng_deferred_buffer_get.cpp
+  grng_depth_stencil_state.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_camera_update.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_camera_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_deferred_buffer_get.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_camera.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_cubemap_dds.cpp)
 D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_cubemap_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_cubemap.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_camera_get.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_camera_update.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_bindable.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_depth_stencil_state.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_camera_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_cubemap_dds.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_cubemap.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_camera.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_cubemap_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_camera_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_camera_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_camera_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_camera_update.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_camera_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_camera_update.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_depth_stencil_state.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_camera_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_camera_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_camera_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_camera_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_camera_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_bindable.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_bindable,512>::is_exists(T *)'
+          with
+          [
+              T=grng_bindable
+          ] (compiling source file grng_bindable.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(70): message : see reference to function template instantiation 'bool grng_manager<grng_bindable,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_bindable
+          ] (compiling source file grng_bindable.cpp)
+D:\vs_project\gringo\gringo\grng_bindable_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_bindable,512>' being compiled (compiling source file grng_bindable.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_bindable.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_camera.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_camera.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_camera.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_camera.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_camera.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_camera_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_camera_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_camera_get.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_camera_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_camera_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_depth_stencil_state.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_depth_stencil_state.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_depth_stencil_state.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_depth_stencil_state.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_depth_stencil_state.cpp)
+D:\vs_project\gringo\gringo\grng_cubemap_dds.cpp(7,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_deferred_buffer_get.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_CAMERA_POST_EFFECTS_SHADER
+          ] (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_CAMERA_POST_EFFECTS_SHADER
+          ] (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_CAMERA_POST_EFFECTS_SHADER
+          ] (compiling source file grng_camera_def.cpp)
+D:\vs_project\gringo\gringo\grng_camera_def.cpp(8): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_CAMERA_POST_EFFECTS_SHADER>' being compiled
+D:\vs_project\gringo\gringo\grng_cubemap_data.cpp(33,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_deferred_buffer_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_cubemap_dds.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_cubemap_dds.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_cubemap_dds.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_cubemap_dds.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_cubemap_dds.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_cubemap.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_cubemap.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_cubemap.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_cubemap.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_cubemap.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_cubemap_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_cubemap_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_cubemap_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_cubemap_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_cubemap_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_deferred_buffer_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_component,512>::is_exists(T *)'
+          with
+          [
+              T=grng_component
+          ] (compiling source file grng_deferred_buffer_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(70): message : see reference to function template instantiation 'bool grng_manager<grng_component,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_component
+          ] (compiling source file grng_deferred_buffer_get.cpp)
+D:\vs_project\gringo\gringo\grng_component_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_component,512>' being compiled (compiling source file grng_deferred_buffer_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_deferred_buffer_get.cpp)
+  grng_depth_stencil_state_data.cpp
+D:\vs_project\gringo\gringo\cam_controller.cpp(37,145): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\vs_project\gringo\gringo\cam_controller.cpp(38,143): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\vs_project\gringo\gringo\cam_controller.cpp(39,136): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  grng_depth_stencil_view.cpp
+  grng_depth_stencil_view_data.cpp
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file cam_controller.cpp)
+  grng_depth_stencil_view_get.cpp
+  grng_dir_light.cpp
+  grng_dir_light_data.cpp
+  grng_dir_light_get.cpp
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file cam_controller.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file cam_controller.cpp)
+  grng_frag_shader.cpp
+  grng_frag_shader_data.cpp
+  grng_geom_shader.cpp
+  grng_geom_shader_data.cpp
+  grng_gfx.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_depth_stencil_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_depth_stencil_view.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_depth_stencil_view_get.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_depth_stencil_view_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_depth_stencil_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_depth_stencil_view.cpp)
+D:\vs_project\gringo\gringo\grng_depth_stencil_state_data.cpp(7,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_depth_stencil_view_get.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_depth_stencil_view_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_depth_stencil_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_depth_stencil_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_depth_stencil_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_depth_stencil_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_depth_stencil_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_depth_stencil_view.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_depth_stencil_view.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_depth_stencil_view.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_depth_stencil_view.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_depth_stencil_view.cpp)
+D:\vs_project\gringo\gringo\grng_depth_stencil_view_data.cpp(13,13): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+D:\vs_project\gringo\gringo\grng_depth_stencil_view_data.cpp(14,14): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+D:\vs_project\gringo\gringo\grng_depth_stencil_view_data.cpp(7,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_depth_stencil_view_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_depth_stencil_view_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_depth_stencil_view_get.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_depth_stencil_view_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_depth_stencil_view_get.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_frag_shader.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_frag_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_depth_stencil_view_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_depth_stencil_view_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_depth_stencil_view_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_depth_stencil_view_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_depth_stencil_view_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_geom_shader.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_geom_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_frag_shader.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_dir_light_data.cpp)
+  grng_input_layout.cpp
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_frag_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_frag_shader_data.cpp(23,10): warning C4101: 'hr': unreferenced local variable
+  grng_input_layout_data.cpp
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_geom_shader.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_scene,64>::is_exists(T *)'
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_scene,64>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_scene_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_scene,64>' being compiled (compiling source file grng_dir_light.cpp)
+  grng_material.cpp
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_frag_shader.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_frag_shader.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_frag_shader.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_frag_shader.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_frag_shader.cpp)
+  grng_mesh.cpp
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_scene,64>::is_exists(T *)'
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_scene,64>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_scene_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_scene,64>' being compiled (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_frag_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_frag_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_geom_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_frag_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_frag_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_frag_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_geom_shader_data.cpp(23,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_geom_shader.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_geom_shader.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_geom_shader.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_geom_shader.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_geom_shader.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_gfx.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_dir_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_scene,64>::is_exists(T *)'
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_scene,64>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_scene_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_scene,64>' being compiled (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_dir_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_geom_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_geom_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_geom_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_geom_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_geom_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_dir_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_gfx.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_gfx.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_gfx.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_gfx.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_gfx.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_gfx.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_gfx.cpp)
+  grng_mesh_d3d.cpp
+  grng_mesh_data.cpp
+  grng_mesh_obj.cpp
+  grng_mouse.cpp
+  grng_mouse_button.cpp
+  grng_object.cpp
+  grng_point_light.cpp
+  grng_point_light_data.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_input_layout.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_input_layout_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_input_layout.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_mesh.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_input_layout_data.cpp)
+D:\vs_project\gringo\gringo\grng_input_layout_data.cpp(17,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_input_layout.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_input_layout.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_input_layout.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_input_layout.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_input_layout.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_input_layout_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_input_layout_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_input_layout_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_input_layout_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_input_layout_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_mesh.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_MATERIAL_SHADER
+          ] (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_MATERIAL_SHADER
+          ] (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_mesh.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mesh.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mesh.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_mesh.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_MATERIAL_SHADER
+          ] (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_mesh.cpp)
+D:\vs_project\gringo\gringo\grng_material.h(77): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_MATERIAL_SHADER>' being compiled (compiling source file grng_material.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_mesh_data.cpp)
+  grng_point_light_get.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_mesh_d3d.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_mesh_data.cpp)
+  grng_rasterizer_state.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_mesh_obj.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_mouse.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_mouse_button.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_mesh_d3d.cpp)
+  grng_rasterizer_state_data.cpp
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_mesh_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mesh_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mesh_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_mesh_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_mesh_data.cpp)
+D:\vs_project\gringo\gringo\grng_mesh_d3d.cpp(51,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_mesh_obj.cpp)
+  grng_render_target.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_mouse.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_mesh_d3d.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mesh_d3d.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mesh_d3d.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_mesh_d3d.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_mesh_d3d.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_mouse_button.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_mouse.cpp)
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file grng_mouse.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_mouse_button.cpp)
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file grng_mouse_button.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_mesh_obj.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mesh_obj.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mesh_obj.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_mesh_obj.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_mesh_obj.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_mouse.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mouse.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mouse.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_mouse.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_mouse.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_mouse_button.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mouse_button.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_mouse_button.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_mouse_button.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_mouse_button.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_object.cpp)
+  grng_render_target_data.cpp
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_point_light.cpp)
+  grng_render_target_misc.cpp
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_scene,64>::is_exists(T *)'
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_scene,64>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_scene_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_scene,64>' being compiled (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_point_light.cpp)
+  grng_render_texture.cpp
+  grng_render_texture_data.cpp
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_object.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_object.cpp)
+  grng_render_texture_get.cpp
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_scene,64>::is_exists(T *)'
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_scene,64>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_scene_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_scene,64>' being compiled (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_point_light.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_point_light_data.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_point_light_data.cpp)
+  grng_render_texture_misc.cpp
+  grng_sampler.cpp
+  grng_sampler_data.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_rasterizer_state.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_rasterizer_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_rasterizer_state.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_render_target.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_rasterizer_state.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_rasterizer_state.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_rasterizer_state.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_rasterizer_state.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_rasterizer_state.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_rasterizer_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_rasterizer_state_data.cpp(17,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_render_target.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_rasterizer_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_rasterizer_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_rasterizer_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_rasterizer_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_rasterizer_state_data.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_render_target.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_target.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_target.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_render_target.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_render_target.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_scene,64>::is_exists(T *)'
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_scene,64>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_scene
+          ] (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_scene_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_scene,64>' being compiled (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_render_target_data.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_point_light_get.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_point_light_get.cpp)
+  grng_scene_draw.cpp
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_render_target_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_render_target_misc.cpp)
+  grng_scene_entity.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_render_texture.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_render_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_render_target_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_target_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_target_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_render_target_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_render_target_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_render_target_misc.cpp)
+  grng_scene_light.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_render_texture_get.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_render_texture.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_render_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_render_target_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_target_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_target_misc.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_render_target_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_render_target_misc.cpp)
+D:\vs_project\gringo\gringo\grng_render_texture_data.cpp(7,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_render_texture_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_render_texture.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_texture.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_texture.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_render_texture.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_render_texture.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_render_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_render_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_render_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_render_texture_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_texture_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_texture_get.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_render_texture_get.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_render_texture_get.cpp)
+  grng_scene_skybox.cpp
+  grng_shader_data.cpp
+  grng_skybox.cpp
+  grng_skybox_data.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_render_texture_misc.cpp)
+  grng_skybox_material.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_sampler.cpp)
+  grng_texture.cpp
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_render_texture_misc.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_sampler_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_sampler.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_render_texture_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_texture_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_render_texture_misc.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_render_texture_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_render_texture_misc.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_sampler_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_sampler.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_sampler.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_sampler.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_sampler.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_sampler.cpp)
+D:\vs_project\gringo\gringo\grng_sampler_data.cpp(7,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_sampler_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_sampler_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_sampler_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_sampler_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_sampler_data.cpp)
+  grng_texture_data.cpp
+  grng_transform.cpp
+  grng_vert_shader.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_scene_draw.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_skybox_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(70): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_scene_entity.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_texture.cpp)
+D:\vs_project\gringo\gringo\grng_shader_data.cpp(17,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_scene_light.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_skybox_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_bindable,512>::is_exists(T *)'
+          with
+          [
+              T=grng_bindable
+          ] (compiling source file grng_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(70): message : see reference to function template instantiation 'bool grng_manager<grng_bindable,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_bindable
+          ] (compiling source file grng_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_bindable_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_bindable,512>' being compiled (compiling source file grng_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_texture.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_skybox_data.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_texture.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_texture.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_texture.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_texture.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_texture.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_scene_skybox.cpp)
+  grng_vert_shader_data.cpp
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_scene_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_skybox.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_skybox_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_skybox_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_skybox_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_skybox_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_skybox_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SKYBOX_MATERIAL_SHADER
+          ] (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SKYBOX_MATERIAL_SHADER
+          ] (compiling source file grng_skybox_material.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SKYBOX_MATERIAL_SHADER
+          ] (compiling source file grng_skybox_material.cpp)
+  grng_viewport.cpp
+D:\vs_project\gringo\gringo\grng_skybox_material.h(56): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SKYBOX_MATERIAL_SHADER>' being compiled (compiling source file grng_skybox_material.cpp)
+  grng_viewport_data.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_transform.cpp)
+  grng_win_manager.cpp
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_texture_data.cpp)
+  grng_window.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_vert_shader.cpp)
+D:\vs_project\gringo\gringo\grng_texture_data.cpp(33,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_texture_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_TRANSFORM_SHADER
+          ] (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_TRANSFORM_SHADER
+          ] (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_vert_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_TRANSFORM_SHADER
+          ] (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_transform.h(66): message : see reference to class template instantiation 'grng_vert_const_buffer<GRNG_TRANSFORM_SHADER>' being compiled (compiling source file grng_transform.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_vert_shader.cpp)
+  grng_window_cursor.cpp
+  grng_window_draw.cpp
+  grng_window_misc.cpp
+  grng_window_update.cpp
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_vert_shader.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_vert_shader.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_vert_shader.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_vert_shader.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_vert_shader.cpp)
+  grng_wm_cursor.cpp
+  grng_wm_misc.cpp
+  grng_wm_resources.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_vert_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_viewport.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_viewport_data.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_viewport.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_viewport_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_vert_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_viewport.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_viewport.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_viewport.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_viewport.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_viewport.cpp)
+D:\vs_project\gringo\gringo\grng_vert_shader_data.cpp(23,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_viewport_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_viewport_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_viewport_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_viewport_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_viewport_data.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_vert_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_vert_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ] (compiling source file grng_vert_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled (compiling source file grng_vert_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_vert_shader_data.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_window.cpp(7,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_misc.cpp)
+  grng_wm_update.cpp
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_window.cpp)
+  grng_wm_win_proc.cpp
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_window.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_win_manager.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_win_manager.cpp)
+  grng_wm_window.cpp
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_window_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_window_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_window_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_window_draw.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_cursor.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_wm_cursor.cpp)
+  win_main.cpp
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_wm_misc.cpp)
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_wm_resources.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ] (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file grng_wm_win_proc.cpp)
 D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_update.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_wm_update.cpp)
 D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
           with
           [
               _Rep=double
           ] (compiling source file win_main.cpp)
-D:\vs_project\gringo\gringo\grng_cubemap_data.cpp(33,10): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_wm_win_proc.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+          with
+          [
+              T=GRNG_SHADER_LIGHT_SCENE
+          ] (compiling source file grng_wm_window.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file grng_wm_window.cpp)
 D:\vs_project\gringo\gringo\grng_mouse.h(88,1): warning C4551: function call missing argument list (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_light,512>::is_exists(T *)'
+          with
+          [
+              T=grng_light
+          ] (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_light,512>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_light
+          ] (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_light_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_light,512>' being compiled (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable (compiling source file win_main.cpp)
 D:\vs_project\gringo\gringo\grng_const_buffer.h(40,11): warning C4101: 'hr': unreferenced local variable (compiling source file win_main.cpp)
 D:\vs_project\gringo\gringo\grng_const_buffer.h(39): message : while compiling class template member function 'void grng_const_buffer<T>::set_data_memory(void)'
           with
           [
-              T=int
+              T=GRNG_SHADER_LIGHT_SCENE
           ] (compiling source file win_main.cpp)
 D:\vs_project\gringo\gringo\grng_const_buffer.h(70): message : see reference to function template instantiation 'void grng_const_buffer<T>::set_data_memory(void)' being compiled
           with
           [
-              T=int
+              T=GRNG_SHADER_LIGHT_SCENE
           ] (compiling source file win_main.cpp)
-D:\vs_project\gringo\gringo\grng_vert_const_buffer.h(8): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
+D:\vs_project\gringo\gringo\grng_frag_const_buffer.h(9): message : see reference to class template instantiation 'grng_const_buffer<T>' being compiled
           with
           [
-              T=int
+              T=GRNG_SHADER_LIGHT_SCENE
           ] (compiling source file win_main.cpp)
-D:\vs_project\gringo\gringo\grng_manager_ptr.h(28): message : see reference to class template instantiation 'grng_vert_const_buffer<int>' being compiled (compiling source file win_main.cpp)
+D:\vs_project\gringo\gringo\grng_scene.h(25): message : see reference to class template instantiation 'grng_frag_const_buffer<GRNG_SHADER_LIGHT_SCENE>' being compiled (compiling source file win_main.cpp)
+  grng_skybox_def.cpp
+D:\vs_project\gringo\gringo\grng_d3d.h(56,11): warning C4101: 'hr': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_entity.h(57,35): warning C4101: 'exc': unreferenced local variable
+D:\vs_project\gringo\gringo\grng_gfx.h(37,133): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
+D:\vs_project\gringo\gringo\grng_manager.h(28,21): warning C4834: discarding return value of function with 'nodiscard' attribute
+D:\vs_project\gringo\gringo\grng_manager.h(25): message : while compiling class template member function 'bool grng_manager<grng_entity,2096>::is_exists(T *)'
+          with
+          [
+              T=grng_entity
+          ]
+D:\vs_project\gringo\gringo\grng_manager.h(43): message : see reference to function template instantiation 'bool grng_manager<grng_entity,2096>::is_exists(T *)' being compiled
+          with
+          [
+              T=grng_entity
+          ]
+D:\vs_project\gringo\gringo\grng_entity_manager.h(14): message : see reference to class template instantiation 'grng_manager<grng_entity,2096>' being compiled
+D:\vs_project\gringo\gringo\grng_manager.h(31,35): warning C4101: 'ex': unreferenced local variable
   gringo.vcxproj -> D:\vs_project\gringo\x64\Debug\gringo.exe

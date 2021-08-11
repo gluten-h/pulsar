@@ -1,7 +1,7 @@
 #pragma once
 
 #include "grng_camera.h"
-#include "grng_window_def.h"
+#include "grng_def_window.h"
 
 #include <chrono>
 

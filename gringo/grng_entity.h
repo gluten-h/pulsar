@@ -1,71 +1,70 @@
 #pragma once
 
 #include "grng_id3d.h"
-#include "grng_transform.h"
+#include "grng_entity_manager.h"
 
-#include <vector>
 #include <unordered_set>
+#include <unordered_map>
 
 
 enum class GRNG_ENTITY_TYPE
 {
 	NONE,
-	OBJECT
+	OBJECT,
+	POINT_LIGHT,
+	DIR_LIGHT
 };
 
 
 class grng_entity : public GRNG_ID3D
 {
-private:
-	friend class grng_entity_manager;
-	friend class grng_bindable_manager;
-	friend class grng_scene;
-
 protected:
-	GRNG_ENTITY_TYPE				type = GRNG_ENTITY_TYPE::NONE;
-	int								id = -1;
-	int								scene_id = -1;
+	int					id = -1;
+	bool				is_alloc = false;
+	GRNG_ENTITY_TYPE	type = GRNG_ENTITY_TYPE::NONE;
 
-	std::unordered_set<GRNG_BINDABLE*>		bindables;
-
-
-	void		erase_bindable(GRNG_BINDABLE &bindable)
-	{
-		this->bindables.erase(&bindable);
-	}
+	std::unordered_map<int, int>	scene_local_id;			//	SCENE_ID TO LOCAL_ID
 
 public:
-	GRNG_TRANSFORM		transform;
-
-
 	grng_entity(const grng_entity &e) = delete;
 	grng_entity(grng_entity &&e) = delete;
 	grng_entity() : GRNG_ID3D(){ }
 
-	GRNG_ENTITY_TYPE		get_type() const
+	GRNG_ENTITY_TYPE	get_type() const
 	{
 		return (this->type);
 	}
 
-	int						get_id() const
+	void		add_to_scene(int scene_id, int local_id)
+	{
+		this->scene_local_id[scene_id] = local_id;
+	}
+	void		remove_from_scene(int scene_id)
+	{
+		this->scene_local_id.erase(scene_id);
+	}
+
+	int			get_id() const
 	{
 		return (this->id);
 	}
-
-
-	void	add_bindable(GRNG_BINDABLE &bindable)
+	int			get_local_id(int scene_id) const
 	{
-		bindable.entity_scene_map[this->id] = this->scene_id;
-		this->bindables.insert(&bindable);
+		try
+		{
+			return (this->scene_local_id.at(scene_id));
+		}
+		catch (const std::out_of_range &exc)
+		{
+			return (-1);
+		}
+	}
+	const std::unordered_map<int, int>		&get_scene_local_id() const
+	{
+		return (this->scene_local_id);
 	}
 
-	void	remove_bindable(GRNG_BINDABLE &bindable)
-	{
-		bindable.entity_scene_map.erase(this->id);
-		this->erase_bindable(bindable);
-	}
-
-	virtual void				draw() = 0;
+	virtual void	draw(){ }
 };
 
 using GRNG_ENTITY = grng_entity;

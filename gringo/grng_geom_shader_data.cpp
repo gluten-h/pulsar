@@ -32,9 +32,17 @@ void				grng_geom_shader::set(const LPCWSTR shader_file, const LPCSTR entry, con
 	this->set_shader_memory(shader_file, entry, defines);
 }
 
-GRNG_BINDABLE		*grng_geom_shader::create_manager_ptr()
+
+grng_geom_shader	*grng_geom_shader::create()
 {
 	grng_geom_shader *gs = new grng_geom_shader;
+	gs->id = GRNG_BM.add(gs);
+	if (gs->id == -1)
+	{
+		delete gs;
+		return (NULL);
+	}
+	gs->is_alloc = true;
 
 	return (gs);
 }

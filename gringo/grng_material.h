@@ -9,9 +9,6 @@
 class grng_material : public GRNG_COMPONENT
 {
 private:
-	friend class grng_manager_ptr;
-
-private:
 	static GRNG_MATERIAL_SHADER								mat_shader;
 	static GRNG_FRAG_CONST_BUFFER<GRNG_MATERIAL_SHADER>		mat_cbuffer;
 
@@ -53,7 +50,21 @@ public:
 		this->exposure_map.set_slot(GRNG_MATERIAL_EXPOSURE_MAP_SLOT);
 	}
 
-	void		bind()
+	static grng_material	*create()
+	{
+		grng_material *mat = new grng_material;
+		mat->id = GRNG_CM.add(mat);
+		if (mat->id == -1)
+		{
+			delete mat;
+			return (NULL);
+		}
+		mat->is_alloc = true;
+
+		return (mat);
+	}
+
+	void		bind(GRNG_BIND_SCOPE scope)
 	{
 		grng_material::mat_shader.albedo_color = this->albedo_color;
 		grng_material::mat_shader.albedo_map_srgb = this->albedo_map_srgb;
@@ -64,22 +75,14 @@ public:
 		grng_material::mat_shader.exposure = this->exposure;
 
 		grng_material::mat_cbuffer.update(grng_material::mat_shader);
-		grng_material::mat_cbuffer.bind();
+		grng_material::mat_cbuffer.bind(scope);
 
-		this->albedo_map.bind();
-		this->normal_map.bind();
-		this->roughness_map.bind();
-		this->metalness_map.bind();
-		this->ao_map.bind();
-		this->exposure_map.bind();
-	}
-
-private:
-	static GRNG_COMPONENT		*create_manager_ptr()
-	{
-		grng_material *mat = new grng_material;
-
-		return (mat);
+		this->albedo_map.bind(scope);
+		this->normal_map.bind(scope);
+		this->roughness_map.bind(scope);
+		this->metalness_map.bind(scope);
+		this->ao_map.bind(scope);
+		this->exposure_map.bind(scope);
 	}
 };
 

@@ -59,9 +59,22 @@ void		grng_render_target::set(HWND hwnd, BOOL windowed)
 	this->set_rt_memory(hwnd, windowed);
 }
 
-GRNG_BINDABLE		*grng_render_target::create_manager_ptr()
+void		grng_render_target::set_ds_view(ID3D11DepthStencilView *ds_view)
 {
-	GRNG_RENDER_TARGET *rt = new GRNG_RENDER_TARGET;
+	this->ds_view = NULL;
+}
+
+
+grng_render_target		*grng_render_target::create()
+{
+	grng_render_target *rt = new grng_render_target;
+	rt->id = GRNG_BM.add(rt);
+	if (rt->id == -1)
+	{
+		delete rt;
+		return (NULL);
+	}
+	rt->is_alloc = true;
 
 	return (rt);
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "grng_bindable.h"
+#include "grng_bindable_entity.h"
 
 
 class grng_sampler : public GRNG_BINDABLE
@@ -15,6 +16,17 @@ private:
 
 	void					copy_assign(const grng_sampler &s);
 
+protected:
+	void		remove_from_entities() override
+	{
+		for (auto &it : this->entities)
+			it->_remove_bindable_ignore_entity(this);
+		this->entities.clear();
+	}
+
+public:
+	using GRNG_BINDABLE::bind;
+
 public:
 	grng_sampler			&operator=(const grng_sampler &s);
 	grng_sampler(const grng_sampler &s);
@@ -23,12 +35,17 @@ public:
 
 	void					set_slot(UINT slot);
 
-	static GRNG_BINDABLE	*create_manager_ptr();
-
+	static grng_sampler		*create();
 
 	void		bind() const override
 	{
 		this->device_context->PSSetSamplers(this->slot, 1u, &this->sampler);
+		GRNG_BINDABLE::add_unbind(*this);
+	}
+
+	void		unbind() const override
+	{
+		this->device_context->PSGetSamplers(this->slot, 0u, NULL);
 	}
 };
 

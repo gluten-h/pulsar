@@ -2,5 +2,8 @@
 #include "grng_bindable.h"
 
 
-ID3D11Device			*grng_bindable::device = NULL;
-ID3D11DeviceContext		*grng_bindable::device_context = NULL;
+GRNG_PISTON<grng_bindable*, GRNG_MAX_BINDABLE_COUNT>				grng_bindable::local_unbinds;
+const GRNG_IPISTON<grng_bindable*, GRNG_MAX_BINDABLE_COUNT>			*grng_bindable::local_iunbinds = grng_bindable::local_unbinds.get_ipiston();
+
+GRNG_PISTON<grng_bindable*, GRNG_MAX_BINDABLE_COUNT>				grng_bindable::global_unbinds;
+const GRNG_IPISTON<grng_bindable*, GRNG_MAX_BINDABLE_COUNT>			*grng_bindable::global_iunbinds = grng_bindable::global_unbinds.get_ipiston();

@@ -16,10 +16,10 @@ public:
 	grng_gfx_exception() = delete;
 	grng_gfx_exception(int line, LPCTSTR file, HRESULT hr) noexcept;
 
-	const char				*what() const noexcept override;
-	std::string				get_type() const noexcept override;
-	std::string				get_error_string() const noexcept;
-	std::string				get_error_descriprtion() const noexcept;
+	const char		*what() const noexcept override;
+	std::string		get_type() const noexcept override;
+	std::string		get_error_string() const noexcept;
+	std::string		get_error_descriprtion() const noexcept;
 };
 
 using GRNG_GFX_EXCEPTION = grng_gfx_exception;

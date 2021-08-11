@@ -1,6 +1,7 @@
 #pragma once
 
-#include "grng_component.h"
+#include "grng_bindable.h"
+#include "grng_bindable_entity.h"
 
 #include <iostream>
 #include <fstream>
@@ -14,11 +15,8 @@ enum class GRNG_MESH_FILE_FORMAT
 };
 
 
-class grng_mesh : public GRNG_COMPONENT
+class grng_mesh : public GRNG_BINDABLE
 {
-private:
-	friend class grng_manager_ptr;
-
 private:
 	struct GRNG_MESH_DATA
 	{
@@ -56,6 +54,14 @@ private:
 	ID3D11Buffer				*v_buffer = NULL;
 	ID3D11Buffer				*i_buffer = NULL;
 
+protected:
+	void		remove_from_entities() override
+	{
+		for (auto &it : this->entities)
+			it->_remove_bindable_ignore_entity(this);
+		this->entities.clear();
+	}
+
 private:
 	void		remove_v_buffer_memory();
 	void		remove_i_buffer_memory();
@@ -65,7 +71,8 @@ private:
 
 	void		copy_assign(const grng_mesh &m);
 
-	static GRNG_COMPONENT		*create_manager_ptr();
+public:
+	using GRNG_BINDABLE::bind;
 
 public:
 	grng_mesh	&operator=(const grng_mesh &m);
@@ -77,7 +84,11 @@ public:
 	void		set(LPCWSTR file, GRNG_MESH_FILE_FORMAT file_format);
 	void		set_primitive_topology(const D3D_PRIMITIVE_TOPOLOGY &primitive_topology);
 
-	void		bind();
+	static grng_mesh	*create();
+
+	void		bind() const override;
+	void		unbind() const override;
+
 	void		draw();
 };
 

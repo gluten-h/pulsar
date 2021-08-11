@@ -43,14 +43,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -157,6 +157,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="grng_bindable.cpp" />
+    <ClCompile Include="grng_render_texture_misc.cpp" />
     <ClCompile Include="grng_resource_manager.cpp" />
     <ClCompile Include="grng_camera.cpp" />
     <ClCompile Include="grng_camera_data.cpp" />
@@ -186,8 +188,6 @@
     <ClCompile Include="grng_id3d.cpp" />
     <ClCompile Include="grng_input_layout.cpp" />
     <ClCompile Include="grng_input_layout_data.cpp" />
-    <ClCompile Include="grng_light_manager.cpp" />
-    <ClCompile Include="grng_manager_ptr.cpp" />
     <ClCompile Include="grng_material.cpp" />
     <ClCompile Include="grng_math.cpp" />
     <ClCompile Include="grng_mesh.cpp" />
@@ -208,6 +208,7 @@
     <ClCompile Include="grng_render_texture.cpp" />
     <ClCompile Include="grng_render_texture_data.cpp" />
     <ClCompile Include="grng_render_texture_get.cpp" />
+    <ClCompile Include="grng_rg_exception.cpp" />
     <ClCompile Include="grng_sampler.cpp" />
     <ClCompile Include="grng_sampler_data.cpp" />
     <ClCompile Include="grng_scene_draw.cpp" />
@@ -230,6 +231,8 @@
     <ClCompile Include="grng_utils.cpp" />
     <ClCompile Include="grng_vert_shader.cpp" />
     <ClCompile Include="grng_vert_shader_data.cpp" />
+    <ClCompile Include="grng_viewport.cpp" />
+    <ClCompile Include="grng_viewport_data.cpp" />
     <ClCompile Include="grng_window.cpp" />
     <ClCompile Include="grng_window_draw.cpp" />
     <ClCompile Include="grng_window_misc.cpp" />
@@ -247,7 +250,10 @@
     <ClCompile Include="cam_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="grng_bindable_entity.h" />
     <ClInclude Include="grng_bindable_manager.h" />
+    <ClInclude Include="grng_buffer_clear_pass.h" />
+    <ClInclude Include="grng_buffer_resource.h" />
     <ClInclude Include="grng_camera_post_effects_shader.h" />
     <ClInclude Include="grng_component.h" />
     <ClInclude Include="grng_component_manager.h" />
@@ -259,6 +265,8 @@
     <ClInclude Include="grng_def_materials.h" />
     <ClInclude Include="grng_def_meshes.h" />
     <ClInclude Include="grng_def_misc.h" />
+    <ClInclude Include="grng_def_render_graph.h" />
+    <ClInclude Include="grng_def_shaders.h" />
     <ClInclude Include="grng_def_skybox.h" />
     <ClInclude Include="grng_def_skybox_materials.h" />
     <ClInclude Include="grng_def_textures.h" />
@@ -269,6 +277,7 @@
     <ClInclude Include="grng_frag_const_buffer.h" />
     <ClInclude Include="grng_gfx_exception.h" />
     <ClInclude Include="grng_gfx_exc_macros.h" />
+    <ClInclude Include="grng_light_shader.h" />
     <ClInclude Include="grng_material_shader.h" />
     <ClInclude Include="grng_mouse.h" />
     <ClInclude Include="grng_bindable.h" />
@@ -278,7 +287,7 @@
     <ClInclude Include="grng_const_buffer.h" />
     <ClInclude Include="grng_d3d.h" />
     <ClInclude Include="grng_deferred_buffer.h" />
-    <ClInclude Include="grng_deffered_def.h" />
+    <ClInclude Include="grng_def_deffered.h" />
     <ClInclude Include="grng_depth_stencil_view.h" />
     <ClInclude Include="grng_dir_light.h" />
     <ClInclude Include="grng_entity.h" />
@@ -296,7 +305,12 @@
     <ClInclude Include="grng_material_def.h" />
     <ClInclude Include="grng_math.h" />
     <ClInclude Include="grng_mesh.h" />
-    <ClInclude Include="grng_pass.h" />
+    <ClInclude Include="grng_rg_bindable_pass.h" />
+    <ClInclude Include="grng_rg_bindable_source.h" />
+    <ClInclude Include="grng_rg_component.h" />
+    <ClInclude Include="grng_rg_components.h" />
+    <ClInclude Include="grng_rg_fullscreen_pass.h" />
+    <ClInclude Include="grng_rg_pass.h" />
     <ClInclude Include="grng_piston.h" />
     <ClInclude Include="grng_point_light.h" />
     <ClInclude Include="grng_rasterizer_state.h" />
@@ -304,11 +318,18 @@
     <ClInclude Include="grng_render_target.h" />
     <ClInclude Include="grng_render_texture.h" />
     <ClInclude Include="grng_resource_manager.h" />
+    <ClInclude Include="grng_rg_bindalbe_input.h" />
+    <ClInclude Include="grng_rg_buffer_input.h" />
+    <ClInclude Include="grng_rg_buffer_source.h" />
+    <ClInclude Include="grng_rg_exception.h" />
+    <ClInclude Include="grng_rg_exc_macros.h" />
     <ClInclude Include="grng_rg_input.h" />
-    <ClInclude Include="grng_rg_output.h" />
+    <ClInclude Include="grng_rg_inputs.h" />
+    <ClInclude Include="grng_rg_source.h" />
+    <ClInclude Include="grng_rg_sources.h" />
     <ClInclude Include="grng_sampler.h" />
     <ClInclude Include="grng_scene.h" />
-    <ClInclude Include="grng_scene_def.h" />
+    <ClInclude Include="grng_def_scene.h" />
     <ClInclude Include="grng_scene_manager.h" />
     <ClInclude Include="grng_shader.h" />
     <ClInclude Include="grng_shaders.h" />
@@ -327,8 +348,9 @@
     <ClInclude Include="grng_vert_const_buffer.h" />
     <ClInclude Include="grng_vert_shader.h" />
     <ClInclude Include="grng_transform_shader.h" />
+    <ClInclude Include="grng_viewport.h" />
     <ClInclude Include="grng_window.h" />
-    <ClInclude Include="grng_window_def.h" />
+    <ClInclude Include="grng_def_window.h" />
     <ClInclude Include="grng_win_exception.h" />
     <ClInclude Include="grng_win_exc_macros.h" />
     <ClInclude Include="grng_win_manager.h" />
@@ -337,8 +359,8 @@
     <ClInclude Include="grng_id3d.h" />
     <ClInclude Include="grng_input.h" />
     <ClInclude Include="cam_controller.h" />
-    <ClInclude Include="grng_manager_ptr.h" />
-    <ClInclude Include="render_graph.h" />
+    <ClInclude Include="grng_render_graph.h" />
+    <ClInclude Include="rg.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="deferred_fs.hlsl">
@@ -351,13 +373,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
-    <FxCompile Include="deferred_vs.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+    <FxCompile Include="fullscreen_vs.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
@@ -394,14 +414,6 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </FxCompile>
-    <FxCompile Include="post_effects_vs.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>

@@ -30,20 +30,20 @@ grng_mesh		&grng_mesh::operator=(const grng_mesh &m)
 	return (*this);
 }
 
-grng_mesh::grng_mesh(const grng_mesh &m) : GRNG_COMPONENT()
+grng_mesh::grng_mesh(const grng_mesh &m) : GRNG_BINDABLE()
 {
-	this->type = GRNG_COMPONENT_TYPE::MESH;
+	this->type = GRNG_BINDABLE_TYPE::MESH;
 	this->copy_assign(m);
 }
 
-grng_mesh::grng_mesh() : GRNG_COMPONENT()
+grng_mesh::grng_mesh() : GRNG_BINDABLE()
 {
-	this->type = GRNG_COMPONENT_TYPE::MESH;
+	this->type = GRNG_BINDABLE_TYPE::MESH;
 }
 
-grng_mesh::grng_mesh(LPCWSTR file, GRNG_MESH_FILE_FORMAT file_format) : GRNG_COMPONENT()
+grng_mesh::grng_mesh(LPCWSTR file, GRNG_MESH_FILE_FORMAT file_format) : GRNG_BINDABLE()
 {
-	this->type = GRNG_COMPONENT_TYPE::MESH;
+	this->type = GRNG_BINDABLE_TYPE::MESH;
 	this->set(file, file_format);
 }
 

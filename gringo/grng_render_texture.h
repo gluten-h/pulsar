@@ -1,17 +1,18 @@
 #pragma once
 
 #include "grng_bindable.h"
+#include "grng_bindable_entity.h"
 
 
 class grng_render_texture : public GRNG_BINDABLE
 {
 private:
-	friend class grng_manager_ptr;
-
-private:
 	ID3D11RenderTargetView		*texture_rtv = NULL;
 	ID3D11ShaderResourceView	*texture_srv = NULL;
 	UINT						slot = 0u;
+
+	GRNG_BIND_MODE						mode = GRNG_BIND_MODE::SRV;
+	mutable ID3D11DepthStencilView		*ds_view = NULL;
 
 
 	void						set_rt_memory(ID3D11Texture2D *texture);
@@ -22,7 +23,16 @@ private:
 
 	void						copy_assign(const grng_render_texture &rt);
 
-	static GRNG_BINDABLE		*create_manager_ptr();
+protected:
+	void		remove_from_entities() override
+	{
+		for (auto &it : this->entities)
+			it->_remove_bindable_ignore_entity(this);
+		this->entities.clear();
+	}
+
+public:
+	using GRNG_BINDABLE::bind;
 
 public:
 	grng_render_texture			&operator=(const grng_render_texture &rt);
@@ -37,20 +47,15 @@ public:
 	ID3D11RenderTargetView		*get_render_target();
 	ID3D11ShaderResourceView	*get_shader_resource();
 
-	void		bind_as_rtv(ID3D11DepthStencilView *depth_stencil_view)
-	{
-		this->device_context->OMSetRenderTargets(1u, &this->texture_rtv, depth_stencil_view);
-	}
+	void		set_mode(GRNG_BIND_MODE mode);
+	void		set_ds_view(ID3D11DepthStencilView *ds_view);
 
-	void		clear()
-	{
-		this->device_context->ClearRenderTargetView(this->texture_rtv, D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f));
-	}
+	static grng_render_texture		*create();
 
-	void		bind() const override
-	{
-		this->device_context->PSSetShaderResources(this->slot, 1u, &this->texture_srv);
-	}
+	void		clear();
+
+	void		bind() const override;
+	void		unbind() const override;
 };
 
 using GRNG_RENDER_TEXTURE = grng_render_texture;

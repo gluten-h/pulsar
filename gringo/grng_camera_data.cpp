@@ -2,14 +2,21 @@
 #include "grng_camera.h"
 
 
-GRNG_COMPONENT		*grng_camera::create_manager_ptr()
+grng_camera			*grng_camera::create()
 {
-	grng_camera	*cam = new grng_camera;
+	grng_camera *camera = new grng_camera;
+	camera->id = GRNG_CM.add(camera);
+	if (camera->id == -1)
+	{
+		delete camera;
+		return (NULL);
+	}
+	camera->is_alloc = true;
 
-	return (cam);
+	return (camera);
 }
 
-void				grng_camera::set(const GRNG_TRANSFORM &transform, float fov_rad, float z_near, float z_far, float exposure, float gamma)
+void				grng_camera::set(const GRNG_TRANSFORM &transform, float fov_rad, float exposure, float gamma, float z_near, float z_far)
 {
 	this->transform = transform;
 	this->update_view_matrix();

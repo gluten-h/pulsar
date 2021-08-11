@@ -17,8 +17,8 @@ protected:
 	std::unordered_map<T*, int>				data_id_map;
 
 
-	virtual void		add_event(int added_id, T &data) = 0;
-	virtual void		remove_event(int removed_id, T &data) = 0;
+	virtual void		add_event(int added_id, T *data){ }
+	virtual void		remove_event(int removed_id, T *data){ }
 
 
 	bool	is_exists(T *data)
@@ -33,25 +33,24 @@ protected:
 			return (false);
 		}
 	}
-
 	bool	is_exists(int id)
 	{
 		return (this->data.get_secure(id) != NULL);
 	}
 
-	bool	is_available()
+	bool	is_available(T *data)
 	{
-		return (this->idata->size < MAX_SIZE);
+		return (!is_exists(data) && this->idata->size < MAX_SIZE);
 	}
 
 
-	T		*add_manager(T *data)
+	int 	add_manager(T *data)
 	{
 		int id = this->data.add(data);
 		this->data_id_map[data] = id;
-		this->add_event(id, *data);
+		this->add_event(id, data);
 
-		return (data);
+		return (id);
 	}
 
 	void	remove_manager(T *data)
@@ -60,31 +59,23 @@ protected:
 
 		this->data_id_map.erase(data);
 		this->data.remove(id);
-		this->remove_event(id, *data);
-
-		delete data;
+		this->remove_event(id, data);
 	}
 
 public:
 	grng_manager(){ }
-	~grng_manager()
-	{
-		for (auto &it : this->data_id_map)
-			delete it.first;
-		this->data_id_map.clear();
-	}
 
-	void		remove_secure(T &data)
+	void		remove_secure(T *data)
 	{
-		if (!this->is_exists(&data))
+		if (!this->is_exists(data))
 			return;
 
-		this->remove_manager(&data);
+		this->remove_manager(data);
 	}
 
-	void		remove(T &data)
+	void		remove(T *data)
 	{
-		this->remove_manager(&data);
+		this->remove_manager(data);
 	}
 
 	void		remove_secure(unsigned int id)
@@ -113,6 +104,11 @@ public:
 	T			*get_data(unsigned int id)
 	{
 		return (*this->data.get(id));
+	}
+
+	const GRNG_IPISTON<T*, MAX_SIZE>	*get_idata() const
+	{
+		return (this->idata);
 	}
 };
 

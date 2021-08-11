@@ -2,6 +2,7 @@
 
 #include "grng_id3d.h"
 #include "grng_exc_macros.h"
+#include "grng_component_manager.h"
 
 
 enum class GRNG_COMPONENT_TYPE
@@ -10,27 +11,37 @@ enum class GRNG_COMPONENT_TYPE
 	CAMERA,
 	MATERIAL,
 	SKYBOX_MATERIAL,
-	MESH
 };
 
 
 class grng_component : public GRNG_ID3D
 {
-private:
-	friend class grng_component_manager;
-
 protected:
-	GRNG_COMPONENT_TYPE			type = GRNG_COMPONENT_TYPE::NONE;
-	int							id = -1;
+	int		id = -1;
+	bool	is_alloc = false;
+	GRNG_COMPONENT_TYPE		type = GRNG_COMPONENT_TYPE::NONE;
 
 public:
 	grng_component() : GRNG_ID3D(){ }
+	~grng_component()
+	{
+		this->destroy();
+	}
+
+	void		destroy()
+	{
+		if (!this->is_alloc)
+			return;
+		this->is_alloc = false;
+
+		GRNG_CM.remove_secure(this);
+		delete this;
+	}
 
 	GRNG_COMPONENT_TYPE			get_type() const
 	{
 		return (this->type);
 	}
-
 	int							get_id() const
 	{
 		return (this->id);

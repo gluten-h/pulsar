@@ -1,13 +1,11 @@
 #pragma once
 
 #include "grng_bindable.h"
+#include "grng_bindable_entity.h"
 
 
 class grng_input_layout : public GRNG_BINDABLE
 {
-private:
-	friend class grng_manager_ptr;
-
 private:
 	ID3D11InputLayout	*input_layout = NULL;
 
@@ -17,7 +15,16 @@ private:
 
 	void					copy_assign(const grng_input_layout &il);
 
-	static GRNG_BINDABLE	*create_manager_ptr();
+protected:
+	void		remove_from_entities() override
+	{
+		for (auto &it : this->entities)
+			it->_remove_bindable_ignore_entity(this);
+		this->entities.clear();
+	}
+
+public:
+	using GRNG_BINDABLE::bind;
 
 public:
 	grng_input_layout		&operator=(const grng_input_layout &il);
@@ -28,9 +35,17 @@ public:
 
 	void					set(ID3DBlob *shader_blob, const D3D11_INPUT_ELEMENT_DESC *ied, UINT ied_num_elements);
 
+	static grng_input_layout	*create();
+
 	void		bind() const override
 	{
 		this->device_context->IASetInputLayout(this->input_layout);
+		GRNG_BINDABLE::add_unbind(*this);
+	}
+
+	void		unbind() const override
+	{
+		this->device_context->IASetInputLayout(NULL);
 	}
 };
 

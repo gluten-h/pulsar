@@ -3,7 +3,6 @@
 
 #include "grng_id3d.h"
 #include "grng_window.h"
-#include "grng_window_def.h"
 #include "grng_piston.h"
 #include "grng_gfx.h"
 #include "grng_input.h"
@@ -46,10 +45,10 @@ public:
 	static void			remove_win_update_secure(unsigned int win_id, GRNG_WIN_UPDATE_DEF win_update);
 	static void			remove_win_update(unsigned int win_id, GRNG_WIN_UPDATE_DEF win_update);
 
-	static void			set_camera_secure(unsigned int win_id, GRNG_CAMERA &cam);
-	static void			set_camera(unsigned int win_id, GRNG_CAMERA &cam);
-	static void			set_scene_secure(unsigned int win_id, GRNG_SCENE &scene);
-	static void			set_scene(unsigned int win_id, GRNG_SCENE &scene);
+	static void			set_camera_secure(unsigned int win_id, GRNG_CAMERA *cam);
+	static void			set_camera(unsigned int win_id, GRNG_CAMERA *cam);
+	static void			set_scene_secure(unsigned int win_id, GRNG_SCENE *scene);
+	static void			set_scene(unsigned int win_id, GRNG_SCENE *scene);
 
 	static void			clamp_cursor_secure(unsigned int win_id);
 	static void			clamp_cursor(unsigned int win_id);

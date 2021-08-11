@@ -27,7 +27,7 @@ GRNG_DS_STATE				&grng_deferred_buffer::get_ds_state()
 	return (this->ds_state);
 }
 
-D3D11_VIEWPORT				&grng_deferred_buffer::get_viewport()
+GRNG_VIEWPORT				&grng_deferred_buffer::get_viewport()
 {
 	return (this->viewport);
 }

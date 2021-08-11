@@ -44,9 +44,17 @@ ID3D11RasterizerState	*grng_rasterizer_state::get()
 	return (this->rs);
 }
 
-GRNG_BINDABLE		*grng_rasterizer_state::create_manager_ptr()
+
+grng_rasterizer_state	*grng_rasterizer_state::create()
 {
 	grng_rasterizer_state *rs = new grng_rasterizer_state;
+	rs->id = GRNG_BM.add(rs);
+	if (rs->id == -1)
+	{
+		delete rs;
+		return (NULL);
+	}
+	rs->is_alloc = true;
 
 	return (rs);
 }

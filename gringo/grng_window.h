@@ -1,7 +1,7 @@
 #pragma once
 
 #include "grng_exc_macros.h"
-#include "grng_window_def.h"
+#include "grng_def_window.h"
 #include "grng_gfx.h"
 #include "grng_deferred_buffer.h"
 #include "grng_camera.h"
@@ -88,8 +88,8 @@ public:
 	void		add_update(GRNG_WIN_UPDATE_DEF win_update, void *win_update_data);
 	void		remove_update(GRNG_WIN_UPDATE_DEF win_update);
 
-	void		set_camera(GRNG_CAMERA &cam);
-	void		set_scene(GRNG_SCENE &scene);
+	void		set_camera(GRNG_CAMERA *cam);
+	void		set_scene(GRNG_SCENE *scene);
 
 	HWND		get_hwnd() const;
 

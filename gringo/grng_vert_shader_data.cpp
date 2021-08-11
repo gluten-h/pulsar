@@ -32,9 +32,17 @@ void				grng_vert_shader::set(const LPCWSTR shader_file, const LPCSTR entry, con
 	this->set_shader_memory(shader_file, entry, defines);
 }
 
-GRNG_BINDABLE		*grng_vert_shader::create_manager_ptr()
+
+grng_vert_shader	*grng_vert_shader::create()
 {
 	grng_vert_shader *vs = new grng_vert_shader;
+	vs->id = GRNG_BM.add(vs);
+	if (vs->id == -1)
+	{
+		delete vs;
+		return (NULL);
+	}
+	vs->is_alloc = true;
 
 	return (vs);
 }

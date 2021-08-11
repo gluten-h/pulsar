@@ -16,6 +16,7 @@ protected:
 private:
 	void		init_d3d()
 	{
+		this->is_initialized = true;
 		GRNG_D3D::create();
 
 		grng_id3d::idxgi_factory = GRNG_D3D::get_idxgi_factory();

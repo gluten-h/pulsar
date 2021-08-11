@@ -11,9 +11,6 @@
 class grng_skybox_material : public GRNG_COMPONENT
 {
 private:
-	friend class grng_manager_ptr;
-
-private:
 	static GRNG_SKYBOX_MATERIAL_SHADER							skybox_mat_shader;
 	static GRNG_FRAG_CONST_BUFFER<GRNG_SKYBOX_MATERIAL_SHADER>	skybox_mat_cbuffer;
 
@@ -35,7 +32,21 @@ public:
 		this->exposure_map.set_slot(GRNG_SKYBOX_MATERIAL_EXPOSURE_MAP_SLOT);
 	}
 
-	void		bind()
+	static grng_skybox_material		*create()
+	{
+		grng_skybox_material *mat = new grng_skybox_material;
+		mat->id = GRNG_CM.add(mat);
+		if (mat->id == -1)
+		{
+			delete mat;
+			return (NULL);
+		}
+		mat->is_alloc = true;
+
+		return (mat);
+	}
+
+	void		bind(GRNG_BIND_SCOPE scope)
 	{
 		grng_skybox_material::skybox_mat_shader.env_map_color = this->env_map_color;
 		grng_skybox_material::skybox_mat_shader.env_map_srgb = this->env_map_srgb;
@@ -43,18 +54,10 @@ public:
 		grng_skybox_material::skybox_mat_shader.exposure = this->exposure;
 
 		grng_skybox_material::skybox_mat_cbuffer.update(grng_skybox_material::skybox_mat_shader);
-		grng_skybox_material::skybox_mat_cbuffer.bind();
+		grng_skybox_material::skybox_mat_cbuffer.bind(scope);
 
-		grng_skybox_material::env_map.bind();
-		grng_skybox_material::exposure_map.bind();
-	}
-
-private:
-	static GRNG_COMPONENT		*create_manager_ptr()
-	{
-		grng_skybox_material *m = new grng_skybox_material;
-
-		return (m);
+		grng_skybox_material::env_map.bind(scope);
+		grng_skybox_material::exposure_map.bind(scope);
 	}
 };
 

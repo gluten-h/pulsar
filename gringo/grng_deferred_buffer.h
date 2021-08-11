@@ -1,8 +1,10 @@
 #pragma once
 
+#include "grng_def_shaders.h"
 #include "grng_texture2d.h"
 #include "grng_render_texture.h"
 #include "grng_depth_stencil.h"
+#include "grng_viewport.h"
 #include "grng_sampler.h"
 #include "grng_shaders.h"
 #include "grng_gfx.h"
@@ -27,7 +29,7 @@ private:
 	GRNG_RENDER_TEXTURE		rt[GRNG_G_BUFFER_COUNT];
 	GRNG_DS_VIEW			ds_view;
 	GRNG_DS_STATE			ds_state;
-	D3D11_VIEWPORT			viewport = { 0 };
+	GRNG_VIEWPORT			viewport;
 
 	GRNG_TEXTURE2D			rt_hdr_texture;
 	GRNG_RENDER_TEXTURE		rt_hdr;
@@ -61,10 +63,10 @@ public:
 
 	grng_deferred_buffer() : GRNG_ID3D()
 	{
-		this->deferred_vs.set(L"deferred_vs.hlsl", GRNG_VERT_ENTRY, NULL);
+		this->deferred_vs = GRNG_FULLSCREEN_VS;;
 		this->deferred_fs.set(L"deferred_fs.hlsl", GRNG_FRAG_ENTRY, NULL);
 
-		this->post_effects_vs.set(L"post_effects_vs.hlsl", GRNG_VERT_ENTRY, NULL);
+		this->post_effects_vs = GRNG_FULLSCREEN_VS;
 		this->post_effects_fs.set(L"post_effects_fs.hlsl", GRNG_FRAG_ENTRY, NULL);
 	}
 
@@ -84,13 +86,7 @@ public:
 
 		this->ds_view.set(width, height);
 		this->ds_state.set(TRUE, D3D11_COMPARISON_LESS, D3D11_DEPTH_WRITE_MASK_ALL);
-
-		this->viewport.TopLeftX = 0.0f;
-		this->viewport.TopLeftY = 0.0f;
-		this->viewport.Width = width;
-		this->viewport.Height = height;
-		this->viewport.MinDepth = 0.0f;
-		this->viewport.MaxDepth = 1.0f;
+		this->viewport.set(width, height);
 	}
 
 
@@ -102,29 +98,31 @@ public:
 		this->ds_view.clear();
 
 		this->device_context->OMSetRenderTargets(GRNG_G_BUFFER_COUNT, this->rtv_data.data(), this->ds_view.get_view());
-		this->ds_state.bind();
-		this->device_context->RSSetViewports(1, &this->viewport);
+		this->ds_state.bind(GRNG_BIND_SCOPE::GLOBAL);
+		this->viewport.bind(GRNG_BIND_SCOPE::GLOBAL);
 	}
 
 	void		bind_srv()
 	{
-		this->deferred_vs.bind();
-		this->deferred_fs.bind();
-		GRNG_GFX::get_curr_camera()->bind_deferred();
+		this->deferred_vs.bind(GRNG_BIND_SCOPE::GLOBAL);
+		this->deferred_fs.bind(GRNG_BIND_SCOPE::GLOBAL);
+		GRNG_GFX::get_curr_camera()->bind_deferred(GRNG_BIND_SCOPE::GLOBAL);
 
 		int i = -1;
 		while (++i < GRNG_G_BUFFER_COUNT)
-			this->rt[i].bind();
-		this->sampler.bind();
+			this->rt[i].bind(GRNG_BIND_SCOPE::GLOBAL);
+		this->sampler.bind(GRNG_BIND_SCOPE::GLOBAL);
+		this->viewport.bind(GRNG_BIND_SCOPE::GLOBAL);
 	}
 
 	void		bind_post_effects()
 	{
-		GRNG_GFX::get_curr_camera()->bind_post_effects();
-		this->rt_hdr.bind();
-		this->post_effects_vs.bind();
-		this->post_effects_fs.bind();
-		this->sampler.bind();
+		GRNG_GFX::get_curr_camera()->bind_post_effects(GRNG_BIND_SCOPE::GLOBAL);
+		this->rt_hdr.bind(GRNG_BIND_SCOPE::GLOBAL);
+		this->post_effects_vs.bind(GRNG_BIND_SCOPE::GLOBAL);
+		this->post_effects_fs.bind(GRNG_BIND_SCOPE::GLOBAL);
+		this->sampler.bind(GRNG_BIND_SCOPE::GLOBAL);
+		this->viewport.bind(GRNG_BIND_SCOPE::GLOBAL);
 	}
 
 
@@ -133,7 +131,7 @@ public:
 	GRNG_RENDER_TEXTURE			&get_hdr_buffer();
 	GRNG_DS_VIEW				&get_ds_view();
 	GRNG_DS_STATE				&get_ds_state();
-	D3D11_VIEWPORT				&get_viewport();
+	GRNG_VIEWPORT				&get_viewport();
 };
 
 using GRNG_DEFERRED_BUFFER = grng_deferred_buffer;

@@ -51,9 +51,17 @@ void		grng_mesh::set_primitive_topology(const D3D_PRIMITIVE_TOPOLOGY &primitive_
 	this->primitive_topology = primitive_topology;
 }
 
-GRNG_COMPONENT		*grng_mesh::create_manager_ptr()
+
+grng_mesh	*grng_mesh::create()
 {
 	grng_mesh *mesh = new grng_mesh;
+	mesh->id = GRNG_BM.add(mesh);
+	if (mesh->id == -1)
+	{
+		delete mesh;
+		return (NULL);
+	}
+	mesh->is_alloc = true;
 
 	return (mesh);
 }

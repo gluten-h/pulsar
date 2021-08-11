@@ -1,6 +1,7 @@
 #pragma once
 
 #include "grng_light.h"
+#include "grng_scene.h"
 
 
 class grng_point_light : public GRNG_LIGHT
@@ -21,8 +22,6 @@ private:
 	void		set_params(const XMFLOAT3 &pos, const XMFLOAT3 &color, float const_att, float linear_att, float quad_att);
 	void		set_shader_light(GRNG_SHADER_LIGHT &sl) override;
 
-	static GRNG_LIGHT		*create_manager_ptr();
-
 	void					copy_assign(const grng_point_light &l);
 
 public:
@@ -30,6 +29,7 @@ public:
 	grng_point_light(const grng_point_light &l);
 	grng_point_light();
 	grng_point_light(const XMFLOAT3 &pos, const XMFLOAT3 &color, float const_att = 1.0f, float linear_att = 0.14f, float quad_att = 0.07f);
+	~grng_point_light();
 
 	void		set(const XMFLOAT3 &pos, const XMFLOAT3 &color, float const_att, float linear_att, float quad_att);
 	void		set_pos(const XMFLOAT3 &pos);
@@ -41,6 +41,9 @@ public:
 
 	XMFLOAT3	&get_pos();
 	XMFLOAT3	&get_color();
+
+	static grng_point_light		*create();
+	void						destroy();
 };
 
 using GRNG_POINT_LIGHT = grng_point_light;

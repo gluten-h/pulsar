@@ -68,9 +68,17 @@ void		grng_cubemap::set_slot(UINT slot)
 	this->slot = slot;
 }
 
-GRNG_BINDABLE		*grng_cubemap::create_manager_ptr()
+
+grng_cubemap		*grng_cubemap::create()
 {
 	grng_cubemap *cubemap = new grng_cubemap;
+	cubemap->id = GRNG_BM.add(cubemap);
+	if (cubemap->id == -1)
+	{
+		delete cubemap;
+		return (NULL);
+	}
+	cubemap->is_alloc = true;
 
 	return (cubemap);
 }

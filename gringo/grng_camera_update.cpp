@@ -26,23 +26,23 @@ void		grng_camera::update_proj_matrix(float w, float h)
 }
 
 
-void		grng_camera::update_camera_deferred_shader()
+void		grng_camera::update_camera_deferred_shader(GRNG_BIND_SCOPE scope)
 {
 	grng_camera::cam_deferred_shader.pos = this->transform.position;
 	grng_camera::cam_deferred_shader.dir = this->forward;
 	grng_camera::cam_deferred_shader.gamma = this->gamma;
 
 	grng_camera::cam_deferred_cbuffer.update(grng_camera::cam_deferred_shader);
-	grng_camera::cam_deferred_cbuffer.bind();
+	grng_camera::cam_deferred_cbuffer.bind(scope);
 }
 
-void		grng_camera::update_camera_post_effects_shader()
+void		grng_camera::update_camera_post_effects_shader(GRNG_BIND_SCOPE scope)
 {
 	grng_camera::cam_post_effects_shader.gamma = this->gamma;
 	grng_camera::cam_post_effects_shader.exposure = this->exposure;
 
 	grng_camera::cam_post_effects_cbuffer.update(grng_camera::cam_post_effects_shader);
-	grng_camera::cam_post_effects_cbuffer.bind();
+	grng_camera::cam_post_effects_cbuffer.bind(scope);
 }
 
 void		grng_camera::update(float w, float h)

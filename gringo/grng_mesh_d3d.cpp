@@ -2,14 +2,23 @@
 #include "grng_mesh.h"
 
 
-void		grng_mesh::bind()
+void		grng_mesh::bind() const
 {
 	UINT v_stride = sizeof(grng_mesh::GRNG_MESH_DATA::GRNG_VERT_DATA);
 	UINT v_offset = 0;
-	this->device_context->IASetVertexBuffers(0, 1, &this->v_buffer, &v_stride, &v_offset);
-	this->device_context->IASetIndexBuffer(this->i_buffer, DXGI_FORMAT_R32_UINT, 0);
+	this->device_context->IASetVertexBuffers(0u, 1u, &this->v_buffer, &v_stride, &v_offset);
+	this->device_context->IASetIndexBuffer(this->i_buffer, DXGI_FORMAT_R32_UINT, 0u);
 	this->device_context->IASetPrimitiveTopology(this->primitive_topology);
+
+	GRNG_BINDABLE::add_unbind(*this);
 }
+
+void		grng_mesh::unbind() const
+{
+	this->device_context->IASetIndexBuffer(NULL, DXGI_FORMAT_R32_UINT, 0u);
+	this->device_context->IASetVertexBuffers(0u, 0u, NULL, NULL, NULL);
+}
+
 
 void		grng_mesh::create_buffer()
 {

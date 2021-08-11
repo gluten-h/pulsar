@@ -16,35 +16,8 @@
     <Filter Include="inc\utils">
       <UniqueIdentifier>{b703f639-535d-4cf2-90db-09b203a202c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="inc\components">
-      <UniqueIdentifier>{e3da5a10-39cf-476e-8e40-b13d8db34251}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\transform">
-      <UniqueIdentifier>{90131e27-97bf-4bc9-bab8-54a2268fb564}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\camera">
-      <UniqueIdentifier>{51cef2e1-373c-402b-b5e6-7493531c3fe6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="renderer">
       <UniqueIdentifier>{326ac4b1-1167-477e-93bc-acf09d724c2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="renderer\src">
-      <UniqueIdentifier>{5493b845-6488-4b9e-993c-8504bf4c6f76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\windows">
-      <UniqueIdentifier>{b1389c78-f5e2-4c2a-96ae-6bd925325f2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\windows\win_manager">
-      <UniqueIdentifier>{e9408c8e-cd48-46ac-87b1-8378673609e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\windows\window">
-      <UniqueIdentifier>{f43f6fb6-752e-4d14-88f9-fb82b95a072e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\texture2d">
-      <UniqueIdentifier>{91890ce6-d602-448e-8a22-5a6c70da4295}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\material">
-      <UniqueIdentifier>{e2303559-2654-4ff3-ab7f-811fb0b4fc12}</UniqueIdentifier>
     </Filter>
     <Filter Include="shaders\gb_pass">
       <UniqueIdentifier>{f363b9d4-0f9c-444e-85c4-a6761d28a55f}</UniqueIdentifier>
@@ -52,26 +25,11 @@
     <Filter Include="shaders\deferred">
       <UniqueIdentifier>{fc72ed61-d6ba-449d-8466-862f9bc47be2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="inc\components\shader_include">
-      <UniqueIdentifier>{bb7f65da-3fc6-4d97-8903-981a795dc09a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="shaders\deferred\light">
       <UniqueIdentifier>{ed778b78-a856-4907-86a0-4e41d1be254a}</UniqueIdentifier>
     </Filter>
     <Filter Include="inc\containers\manager">
       <UniqueIdentifier>{388994ba-edf3-4a0b-be85-cba3c20fe863}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\windows\window\src">
-      <UniqueIdentifier>{37d240c3-6307-4e0f-a52d-191bfeeaf429}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\windows\window\inc">
-      <UniqueIdentifier>{45b6e06e-e510-46de-bae4-68b9f63aa44d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\windows\win_manager\inc">
-      <UniqueIdentifier>{16b26027-2656-4955-a005-7f456850379c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\windows\win_manager\src">
-      <UniqueIdentifier>{fd1084c7-936b-4ae3-8ee2-02dc3dd0d949}</UniqueIdentifier>
     </Filter>
     <Filter Include="inc\core">
       <UniqueIdentifier>{f9e53a06-2818-45ed-b6f3-433abb93d70b}</UniqueIdentifier>
@@ -121,9 +79,6 @@
     <Filter Include="inc\core\bindable\texture">
       <UniqueIdentifier>{f471c02c-7675-4e31-b24c-affd6a14cdf7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="inc\core\light">
-      <UniqueIdentifier>{c21b460a-0567-4d9f-bc3c-695f97177691}</UniqueIdentifier>
-    </Filter>
     <Filter Include="inc\core\input">
       <UniqueIdentifier>{50538a7b-ca4d-40bb-a4f6-c04310b394bd}</UniqueIdentifier>
     </Filter>
@@ -132,9 +87,6 @@
     </Filter>
     <Filter Include="inc\core\scene">
       <UniqueIdentifier>{52b9cb19-2920-4226-a1ac-0b16d111f4d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\mesh">
-      <UniqueIdentifier>{a4f1d58a-3e9f-4747-8869-5c5d4976b09a}</UniqueIdentifier>
     </Filter>
     <Filter Include="inc\core\bindable\texture\inc">
       <UniqueIdentifier>{c1b889e5-6088-4cc2-bdc3-4a07b6f0310d}</UniqueIdentifier>
@@ -193,21 +145,6 @@
     <Filter Include="inc\core\bindable\shader\shader\src">
       <UniqueIdentifier>{b943b15d-75cb-4701-b34a-d61e134ecf83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="inc\components\texture2d\inc">
-      <UniqueIdentifier>{41f2f772-eff0-4b1a-bbce-653aede13398}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\texture2d\src">
-      <UniqueIdentifier>{11e9aa64-afa7-4040-94dc-2f008e316641}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\skybox">
-      <UniqueIdentifier>{146bdaee-27c8-4400-b37a-3ef22aecffda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\mesh\inc">
-      <UniqueIdentifier>{44806272-8b33-49a1-b8a5-a4bcaa75c007}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\mesh\src">
-      <UniqueIdentifier>{6d2fa5f2-9717-49d5-bdc7-89c343e34843}</UniqueIdentifier>
-    </Filter>
     <Filter Include="shaders\skybox">
       <UniqueIdentifier>{702f1ed1-58d6-4b4f-8a94-61c145d478eb}</UniqueIdentifier>
     </Filter>
@@ -247,12 +184,6 @@
     <Filter Include="inc\core\bindable\depth_stencil\depth_stencil_view\src">
       <UniqueIdentifier>{5db31c6c-c802-4ea0-82f9-7bdd8c06dd40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="inc\components\skybox\inc">
-      <UniqueIdentifier>{3c324064-d617-4b70-9a90-2d383cc2508a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\skybox\src">
-      <UniqueIdentifier>{f41d90d9-cb22-42c7-a551-d573703d902c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="inc\def">
       <UniqueIdentifier>{8d938104-32b4-4784-9c72-86fbe7a49acd}</UniqueIdentifier>
     </Filter>
@@ -261,51 +192,6 @@
     </Filter>
     <Filter Include="inc\core\scene\src">
       <UniqueIdentifier>{25df1893-5355-441d-a6a7-60a68604dac4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\light\point">
-      <UniqueIdentifier>{2dcca039-2712-4ad6-a86b-4a6054fd70d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\light\dir">
-      <UniqueIdentifier>{2cde1c3b-e917-4524-bc7a-9fd2d52241b9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\light\light">
-      <UniqueIdentifier>{1a840c0b-545d-452e-8cd6-33d22654e630}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\light\point\inc">
-      <UniqueIdentifier>{de7b597c-d5bd-485a-81d3-eeec52d20bc2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\light\point\src">
-      <UniqueIdentifier>{265947a4-0688-4219-832a-98dad76aff8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\light\dir\inc">
-      <UniqueIdentifier>{3b971a52-956e-4b69-96de-f67d5bf0fec1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\core\light\dir\src">
-      <UniqueIdentifier>{66ca72f7-220c-497b-863a-fa8adccc9d9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\skybox_material">
-      <UniqueIdentifier>{fa1a673c-5a6f-4d73-b1dd-a04699a7ab93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\skybox_material\skybox_material">
-      <UniqueIdentifier>{4f796ed2-e0a5-4ffd-a12e-91165945c10d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\material\material">
-      <UniqueIdentifier>{a5354b81-df0d-4abf-a521-c3d352f42cf9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\transform\transform">
-      <UniqueIdentifier>{97f5b94f-6d49-4738-aa7e-13c7fa33bec5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\camera\camera">
-      <UniqueIdentifier>{24e67960-1ebb-4d04-859c-6d916b002d30}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\camera\camera\inc">
-      <UniqueIdentifier>{e285e369-d18d-4acc-adeb-e4f669adb0b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\camera\camera\src">
-      <UniqueIdentifier>{80bb8b57-84ed-4fc8-9a5f-75cb2bf90b0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="inc\components\camera\camera_shader">
-      <UniqueIdentifier>{4f5dc803-cdc2-4777-82e0-3b4b54ab2769}</UniqueIdentifier>
     </Filter>
     <Filter Include="shaders\post_effects">
       <UniqueIdentifier>{654e95f3-2895-4830-a25b-d1914b924bd5}</UniqueIdentifier>
@@ -355,15 +241,6 @@
     <Filter Include="renderer\render_graph">
       <UniqueIdentifier>{7310268e-7b56-4677-85df-b941383f25ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="renderer\render_graph\input">
-      <UniqueIdentifier>{56539128-50cd-4385-aa16-c33dbff94b22}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="renderer\render_graph\pass">
-      <UniqueIdentifier>{4f8c3cb6-3284-4c40-aa7a-3677fffe47ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="renderer\render_graph\output">
-      <UniqueIdentifier>{d86cb673-67ab-46cc-88f8-f295f45ad005}</UniqueIdentifier>
-    </Filter>
     <Filter Include="inc\core\bindable\render_target">
       <UniqueIdentifier>{e8956cce-fc24-43d4-899e-bbcc6319ce08}</UniqueIdentifier>
     </Filter>
@@ -391,11 +268,176 @@
     <Filter Include="inc\exception\win_exception">
       <UniqueIdentifier>{ce293bb0-580a-464c-8f67-5590cd121825}</UniqueIdentifier>
     </Filter>
+    <Filter Include="inc\exception\render_graph_exception">
+      <UniqueIdentifier>{1acbf487-f41f-40a4-94a5-c81dbad097be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\viewpost">
+      <UniqueIdentifier>{e19a6c2f-6d2b-4b3b-abd7-22b00c9501ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\viewpost\inc">
+      <UniqueIdentifier>{d6c5c57c-e374-45a6-891f-b7e9abaf746a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\viewpost\src">
+      <UniqueIdentifier>{284365a9-1af6-427c-8661-13e357f6f531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\render_graph\render_graph">
+      <UniqueIdentifier>{56539128-50cd-4385-aa16-c33dbff94b22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\render_graph\rg_lib">
+      <UniqueIdentifier>{063be001-d5be-4674-8ce5-3a4f9316451c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\render_graph\rg_lib\render_graphs">
+      <UniqueIdentifier>{4bfa4739-5bce-4530-91a0-d94bce4305b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders\utils">
+      <UniqueIdentifier>{396bb24a-fbb4-4169-b548-808d214b829a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\mesh">
+      <UniqueIdentifier>{a4f1d58a-3e9f-4747-8869-5c5d4976b09a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\mesh\inc">
+      <UniqueIdentifier>{44806272-8b33-49a1-b8a5-a4bcaa75c007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\mesh\src">
+      <UniqueIdentifier>{6d2fa5f2-9717-49d5-bdc7-89c343e34843}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\managers\win_manager">
+      <UniqueIdentifier>{e9408c8e-cd48-46ac-87b1-8378673609e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\managers\win_manager\inc">
+      <UniqueIdentifier>{16b26027-2656-4955-a005-7f456850379c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\managers\win_manager\src">
+      <UniqueIdentifier>{fd1084c7-936b-4ae3-8ee2-02dc3dd0d949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\window">
+      <UniqueIdentifier>{b1389c78-f5e2-4c2a-96ae-6bd925325f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\window\inc">
+      <UniqueIdentifier>{45b6e06e-e510-46de-bae4-68b9f63aa44d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\window\src">
+      <UniqueIdentifier>{37d240c3-6307-4e0f-a52d-191bfeeaf429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\bindable\inc">
+      <UniqueIdentifier>{bd6236be-990b-456c-8a53-2424bb2f1a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\bindable\bindable\src">
+      <UniqueIdentifier>{f1cd5c61-172b-43d8-80f9-e3411e058d13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\render_graph\rg_lib\base_passes">
+      <UniqueIdentifier>{55ca0e8f-23cc-49a0-a890-0731f38254d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\render_graph\rg_lib\passes">
+      <UniqueIdentifier>{3f979d64-0a31-4d05-b6b8-211b4442612e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components">
+      <UniqueIdentifier>{e3da5a10-39cf-476e-8e40-b13d8db34251}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\transform">
+      <UniqueIdentifier>{90131e27-97bf-4bc9-bab8-54a2268fb564}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\transform\transform">
+      <UniqueIdentifier>{97f5b94f-6d49-4738-aa7e-13c7fa33bec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\camera">
+      <UniqueIdentifier>{51cef2e1-373c-402b-b5e6-7493531c3fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\camera\camera">
+      <UniqueIdentifier>{24e67960-1ebb-4d04-859c-6d916b002d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\camera\camera\inc">
+      <UniqueIdentifier>{e285e369-d18d-4acc-adeb-e4f669adb0b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\camera\camera\src">
+      <UniqueIdentifier>{80bb8b57-84ed-4fc8-9a5f-75cb2bf90b0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\camera\camera_shader">
+      <UniqueIdentifier>{4f5dc803-cdc2-4777-82e0-3b4b54ab2769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\texture2d">
+      <UniqueIdentifier>{91890ce6-d602-448e-8a22-5a6c70da4295}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\texture2d\inc">
+      <UniqueIdentifier>{41f2f772-eff0-4b1a-bbce-653aede13398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\texture2d\src">
+      <UniqueIdentifier>{11e9aa64-afa7-4040-94dc-2f008e316641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\material">
+      <UniqueIdentifier>{e2303559-2654-4ff3-ab7f-811fb0b4fc12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\material\material">
+      <UniqueIdentifier>{a5354b81-df0d-4abf-a521-c3d352f42cf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\shader_include">
+      <UniqueIdentifier>{bb7f65da-3fc6-4d97-8903-981a795dc09a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\skybox">
+      <UniqueIdentifier>{146bdaee-27c8-4400-b37a-3ef22aecffda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\skybox\inc">
+      <UniqueIdentifier>{3c324064-d617-4b70-9a90-2d383cc2508a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\skybox\src">
+      <UniqueIdentifier>{f41d90d9-cb22-42c7-a551-d573703d902c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\skybox_material">
+      <UniqueIdentifier>{fa1a673c-5a6f-4d73-b1dd-a04699a7ab93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\skybox_material\skybox_material">
+      <UniqueIdentifier>{4f796ed2-e0a5-4ffd-a12e-91165945c10d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\rg_components">
+      <UniqueIdentifier>{75461327-5772-404b-9d10-8db68d464424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\rg_components\input">
+      <UniqueIdentifier>{4f8c3cb6-3284-4c40-aa7a-3677fffe47ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\rg_components\source">
+      <UniqueIdentifier>{d86cb673-67ab-46cc-88f8-f295f45ad005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\rg_components\pass">
+      <UniqueIdentifier>{c1a1ee7b-46fc-4993-9218-4d9eaf494d21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\components\component">
+      <UniqueIdentifier>{fadcdffc-8caf-47df-97b5-edda323a0323}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\rg_components\rg_component">
+      <UniqueIdentifier>{592cd81a-0ea8-4644-bacb-9d454779af4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\entity\light">
+      <UniqueIdentifier>{c21b460a-0567-4d9f-bc3c-695f97177691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\entity\light\point">
+      <UniqueIdentifier>{2dcca039-2712-4ad6-a86b-4a6054fd70d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\entity\light\point\inc">
+      <UniqueIdentifier>{de7b597c-d5bd-485a-81d3-eeec52d20bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\entity\light\point\src">
+      <UniqueIdentifier>{265947a4-0688-4219-832a-98dad76aff8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\entity\light\dir">
+      <UniqueIdentifier>{2cde1c3b-e917-4524-bc7a-9fd2d52241b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\entity\light\dir\inc">
+      <UniqueIdentifier>{3b971a52-956e-4b69-96de-f67d5bf0fec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\entity\light\dir\src">
+      <UniqueIdentifier>{66ca72f7-220c-497b-863a-fa8adccc9d9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\entity\light\light">
+      <UniqueIdentifier>{1a840c0b-545d-452e-8cd6-33d22654e630}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\entity\light\light\light">
+      <UniqueIdentifier>{83e87ecd-08ab-47d5-8cd3-9e6a9cd70a2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\core\entity\bindable_entity">
+      <UniqueIdentifier>{17709447-e964-4d10-a2b6-edabebde0978}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="win_main.cpp">
-      <Filter>renderer\src</Filter>
-    </ClCompile>
     <ClCompile Include="grng_d3d.cpp">
       <Filter>inc\core\d3d</Filter>
     </ClCompile>
@@ -404,9 +446,6 @@
     </ClCompile>
     <ClCompile Include="grng_object.cpp">
       <Filter>inc\core\entity\object</Filter>
-    </ClCompile>
-    <ClCompile Include="grng_light_manager.cpp">
-      <Filter>renderer\managers\light_manager</Filter>
     </ClCompile>
     <ClCompile Include="grng_mouse.cpp">
       <Filter>inc\core\input\mouse</Filter>
@@ -421,43 +460,40 @@
       <Filter>inc\core\input\mouse</Filter>
     </ClCompile>
     <ClCompile Include="grng_window_cursor.cpp">
-      <Filter>inc\windows\window\src</Filter>
+      <Filter>inc\window\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_window_update.cpp">
-      <Filter>inc\windows\window\src</Filter>
+      <Filter>inc\window\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_window.cpp">
-      <Filter>inc\windows\window\src</Filter>
+      <Filter>inc\window\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_window_draw.cpp">
-      <Filter>inc\windows\window\src</Filter>
+      <Filter>inc\window\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_window_misc.cpp">
-      <Filter>inc\windows\window\src</Filter>
+      <Filter>inc\window\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_win_manager.cpp">
-      <Filter>inc\windows\win_manager\src</Filter>
+      <Filter>renderer\managers\win_manager\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_wm_cursor.cpp">
-      <Filter>inc\windows\win_manager\src</Filter>
+      <Filter>renderer\managers\win_manager\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_wm_resources.cpp">
-      <Filter>inc\windows\win_manager\src</Filter>
+      <Filter>renderer\managers\win_manager\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_wm_update.cpp">
-      <Filter>inc\windows\win_manager\src</Filter>
+      <Filter>renderer\managers\win_manager\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_wm_win_proc.cpp">
-      <Filter>inc\windows\win_manager\src</Filter>
+      <Filter>renderer\managers\win_manager\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_wm_window.cpp">
-      <Filter>inc\windows\win_manager\src</Filter>
+      <Filter>renderer\managers\win_manager\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_wm_misc.cpp">
-      <Filter>inc\windows\win_manager\src</Filter>
-    </ClCompile>
-    <ClCompile Include="grng_manager_ptr.cpp">
-      <Filter>inc\containers\manager</Filter>
+      <Filter>renderer\managers\win_manager\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_texture.cpp">
       <Filter>inc\core\bindable\texture\src</Filter>
@@ -526,25 +562,25 @@
       <Filter>inc\core\bindable\shader\shader\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_texture2d.cpp">
-      <Filter>inc\components\texture2d\src</Filter>
+      <Filter>inc\core\components\texture2d\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_texture2d_data.cpp">
-      <Filter>inc\components\texture2d\src</Filter>
+      <Filter>inc\core\components\texture2d\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_id3d.cpp">
       <Filter>inc\core\d3d\id3d</Filter>
     </ClCompile>
     <ClCompile Include="grng_mesh_data.cpp">
-      <Filter>inc\components\mesh\src</Filter>
+      <Filter>inc\core\bindable\mesh\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_mesh_d3d.cpp">
-      <Filter>inc\components\mesh\src</Filter>
+      <Filter>inc\core\bindable\mesh\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_mesh_obj.cpp">
-      <Filter>inc\components\mesh\src</Filter>
+      <Filter>inc\core\bindable\mesh\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_mesh.cpp">
-      <Filter>inc\components\mesh\src</Filter>
+      <Filter>inc\core\bindable\mesh\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_rasterizer_state.cpp">
       <Filter>inc\core\bindable\rasterizer_state\src</Filter>
@@ -562,13 +598,13 @@
       <Filter>inc\utils</Filter>
     </ClCompile>
     <ClCompile Include="grng_skybox.cpp">
-      <Filter>inc\components\skybox\src</Filter>
+      <Filter>inc\core\components\skybox\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_skybox_data.cpp">
-      <Filter>inc\components\skybox\src</Filter>
+      <Filter>inc\core\components\skybox\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_skybox_def.cpp">
-      <Filter>inc\components\skybox\src</Filter>
+      <Filter>inc\core\components\skybox\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_scene_light.cpp">
       <Filter>inc\core\scene\src</Filter>
@@ -583,46 +619,46 @@
       <Filter>inc\core\scene\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_point_light.cpp">
-      <Filter>inc\core\light\point\src</Filter>
+      <Filter>inc\core\entity\light\point\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_point_light_data.cpp">
-      <Filter>inc\core\light\point\src</Filter>
+      <Filter>inc\core\entity\light\point\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_point_light_get.cpp">
-      <Filter>inc\core\light\point\src</Filter>
+      <Filter>inc\core\entity\light\point\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_dir_light.cpp">
-      <Filter>inc\core\light\dir\src</Filter>
+      <Filter>inc\core\entity\light\dir\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_dir_light_data.cpp">
-      <Filter>inc\core\light\dir\src</Filter>
+      <Filter>inc\core\entity\light\dir\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_dir_light_get.cpp">
-      <Filter>inc\core\light\dir\src</Filter>
+      <Filter>inc\core\entity\light\dir\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_skybox_material.cpp">
-      <Filter>inc\components\skybox_material\skybox_material</Filter>
+      <Filter>inc\core\components\skybox_material\skybox_material</Filter>
     </ClCompile>
     <ClCompile Include="grng_material.cpp">
-      <Filter>inc\components\material\material</Filter>
+      <Filter>inc\core\components\material\material</Filter>
     </ClCompile>
     <ClCompile Include="grng_transform.cpp">
-      <Filter>inc\components\transform\transform</Filter>
+      <Filter>inc\core\components\transform\transform</Filter>
     </ClCompile>
     <ClCompile Include="grng_camera_def.cpp">
-      <Filter>inc\components\camera\camera\src</Filter>
+      <Filter>inc\core\components\camera\camera\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_camera.cpp">
-      <Filter>inc\components\camera\camera\src</Filter>
+      <Filter>inc\core\components\camera\camera\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_camera_update.cpp">
-      <Filter>inc\components\camera\camera\src</Filter>
+      <Filter>inc\core\components\camera\camera\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_camera_data.cpp">
-      <Filter>inc\components\camera\camera\src</Filter>
+      <Filter>inc\core\components\camera\camera\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_camera_get.cpp">
-      <Filter>inc\components\camera\camera\src</Filter>
+      <Filter>inc\core\components\camera\camera\src</Filter>
     </ClCompile>
     <ClCompile Include="grng_deferred_buffer_get.cpp">
       <Filter>renderer\deferred_buffer</Filter>
@@ -648,13 +684,28 @@
     <ClCompile Include="grng_resource_manager.cpp">
       <Filter>inc\core\grng_resource_manager</Filter>
     </ClCompile>
+    <ClCompile Include="grng_rg_exception.cpp">
+      <Filter>inc\exception\render_graph_exception</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_viewport.cpp">
+      <Filter>inc\core\bindable\viewpost\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_viewport_data.cpp">
+      <Filter>inc\core\bindable\viewpost\src</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_bindable.cpp">
+      <Filter>inc\core\bindable\bindable\src</Filter>
+    </ClCompile>
+    <ClCompile Include="win_main.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="grng_render_texture_misc.cpp">
+      <Filter>inc\core\bindable\render_texture\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grng_piston.h">
       <Filter>inc\containers\piston</Filter>
-    </ClInclude>
-    <ClInclude Include="grng_bindable.h">
-      <Filter>inc\core\bindable\bindable</Filter>
     </ClInclude>
     <ClInclude Include="grng_d3d.h">
       <Filter>inc\core\d3d</Filter>
@@ -669,7 +720,7 @@
       <Filter>inc\core\entity\object</Filter>
     </ClInclude>
     <ClInclude Include="grng_components.h">
-      <Filter>inc\components</Filter>
+      <Filter>inc\core\components</Filter>
     </ClInclude>
     <ClInclude Include="grng_bindables.h">
       <Filter>inc\core\bindable</Filter>
@@ -681,7 +732,7 @@
       <Filter>inc\core\entity</Filter>
     </ClInclude>
     <ClInclude Include="grng_transform_shader.h">
-      <Filter>inc\components\transform</Filter>
+      <Filter>inc\core\components\transform</Filter>
     </ClInclude>
     <ClInclude Include="grng_gfx.h">
       <Filter>inc\core\gfx</Filter>
@@ -690,7 +741,7 @@
       <Filter>renderer\managers\light_manager</Filter>
     </ClInclude>
     <ClInclude Include="grng_shader_include.h">
-      <Filter>inc\components\shader_include</Filter>
+      <Filter>inc\core\components\shader_include</Filter>
     </ClInclude>
     <ClInclude Include="grng_utils.h">
       <Filter>inc\utils</Filter>
@@ -702,10 +753,10 @@
       <Filter>renderer\managers\entity_manager</Filter>
     </ClInclude>
     <ClInclude Include="grng_camera_deferred_shader.h">
-      <Filter>inc\components\camera\camera_shader</Filter>
+      <Filter>inc\core\components\camera\camera_shader</Filter>
     </ClInclude>
     <ClInclude Include="grng_material_def.h">
-      <Filter>inc\components\material</Filter>
+      <Filter>inc\core\components\material</Filter>
     </ClInclude>
     <ClInclude Include="grng_math.h">
       <Filter>inc\utils</Filter>
@@ -716,17 +767,14 @@
     <ClInclude Include="grng_input.h">
       <Filter>inc\core\input</Filter>
     </ClInclude>
-    <ClInclude Include="grng_window_def.h">
-      <Filter>inc\windows</Filter>
-    </ClInclude>
     <ClInclude Include="cam_controller.h">
       <Filter>renderer\misc\cam_controller</Filter>
     </ClInclude>
     <ClInclude Include="grng_window.h">
-      <Filter>inc\windows\window\inc</Filter>
+      <Filter>inc\window\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_win_manager.h">
-      <Filter>inc\windows\win_manager\inc</Filter>
+      <Filter>renderer\managers\win_manager\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_scene_manager.h">
       <Filter>renderer\managers\scene_manager</Filter>
@@ -734,14 +782,8 @@
     <ClInclude Include="grng_bindable_manager.h">
       <Filter>renderer\managers\bindable_manager</Filter>
     </ClInclude>
-    <ClInclude Include="grng_manager_ptr.h">
-      <Filter>inc\containers\manager</Filter>
-    </ClInclude>
-    <ClInclude Include="grng_component.h">
-      <Filter>inc\components</Filter>
-    </ClInclude>
     <ClInclude Include="grng_material_shader.h">
-      <Filter>inc\components\material</Filter>
+      <Filter>inc\core\components\material</Filter>
     </ClInclude>
     <ClInclude Include="grng_component_manager.h">
       <Filter>renderer\managers\component_manager</Filter>
@@ -789,10 +831,10 @@
       <Filter>inc\core\bindable\shader\shader\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_texture2d.h">
-      <Filter>inc\components\texture2d\inc</Filter>
+      <Filter>inc\core\components\texture2d\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_mesh.h">
-      <Filter>inc\components\mesh\inc</Filter>
+      <Filter>inc\core\bindable\mesh\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_rasterizer_state.h">
       <Filter>inc\core\bindable\rasterizer_state\inc</Filter>
@@ -804,13 +846,13 @@
       <Filter>inc\core\bindable\depth_stencil</Filter>
     </ClInclude>
     <ClInclude Include="grng_skybox.h">
-      <Filter>inc\components\skybox\inc</Filter>
+      <Filter>inc\core\components\skybox\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_skybox_material_shader.h">
-      <Filter>inc\components\skybox_material</Filter>
+      <Filter>inc\core\components\skybox_material</Filter>
     </ClInclude>
     <ClInclude Include="grng_skybox_material_def.h">
-      <Filter>inc\components\skybox_material</Filter>
+      <Filter>inc\core\components\skybox_material</Filter>
     </ClInclude>
     <ClInclude Include="grng_def_materials.h">
       <Filter>inc\def</Filter>
@@ -839,56 +881,35 @@
     <ClInclude Include="grng_def_skybox_materials.h">
       <Filter>inc\def</Filter>
     </ClInclude>
-    <ClInclude Include="grng_scene_def.h">
-      <Filter>inc\core\scene\inc</Filter>
-    </ClInclude>
     <ClInclude Include="grng_scene.h">
       <Filter>inc\core\scene\inc</Filter>
     </ClInclude>
-    <ClInclude Include="grng_lights.h">
-      <Filter>inc\core\light\light</Filter>
-    </ClInclude>
-    <ClInclude Include="grng_light.h">
-      <Filter>inc\core\light\light</Filter>
-    </ClInclude>
     <ClInclude Include="grng_point_light.h">
-      <Filter>inc\core\light\point\inc</Filter>
+      <Filter>inc\core\entity\light\point\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_dir_light.h">
-      <Filter>inc\core\light\dir\inc</Filter>
+      <Filter>inc\core\entity\light\dir\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_skybox_material.h">
-      <Filter>inc\components\skybox_material\skybox_material</Filter>
+      <Filter>inc\core\components\skybox_material\skybox_material</Filter>
     </ClInclude>
     <ClInclude Include="grng_material.h">
-      <Filter>inc\components\material\material</Filter>
+      <Filter>inc\core\components\material\material</Filter>
     </ClInclude>
     <ClInclude Include="grng_transform.h">
-      <Filter>inc\components\transform\transform</Filter>
+      <Filter>inc\core\components\transform\transform</Filter>
     </ClInclude>
     <ClInclude Include="grng_camera.h">
-      <Filter>inc\components\camera\camera\inc</Filter>
+      <Filter>inc\core\components\camera\camera\inc</Filter>
     </ClInclude>
     <ClInclude Include="grng_camera_post_effects_shader.h">
-      <Filter>inc\components\camera\camera_shader</Filter>
+      <Filter>inc\core\components\camera\camera_shader</Filter>
     </ClInclude>
     <ClInclude Include="grng_deferred_buffer.h">
       <Filter>renderer\deferred_buffer</Filter>
     </ClInclude>
-    <ClInclude Include="grng_deffered_def.h">
-      <Filter>renderer\deferred_buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="render_graph.h">
-      <Filter>renderer\render_graph</Filter>
-    </ClInclude>
-    <ClInclude Include="grng_rg_input.h">
-      <Filter>renderer\render_graph\input</Filter>
-    </ClInclude>
-    <ClInclude Include="grng_rg_output.h">
-      <Filter>renderer\render_graph\output</Filter>
-    </ClInclude>
-    <ClInclude Include="grng_pass.h">
-      <Filter>renderer\render_graph\pass</Filter>
+    <ClInclude Include="grng_rg_source.h">
+      <Filter>inc\core\rg_components\source</Filter>
     </ClInclude>
     <ClInclude Include="grng_win_exc_macros.h">
       <Filter>inc\exception\macros</Filter>
@@ -917,12 +938,99 @@
     <ClInclude Include="grng_resource_manager.h">
       <Filter>inc\core\grng_resource_manager</Filter>
     </ClInclude>
+    <ClInclude Include="grng_rg_exception.h">
+      <Filter>inc\exception\render_graph_exception</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_exc_macros.h">
+      <Filter>inc\exception\macros</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_def_render_graph.h">
+      <Filter>inc\def</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_def_window.h">
+      <Filter>inc\def</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_viewport.h">
+      <Filter>inc\core\bindable\viewpost\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_sources.h">
+      <Filter>inc\core\rg_components\source</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_buffer_source.h">
+      <Filter>inc\core\rg_components\source</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_bindable_source.h">
+      <Filter>inc\core\rg_components\source</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_pass.h">
+      <Filter>inc\core\rg_components\pass</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_inputs.h">
+      <Filter>inc\core\rg_components\input</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_bindalbe_input.h">
+      <Filter>inc\core\rg_components\input</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_buffer_input.h">
+      <Filter>inc\core\rg_components\input</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_input.h">
+      <Filter>inc\core\rg_components\input</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_render_graph.h">
+      <Filter>renderer\render_graph\render_graph</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_fullscreen_pass.h">
+      <Filter>renderer\render_graph\rg_lib\base_passes</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_bindable_pass.h">
+      <Filter>renderer\render_graph\rg_lib\base_passes</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_def_shaders.h">
+      <Filter>inc\def</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_bindable.h">
+      <Filter>inc\core\bindable\bindable\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_buffer_resource.h">
+      <Filter>inc\core\bindable\bindable\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_buffer_clear_pass.h">
+      <Filter>renderer\render_graph\rg_lib\passes</Filter>
+    </ClInclude>
+    <ClInclude Include="rg.h">
+      <Filter>renderer\render_graph\rg_lib\render_graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_component.h">
+      <Filter>inc\core\components\component</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_component.h">
+      <Filter>inc\core\rg_components\rg_component</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_rg_components.h">
+      <Filter>inc\core\rg_components</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_lights.h">
+      <Filter>inc\core\entity\light</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_def_scene.h">
+      <Filter>inc\def</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_light.h">
+      <Filter>inc\core\entity\light\light\light</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_light_shader.h">
+      <Filter>inc\core\entity\light\light</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_def_deffered.h">
+      <Filter>inc\def</Filter>
+    </ClInclude>
+    <ClInclude Include="grng_bindable_entity.h">
+      <Filter>inc\core\entity\bindable_entity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="deferred_fs.hlsl">
-      <Filter>shaders\deferred</Filter>
-    </FxCompile>
-    <FxCompile Include="deferred_vs.hlsl">
       <Filter>shaders\deferred</Filter>
     </FxCompile>
     <FxCompile Include="g_buffer_pass_vs.hlsl">
@@ -940,11 +1048,11 @@
     <FxCompile Include="skybox_fs.hlsl">
       <Filter>shaders\skybox</Filter>
     </FxCompile>
-    <FxCompile Include="post_effects_vs.hlsl">
-      <Filter>shaders\post_effects</Filter>
-    </FxCompile>
     <FxCompile Include="post_effects_fs.hlsl">
       <Filter>shaders\post_effects</Filter>
+    </FxCompile>
+    <FxCompile Include="fullscreen_vs.hlsl">
+      <Filter>shaders\utils</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

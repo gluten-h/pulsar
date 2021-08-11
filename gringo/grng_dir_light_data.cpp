@@ -12,17 +12,10 @@ void			grng_dir_light::set_params(const XMFLOAT3 &dir, const XMFLOAT3 &color)
 
 void			grng_dir_light::set_shader_light(GRNG_SHADER_LIGHT &sl)
 {
-	sl.type = (int)this->type;
+	sl.type = (int)this->light_type;
 
 	sl.dir = this->dir;
 	sl.color = this->color;
-}
-
-GRNG_LIGHT		*grng_dir_light::create_manager_ptr()
-{
-	grng_dir_light *light = new grng_dir_light;
-
-	return (light);
 }
 
 void			grng_dir_light::set(const XMFLOAT3 &dir, const XMFLOAT3 &color)
@@ -38,4 +31,37 @@ void			grng_dir_light::set_dir(const XMFLOAT3 &dir)
 void			grng_dir_light::set_color(const XMFLOAT3 &color)
 {
 	this->color = color;
+}
+
+
+grng_dir_light	*grng_dir_light::create()
+{
+	grng_dir_light *dl = new grng_dir_light;
+	dl->id = GRNG_LM.add(dl);
+	if (dl->id == -1)
+	{
+		delete dl;
+		return (NULL);
+	}
+	dl->is_alloc = true;
+
+	return (dl);
+}
+
+void			grng_dir_light::destroy()
+{
+	if (!this->is_alloc)
+		return;
+	this->is_alloc = false;
+
+	for (auto &it : this->scene_local_id)
+	{
+		GRNG_SCENE *scene = GRNG_SM.get_data_secure(it.first);
+		if (scene)
+			scene->remove_light(it.second);
+	}
+	this->scene_local_id.clear();
+
+	GRNG_LM.remove_secure(this);
+	delete this;
 }

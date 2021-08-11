@@ -63,9 +63,27 @@ void				grng_render_texture::set_slot(UINT slot)
 	this->slot = slot;
 }
 
-GRNG_BINDABLE		*grng_render_texture::create_manager_ptr()
+void				grng_render_texture::set_mode(GRNG_BIND_MODE mode)
+{
+	this->mode = mode;
+}
+
+void				grng_render_texture::set_ds_view(ID3D11DepthStencilView *ds_view)
+{
+	this->ds_view = ds_view;
+}
+
+
+grng_render_texture		*grng_render_texture::create()
 {
 	grng_render_texture *rt = new grng_render_texture;
+	rt->id = GRNG_BM.add(rt);
+	if (rt->id == -1)
+	{
+		delete rt;
+		return (NULL);
+	}
+	rt->is_alloc = true;
 
 	return (rt);
 }

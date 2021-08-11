@@ -24,7 +24,7 @@ using GRNG_IPISTON = grng_ipiston<T, MAX_SIZE>;
 template <typename T, size_t MAX_SIZE>
 class grng_piston
 {
-public:
+private:
 	typedef struct					grng_piston_data
 	{
 		T							data;
@@ -112,7 +112,6 @@ public:
 	{
 		this->remove_data(id);
 	}
-
 	void					remove_secure(unsigned int id)
 	{
 		if (id >= MAX_SIZE || this->data[id].interface_id == -1)
@@ -121,11 +120,23 @@ public:
 		this->remove_data(id);
 	}
 
+	void					clear()
+	{
+		int i = -1;
+		while (++i < this->ipiston.size)
+		{
+			this->data[this->ipiston.data[i].global_id].interface_id = -1;
+			this->ipiston.data[i].data = NULL;
+			this->ipiston.data[i].global_id = -1;
+		}
+		this->ipiston.size = 0;
+		this->data_iter = 0;
+	}
+
 	void					set(unsigned int id, const T &value)
 	{
 		this->data[id].data = value;
 	}
-
 	void					set_secure(unsigned int id, const T &value)
 	{
 		if (id >= MAX_SIZE || this->data[id].interface_id == -1)
@@ -139,7 +150,6 @@ public:
 			return (NULL);
 		return (&this->data[id].data);
 	}
-
 	T						*get(unsigned int id)
 	{
 		return (&this->data[id].data);

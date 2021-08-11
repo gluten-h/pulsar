@@ -37,9 +37,17 @@ ID3D11DepthStencilState		*grng_depth_stencil_state::get_state()
 	return (this->ds_state);
 }
 
-GRNG_BINDABLE		*grng_depth_stencil_state::create_manager_ptr()
-{
-	grng_depth_stencil_state *dss = new grng_depth_stencil_state;
 
-	return (dss);
+grng_depth_stencil_state	*grng_depth_stencil_state::create()
+{
+	grng_depth_stencil_state *ds_state = new grng_depth_stencil_state;
+	ds_state->id = GRNG_BM.add(ds_state);
+	if (ds_state->id == -1)
+	{
+		delete ds_state;
+		return (NULL);
+	}
+	ds_state->is_alloc = true;
+
+	return (ds_state);
 }

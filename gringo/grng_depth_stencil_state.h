@@ -1,13 +1,11 @@
 #pragma once
 
 #include "grng_bindable.h"
+#include "grng_bindable_entity.h"
 
 
 class grng_depth_stencil_state : public GRNG_BINDABLE
 {
-private:
-	friend class grng_manager_ptr;
-
 private:
 	ID3D11DepthStencilState		*ds_state = NULL;
 
@@ -17,7 +15,16 @@ private:
 
 	void		copy_assign(const grng_depth_stencil_state &dss);
 
-	static GRNG_BINDABLE		*create_manager_ptr();
+protected:
+	void		remove_from_entities() override
+	{
+		for (auto &it : this->entities)
+			it->_remove_bindable_ignore_entity(this);
+		this->entities.clear();
+	}
+
+public:
+	using GRNG_BINDABLE::bind;
 
 public:
 	grng_depth_stencil_state		&operator=(const grng_depth_stencil_state &dss);
@@ -28,9 +35,17 @@ public:
 	void						set(BOOL depth_enable, D3D11_COMPARISON_FUNC depth_comp_func, D3D11_DEPTH_WRITE_MASK depth_write_mask);
 	ID3D11DepthStencilState		*get_state();
 
+	static grng_depth_stencil_state		*create();
+
 	void		bind() const override
 	{
 		this->device_context->OMSetDepthStencilState(this->ds_state, 1u);
+		GRNG_BINDABLE::add_unbind(*this);
+	}
+
+	void		unbind() const override
+	{
+		this->device_context->OMSetDepthStencilState(NULL, 1u);
 	}
 };
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "grng_light.h"
+#include "grng_scene.h"
 
 
 class grng_dir_light : public GRNG_LIGHT
@@ -17,8 +18,6 @@ private:
 	void		set_params(const XMFLOAT3 &dir, const XMFLOAT3 &color);
 	void		set_shader_light(GRNG_SHADER_LIGHT &sl) override;
 
-	static GRNG_LIGHT	*create_manager_ptr();
-
 	void				copy_assign(const grng_dir_light &l);
 
 public:
@@ -26,6 +25,7 @@ public:
 	grng_dir_light(const grng_dir_light &l);
 	grng_dir_light();
 	grng_dir_light(const XMFLOAT3 &dir, const XMFLOAT3 &color);
+	~grng_dir_light();
 
 	void		set(const XMFLOAT3 &dir, const XMFLOAT3 &color);
 	void		set_dir(const XMFLOAT3 &dir);
@@ -33,6 +33,9 @@ public:
 
 	XMFLOAT3	&get_dir();
 	XMFLOAT3	&get_color();
+
+	static grng_dir_light	*create();
+	void					destroy();
 };
 
 using GRNG_DIR_LIGHT = grng_dir_light;

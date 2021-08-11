@@ -35,3 +35,8 @@ grng_rasterizer_state::grng_rasterizer_state(D3D11_FILL_MODE fill_mode, D3D11_CU
 	this->type = GRNG_BINDABLE_TYPE::RASTERIZER_STATE;
 	this->set_rs_memory(fill_mode, cull_mode);
 }
+
+grng_rasterizer_state::~grng_rasterizer_state()
+{
+	this->remove_rs_memory();
+}

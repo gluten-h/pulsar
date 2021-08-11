@@ -55,7 +55,7 @@ public:
 		this->scale = scale;
 	}
 
-	void		bind()
+	void		bind(GRNG_BIND_SCOPE scope)
 	{
 		this->update_transform_matrix();
 		grng_transform::transform_shader.model = this->transform_matrix;
@@ -64,7 +64,7 @@ public:
 		grng_transform::transform_shader.norm = XMMatrixTranspose(XMMatrixInverse(NULL, this->transform_matrix));
 
 		grng_transform::transform_cbuffer.update(grng_transform::transform_shader);
-		grng_transform::transform_cbuffer.bind();
+		grng_transform::transform_cbuffer.bind(scope);
 	}
 
 

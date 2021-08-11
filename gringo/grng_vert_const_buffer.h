@@ -1,14 +1,12 @@
 #pragma once
 
 #include "grng_const_buffer.h"
+#include "grng_bindable_entity.h"
 
 
 template <typename T>
 class grng_vert_const_buffer : public GRNG_CONST_BUFFER<T>
 {
-private:
-	friend class grng_manager_ptr;
-
 private:
 	void		copy_assign(const grng_vert_const_buffer &b)
 	{
@@ -20,12 +18,16 @@ private:
 			this->buffer->AddRef();
 	}
 
-	static GRNG_BINDABLE		*create_manager_ptr()
+protected:
+	void		remove_from_entities() override
 	{
-		grng_vert_const_buffer *buffer = new grng_vert_const_buffer;
-
-		return (buffer);
+		for (auto &it : this->entities)
+			it->_remove_bindable_ignore_entity(this);
+		this->entities.clear();
 	}
+
+public:
+	using GRNG_BINDABLE::bind;
 
 public:
 	grng_vert_const_buffer	&operator=(const grng_vert_const_buffer &b)
@@ -52,9 +54,30 @@ public:
 	}
 
 
-	void	bind() const override
+	static grng_vert_const_buffer<T>		*create()
 	{
-		this->device_context->VSSetConstantBuffers(this->slot, 1, &this->buffer);
+		grng_vert_const_buffer<T> *buffer = new grng_vert_const_buffer<T>;
+		buffer->id = GRNG_BM.add(buffer);
+		if (buffer->id == -1)
+		{
+			delete buffer;
+			return (NULL);
+		}
+		buffer->is_alloc = true;
+
+		return (buffer);
+	}
+
+
+	void		bind() const override
+	{
+		this->device_context->VSSetConstantBuffers(this->slot, 1u, &this->buffer);
+		GRNG_BINDABLE::add_unbind(*this);
+	}
+
+	void		unbind() const override
+	{
+		this->device_context->VSSetConstantBuffers(this->slot, 0u, NULL);
 	}
 };
 

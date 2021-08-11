@@ -60,9 +60,17 @@ void				grng_depth_stencil_view::set(float width, float height)
 	this->set_ds_memory(width, height);
 }
 
-GRNG_BINDABLE		*grng_depth_stencil_view::create_manager_ptr()
-{
-	grng_depth_stencil_view *dsv = new grng_depth_stencil_view;
 
-	return (dsv);
+grng_depth_stencil_view		*grng_depth_stencil_view::create()
+{
+	grng_depth_stencil_view *ds_view = new grng_depth_stencil_view;
+	ds_view->id = GRNG_BM.add(ds_view);
+	if (ds_view->id == -1)
+	{
+		delete ds_view;
+		return (NULL);
+	}
+	ds_view->is_alloc = true;
+
+	return (ds_view);
 }

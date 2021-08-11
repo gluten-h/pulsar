@@ -31,9 +31,17 @@ void				grng_sampler::set_slot(UINT slot)
 	this->slot = slot;
 }
 
-GRNG_BINDABLE		*grng_sampler::create_manager_ptr()
-{
-	grng_sampler *s = new grng_sampler;
 
-	return (s);
+grng_sampler		*grng_sampler::create()
+{
+	grng_sampler *sampler = new grng_sampler;
+	sampler->id = GRNG_BM.add(sampler);
+	if (sampler->id == -1)
+	{
+		delete sampler;
+		return (NULL);
+	}
+	sampler->is_alloc = true;
+
+	return (sampler);
 }
