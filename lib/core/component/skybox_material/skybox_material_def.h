@@ -1,0 +1,9 @@
+#pragma once
+
+
+namespace PULSAR
+{
+#define SKYBOX_MATERIAL_SLOT 0u
+#define SKYBOX_MATERIAL_ENV_MAP_SLOT 0u
+#define SKYBOX_MATERIAL_EXPOSURE_MAP_SLOT 1U
+}

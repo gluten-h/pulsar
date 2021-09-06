@@ -1,1 +1,0 @@
-D:\vs_project\gringo\gringo\x64\Release\gringo.vcxproj.CopyComplete
