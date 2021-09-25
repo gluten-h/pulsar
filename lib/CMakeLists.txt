@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.20)
 
-set(LIB_SOURCES 		core/bindable/bindable/bindable.cpp
+set(LIB_SOURCES			core/bindable/bindable/bindable.cpp
 						core/bindable/cubemap/cubemap_data.cpp
 						core/bindable/cubemap/cubemap_dds.cpp
 						core/bindable/cubemap/cubemap.cpp
@@ -93,12 +93,13 @@ set(LIB_SOURCES 		core/bindable/bindable/bindable.cpp
 						window/window_draw.cpp
 						window/window_misc.cpp
 						window/window_update.cpp
-						window/window.cpp)
+						window/window.cpp
+						window/window_proc.cpp)
 set(LIB_SOURCES ${LIB_SOURCES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDES		containers/manager/manager.h
-						containers/piston/piston.h
+						containers/fixed_vector/fixed_vector.h
 
 
 						core/bindable/bindable/bindable.h
@@ -166,6 +167,8 @@ set(LIB_INCLUDES		containers/manager/manager.h
 
 						core/resource_manager/pulsar_resource_manager.h
 
+						core/render_queue/render_queue.h
+
 						core/rg_component/render_graph/render_graph.h
 						core/rg_component/rg_component/rg_component.h
 						core/rg_component/rg_input/rg_bindable_input.h
@@ -201,7 +204,7 @@ set(LIB_INCLUDES		containers/manager/manager.h
 						exception/exception/exception.h
 						exception/gfx_exception/gfx_exception.h
 						exception/macros/def_exc_macros.h
-						exception/macros/exc_macros.h
+						exception/macros/pulsar_exc.h
 						exception/macros/gfx_exc_macros.h
 						exception/macros/rg_exc_macros.h
 						exception/macros/win_exc_macros.h
@@ -221,7 +224,7 @@ set(LIB_INCLUDES ${LIB_INCLUDES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDE_DIRS	containers/manager
-						containers/piston
+						containers/fixed_vector
 
 
 						core/bindable/bindable
@@ -279,6 +282,8 @@ set(LIB_INCLUDE_DIRS	containers/manager
 						core/misc/transform
 
 						core/resource_manager
+
+						core/render_queue
 
 						core/rg_component/render_graph
 						core/rg_component/rg_component

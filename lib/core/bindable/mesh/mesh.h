@@ -54,8 +54,8 @@ namespace PULSAR
 
 		D3D_PRIMITIVE_TOPOLOGY		primitive_topology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
-		ID3D11Buffer *v_buffer = NULL;
-		ID3D11Buffer *i_buffer = NULL;
+		ID3D11Buffer	 *v_buffer = NULL;
+		ID3D11Buffer	 *i_buffer = NULL;
 
 	protected:
 		void		remove_from_entities() override
@@ -85,13 +85,13 @@ namespace PULSAR
 		~MESH();
 
 		void	set(LPCWSTR file, MESH_FILE_FORMAT file_format);
-		void	set_primitive_topology(const D3D_PRIMITIVE_TOPOLOGY &primitive_topology);
+		void	set_primitive_topology(D3D_PRIMITIVE_TOPOLOGY primitive_topology);
+
+		UINT	get_index_count() const;
 
 		static MESH		*create();
 
 		void	bind() const override;
 		void	unbind() const override;
-
-		void	draw();
 	};
 }

@@ -6,7 +6,7 @@
 
 namespace PULSAR
 {
-	struct		SHADER_LIGHT			//	TODO: MOVE IT TO ANOTHER FILE
+	struct		SHADER_LIGHT
 	{
 		int			type;
 		float		pd0[3];
@@ -24,7 +24,7 @@ namespace PULSAR
 	};
 
 
-	struct		SHADER_LIGHT_SCENE			//	TODO: MOVE IT TO ANOTHER FILE
+	struct		SHADER_LIGHT_SCENE
 	{
 		int		light_count;
 		int		pd0[3];

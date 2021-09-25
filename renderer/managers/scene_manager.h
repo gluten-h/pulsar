@@ -6,17 +6,12 @@
 
 namespace PULSAR
 {
-#define SM SCENE_MANAGER::get()
-	//const SCENE_MANAGER &SM = SCENE_MANAGER::get();
-
-
 	class SCENE;
-
 
 	class SCENE_MANAGER : public PULSAR::MANAGER<SCENE, PULSAR::MAX_SCENE_COUNT>
 	{
 	public:
-		static SCENE_MANAGER	&get()
+		static SCENE_MANAGER	&get_instance()
 		{
 			static SCENE_MANAGER manager;
 

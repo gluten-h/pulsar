@@ -1,7 +1,7 @@
 #pragma once
 
 #include "pulsar_id3d.h"
-#include "exc_macros.h"
+#include "pulsar_exc.h"
 
 
 namespace PULSAR

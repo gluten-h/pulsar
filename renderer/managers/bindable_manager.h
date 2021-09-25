@@ -6,17 +6,12 @@
 
 namespace PULSAR
 {
-#define BM BINDABLE_MANAGER::get()
-	//const BINDABLE_MANAGER &BM = BINDABLE_MANAGER::get();
-
-
 	class BINDABLE;
-
 
 	class BINDABLE_MANAGER : public PULSAR::MANAGER<BINDABLE, PULSAR::MAX_BINDABLE_COUNT>
 	{
 	public:
-		static BINDABLE_MANAGER		&get()
+		static BINDABLE_MANAGER		&get_instance()
 		{
 			static BINDABLE_MANAGER manager;
 

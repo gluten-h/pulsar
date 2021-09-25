@@ -4,12 +4,9 @@
 
 void		PULSAR::SCENE::draw()
 {
-	//this->entity_manager.draw();
-
-	int i = -1;
-	while (++i < this->ientity->size)
+	for (auto &it : this->entity_manager)
 	{
-		(*this->ientity->data[i].data)->draw();
+		it.data->draw();
 	}
 }
 

@@ -12,7 +12,7 @@ const char		*PULSAR::RG_EXCEPTION::what() const noexcept
 	std::ostringstream oss;
 
 	oss << this->get_type()
-		<< "[ERROR MESSAGE] " << this->err_msg
+		<< "\n[ERROR MESSAGE] " << this->err_msg
 		<< "\n\n" << this->get_origin_string();
 	this->what_buffer = oss.str();
 

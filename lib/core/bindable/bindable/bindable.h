@@ -1,9 +1,9 @@
 #pragma once
 
 #include "pulsar_id3d.h"
-#include "exc_macros.h"
+#include "pulsar_exc.h"
 #include "buffer_resource.h"
-#include "piston.h"
+#include "fixed_vector.h"
 #include "def_misc.h"
 #include "bindable_manager.h"
 
@@ -53,14 +53,8 @@ namespace PULSAR
 	class BINDABLE : public PULSAR::PULSAR_ID3D
 	{
 	private:
-		friend class ENTITY;			//	TODO: AVOID THIS
-
-	private:
-		static PULSAR::PISTON<PULSAR::BINDABLE*, PULSAR::MAX_BINDABLE_COUNT>			local_unbinds;
-		static const PULSAR::IPISTON<PULSAR::BINDABLE*, PULSAR::MAX_BINDABLE_COUNT>		*local_iunbinds;
-
-		static PULSAR::PISTON<PULSAR::BINDABLE*, PULSAR::MAX_BINDABLE_COUNT>			global_unbinds;
-		static const PULSAR::IPISTON<PULSAR::BINDABLE*, PULSAR::MAX_BINDABLE_COUNT>		*global_iunbinds;
+		static PULSAR::FIXED_VECTOR<PULSAR::BINDABLE*, PULSAR::MAX_BINDABLE_COUNT>		local_unbinds;
+		static PULSAR::FIXED_VECTOR<PULSAR::BINDABLE*, PULSAR::MAX_BINDABLE_COUNT>		global_unbinds;
 
 	protected:
 		int		id = -1;
@@ -74,7 +68,7 @@ namespace PULSAR
 
 		static BINDABLE		*add_to_manager(BINDABLE *bindable)
 		{
-			bindable->id = BM.add(bindable);
+			bindable->id = PULSAR::BINDABLE_MANAGER::get_instance().add(bindable);
 			if (bindable->id == -1)
 			{
 				delete bindable;
@@ -130,16 +124,16 @@ namespace PULSAR
 
 		static void		unbind_local()
 		{
-			int i = -1;
-			while (++i < BINDABLE::local_iunbinds->size)
-				(*BINDABLE::local_iunbinds->data[i].data)->unbind();
+			for (auto &it : BINDABLE::local_unbinds)
+				it.data->unbind();
+
 			BINDABLE::local_unbinds.clear();
 		}
 		static void		unbind_global()
 		{
-			int i = -1;
-			while (++i < BINDABLE::global_iunbinds->size)
-				(*BINDABLE::global_iunbinds->data[i].data)->unbind();
+			for (auto &it : BINDABLE::global_unbinds)
+				it.data->unbind();
+
 			BINDABLE::global_unbinds.clear();
 		}
 		static void		unbind_all()
@@ -156,7 +150,7 @@ namespace PULSAR
 		{
 			this->entities.erase(entity);
 		}
-
+		
 
 		void	destroy()
 		{
@@ -165,12 +159,12 @@ namespace PULSAR
 			this->is_alloc = false;
 
 			this->remove_from_entities();
-			PULSAR::BM.remove_secure(this);
+			PULSAR::BINDABLE_MANAGER::get_instance().remove(this);
 			delete this;
 		}
 
 		virtual void	bind() const = 0;
-		void			bind(PULSAR::BIND_SCOPE scope) const
+		void	bind(PULSAR::BIND_SCOPE scope) const
 		{
 			this->scope = scope;
 			this->bind();

@@ -27,9 +27,9 @@ namespace PULSAR
 		{
 			for (auto &it : this->scene_local_id)
 			{
-				PULSAR::SCENE *scene = PULSAR::SM.get_data_secure(it.first);
-				if (scene)
-					scene->remove_entity(it.second);
+				PULSAR::SCENE *scene_ptr = PULSAR::SCENE_MANAGER::get_instance().get_elem(it.first);
+				if (scene_ptr)
+					scene_ptr->remove_entity(it.second);
 			}
 			this->scene_local_id.clear();
 		}
@@ -91,7 +91,7 @@ namespace PULSAR
 			this->is_alloc = false;
 
 			this->remove_from_scenes();
-			PULSAR::EM.remove_secure(this);
+			PULSAR::ENTITY_MANAGER::get_instance().remove(this);
 			delete this;
 		}
 
@@ -108,7 +108,7 @@ namespace PULSAR
 
 			this->rs->bind(PULSAR::BIND_SCOPE::LOCAL);
 			this->mesh->bind(PULSAR::BIND_SCOPE::LOCAL);
-			this->mesh->draw();
+			PULSAR::GFX::draw_indexed(this->mesh->get_index_count());
 
 
 			PULSAR::BINDABLE::unbind_local();

@@ -31,7 +31,7 @@ namespace PULSAR
 
 		static ENTITY		*add_to_manager(ENTITY *entity)
 		{
-			entity->id = PULSAR::EM.add(entity);
+			entity->id = PULSAR::ENTITY_MANAGER::get_instance().add(entity);
 			if (entity->id == -1)
 			{
 				delete entity;

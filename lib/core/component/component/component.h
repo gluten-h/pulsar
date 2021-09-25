@@ -1,7 +1,7 @@
 #pragma once
 
 #include "pulsar_id3d.h"
-#include "exc_macros.h"
+#include "pulsar_exc.h"
 #include "component_manager.h"
 
 
@@ -26,7 +26,7 @@ namespace PULSAR
 
 		static COMPONENT	*add_to_manager(COMPONENT *component)
 		{
-			component->id = CM.add(component);
+			component->id = PULSAR::COMPONENT_MANAGER::get_instance().add(component);
 			if (component->id == -1)
 			{
 				delete component;
@@ -50,7 +50,7 @@ namespace PULSAR
 				return;
 			this->is_alloc = false;
 
-			PULSAR::CM.remove_secure(this);
+			PULSAR::COMPONENT_MANAGER::get_instance().remove(this);
 			delete this;
 		}
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "piston.h"
+#include "fixed_vector.h"
 #include "pulsar_utils.h"
 
 #include <unordered_map>
@@ -14,19 +14,18 @@ namespace PULSAR
 	class MANAGER
 	{
 	protected:
-		PULSAR::PISTON<T*, MAX_SIZE>			data;
-		const PULSAR::IPISTON<T*, MAX_SIZE>		*idata = this->data.get_ipiston();
-		std::unordered_map<T*, int>				data_id_map;
+		PULSAR::FIXED_VECTOR<T*, MAX_SIZE>	data;
+		std::unordered_map<T*, int>			data_id_map;
 
 
-		virtual void	add_event(int added_id, T *data){ }
-		virtual void	remove_event(int removed_id, T *data){ }
+		virtual void	add_event(int added_id, T *value){ }
+		virtual void	remove_event(int removed_id, T *value){ }
 
-		bool	is_exists(T *data)
+		bool	is_exists(T *value)
 		{
 			try
 			{
-				this->data_id_map.at(data);
+				this->data_id_map.at(value);
 				return (true);
 			}
 			catch (const std::out_of_range &ex)
@@ -36,80 +35,84 @@ namespace PULSAR
 		}
 		bool	is_exists(int id)
 		{
-			return (this->data.get_secure(id) != NULL);
+			//return (this->data.get_secure(id) != NULL);
+
+			try
+			{
+				this->data.at(id);
+				return (true);
+			}
+			catch (const std::out_of_range &exc)
+			{
+				return (false);
+			}
+		}
+		bool	is_available(T *value)
+		{
+			//return (!is_exists(value) && this->idata->size < MAX_SIZE);
+
+			return (!this->is_exists(value) && this->data.size() < MAX_SIZE);
 		}
 
-		bool	is_available(T *data)
+		int 	add_manager(T *value)
 		{
-			return (!is_exists(data) && this->idata->size < MAX_SIZE);
-		}
-
-
-		int 	add_manager(T *data)
-		{
-			int id = this->data.add(data);
-			this->data_id_map[data] = id;
-			this->add_event(id, data);
+			int id = this->data.add(value);
+			this->data_id_map[value] = id;
+			this->add_event(id, value);
 
 			return (id);
 		}
-
-		void	remove_manager(T *data)
+		void	remove_manager(T *value)
 		{
-			int id = this->data_id_map.at(data);
-
-			this->data_id_map.erase(data);
+			int id = this->data_id_map.at(value);
+			
+			this->data_id_map.erase(value);
 			this->data.remove(id);
-			this->remove_event(id, data);
+			this->remove_event(id, value);
 		}
 
 	public:
 		MANAGER(){ }
-
-		void		remove_secure(T *data)
+		
+		typename FIXED_VECTOR<T*, MAX_SIZE>::iterator	begin()
 		{
-			if (!this->is_exists(data))
+			return (this->data.begin());
+		}
+		typename FIXED_VECTOR<T*, MAX_SIZE>::iterator	end()
+		{
+			return (this->data.end());
+		}
+		
+		size_t	size() const
+		{
+			return (this->data.size());
+		}
+
+		void	remove(T *value)
+		{
+			if (!this->is_exists(value))
 				return;
-
-			this->remove_manager(data);
+			this->remove_manager(value);
 		}
 
-		void		remove(T *data)
-		{
-			this->remove_manager(data);
-		}
-
-		void		remove_secure(unsigned int id)
+		void	remove(unsigned int id)
 		{
 			if (!this->is_exists(id))
 				return;
-
 			this->remove_manager(*this->data.get(id));
 		}
 
-		void		remove(unsigned int id)
+		T	*get_elem(unsigned int id)
 		{
-			this->remove_manager(*this->data.get(id));
-		}
-
-
-		T	*get_data_secure(unsigned int id)
-		{
-			T **data_ptr = this->data.get_secure(id);
-			if (!data_ptr)
+			try
+			{
+				T *elem = (T*)&this->data.at(id);
+				return (elem);
+			}
+			catch (const std::out_of_range &exc)
+			{
 				return (NULL);
-
-			return (*data_ptr);
-		}
-
-		T	*get_data(unsigned int id)
-		{
-			return (*this->data.get(id));
-		}
-
-		const PULSAR::IPISTON<T*, MAX_SIZE> *get_idata() const
-		{
-			return (this->idata);
+			}
 		}
 	};
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "piston.h"
+#include "fixed_vector.h"
 #include "def_scene.h"
 #include "scene_manager.h"
 #include "entity.h"
@@ -17,14 +17,11 @@ namespace PULSAR
 		int		id = -1;
 		bool	is_alloc = false;
 
-		PULSAR::ENTITY_MANAGER												entity_manager;
-		const PULSAR::IPISTON<PULSAR::ENTITY*, PULSAR::MAX_ENTITY_COUNT>	*ientity = this->entity_manager.get_idata();
+		PULSAR::ENTITY_MANAGER		entity_manager;
+		PULSAR::LIGHT_MANAGER		light_manager;
 
-		PULSAR::LIGHT_MANAGER												light_manager;
-		const PULSAR::IPISTON<PULSAR::LIGHT*, PULSAR::MAX_LIGHT_COUNT>		*ilight = this->light_manager.get_idata();
-
-		PULSAR::SHADER_LIGHT_SCENE									light_scene;
-		PULSAR::FRAG_CONST_BUFFER<PULSAR::SHADER_LIGHT_SCENE>		light_scene_cbuffer;
+		PULSAR::SHADER_LIGHT_SCENE								light_scene;
+		PULSAR::FRAG_CONST_BUFFER<PULSAR::SHADER_LIGHT_SCENE>	light_scene_cbuffer;
 
 		PULSAR::SKYBOX		skybox;
 
@@ -40,14 +37,13 @@ namespace PULSAR
 
 		void	update_shader_light_scene()
 		{
-			this->light_scene.light_count = this->ilight->size;
+			this->light_scene.light_count = this->light_manager.size();
 			this->light_scene_cbuffer.set_slot(DEFERRED_LIGHT_SLOT);
 
-			int i = -1;
-			while (++i < this->ilight->size)
+			int i = 0;
+			for (auto &it : this->light_manager)
 			{
-				LIGHT *light_ptr = this->light_manager.get_data_secure(this->ilight->data[i].global_id);
-				light_ptr->set_shader_light(this->light_scene.light[i]);
+				it.data->set_shader_light(this->light_scene.light[i++]);
 			}
 		}
 
@@ -69,7 +65,7 @@ namespace PULSAR
 		static SCENE	*create()
 		{
 			SCENE *scene = new SCENE;
-			scene->id = PULSAR::SM.add(scene);
+			scene->id = PULSAR::SCENE_MANAGER::get_instance().add(scene);
 			if (scene->id == -1)
 			{
 				delete scene;

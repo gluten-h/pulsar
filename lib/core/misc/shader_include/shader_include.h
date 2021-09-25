@@ -66,8 +66,10 @@ namespace PULSAR
 			std::wstring path;
 			if (include_type == D3D_INCLUDE_LOCAL)
 				path = SHADER_INCLUDE::file_path(p_file_name);
+			else if (include_type == D3D_INCLUDE_SYSTEM)
+				return (E_FAIL);
 			else
-				return (E_FAIL);										//	TODO: IMPLEMENT THIS
+				return (E_FAIL);
 
 			if (!std::filesystem::exists(path))
 				return (E_FAIL);

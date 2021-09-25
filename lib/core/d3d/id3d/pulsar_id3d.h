@@ -8,18 +8,20 @@ namespace PULSAR
 	class PULSAR_ID3D
 	{
 	private:
-		static bool						is_initialized;
+		static bool		is_initialized;
 
 	protected:
-		static IDXGIFactory* idxgi_factory;
-		static ID3D11Device* device;
-		static ID3D11DeviceContext* device_context;
+		static IDXGIFactory			*idxgi_factory;
+		static ID3D11Device			*device;
+		static ID3D11DeviceContext	*device_context;
 
 	private:
 		void		init_d3d()
 		{
+			if (PULSAR_ID3D::is_initialized)
+				return;
 			this->is_initialized = true;
-			PULSAR_D3D::create();
+			PULSAR_D3D::init();
 
 			PULSAR_ID3D::idxgi_factory = PULSAR_D3D::get_idxgi_factory();
 			PULSAR_ID3D::device = PULSAR_D3D::get_device();
@@ -29,9 +31,6 @@ namespace PULSAR
 	public:
 		PULSAR_ID3D()
 		{
-			if (PULSAR_ID3D::is_initialized)
-				return;
-
 			this->init_d3d();
 		}
 	};

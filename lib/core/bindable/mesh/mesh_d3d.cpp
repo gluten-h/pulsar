@@ -52,8 +52,3 @@ void	PULSAR::MESH::create_buffer()
 	GFX_ASSERT(this->device->CreateBuffer(&vbd, &vsd, &this->v_buffer));
 	GFX_ASSERT(this->device->CreateBuffer(&ibd, &isd, &this->i_buffer));
 }
-
-void	PULSAR::MESH::draw()
-{
-	this->device_context->DrawIndexed((UINT)this->mesh.indices.size(), 0u, 0);
-}

@@ -60,9 +60,9 @@ namespace PULSAR
 			PULSAR::SKYBOX::sampler.bind(PULSAR::BIND_SCOPE::LOCAL);
 			PULSAR::SKYBOX::input_layout.bind(PULSAR::BIND_SCOPE::LOCAL);
 
-			STD_FRONT_FACE_CULL_RS.bind(PULSAR::BIND_SCOPE::LOCAL);
+			PULSAR::STD_FRONT_FACE_CULL_RS.bind(PULSAR::BIND_SCOPE::LOCAL);
 			this->mesh->bind(PULSAR::BIND_SCOPE::LOCAL);
-			this->mesh->draw();
+			PULSAR::GFX::draw_indexed(this->mesh->get_index_count());
 
 			PULSAR::BINDABLE::unbind_local();
 		}

@@ -10,10 +10,12 @@ using namespace std::chrono;
 
 namespace PULSAR
 {
+	class WINDOW;
+
 	class GFX
 	{
 	private:
-		static int		curr_win_id;
+		static PULSAR::WINDOW	*curr_win;
 		static HWND		curr_hwnd;
 
 		static float	delta_time;
@@ -25,47 +27,51 @@ namespace PULSAR
 	public:
 		static void		set_curr_camera_event(PULSAR::CAMERA *cam)
 		{
-			PULSAR::GFX::curr_camera = cam;
+			GFX::curr_camera = cam;
 		}
 
-		static void		set_curr_win_event(int id, HWND hwnd)
+		static void		set_curr_win_event(PULSAR::WINDOW *win, HWND hwnd)
 		{
-			PULSAR::GFX::curr_win_id = id;
-			PULSAR::GFX::curr_hwnd = hwnd;
+			GFX::curr_win = win;
+			GFX::curr_hwnd = hwnd;
 		}
 
 		static void		set_delta_time()
 		{
-			PULSAR::GFX::delta_time = duration_cast<duration<double, std::milli>>(high_resolution_clock::now() - PULSAR::GFX::last_frame_time).count();
-			PULSAR::GFX::fps = (1.0f / PULSAR::GFX::delta_time) * 1000.0f;
-			PULSAR::GFX::delta_time /= 1000.0f;
-			PULSAR::GFX::last_frame_time = high_resolution_clock::now();
+			GFX::delta_time = duration_cast<duration<double, std::milli>>(high_resolution_clock::now() - GFX::last_frame_time).count();
+			GFX::fps = (1.0f / GFX::delta_time) * 1000.0f;
+			GFX::delta_time /= 1000.0f;
+			GFX::last_frame_time = high_resolution_clock::now();
 		}
 
 
+		static PULSAR::WINDOW	*get_curr_win()
+		{
+			return (GFX::curr_win);
+		}
 		static HWND		get_curr_hwnd()
 		{
-			return (PULSAR::GFX::curr_hwnd);
+			return (GFX::curr_hwnd);
 		}
 
-		static int		get_curr_win_id()
+		static PULSAR::CAMERA	*get_curr_camera()
 		{
-			return (PULSAR::GFX::curr_win_id);
-		}
-
-		static PULSAR::CAMERA		*get_curr_camera()
-		{
-			return (PULSAR::GFX::curr_camera);
+			return (GFX::curr_camera);
 		}
 
 		static float	get_delta_time()
 		{
-			return (PULSAR::GFX::delta_time);
+			return (GFX::delta_time);
 		}
-
 		static float	get_fps()
 		{
-			return (PULSAR::GFX::fps);
+			return (GFX::fps);
+		}
+
+
+		static void		draw_indexed(UINT index_count)
+		{
+			PULSAR::PULSAR_D3D::get_device_context()->DrawIndexed(index_count, 0u, 0u);
 		}
 	};
 }

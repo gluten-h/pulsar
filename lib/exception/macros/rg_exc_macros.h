@@ -17,4 +17,4 @@ try																									\
 {																									\
 	throw RG_EXC(err_msg);																			\
 }																									\
-EXC_CATCH																							\
+EXC_CATCH

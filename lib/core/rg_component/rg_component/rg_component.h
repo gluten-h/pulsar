@@ -29,7 +29,7 @@ namespace PULSAR
 
 		static RG_COMPONENT		*add_to_manager(RG_COMPONENT *rg_component)
 		{
-			rg_component->id = PULSAR::RGCM.add(rg_component);
+			rg_component->id = PULSAR::RG_COMPONENT_MANAGER::get_instance().add(rg_component);
 			if (rg_component->id == -1)
 			{
 				delete rg_component;
@@ -62,7 +62,7 @@ namespace PULSAR
 				return;
 			this->is_alloc = false;
 
-			PULSAR::RGCM.remove_secure(this);
+			PULSAR::RG_COMPONENT_MANAGER::get_instance().remove(this);
 			delete this;
 		}
 	};

@@ -6,17 +6,12 @@
 
 namespace PULSAR
 {
-#define CM COMPONENT_MANAGER::get()
-	//const COMPONENT_MANAGER &CM = COMPONENT_MANAGER::get();
-
-
 	class COMPONENT;
-
 
 	class COMPONENT_MANAGER : public PULSAR::MANAGER<COMPONENT, PULSAR::MAX_COMPONENT_COUNT>
 	{
 	public:
-		static COMPONENT_MANAGER	&get()
+		static COMPONENT_MANAGER	&get_instance()
 		{
 			static COMPONENT_MANAGER manager;
 

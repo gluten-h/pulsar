@@ -3,20 +3,12 @@ cmake_minimum_required(VERSION 3.20)
 
 set(REN_SOURCES			deferred_buffer/deferred_buffer_get.cpp
 
-						managers/win_manager/win_manager.cpp
-						managers/win_manager/wm_cursor.cpp
-						managers/win_manager/wm_misc.cpp
-						managers/win_manager/wm_resources.cpp
-						managers/win_manager/wm_update.cpp
-						managers/win_manager/wm_win_proc.cpp
-						managers/win_manager/wm_window.cpp
-
 						misc/cam_controller/cam_controller.cpp)
 set(REN_SOURCES ${REN_SOURCES} PARENT_SCOPE)
 
 set(REN_INCLUDES		deferred_buffer/deferred_buffer.h
 
-						managers/win_manager/win_manager.h
+						managers/win_manager.h
 						managers/bindable_manager.h
 						managers/component_manager.h
 						managers/entity_manager.h

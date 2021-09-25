@@ -1,6 +1,9 @@
 #pragma once
 
 #include "pulsar_math.h"
+#include "gfx.h"
+#include "pulsar_input.h"
+#include "window.h"
 
 
 struct		CAM_CONTROLLER_DATA

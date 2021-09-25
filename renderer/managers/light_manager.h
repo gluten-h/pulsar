@@ -6,17 +6,12 @@
 
 namespace PULSAR
 {
-#define LM LIGHT_MANAGER::get()
-	//const LIGHT_MANAGER &LM = LIGHT_MANAGER::get();
-
-
 	class LIGHT;
-
 
 	class LIGHT_MANAGER : public PULSAR::MANAGER<LIGHT, PULSAR::MAX_LIGHT_COUNT>
 	{
 	public:
-		static LIGHT_MANAGER	&get()
+		static LIGHT_MANAGER	&get_instance()
 		{
 			static LIGHT_MANAGER manager;
 

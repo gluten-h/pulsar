@@ -8,26 +8,22 @@ using namespace PULSAR;
 
 int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_cmd_line, int n_cmd_show)
 {
-	PULSAR_D3D::create();
-	WM::create(h_instance);
+	PULSAR_D3D::init();
+	WINDOW::init(h_instance);
 
-
-	auto *iwin = WM::get_iwin();
-
-	int win0 = WM::create_window(__T("PULSAR"), WS_VISIBLE | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, NULL, NULL);
-
+	WINDOW *win = WINDOW::create("PULSAR", WS_VISIBLE | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720);
 
 	CAMERA *camera = CAMERA::create();
 	TRANSFORM cam_transform = TRANSFORM(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 1.0f, 1.0f));
 	camera->set(cam_transform, deg2rad(75.0f));
 	CAM_CONTROLLER_DATA cam_controller_data{ 5.0f, 6.0f, 0.8f, 0.75f, { cam_transform.rotation.x, cam_transform.rotation.y } };
-	WM::set_camera(win0, camera);
+	win->set_camera(camera);
 
-	WM::add_win_update(win0, cam_controller, &cam_controller_data);
+	win->add_update(cam_controller, &cam_controller_data);
 
 
 	SCENE *scene = SCENE::create();
-	WM::set_scene(win0, scene);
+	win->set_scene(scene);
 
 	SKYBOX_MATERIAL *skybox_mat = SKYBOX_MATERIAL::create();
 	skybox_mat->env_map.set(L"resources/cubemaps/cm00/cm00.dds");
@@ -151,13 +147,11 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	sph2_obj->transform.position = XMFLOAT3(-1.25f, 0.0f, 1.75f);
 	sph2_obj->transform.scale = XMFLOAT3(0.5f, 0.5f, 0.5f);
 
-
-	while (WM::win_event())
+	while (WINDOW::process_events())
 	{
-		int i = -1;
-		while (++i < iwin->size)
+		for (auto &it : PULSAR::WIN_MANAGER::get_instance())
 		{
-			WINDOW *win = iwin->data[i].data;
+			WINDOW *win = it.data;
 
 			float delta_time = GFX::get_delta_time();
 			cube_obj->transform.rotation = XMFLOAT3(cube_obj->transform.rotation.x + delta_time * 0.25f, 0.0f, cube_obj->transform.rotation.z + delta_time * 0.25f);

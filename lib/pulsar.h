@@ -9,6 +9,6 @@
 #include "rg_components.h"
 #include "scene.h"
 #include "pulsar_def.h"
-#include "exc_macros.h"
+#include "pulsar_exc.h"
 #include "pulsar_math.h"
-#include "win_manager.h"
+#include "window.h"

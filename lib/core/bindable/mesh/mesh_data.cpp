@@ -46,9 +46,14 @@ void		PULSAR::MESH::set(LPCWSTR file, PULSAR::MESH_FILE_FORMAT file_format)
 	}
 }
 
-void		PULSAR::MESH::set_primitive_topology(const D3D_PRIMITIVE_TOPOLOGY &primitive_topology)
+void		PULSAR::MESH::set_primitive_topology(D3D_PRIMITIVE_TOPOLOGY primitive_topology)
 {
 	this->primitive_topology = primitive_topology;
+}
+
+UINT		PULSAR::MESH::get_index_count() const
+{
+	return ((UINT)this->mesh.indices.size());
 }
 
 

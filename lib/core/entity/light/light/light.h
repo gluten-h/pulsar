@@ -24,7 +24,7 @@ namespace PULSAR
 
 		static LIGHT	*add_to_manager(LIGHT *light)
 		{
-			light->id = PULSAR::LM.add(light);
+			light->id = PULSAR::LIGHT_MANAGER::get_instance().add(light);
 			if (light->id == -1)
 			{
 				delete light;

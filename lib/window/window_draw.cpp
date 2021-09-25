@@ -54,6 +54,8 @@ void		PULSAR::WINDOW::draw()
 	D3D11_VIEWPORT &viewport = this->deferred_buffer.get_viewport().get();
 	this->curr_camera->update(viewport.Width, viewport.Height);
 
+	//this->rg->execute();
+
 	this->draw_g_pass();
 	this->draw_deferred();
 	this->draw_skybox();

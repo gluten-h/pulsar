@@ -77,41 +77,41 @@ namespace PULSAR
 
 		static bool		lmb_pressed()
 		{
-			return (MOUSE::b_lmb_pressed && (GetActiveWindow() == GFX::get_curr_hwnd()));
+			return (MOUSE::b_lmb_pressed && (GetActiveWindow() == PULSAR::GFX::get_curr_hwnd()));
 		}
 		static bool		rmb_pressed()
 		{
-			return (MOUSE::b_rmb_pressed && (GetActiveWindow() == GFX::get_curr_hwnd()));
+			return (MOUSE::b_rmb_pressed && (GetActiveWindow() == PULSAR::GFX::get_curr_hwnd()));
 		}
 		static bool		mmb_pressed()
 		{
-			return (MOUSE::mmb_pressed && (GetActiveWindow() == GFX::get_curr_hwnd()));
+			return (MOUSE::mmb_pressed && (GetActiveWindow() == PULSAR::GFX::get_curr_hwnd()));
 		}
 
 		static bool		lmb_down()
 		{
-			return (MOUSE::b_lmb_down && (GetActiveWindow() == GFX::get_curr_hwnd()));
+			return (MOUSE::b_lmb_down && (GetActiveWindow() == PULSAR::GFX::get_curr_hwnd()));
 		}
 		static bool		rmb_down()
 		{
-			return (MOUSE::b_rmb_down && (GetActiveWindow() == GFX::get_curr_hwnd()));
+			return (MOUSE::b_rmb_down && (GetActiveWindow() == PULSAR::GFX::get_curr_hwnd()));
 		}
 		static bool		mmb_down()
 		{
-			return (MOUSE::b_mmb_down && (GetActiveWindow() == GFX::get_curr_hwnd()));
+			return (MOUSE::b_mmb_down && (GetActiveWindow() == PULSAR::GFX::get_curr_hwnd()));
 		}
 
 		static bool		lmb_up()
 		{
-			return (MOUSE::b_lmb_up && (GetActiveWindow() == GFX::get_curr_hwnd()));
+			return (MOUSE::b_lmb_up && (GetActiveWindow() == PULSAR::GFX::get_curr_hwnd()));
 		}
 		static bool		rmb_up()
 		{
-			return (MOUSE::b_rmb_up && (GetActiveWindow() == GFX::get_curr_hwnd()));
+			return (MOUSE::b_rmb_up && (GetActiveWindow() == PULSAR::GFX::get_curr_hwnd()));
 		}
 		static bool		mmb_up()
 		{
-			return (MOUSE::b_mmb_up && (GetActiveWindow() == GFX::get_curr_hwnd()));
+			return (MOUSE::b_mmb_up && (GetActiveWindow() == PULSAR::GFX::get_curr_hwnd()));
 		}
 
 

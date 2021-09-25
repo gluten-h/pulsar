@@ -1,8 +1,5 @@
 
 #include "cam_controller.h"
-#include "gfx.h"
-#include "pulsar_input.h"
-#include "win_manager.h"
 
 
 void		cam_controller(void *data)
@@ -18,20 +15,21 @@ void		cam_controller(void *data)
 	float delta_time = PULSAR::GFX::get_delta_time();
 	bool is_rmb_pressed = PULSAR::MOUSE::rmb_pressed();
 	XMINT2 mouse_delta = PULSAR::MOUSE::get_delta();
+	PULSAR::WINDOW *win = PULSAR::GFX::get_curr_win();
 
 	if (is_rmb_pressed && !cc_data->is_cursor_hidden)
 	{
 		cc_data->last_pressed_pos = PULSAR::MOUSE::get_global_pos();
 		cc_data->is_cursor_hidden = true;
-		PULSAR::WM::clamp_cursor_secure(PULSAR::GFX::get_curr_win_id());
-		PULSAR::WM::hide_cursor_secure(PULSAR::GFX::get_curr_win_id());
+		win->clamp_cursor();
+		win->hide_cursor();
 	}
 	else if (!is_rmb_pressed && cc_data->is_cursor_hidden)
 	{
 		PULSAR::MOUSE::set_global_pos(cc_data->last_pressed_pos.x, cc_data->last_pressed_pos.y);
 		cc_data->is_cursor_hidden = false;
-		PULSAR::WM::free_cursor_secure(PULSAR::GFX::get_curr_win_id());
-		PULSAR::WM::show_cursor_secure(PULSAR::GFX::get_curr_win_id());
+		win->free_cursor();
+		win->show_cursor();
 	}
 
 	transform.position = transform.position + cam_forward * cc_data->movement_speed * delta_time * is_rmb_pressed * ((GetKeyState('W') < 0) - (GetKeyState('S') < 0));

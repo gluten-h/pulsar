@@ -6,17 +6,12 @@
 
 namespace PULSAR
 {
-#define RGCM RG_COMPONENT_MANAGER::get()
-	//const RG_COMPONENT_MANAGER &RGCM = RG_COMPONENT_MANAGER::get();
-
-
 	class RG_COMPONENT;
-
 
 	class RG_COMPONENT_MANAGER : public PULSAR::MANAGER<RG_COMPONENT, PULSAR::MAX_RG_COMPONENT_COUNT>
 	{
 	public:
-		static RG_COMPONENT_MANAGER		&get()
+		static RG_COMPONENT_MANAGER		&get_instance()
 		{
 			static RG_COMPONENT_MANAGER manager;
 

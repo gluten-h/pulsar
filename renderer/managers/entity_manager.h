@@ -6,17 +6,12 @@
 
 namespace PULSAR
 {
-#define EM ENTITY_MANAGER::get()
-	//const ENTITY_MANAGER &EM = ENTITY_MANAGER::get();
-
-
 	class ENTITY;
-
 
 	class ENTITY_MANAGER : public PULSAR::MANAGER<ENTITY, PULSAR::MAX_ENTITY_COUNT>
 	{
 	public:
-		static ENTITY_MANAGER	&get()
+		static ENTITY_MANAGER	&get_instance()
 		{
 			static ENTITY_MANAGER manager;
 

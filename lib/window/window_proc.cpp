@@ -1,19 +1,18 @@
 
-#include "win_manager.h"
+#include "window.h"
 
 
-LRESULT CALLBACK		PULSAR::WIN_MANAGER::win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+LRESULT CALLBACK		PULSAR::WINDOW::win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-	int win_id = PULSAR::WIN_MANAGER::hwnd_map[hwnd];
-	PULSAR::WINDOW *win_ptr = PULSAR::WIN_MANAGER::win.get(win_id);
+	PULSAR::WINDOW *win_ptr = WINDOW::hwnd_win[hwnd];
 
 	switch (msg)
 	{
 		case WM_CLOSE:
 		{
-			PULSAR::WIN_MANAGER::destroy_win_memory(win_id);
+			win_ptr->destroy();
 			DestroyWindow(hwnd);
-			if (PULSAR::WIN_MANAGER::iwin->size <= 0)
+			if (PULSAR::WIN_MANAGER::get_instance().size() <= 0)
 			{
 				PostQuitMessage(0);
 				return (0);
@@ -54,7 +53,7 @@ LRESULT CALLBACK		PULSAR::WIN_MANAGER::win_proc(HWND hwnd, UINT msg, WPARAM w_pa
 		{
 			if (w_param & WA_ACTIVE || w_param & WA_CLICKACTIVE)
 			{
-				if (win_ptr->is_cursor_clamped)
+				if (win_ptr && win_ptr->is_cursor_clamped)
 					win_ptr->clamp_cursor();
 			}
 			else
@@ -63,7 +62,6 @@ LRESULT CALLBACK		PULSAR::WIN_MANAGER::win_proc(HWND hwnd, UINT msg, WPARAM w_pa
 				PULSAR::MOUSE::set_rmb_up_event();
 				PULSAR::MOUSE::set_mmb_up_event();
 			}
-
 			break;
 		}
 		case WM_INPUT:
@@ -80,15 +78,10 @@ LRESULT CALLBACK		PULSAR::WIN_MANAGER::win_proc(HWND hwnd, UINT msg, WPARAM w_pa
 				PULSAR::MOUSE::set_delta_event(ri->data.mouse.lLastX, ri->data.mouse.lLastY);
 				PULSAR::MOUSE::set_global_pos_event(g_pos.x, g_pos.y);
 			}
-
 			break;
 		}
-		default:
-		break;
 	}
-
-	if (win_ptr->win_proc)
-		win_ptr->win_proc(msg, w_param, win_ptr->win_proc_data);
 
 	return (DefWindowProc(hwnd, msg, w_param, l_param));
 }
+
