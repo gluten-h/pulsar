@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_SUPPRESS_REGENERATION true)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 set(CMAKE_VS_SDK_INCLUDE_DIRECTORIES "$(IncludePath)" "$(DXSDK_DIR)Include")
@@ -19,7 +20,7 @@ set(CMAKE_LISTS "CMakeLists.txt" "lib/CMakeLists.txt" "renderer/CMakeLists.txt" 
 add_executable(${PROJECT_NAME} WIN32 win_main.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${CMAKE_LISTS})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "/MP /Ot /fp:fast")
+set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "/MP /Ot /fp:fast /JMC")
 
 add_subdirectory(lib)
 add_subdirectory(renderer)

@@ -27,29 +27,29 @@ SamplerState smpl : register(s0);
 
 struct light_specs
 {
-	int			type;
-	int3		pd0;
+	int		type;
+	int3	pd0;
 
-	float3		pos;
-	float		pd1;
+	float3	pos;
+	float	pd1;
 
-	float3		dir;
-	float		pd2;
+	float3	dir;
+	float	pd2;
 
-	float3		color;
-	float		pd3;
+	float3	color;
+	float	pd3;
 
-	float		const_att;
-	float		linear_att;
-	float		quad_att;
-	float		pd4;
+	float	const_att;
+	float	linear_att;
+	float	quad_att;
+	float	pd4;
 };
 
 struct light_scene
 {
-	int				light_count;
-	int3			pd0;
-
+	int		light_count;
+	int3	pd0;
+	
 	light_specs		light[MAX_LIGHT_COUNT];
 };
 

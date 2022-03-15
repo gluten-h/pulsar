@@ -20,14 +20,6 @@ namespace PULSAR
 				this->buffer->AddRef();
 		}
 
-	protected:
-		void		remove_from_entities() override
-		{
-			for (auto &it : this->entities)
-				it->_remove_bindable_ignore_entity(this);
-			this->entities.clear();
-		}
-
 	public:
 		using PULSAR::BINDABLE::bind;
 
@@ -62,15 +54,16 @@ namespace PULSAR
 		}
 
 
-		void		bind() const override
+		void	bind() const override
 		{
 			this->device_context->VSSetConstantBuffers(this->slot, 1u, &this->buffer);
 			BINDABLE::add_unbind(*this);
 		}
 
-		void		unbind() const override
+		void	unbind() const override
 		{
-			this->device_context->VSSetConstantBuffers(this->slot, 0u, NULL);
+			static ID3D11Buffer *nullPtr[1] = { NULL };
+			this->device_context->VSSetConstantBuffers(this->slot, 0u, nullPtr);
 		}
 	};
 }

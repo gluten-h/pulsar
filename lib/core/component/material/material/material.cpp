@@ -1,6 +1,0 @@
-
-#include "material.h"
-
-
-PULSAR::MATERIAL_SHADER									PULSAR::MATERIAL::mat_shader;
-PULSAR::FRAG_CONST_BUFFER<PULSAR::MATERIAL_SHADER>		PULSAR::MATERIAL::mat_cbuffer;

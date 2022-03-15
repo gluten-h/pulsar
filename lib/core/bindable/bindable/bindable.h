@@ -30,7 +30,9 @@ namespace PULSAR
 		RASTERIZER_STATE,
 		RENDER_TARGET,
 		VIEWPORT,
-		MESH
+		MESH,
+		VERT_DYNAMIC_CONST_BUFFER,
+		FRAG_DYNAMIC_CONST_BUFFER
 	};
 
 
@@ -163,13 +165,13 @@ namespace PULSAR
 			delete this;
 		}
 
-		virtual void	bind() const = 0;
 		void	bind(PULSAR::BIND_SCOPE scope) const
 		{
 			this->scope = scope;
 			this->bind();
+			//this->add_unbind(*this);
 		}
-
+		virtual void	bind() const = 0;
 		virtual void	unbind() const = 0;
 	};
 }

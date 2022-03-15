@@ -16,19 +16,12 @@ cbuffer material_cb : register(b0)
 	bool		mat_albedo_map_srgb;
 
 	float		mat_normal_factor;
-	float3		pd1;
-
 	float		mat_roughness;
-	float3		pd2;
-
 	float		mat_metalness;
-	float3		pd3;
-	
 	float		mat_ao;
-	float3		pd4;
-	
 	float		mat_exposure;
-	float3		pd5;
+	
+	float3		pd;
 };
 
 SamplerState    smpl : register(s0);

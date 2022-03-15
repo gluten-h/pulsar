@@ -64,7 +64,8 @@ namespace PULSAR
 
 		void		unbind() const override
 		{
-			this->device_context->PSSetShaderResources(this->slot, 0u, NULL);
+			ID3D11ShaderResourceView *null_ptr[1] = { NULL };
+			this->device_context->PSSetShaderResources(this->slot, 1u, null_ptr);
 		}
 	};
 }

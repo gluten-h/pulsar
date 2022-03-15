@@ -106,6 +106,9 @@ namespace PULSAR
 
 		void		bind_srv()
 		{
+			this->get_hdr_buffer().set_mode(PULSAR::BIND_MODE::RTV);
+			this->get_hdr_buffer().bind(PULSAR::BIND_SCOPE::GLOBAL);
+
 			this->deferred_vs.bind(PULSAR::BIND_SCOPE::GLOBAL);
 			this->deferred_fs.bind(PULSAR::BIND_SCOPE::GLOBAL);
 			GFX::get_curr_camera()->bind_deferred(PULSAR::BIND_SCOPE::GLOBAL);
@@ -120,7 +123,11 @@ namespace PULSAR
 		void		bind_post_effects()
 		{
 			GFX::get_curr_camera()->bind_post_effects(PULSAR::BIND_SCOPE::GLOBAL);
+
+			this->rt_hdr.set_mode(PULSAR::BIND_MODE::SRV);
+			this->rt_hdr.set_ds_view(NULL);
 			this->rt_hdr.bind(PULSAR::BIND_SCOPE::GLOBAL);
+
 			this->post_effects_vs.bind(PULSAR::BIND_SCOPE::GLOBAL);
 			this->post_effects_fs.bind(PULSAR::BIND_SCOPE::GLOBAL);
 			this->sampler.bind(PULSAR::BIND_SCOPE::GLOBAL);

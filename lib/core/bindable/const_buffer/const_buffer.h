@@ -63,6 +63,14 @@ namespace PULSAR
 			}
 		}
 
+
+		void		remove_from_entities() override
+		{
+			for (auto &it : this->entities)
+				it->_remove_bindable_ignore_entity(this);
+			this->entities.clear();
+		}
+
 	public:
 		CONST_BUFFER	&operator=(const CONST_BUFFER &b) = delete;
 		CONST_BUFFER(const CONST_BUFFER &b) = delete;

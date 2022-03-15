@@ -32,12 +32,14 @@ void		PULSAR::RENDER_TEXTURE::unbind() const
 	{
 		case PULSAR::BIND_MODE::SRV:
 		{
-			this->device_context->PSSetShaderResources(this->slot, 0u, NULL);
+			static ID3D11ShaderResourceView *null_ptr[1] = { NULL };
+			this->device_context->PSSetShaderResources(this->slot, 1u, null_ptr);
 			break;
 		}
 		case PULSAR::BIND_MODE::RTV:
 		{
-			this->device_context->OMSetRenderTargets(0u, NULL, NULL);
+			static ID3D11RenderTargetView *null_ptr[1] = { NULL };
+			this->device_context->OMSetRenderTargets(1u, null_ptr, NULL);
 			break;
 		}
 	}

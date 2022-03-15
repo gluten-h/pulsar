@@ -11,3 +11,5 @@
 #include "rasterizer_state.h"
 #include "render_target.h"
 #include "viewport.h"
+#include "frag_dynamic_const_buffer.h"
+#include "vert_dynamic_const_buffer.h"

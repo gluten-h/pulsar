@@ -59,7 +59,8 @@ namespace PULSAR
 
 		void	unbind() const override
 		{
-			this->device_context->OMSetRenderTargets(0u, NULL, NULL);
+			static ID3D11RenderTargetView *null_ptr[1] = { NULL };
+			this->device_context->OMSetRenderTargets(1u, null_ptr, NULL);
 			this->ds_view = NULL;
 		}
 

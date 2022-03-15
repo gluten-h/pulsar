@@ -44,7 +44,7 @@ set(LIB_SOURCES			core/bindable/bindable/bindable.cpp
 						core/component/camera/camera/camera_get.cpp
 						core/component/camera/camera/camera_update.cpp
 						core/component/camera/camera/camera.cpp
-						core/component/material/material/material.cpp
+						core/component/material/material/material_props.cpp
 						core/component/skybox_material/skybox_material/skybox_material.cpp
 
 						core/d3d/id3d/pulsar_id3d.cpp
@@ -112,6 +112,9 @@ set(LIB_INCLUDES		containers/manager/manager.h
 						core/bindable/depth_stencil/state/depth_stencil_state.h
 						core/bindable/depth_stencil/view/depth_stencil_view.h
 						core/bindable/depth_stencil/depth_stencil.h
+						core/bindable/dynamic_const_buffer/dynamic_const_buffer.h
+						core/bindable/dynamic_const_buffer/frag_dynamic_const_buffer.h
+						core/bindable/dynamic_const_buffer/vert_dynamic_const_buffer.h
 						core/bindable/input_layout/input_layout.h
 						core/bindable/mesh/mesh.h
 						core/bindable/rasterizer_state/rasterizer_state.h
@@ -133,7 +136,6 @@ set(LIB_INCLUDES		containers/manager/manager.h
 						core/component/component/component.h
 						core/component/material/material/material.h
 						core/component/material/material_def.h
-						core/component/material/material_shader.h
 						core/component/skybox_material/skybox_material/skybox_material.h
 						core/component/skybox_material/skybox_material_def.h
 						core/component/skybox_material/skybox_material_shader.h
@@ -167,7 +169,7 @@ set(LIB_INCLUDES		containers/manager/manager.h
 
 						core/resource_manager/pulsar_resource_manager.h
 
-						core/render_queue/render_queue.h
+						#core/render_queue/render_queue.h
 
 						core/rg_component/render_graph/render_graph.h
 						core/rg_component/rg_component/rg_component.h
@@ -183,6 +185,16 @@ set(LIB_INCLUDES		containers/manager/manager.h
 						core/rg_component/rg_components.h
 
 						core/scene/scene.h
+
+
+						dcb/dcb.h
+						dcb/dcb_types.h
+						dcb/dcb_layout_elem.h
+						dcb/dcb_layout.h
+						dcb/dcb_raw_layout.h
+						dcb/dcb_baked_layout.h
+						dcb/dcb_layout_elem_ref.h
+						dcb/dcb_buffer.h
 
 
 						def/def_cubemaps.h
@@ -233,6 +245,7 @@ set(LIB_INCLUDE_DIRS	containers/manager
 						core/bindable/depth_stencil/state
 						core/bindable/depth_stencil/view
 						core/bindable/depth_stencil
+						core/bindable/dynamic_const_buffer
 						core/bindable/input_layout
 						core/bindable/mesh
 						core/bindable/rasterizer_state
@@ -293,6 +306,9 @@ set(LIB_INCLUDE_DIRS	containers/manager
 						core/rg_component
 
 						core/scene
+
+
+						dcb
 
 
 						def

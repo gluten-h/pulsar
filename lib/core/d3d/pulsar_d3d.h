@@ -58,7 +58,11 @@ namespace PULSAR
 
 			WIN_ASSERT(CoInitializeEx(NULL, COINIT_MULTITHREADED));
 			GFX_ASSERT(CreateDXGIFactory(IID_IDXGIFactory, (void**)&PULSAR_D3D::idxgi_factory));
-			GFX_ASSERT(D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, NULL, NULL, NULL, D3D11_SDK_VERSION, &PULSAR_D3D::device, NULL, &PULSAR_D3D::device_context));
+
+			UINT device_flags = 0u;
+			device_flags |= D3D11_CREATE_DEVICE_DEBUG;
+
+			GFX_ASSERT(D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, device_flags, NULL, NULL, D3D11_SDK_VERSION, &PULSAR_D3D::device, NULL, &PULSAR_D3D::device_context));
 
 			PULSAR::RESOURCE_MANAGER::add_terminate(PULSAR_D3D::terminate);
 		}
