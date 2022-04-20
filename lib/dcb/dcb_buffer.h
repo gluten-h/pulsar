@@ -1,8 +1,8 @@
 #pragma once
 
-#include "dcb_raw_layout.h"
-#include "dcb_baked_layout.h"
-#include "dcb_layout_elem_ref.h"
+#include "dcb/dcb_raw_layout.h"
+#include "dcb/dcb_baked_layout.h"
+#include "dcb/dcb_layout_elem_ref.h"
 
 #include <string>
 #include <vector>
@@ -12,7 +12,7 @@ namespace PULSAR
 {
 	class dynamic_const_buffer;
 
-	namespace DCB
+	namespace dcb
 	{
 		class buffer
 		{
@@ -21,7 +21,7 @@ namespace PULSAR
 			friend class PULSAR::dynamic_const_buffer;
 
 		private:
-			std::shared_ptr<PULSAR::DCB::layout_elem>	mp_root;
+			std::shared_ptr<PULSAR::dcb::layout_elem>	mp_root;
 			std::vector<char>	m_data;
 			bool	m_is_modified = false;
 
@@ -33,13 +33,13 @@ namespace PULSAR
 
 		public:
 			buffer(){ }
-			buffer(PULSAR::DCB::raw_layout &&raw_layout) : buffer(PULSAR::DCB::baked_layout(std::move(raw_layout))){ }
-			buffer(PULSAR::DCB::baked_layout &&baked_layout)
+			buffer(PULSAR::dcb::raw_layout &&raw_layout) : buffer(PULSAR::dcb::baked_layout(std::move(raw_layout))){ }
+			buffer(PULSAR::dcb::baked_layout &&baked_layout)
 			{
 				this->set_layout(std::move(baked_layout));
 			}
-			buffer(PULSAR::DCB::raw_layout &raw_layout) : buffer(PULSAR::DCB::baked_layout(raw_layout)){ }
-			buffer(const PULSAR::DCB::baked_layout &baked_layout)
+			buffer(PULSAR::dcb::raw_layout &raw_layout) : buffer(PULSAR::dcb::baked_layout(raw_layout)){ }
+			buffer(const PULSAR::dcb::baked_layout &baked_layout)
 			{
 				this->set_layout(baked_layout);
 			}
@@ -49,25 +49,25 @@ namespace PULSAR
 				this->m_data = b.m_data;
 			}
 
-			PULSAR::DCB::layout_elem_ref	operator[](const std::string &key)
+			PULSAR::dcb::layout_elem_ref	operator[](const std::string &key)
 			{
-				return (PULSAR::DCB::layout_elem_ref(&(*this->mp_root)[key], this->m_data.data(), &this->m_is_modified));
+				return (PULSAR::dcb::layout_elem_ref(&(*this->mp_root)[key], this->m_data.data(), &this->m_is_modified));
 			}
 
-			void	set_layout(PULSAR::DCB::raw_layout &&raw_layout)
+			void	set_layout(PULSAR::dcb::raw_layout &&raw_layout)
 			{
-				this->set_layout(PULSAR::DCB::baked_layout(std::move(raw_layout)));
+				this->set_layout(PULSAR::dcb::baked_layout(std::move(raw_layout)));
 			}
-			void	set_layout(PULSAR::DCB::baked_layout &&baked_layout)
+			void	set_layout(PULSAR::dcb::baked_layout &&baked_layout)
 			{
 				this->m_data.resize(baked_layout.size(), 0);
 				this->mp_root = baked_layout.yield_root();
 			}
-			void	set_layout(PULSAR::DCB::raw_layout &raw_layout)
+			void	set_layout(PULSAR::dcb::raw_layout &raw_layout)
 			{
-				this->set_layout(PULSAR::DCB::baked_layout(raw_layout));
+				this->set_layout(PULSAR::dcb::baked_layout(raw_layout));
 			}
-			void	set_layout(const PULSAR::DCB::baked_layout &baked_layout)
+			void	set_layout(const PULSAR::dcb::baked_layout &baked_layout)
 			{
 				this->m_data.resize(baked_layout.size(), 0);
 				this->mp_root = baked_layout.share_root();

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "unclassified.h"
 #include "pulsar_exc.h"
 #include "win_manager.h"
 #include "pulsar_resource_manager.h"
@@ -22,7 +23,7 @@ using namespace std::chrono;
 
 namespace PULSAR
 {
-	class  WINDOW : public PULSAR::PULSAR_ID3D
+	class  WINDOW : public PULSAR::unclassified
 	{
 	private:
 		friend class WIN_MANAGER;
@@ -111,11 +112,11 @@ namespace PULSAR
 
 			return (*this);
 		}
-		WINDOW(const WINDOW &win) : PULSAR::PULSAR_ID3D()
+		WINDOW(const WINDOW &win)
 		{
 			this->copy_assign(win);
 		}
-		WINDOW() : PULSAR::PULSAR_ID3D(){ }
+		WINDOW(){ }
 		~WINDOW()
 		{
 			this->destroy();

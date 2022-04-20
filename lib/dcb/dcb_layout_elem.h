@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dcb_types.h"
+#include "dcb/dcb_types.h"
 
 #include <cassert>
 #include <memory>
@@ -10,7 +10,7 @@
 
 namespace PULSAR
 {
-	namespace DCB
+	namespace dcb
 	{
 		class layout_elem
 		{
@@ -22,18 +22,18 @@ namespace PULSAR
 			struct extra_data
 			{
 				std::unordered_map<std::string, int>	m_keys;
-				std::vector<PULSAR::DCB::layout_elem>	m_elems;
+				std::vector<PULSAR::dcb::layout_elem>	m_elems;
 			};
 
 		private:
-			PULSAR::DCB::TYPE	m_type = PULSAR::DCB::Empty;
+			PULSAR::dcb::TYPE	m_type = PULSAR::dcb::Empty;
 			std::shared_ptr<extra_data>	m_extra_data;
 			size_t	m_offset = 0ull;
 
 		public:
-			PULSAR::DCB::layout_elem	&operator[](const std::string &key)
+			PULSAR::dcb::layout_elem	&operator[](const std::string &key)
 			{
-				assert(("Getting access to non-struct element is forbidden", this->m_type == PULSAR::DCB::Struct));
+				assert(("Getting access to non-struct element is forbidden", this->m_type == PULSAR::dcb::Struct));
 
 				auto &extra_data = *this->m_extra_data;
 				if (auto elem_it = extra_data.m_keys.find(key); elem_it != extra_data.m_keys.end())
@@ -41,20 +41,20 @@ namespace PULSAR
 
 				return (layout_elem::get_empty_elem());
 			}
-			const PULSAR::DCB::layout_elem	&operator[](const std::string &key) const
+			const PULSAR::dcb::layout_elem	&operator[](const std::string &key) const
 			{
 				return (const_cast<layout_elem&>(*this)[key]);
 			}
 
 			// ADD AND RETURN PARENT LAYOUT_ELEM
-			layout_elem		&add(PULSAR::DCB::TYPE type, const std::string &key)
+			layout_elem		&add(PULSAR::dcb::TYPE type, const std::string &key)
 			{
 				this->add_data(type, key);
 				return (*this);
 			}
 
 			// ADD  AND RETURN NEW LAYOUT_ELEM
-			template <PULSAR::DCB::TYPE type>
+			template <PULSAR::dcb::TYPE type>
 			layout_elem		&add(const std::string &key)
 			{
 				this->add_data(type, key);
@@ -64,29 +64,29 @@ namespace PULSAR
 
 			bool	exists() const
 			{
-				return (this->m_type != PULSAR::DCB::Empty);
+				return (this->m_type != PULSAR::dcb::Empty);
 			}
 
 		private:
 			layout_elem() = default;
-			layout_elem(PULSAR::DCB::TYPE type)
+			layout_elem(PULSAR::dcb::TYPE type)
 			{
-				assert(type != PULSAR::DCB::Empty);
+				assert(type != PULSAR::dcb::Empty);
 
 				this->m_type = type;
-				if (this->m_type == PULSAR::DCB::Struct)
+				if (this->m_type == PULSAR::dcb::Struct)
 					this->m_extra_data = std::make_shared<extra_data>();
 			}
 
-			static PULSAR::DCB::layout_elem		&get_empty_elem()
+			static PULSAR::dcb::layout_elem		&get_empty_elem()
 			{
 				static layout_elem empty_elem;
 				return (empty_elem);
 			}
 
-			void	add_data(PULSAR::DCB::TYPE type, const std::string &key)
+			void	add_data(PULSAR::dcb::TYPE type, const std::string &key)
 			{
-				assert(("Adding to non-struct element is forbidden", this->m_type == PULSAR::DCB::Struct));
+				assert(("Adding to non-struct element is forbidden", this->m_type == PULSAR::dcb::Struct));
 				assert(("Invalid key name", this->validate_key(key)));
 
 				auto &extra_data = *this->m_extra_data;
@@ -139,11 +139,11 @@ namespace PULSAR
 				#define DCB_RDT_MACRO(t)													\
 					case t:																	\
 					{																		\
-						return (this->m_offset + PULSAR::DCB::type_attr<t>::hlsl_size);		\
+						return (this->m_offset + PULSAR::dcb::type_attr<t>::hlsl_size);		\
 					}
 					DCB_RAW_DATA_TYPES
 				#undef DCB_RDT_MACRO
-					case PULSAR::DCB::Struct:
+					case PULSAR::dcb::Struct:
 					{
 						return (this->pad_boundary(this->m_extra_data->m_elems.back().get_offset_end()));
 					}
@@ -176,18 +176,18 @@ namespace PULSAR
 				#define DCB_RDT_MACRO(t)																					\
 					case t:																									\
 					{																										\
-						this->m_offset = this->pad_if_crosses_boundary(offset_in, PULSAR::DCB::type_attr<t>::hlsl_size);	\
+						this->m_offset = this->pad_if_crosses_boundary(offset_in, PULSAR::dcb::type_attr<t>::hlsl_size);	\
 						return (this->m_offset + type_attr<t>::hlsl_size);													\
 					}
 					DCB_RAW_DATA_TYPES
 				#undef DCB_RDT_MACRO
-					case PULSAR::DCB::Struct:
+					case PULSAR::dcb::Struct:
 					{
 						return (this->finalize_struct(offset_in));
 					}
 					default:
 					{
-						assert(("Invalid DCB type", false));
+						assert(("Invalid dcb type", false));
 						break;
 					}
 				}

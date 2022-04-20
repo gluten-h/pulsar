@@ -32,7 +32,7 @@ void		PULSAR::CUBEMAP::set_cubemap_memory(LPCWSTR dds_path)
 {
 	HRESULT hr;
 
-	GFX_ASSERT(CreateDDSTextureFromFileEx(this->device, PULSAR::FILESYSTEM::file_path(dds_path).c_str(), 6u, D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, 0u,
+	GFX_ASSERT(CreateDDSTextureFromFileEx(this->device, PULSAR::filesystem::file_path(dds_path).c_str(), 6u, D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, 0u,
 												D3D11_RESOURCE_MISC_TEXTURECUBE, false, (ID3D11Resource**)&this->tex2d, &this->cubemap_srv));
 }
 

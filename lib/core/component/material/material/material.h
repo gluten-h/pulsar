@@ -12,7 +12,7 @@ namespace PULSAR
 	class MATERIAL : public PULSAR::COMPONENT
 	{
 	private:
-		PULSAR::DCB::buffer					m_dcb_buffer;
+		PULSAR::dcb::buffer					m_dcb_buffer;
 		PULSAR::frag_dynamic_const_buffer	m_cbuffer;
 
 	private:
@@ -43,14 +43,14 @@ namespace PULSAR
 		{
 			this->type = PULSAR::COMPONENT_TYPE::MATERIAL;
 
-			PULSAR::DCB::raw_layout raw;
-			raw.add<PULSAR::DCB::Float3>(MATERIAL_DCB_ALBEDO_COLOR);
-			raw.add<PULSAR::DCB::Bool>(MATERIAL_DCB_ALBEDO_MAP_SRGB);
-			raw.add<PULSAR::DCB::Float>(MATERIAL_DCB_NORMAL_FACTOR);
-			raw.add<PULSAR::DCB::Float>(MATERIAL_DCB_ROUGHNESS);
-			raw.add<PULSAR::DCB::Float>(MATERIAL_DCB_METALNESS);
-			raw.add<PULSAR::DCB::Float>(MATERIAL_DCB_AO);
-			raw.add<PULSAR::DCB::Float>(MATERIAL_DCB_EXPOSURE);
+			PULSAR::dcb::raw_layout raw;
+			raw.add<PULSAR::dcb::Float3>(MATERIAL_DCB_ALBEDO_COLOR);
+			raw.add<PULSAR::dcb::Bool>(MATERIAL_DCB_ALBEDO_MAP_SRGB);
+			raw.add<PULSAR::dcb::Float>(MATERIAL_DCB_NORMAL_FACTOR);
+			raw.add<PULSAR::dcb::Float>(MATERIAL_DCB_ROUGHNESS);
+			raw.add<PULSAR::dcb::Float>(MATERIAL_DCB_METALNESS);
+			raw.add<PULSAR::dcb::Float>(MATERIAL_DCB_AO);
+			raw.add<PULSAR::dcb::Float>(MATERIAL_DCB_EXPOSURE);
 
 			this->m_dcb_buffer.set_layout(std::move(raw));
 			this->m_dcb_buffer[MATERIAL_DCB_ALBEDO_COLOR] = XMFLOAT3(1.0f, 1.0f, 1.0f);
@@ -69,7 +69,7 @@ namespace PULSAR
 			return ((PULSAR::MATERIAL*)PULSAR::COMPONENT::add_to_manager(new PULSAR::MATERIAL));
 		}
 
-		void		bind(PULSAR::BIND_SCOPE scope)
+		void	bind(PULSAR::BIND_SCOPE scope)
 		{
 			if (this->m_cbuffer.is_modified())
 				this->m_cbuffer.update();
@@ -94,17 +94,17 @@ namespace PULSAR
 
 
 		PULSAR::TEXTURE					&albedo_map();
-		PULSAR::DCB::layout_elem_ref	albedo_color();
-		PULSAR::DCB::layout_elem_ref	albedo_map_srgb();
+		PULSAR::dcb::layout_elem_ref	albedo_color();
+		PULSAR::dcb::layout_elem_ref	albedo_map_srgb();
 		PULSAR::TEXTURE					&normal_map();
-		PULSAR::DCB::layout_elem_ref	normal_factor();
+		PULSAR::dcb::layout_elem_ref	normal_factor();
 		PULSAR::TEXTURE					&roughness_map();
-		PULSAR::DCB::layout_elem_ref	roughness();
+		PULSAR::dcb::layout_elem_ref	roughness();
 		PULSAR::TEXTURE					&metalness_map();
-		PULSAR::DCB::layout_elem_ref	metalness();
+		PULSAR::dcb::layout_elem_ref	metalness();
 		PULSAR::TEXTURE					&ao_map();
-		PULSAR::DCB::layout_elem_ref	ao();
+		PULSAR::dcb::layout_elem_ref	ao();
 		PULSAR::TEXTURE					&exposure_map();
-		PULSAR::DCB::layout_elem_ref	exposure();
+		PULSAR::dcb::layout_elem_ref	exposure();
 	};
 }

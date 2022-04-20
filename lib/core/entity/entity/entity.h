@@ -1,6 +1,6 @@
 #pragma once
 
-#include "pulsar_id3d.h"
+#include "unclassified.h"
 #include "entity_manager.h"
 
 #include <unordered_set>
@@ -19,7 +19,7 @@ namespace PULSAR
 	};
 
 
-	class ENTITY : public PULSAR::PULSAR_ID3D
+	class ENTITY : public PULSAR::unclassified
 	{
 	protected:
 		int		id = -1;
@@ -45,7 +45,7 @@ namespace PULSAR
 	public:
 		ENTITY(const ENTITY &e) = delete;
 		ENTITY(ENTITY &&e) = delete;
-		ENTITY() : PULSAR::PULSAR_ID3D(){ }
+		ENTITY(){ }
 
 		PULSAR::ENTITY_TYPE		get_type() const
 		{

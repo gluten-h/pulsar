@@ -1,12 +1,12 @@
 #pragma once
 
-#include "pulsar_id3d.h"
+#include "unclassified.h"
 #include "pulsar_exc.h"
 
 
 namespace PULSAR
 {
-	class TEXTURE2D : public PULSAR::PULSAR_ID3D
+	class TEXTURE2D : public PULSAR::unclassified
 	{
 	private:
 		ID3D11Texture2D		*texture = NULL;

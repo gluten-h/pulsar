@@ -47,8 +47,8 @@ set(LIB_SOURCES			core/bindable/bindable/bindable.cpp
 						core/component/material/material/material_props.cpp
 						core/component/skybox_material/skybox_material/skybox_material.cpp
 
-						core/d3d/id3d/pulsar_id3d.cpp
-						core/d3d/pulsar_d3d.cpp
+						#core/d3d/id3d/pulsar_id3d.cpp
+						#core/id3d/pulsar_d3d.cpp
 
 						core/entity/light/dir/dir_light_data.cpp
 						core/entity/light/dir/dir_light_get.cpp
@@ -79,6 +79,9 @@ set(LIB_SOURCES			core/bindable/bindable/bindable.cpp
 						core/scene/scene_skybox.cpp
 
 
+						ecs/ecs_types.cpp
+
+
 						exception/exception/exception.cpp
 						exception/gfx_exception/gfx_exception.cpp
 						exception/rg_exception/rg_exception.cpp
@@ -98,9 +101,11 @@ set(LIB_SOURCES			core/bindable/bindable/bindable.cpp
 set(LIB_SOURCES ${LIB_SOURCES} PARENT_SCOPE)
 
 
-set(LIB_INCLUDES		containers/manager/manager.h
-						containers/fixed_vector/fixed_vector.h
+set(LIB_INCLUDES		containers/manager.h
+						containers/fixed_vector.h
 
+
+						core/bindable/bindable/_bindable.h
 
 						core/bindable/bindable/bindable.h
 						core/bindable/bindable/buffer_resource.h
@@ -141,8 +146,9 @@ set(LIB_INCLUDES		containers/manager/manager.h
 						core/component/skybox_material/skybox_material_shader.h
 						core/component/components.h
 
-						core/d3d/id3d/pulsar_id3d.h
-						core/d3d/pulsar_d3d.h
+						#core/d3d/id3d/pulsar_id3d.h
+						core/id3d/pulsar_id3d.h
+						#core/id3d/pulsar_d3d.h
 
 						core/entity/entity/bindable_entity.h
 						core/entity/entity/entity.h
@@ -186,6 +192,8 @@ set(LIB_INCLUDES		containers/manager/manager.h
 
 						core/scene/scene.h
 
+						core/unclassified/unclassified.h
+
 
 						dcb/dcb.h
 						dcb/dcb_types.h
@@ -213,6 +221,11 @@ set(LIB_INCLUDES		containers/manager/manager.h
 						def/pulsar_def.h
 
 
+						ecs/ecs_types.h
+						ecs/ecs_registry.h
+						ecs/ecs_entity_bin_tree_array.h
+
+
 						exception/exception/exception.h
 						exception/gfx_exception/gfx_exception.h
 						exception/macros/def_exc_macros.h
@@ -235,8 +248,7 @@ set(LIB_INCLUDES		containers/manager/manager.h
 set(LIB_INCLUDES ${LIB_INCLUDES} PARENT_SCOPE)
 
 
-set(LIB_INCLUDE_DIRS	containers/manager
-						containers/fixed_vector
+set(LIB_INCLUDE_DIRS	containers
 
 
 						core/bindable/bindable
@@ -270,8 +282,8 @@ set(LIB_INCLUDE_DIRS	containers/manager
 						core/component/skybox_material
 						core/component
 
-						core/d3d/id3d
-						core/d3d
+						#core/d3d/id3d
+						core/id3d
 
 						core/entity/entity
 						core/entity/light/dir
@@ -307,8 +319,7 @@ set(LIB_INCLUDE_DIRS	containers/manager
 
 						core/scene
 
-
-						dcb
+						core/unclassified
 
 
 						def

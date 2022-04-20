@@ -38,7 +38,7 @@ void		PULSAR::MESH::set(LPCWSTR file, PULSAR::MESH_FILE_FORMAT file_format)
 	{
 		case PULSAR::MESH_FILE_FORMAT::OBJ:
 		{
-			this->load_mesh_obj(PULSAR::FILESYSTEM::file_path(file).c_str());
+			this->load_mesh_obj(PULSAR::filesystem::file_path(file).c_str());
 			this->create_buffer();
 
 			break;

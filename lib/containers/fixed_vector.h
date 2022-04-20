@@ -9,28 +9,28 @@
 namespace PULSAR
 {
 	template <typename T, size_t MAX_SIZE>
-	class FIXED_VECTOR
+	class fixed_vector
 	{
 	private:
-		class ELEM
+		class elem
 		{
 		private:
-			friend class FIXED_VECTOR;
-			friend class FIXED_VECTOR::iterator;
+			friend class fixed_vector;
+			friend class fixed_vector::iterator;
 
 		public:
 			T		data;
 
-			int		get_id() const
+			int		id() const
 			{
 				return (this->id);
 			}
 
 		private:
-			int		id = -1;
+			int		m_id = -1;
 
-			ELEM	 *next = NULL;
-			ELEM	 *prev = NULL;
+			elem	 *next = NULL;
+			elem	 *prev = NULL;
 		};
 
 	public:
@@ -38,14 +38,18 @@ namespace PULSAR
 		{
 			using iterator_category = std::forward_iterator_tag;
 			using difference_type = std::ptrdiff_t;
-			using value_type = ELEM;
-			using pointer = ELEM*;
-			using reference = ELEM&;
+			using value_type = elem;
+			using pointer = elem*;
+			using reference = elem&;
 
 		private:
 			pointer		m_ptr;
 
 		public:
+			iterator()
+			{
+				this->m_ptr = NULL;
+			}
 			iterator(pointer ptr)
 			{
 				this->m_ptr = ptr;
@@ -84,22 +88,22 @@ namespace PULSAR
 		};
 
 	private:
-		ELEM	data[MAX_SIZE];
+		elem	data[MAX_SIZE];
 		size_t	_size = 0u;
 
 		size_t	iter_id = 0u;
-		ELEM	*head_elem = NULL;
-		ELEM	*tail_elem = NULL;
+		elem	*head_elem = NULL;
+		elem	*tail_elem = NULL;
 
 
 		void	move_iter_id()
 		{
-			if (this->iter_id >= MAX_SIZE || this->data[this->iter_id].id > -1)
+			if (this->iter_id >= MAX_SIZE || this->data[this->iter_id].m_id > -1)
 			{
 				int i = -1;
 				while (++i < MAX_SIZE)
 				{
-					if (this->data[i].id == -1)
+					if (this->data[i].m_id == -1)
 					{
 						this->iter_id = i;
 						break;
@@ -107,27 +111,31 @@ namespace PULSAR
 				}
 			}
 		}
-		void	remove_elem(unsigned int id)
+		void	erase_elem(uint32_t id)
 		{
-			ELEM *data_ptr = &this->data[id];
+			elem *data_ptr = &this->data[id];
 
 			if (data_ptr == this->head_elem)
 			{
 				this->head_elem = data_ptr->next;
+				if (this->head_elem)
+					this->head_elem->prev = NULL;
 			}
 			else if (data_ptr == this->tail_elem)
 			{
 				this->tail_elem = data_ptr->prev;
+				if (this->tail_elem)
+					this->tail_elem->next = NULL;
 			}
 			else
 			{
-					ELEM *prev = data_ptr->prev;
-					ELEM *next = data_ptr->next;
-					prev->next = next;
-					next->prev = prev;
+				elem *prev = data_ptr->prev;
+				elem *next = data_ptr->next;
+				prev->next = next;
+				next->prev = prev;
 			}
 
-			data_ptr->id = -1;
+			data_ptr->m_id = -1;
 			data_ptr->next = NULL;
 			data_ptr->prev = NULL;
 			this->_size--;
@@ -152,7 +160,7 @@ namespace PULSAR
 
 			int id = this->iter_id;
 			this->data[id].data = value;
-			this->data[id].id = id;
+			this->data[id].m_id = id;
 
 			if (!this->head_elem)
 			{
@@ -178,18 +186,18 @@ namespace PULSAR
 
 			return (id);
 		}
-		void	remove(unsigned int id)
+		void	erase(uint32_t id)
 		{
-			if (id >= MAX_SIZE || this->data[id].id == -1)
+			if (id >= MAX_SIZE || this->data[id].m_id == -1)
 				return;
-			this->remove_elem(id);
+			this->erase_elem(id);
 		}
 		void	clear()
 		{
-			ELEM *elem = this->head_elem;
+			elem *elem = this->head_elem;
 			while (elem)
 			{
-				elem->id = -1;
+				elem->m_id = -1;
 				elem = elem->next;
 			}
 
@@ -199,10 +207,10 @@ namespace PULSAR
 			this->_size = 0u;
 		}
 
-		T	&at(unsigned int id)
+		T	&at(uint32_t id)
 		{
-			if (id >= MAX_SIZE || this->data[id].id == -1)
-				throw std::out_of_range("FIXED_VECTOR invalid id");
+			if (id >= MAX_SIZE || this->data[id].m_id == -1)
+				throw std::out_of_range("fixed_vector: invalid id");
 			return (this->data[id].data);
 		}
 

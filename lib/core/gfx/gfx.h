@@ -1,5 +1,6 @@
 #pragma once
 
+#include "unclassified.h"
 #include "camera.h"
 #include "def_window.h"
 
@@ -12,7 +13,7 @@ namespace PULSAR
 {
 	class WINDOW;
 
-	class GFX
+	class GFX : public PULSAR::unclassified
 	{
 	private:
 		static PULSAR::WINDOW	*curr_win;
@@ -71,7 +72,8 @@ namespace PULSAR
 
 		static void		draw_indexed(UINT index_count)
 		{
-			PULSAR::PULSAR_D3D::get_device_context()->DrawIndexed(index_count, 0u, 0u);
+			PULSAR::unclassified::m_id3d.device_context()->DrawIndexed(index_count, 0u, 0u);
+			//PULSAR::id3d::device_context()->DrawIndexed(index_count, 0u, 0u);
 		}
 	};
 }

@@ -18,7 +18,7 @@ namespace PULSAR
 		{
 			this->type = PULSAR::BINDABLE_TYPE::VERT_DYNAMIC_CONST_BUFFER;
 		}
-		vert_dynamic_const_buffer(PULSAR::DCB::buffer *dcb_buffer, UINT slot = 0u) : PULSAR::dynamic_const_buffer(dcb_buffer, slot)
+		vert_dynamic_const_buffer(PULSAR::dcb::buffer *dcb_buffer, UINT slot = 0u) : PULSAR::dynamic_const_buffer(dcb_buffer, slot)
 		{
 			this->type = PULSAR::BINDABLE_TYPE::VERT_DYNAMIC_CONST_BUFFER;
 		}

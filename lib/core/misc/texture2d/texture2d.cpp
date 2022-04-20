@@ -19,14 +19,14 @@ PULSAR::TEXTURE2D		&PULSAR::TEXTURE2D::operator=(const PULSAR::TEXTURE2D &t)
 	return (*this);
 }
 
-PULSAR::TEXTURE2D::TEXTURE2D(const PULSAR::TEXTURE2D &t) : PULSAR::PULSAR_ID3D()
+PULSAR::TEXTURE2D::TEXTURE2D(const PULSAR::TEXTURE2D &t)
 {
 	this->copy_assign(t);
 }
 
-PULSAR::TEXTURE2D::TEXTURE2D() : PULSAR::PULSAR_ID3D(){ }
+PULSAR::TEXTURE2D::TEXTURE2D(){ }
 
-PULSAR::TEXTURE2D::TEXTURE2D(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags) : PULSAR::PULSAR_ID3D()
+PULSAR::TEXTURE2D::TEXTURE2D(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
 {
 	this->set_texture_memory(width, height, format, bind_flags, cpu_access_flags);
 }

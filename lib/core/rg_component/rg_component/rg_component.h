@@ -1,6 +1,6 @@
 #pragma once
 
-#include "pulsar_id3d.h"
+#include "unclassified.h"
 #include "rg_component_manager.h"
 
 
@@ -16,7 +16,7 @@ namespace PULSAR
 	};
 
 
-	class RG_COMPONENT : public PULSAR::PULSAR_ID3D
+	class RG_COMPONENT : public PULSAR::unclassified
 	{
 	private:
 		friend class COMPONENT_MANAGER;
@@ -41,7 +41,7 @@ namespace PULSAR
 		}
 
 	public:
-		RG_COMPONENT() : PULSAR::PULSAR_ID3D(){ }
+		RG_COMPONENT(){ }
 		~RG_COMPONENT()
 		{
 			this->destroy();

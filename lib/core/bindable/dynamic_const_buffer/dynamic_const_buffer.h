@@ -1,7 +1,7 @@
 #pragma once
 
 #include "bindable.h"
-#include "dcb_buffer.h"
+#include "dcb/dcb_buffer.h"
 
 
 namespace PULSAR
@@ -10,11 +10,11 @@ namespace PULSAR
 	{
 	protected:
 		ID3D11Buffer *mp_buffer = NULL;
-		PULSAR::DCB::buffer	*mp_dcb_buffer = NULL;
+		PULSAR::dcb::buffer	*mp_dcb_buffer = NULL;
 		UINT	m_slot = 0u;
 
 
-		void	set_buffer(PULSAR::DCB::buffer *dcb_buffer)
+		void	set_buffer(PULSAR::dcb::buffer *dcb_buffer)
 		{
 			if (!dcb_buffer)
 				return;
@@ -64,7 +64,7 @@ namespace PULSAR
 		{
 			this->m_slot = slot;
 		}
-		dynamic_const_buffer(PULSAR::DCB::buffer *dcb_buffer, UINT slot = 0u) : PULSAR::BINDABLE()
+		dynamic_const_buffer(PULSAR::dcb::buffer *dcb_buffer, UINT slot = 0u) : PULSAR::BINDABLE()
 		{
 			this->set_buffer(dcb_buffer);
 			this->m_slot = slot;
@@ -87,7 +87,7 @@ namespace PULSAR
 			this->mp_dcb_buffer->set_updated();
 		}
 
-		void	set_dcb_buffer(PULSAR::DCB::buffer *dcb_buffer)
+		void	set_dcb_buffer(PULSAR::dcb::buffer *dcb_buffer)
 		{
 			this->release_buffer();
 			this->set_buffer(dcb_buffer);

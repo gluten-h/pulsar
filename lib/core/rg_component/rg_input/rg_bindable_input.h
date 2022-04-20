@@ -31,7 +31,7 @@ namespace PULSAR
 		void	validate() const override
 		{
 			if (!this->source_buffer)
-				PULSAR::THROW_RG_EXC("RG_BINDABLE_INPUT \"" + this->get_name() + "\": Unlinked input");
+				THROW_RG_EXC("RG_BINDABLE_INPUT \"" + this->get_name() + "\": Unlinked input");
 		}
 
 		void		bind(PULSAR::RG_SOURCE *source) override

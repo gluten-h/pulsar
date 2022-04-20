@@ -17,7 +17,7 @@ void		PULSAR::SHADER::set_shader_memory(const LPCWSTR shader_file, const LPCSTR 
 	//HRESULT hr;
 	PULSAR::SHADER_INCLUDE s_inc;
 
-	HRESULT hr = D3DCompileFromFile(PULSAR::FILESYSTEM::file_path(shader_file).c_str(), defines, &s_inc, entry, target, NULL, NULL, &this->shader_blob, NULL);
+	HRESULT hr = D3DCompileFromFile(PULSAR::filesystem::file_path(shader_file).c_str(), defines, &s_inc, entry, target, NULL, NULL, &this->shader_blob, NULL);
 
 	GFX_ASSERT(hr);
 }

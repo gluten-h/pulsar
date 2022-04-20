@@ -1,5 +1,6 @@
 #pragma once
 
+#include "unclassified.h"
 #include "def_shaders.h"
 #include "texture2d.h"
 #include "render_texture.h"
@@ -24,7 +25,7 @@ namespace PULSAR
 	};
 
 
-	class DEFERRED_BUFFER : public PULSAR::PULSAR_ID3D
+	class DEFERRED_BUFFER : public PULSAR::unclassified
 	{
 	private:
 		PULSAR::TEXTURE2D			rt_texture[G_BUFFER_COUNT];
@@ -63,7 +64,7 @@ namespace PULSAR
 			return (*this);
 		}
 
-		DEFERRED_BUFFER() : PULSAR::PULSAR_ID3D()
+		DEFERRED_BUFFER()
 		{
 			this->deferred_vs = FULLSCREEN_VS;;
 			this->deferred_fs.set(L"shaders/deferred/deferred_fs.hlsl", PULSAR::FRAG_SHADER_ENTRY, NULL);

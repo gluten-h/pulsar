@@ -32,7 +32,7 @@ void		PULSAR::TEXTURE::set_texture_memory(const LPCWSTR file)
 {
 	HRESULT hr;
 
-	GFX_ASSERT(CreateWICTextureFromFile(this->device, PULSAR::FILESYSTEM::file_path(file).c_str(), (ID3D11Resource**)&this->texture2d, &this->texture_srv));
+	GFX_ASSERT(CreateWICTextureFromFile(this->device, PULSAR::filesystem::file_path(file).c_str(), (ID3D11Resource**)&this->texture2d, &this->texture_srv));
 }
 
 void		PULSAR::TEXTURE::set(const LPCWSTR file)

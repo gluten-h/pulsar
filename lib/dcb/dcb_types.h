@@ -13,7 +13,7 @@
 
 namespace PULSAR
 {
-	namespace DCB
+	namespace dcb
 	{
 		enum TYPE
 		{
@@ -75,7 +75,7 @@ namespace PULSAR
 			static const size_t hlsl_size = 4ull;
 		};
 
-	#define DCB_RDT_MACRO(t) static_assert(type_attr<t>::is_valid, "Missing DCB raw type attributes implementation");
+	#define DCB_RDT_MACRO(t) static_assert(type_attr<t>::is_valid, "Missing dcb raw type attributes implementation");
 		DCB_RAW_DATA_TYPES
 	#undef DCB_RDT_MACRO
 

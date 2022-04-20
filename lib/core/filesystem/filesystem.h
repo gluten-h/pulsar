@@ -8,7 +8,7 @@
 
 namespace PULSAR
 {
-	class FILESYSTEM
+	class filesystem
 	{
 	private:
 		static std::unordered_map<size_t, std::filesystem::path>	&mount_points()
@@ -22,7 +22,7 @@ namespace PULSAR
 	public:
 		static std::wstring		file_path(const LPCWSTR path)
 		{
-			for (auto &p : FILESYSTEM::mount_points())
+			for (auto &p : filesystem::mount_points())
 			{
 				std::filesystem::path fs_path = p.second;
 				fs_path.append(path);

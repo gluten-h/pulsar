@@ -1,6 +1,6 @@
 #pragma once
 
-#include "pulsar_id3d.h"
+#include "unclassified.h"
 #include "pulsar_exc.h"
 #include "buffer_resource.h"
 #include "fixed_vector.h"
@@ -17,6 +17,8 @@ namespace PULSAR
 		NONE,
 		VERT_CONST_BUFFER,
 		FRAG_CONST_BUFFER,
+		VERT_DYNAMIC_CONST_BUFFER,
+		FRAG_DYNAMIC_CONST_BUFFER,
 		TEXTURE,
 		DEPTH_STENCIL_VIEW,
 		DEPTH_STENCIL_STATE,
@@ -30,9 +32,7 @@ namespace PULSAR
 		RASTERIZER_STATE,
 		RENDER_TARGET,
 		VIEWPORT,
-		MESH,
-		VERT_DYNAMIC_CONST_BUFFER,
-		FRAG_DYNAMIC_CONST_BUFFER
+		MESH
 	};
 
 
@@ -52,11 +52,11 @@ namespace PULSAR
 	class BINDABLE_ENTITY;
 
 
-	class BINDABLE : public PULSAR::PULSAR_ID3D
+	class BINDABLE : public PULSAR::unclassified
 	{
 	private:
-		static PULSAR::FIXED_VECTOR<PULSAR::BINDABLE*, PULSAR::MAX_BINDABLE_COUNT>		local_unbinds;
-		static PULSAR::FIXED_VECTOR<PULSAR::BINDABLE*, PULSAR::MAX_BINDABLE_COUNT>		global_unbinds;
+		static PULSAR::fixed_vector<PULSAR::BINDABLE*, PULSAR::MAX_BINDABLE_COUNT>		local_unbinds;
+		static PULSAR::fixed_vector<PULSAR::BINDABLE*, PULSAR::MAX_BINDABLE_COUNT>		global_unbinds;
 
 	protected:
 		int		id = -1;

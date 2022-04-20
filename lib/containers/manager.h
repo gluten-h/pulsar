@@ -14,7 +14,7 @@ namespace PULSAR
 	class MANAGER
 	{
 	protected:
-		PULSAR::FIXED_VECTOR<T*, MAX_SIZE>	data;
+		PULSAR::fixed_vector<T*, MAX_SIZE>	data;
 		std::unordered_map<T*, int>			data_id_map;
 
 
@@ -67,18 +67,18 @@ namespace PULSAR
 			int id = this->data_id_map.at(value);
 			
 			this->data_id_map.erase(value);
-			this->data.remove(id);
+			this->data.erase(id);
 			this->remove_event(id, value);
 		}
 
 	public:
 		MANAGER(){ }
 		
-		typename FIXED_VECTOR<T*, MAX_SIZE>::iterator	begin()
+		typename fixed_vector<T*, MAX_SIZE>::iterator	begin()
 		{
 			return (this->data.begin());
 		}
-		typename FIXED_VECTOR<T*, MAX_SIZE>::iterator	end()
+		typename fixed_vector<T*, MAX_SIZE>::iterator	end()
 		{
 			return (this->data.end());
 		}
