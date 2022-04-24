@@ -2,11 +2,11 @@
 #include "pulsar_utils.h"
 
 
-std::vector<std::string>	PULSAR::UTILS::str_split(const char *str, char delim)
+std::vector<std::string>	PULSAR::utils::str_split(const char *str, char delim)
 {
-	std::stringstream			ss(str);
-	std::string					line;
-	std::vector<std::string>	vec;
+	std::stringstream ss(str);
+	std::string line;
+	std::vector<std::string> vec;
 
 	while (std::getline(ss, line, delim))
 		vec.push_back(line);
@@ -14,11 +14,11 @@ std::vector<std::string>	PULSAR::UTILS::str_split(const char *str, char delim)
 	return (vec);
 }
 
-std::vector<std::string>	PULSAR::UTILS::str_split(const std::string &str, char delim)
+std::vector<std::string>	PULSAR::utils::str_split(const std::string &str, char delim)
 {
-	std::stringstream			ss(str);
-	std::string					line;
-	std::vector<std::string>	vec;
+	std::stringstream ss(str);
+	std::string line;
+	std::vector<std::string> vec;
 
 	while (std::getline(ss, line, delim))
 		vec.push_back(line);
@@ -27,7 +27,7 @@ std::vector<std::string>	PULSAR::UTILS::str_split(const std::string &str, char d
 }
 
 
-std::string		PULSAR::UTILS::str_replace_all(const std::string &str, const std::string &find, const std::string &replace)
+std::string		PULSAR::utils::str_replace_all(const std::string &str, const std::string &find, const std::string &replace)
 {
 	std::string new_str = str;
 	size_t idx = 0u;
@@ -44,7 +44,7 @@ std::string		PULSAR::UTILS::str_replace_all(const std::string &str, const std::s
 	return (new_str);
 }
 
-std::wstring		PULSAR::UTILS::str_replace_all(const std::wstring &str, const std::wstring &find, const std::wstring &replace)
+std::wstring	PULSAR::utils::str_replace_all(const std::wstring &str, const std::wstring &find, const std::wstring &replace)
 {
 	std::wstring new_str = str;
 	size_t idx = 0u;

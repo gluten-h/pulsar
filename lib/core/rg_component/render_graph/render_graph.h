@@ -5,7 +5,7 @@
 #include "rg_pass.h"
 #include "render_target.h"
 #include "depth_stencil_view.h"
-#include "pulsar_exc.h"
+#include "exceptions/pulsar_exc.h"
 
 #include <map>
 #include <unordered_map>

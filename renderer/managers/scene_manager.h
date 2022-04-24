@@ -6,9 +6,9 @@
 
 namespace PULSAR
 {
-	class SCENE;
+	class scene;
 
-	class SCENE_MANAGER : public PULSAR::MANAGER<SCENE, PULSAR::MAX_SCENE_COUNT>
+	class SCENE_MANAGER : public PULSAR::MANAGER<scene, PULSAR::MAX_SCENE_COUNT>
 	{
 	public:
 		static SCENE_MANAGER	&get_instance()
@@ -18,7 +18,7 @@ namespace PULSAR
 			return (manager);
 		}
 
-		int		add(SCENE *scene)
+		int		add(scene *scene)
 		{
 			if (!this->is_available(scene))
 				return (-1);

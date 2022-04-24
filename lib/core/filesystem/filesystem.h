@@ -2,8 +2,7 @@
 
 #include <Windows.h>
 #include <filesystem>
-#include <string>
-#include <unordered_map>
+#include <vector>
 
 
 namespace PULSAR
@@ -11,28 +10,26 @@ namespace PULSAR
 	class filesystem
 	{
 	private:
-		static std::unordered_map<size_t, std::filesystem::path>	&mount_points()
+		static std::vector<std::filesystem::path>	&mount_points()
 		{
-			static std::filesystem::path project_path(PULSAR_ROOT_PATH);
-			static std::unordered_map<size_t, std::filesystem::path> mount_points({		{ std::filesystem::hash_value(project_path), project_path }		});
+			static const std::filesystem::path project_path(PULSAR_ROOT_PATH);
+			static std::vector<std::filesystem::path> mount_points = { project_path };
 
 			return (mount_points);
 		}
 
 	public:
-		static std::wstring		file_path(const LPCWSTR path)
+		static std::wstring		absolute_path(const LPCWSTR relative_path)
 		{
-			for (auto &p : filesystem::mount_points())
+			for (auto &point : filesystem::mount_points())
 			{
-				std::filesystem::path fs_path = p.second;
-				fs_path.append(path);
+				std::filesystem::path fs_path = point;
+				fs_path.append(relative_path);
 				fs_path.make_preferred();
 
 				if (std::filesystem::exists(fs_path))
 					return (fs_path.wstring());
 			}
-			if (std::filesystem::exists(path))
-				return (std::wstring(path));
 
 			return (std::wstring());
 		}

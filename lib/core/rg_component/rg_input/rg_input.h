@@ -1,7 +1,7 @@
 #pragma once
 
 #include "rg_component.h"
-#include "pulsar_exc.h"
+#include "exceptions/pulsar_exc.h"
 #include "rg_source.h"
 
 #include <string>

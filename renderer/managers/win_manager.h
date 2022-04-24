@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "pulsar_id3d.h"
+#include "unclassified.h"
 #include "manager.h"
 #include "def_window.h"
 #include "fixed_vector.h"
@@ -17,7 +17,7 @@ namespace PULSAR
 {
 	class WINDOW;
 
-	class WIN_MANAGER : public PULSAR::PULSAR_ID3D, public PULSAR::MANAGER<PULSAR::WINDOW, PULSAR::MAX_WIN_COUNT>
+	class WIN_MANAGER : public PULSAR::unclassified, public PULSAR::MANAGER<PULSAR::WINDOW, PULSAR::MAX_WIN_COUNT>
 	{
 	public:
 		static WIN_MANAGER	&get_instance()

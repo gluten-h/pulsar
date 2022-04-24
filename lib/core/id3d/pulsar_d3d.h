@@ -31,7 +31,7 @@ using namespace DirectX;
 #include <cstddef>
 #include <tchar.h>
 
-#include "pulsar_exc.h"
+#include "exceptions/pulsar_exc.h"
 #include "pulsar_utils.h"
 #include "pulsar_resource_manager.h"
 

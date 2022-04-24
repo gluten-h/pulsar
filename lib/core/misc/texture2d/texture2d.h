@@ -1,34 +1,30 @@
 #pragma once
 
-#include "unclassified.h"
-#include "pulsar_exc.h"
+#include "_gfx/_gfx.h"
+#include "exceptions/pulsar_exc.h"
 
 
 namespace PULSAR
 {
-	class TEXTURE2D : public PULSAR::unclassified
+	class texture2d
 	{
 	private:
-		ID3D11Texture2D		*texture = NULL;
+		ID3D11Texture2D *mp_texture = NULL;
+		
+	private:
+		void	create_texture2d(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags);
+		void	free();
 
-
-		void	set_texture_memory(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags);
-		void	remove_texture_memory();
-
-		void	copy_assign(const TEXTURE2D &t);
+		void	copy_assign(const texture2d &t);
 
 	public:
-		TEXTURE2D	&operator=(const TEXTURE2D &t);
-		TEXTURE2D(const TEXTURE2D &t);
-		TEXTURE2D();
-		TEXTURE2D(float width, float height, DXGI_FORMAT format, UINT bind_flags = 0u, UINT cpu_access_flags = 0u);
-		~TEXTURE2D();
+		texture2d	&operator=(const texture2d &t);
+		texture2d(const texture2d &t);
+		texture2d();
+		texture2d(float width, float height, DXGI_FORMAT format, UINT bind_flags = 0u, UINT cpu_access_flags = 0u);
+		~texture2d();
 
-		void	set_texture(float width, float height, DXGI_FORMAT format, UINT bind_flags = 0u, UINT cpu_access_flags = 0u);
-
-		ID3D11Texture2D *get_texture()
-		{
-			return (this->texture);
-		}
+		void	set(float width, float height, DXGI_FORMAT format, UINT bind_flags = 0u, UINT cpu_access_flags = 0u);
+		ID3D11Texture2D		*get();
 	};
 }

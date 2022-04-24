@@ -1,43 +1,43 @@
 
 cmake_minimum_required(VERSION 3.20)
 
-set(LIB_SOURCES			core/bindable/bindable/bindable.cpp
-						core/bindable/cubemap/cubemap_data.cpp
-						core/bindable/cubemap/cubemap_dds.cpp
-						core/bindable/cubemap/cubemap.cpp
-						core/bindable/depth_stencil/state/depth_stencil_state_data.cpp
-						core/bindable/depth_stencil/state/depth_stencil_state.cpp
-						core/bindable/depth_stencil/view/depth_stencil_view_data.cpp
-						core/bindable/depth_stencil/view/depth_stencil_view_get.cpp
-						core/bindable/depth_stencil/view/depth_stencil_view.cpp
-						core/bindable/input_layout/input_layout_data.cpp
-						core/bindable/input_layout/input_layout.cpp
-						core/bindable/mesh/mesh_d3d.cpp
-						core/bindable/mesh/mesh_data.cpp
-						core/bindable/mesh/mesh_obj.cpp
-						core/bindable/mesh/mesh.cpp
-						core/bindable/rasterizer_state/rasterizer_state_data.cpp
-						core/bindable/rasterizer_state/rasterizer_state.cpp
-						core/bindable/render_target/render_target_data.cpp
-						core/bindable/render_target/render_target_misc.cpp
-						core/bindable/render_target/render_target.cpp
-						core/bindable/render_texture/render_texture_data.cpp
-						core/bindable/render_texture/render_texture_get.cpp
-						core/bindable/render_texture/render_texture_misc.cpp
-						core/bindable/render_texture/render_texture.cpp
-						core/bindable/sampler/sampler_data.cpp
-						core/bindable/sampler/sampler.cpp
-						core/bindable/shader/frag/frag_shader_data.cpp
-						core/bindable/shader/frag/frag_shader.cpp
-						core/bindable/shader/geom/geom_shader_data.cpp
-						core/bindable/shader/geom/geom_shader.cpp
-						core/bindable/shader/shader/shader_data.cpp
-						core/bindable/shader/vert/vert_shader_data.cpp
-						core/bindable/shader/vert/vert_shader.cpp
-						core/bindable/texture/texture_data.cpp
-						core/bindable/texture/texture.cpp
-						core/bindable/viewport/viewport_data.cpp
-						core/bindable/viewport/viewport.cpp
+set(LIB_SOURCES	
+						core/bindables/cubemap/cubemap_data.cpp
+						core/bindables/cubemap/cubemap_dds.cpp
+						core/bindables/cubemap/cubemap.cpp
+						core/bindables/depth_stencil/depth_stencil_state_data.cpp
+						core/bindables/depth_stencil/depth_stencil_state.cpp
+						core/bindables/depth_stencil/depth_stencil_view_data.cpp
+						core/bindables/depth_stencil/depth_stencil_view.cpp
+						core/bindables/dynamic_const_buffer/dynamic_const_buffer.cpp
+						core/bindables/dynamic_const_buffer/dynamic_const_buffer_data.cpp
+						core/bindables/dynamic_const_buffer/frag_dynamic_const_buffer.cpp
+						core/bindables/dynamic_const_buffer/vert_dynamic_const_buffer.cpp
+						core/bindables/input_layout/input_layout_data.cpp
+						core/bindables/input_layout/input_layout.cpp
+						core/bindables/mesh/mesh_d3d.cpp
+						core/bindables/mesh/mesh_data.cpp
+						core/bindables/mesh/mesh_obj.cpp
+						core/bindables/mesh/mesh.cpp
+						core/bindables/rasterizer_state/rasterizer_state_data.cpp
+						core/bindables/rasterizer_state/rasterizer_state.cpp
+						core/bindables/framebuffer/framebuffer_data.cpp
+						core/bindables/framebuffer/framebuffer.cpp
+						core/bindables/render_texture/render_texture_data.cpp
+						core/bindables/render_texture/render_texture.cpp
+						core/bindables/sampler/sampler_data.cpp
+						core/bindables/sampler/sampler.cpp
+						core/bindables/shaders/frag_shader_data.cpp
+						core/bindables/shaders/frag_shader.cpp
+						core/bindables/shaders/geom_shader_data.cpp
+						core/bindables/shaders/geom_shader.cpp
+						core/bindables/shaders/shader_data.cpp
+						core/bindables/shaders/vert_shader_data.cpp
+						core/bindables/shaders/vert_shader.cpp
+						core/bindables/shader_texture/shader_texture_data.cpp
+						core/bindables/shader_texture/shader_texture.cpp
+						core/bindables/viewport/viewport_data.cpp
+						core/bindables/viewport/viewport.cpp
 
 						core/component/camera/camera/camera_data.cpp
 						core/component/camera/camera/camera_def.cpp
@@ -71,21 +71,24 @@ set(LIB_SOURCES			core/bindable/bindable/bindable.cpp
 						core/misc/texture2d/texture2d.cpp
 						core/misc/transform/transform/transform.cpp
 
+						core/node/node.cpp
+
 						core/resource_manager/pulsar_resource_manager.cpp
 
 						core/scene/scene_draw.cpp
 						core/scene/scene_entity.cpp
 						core/scene/scene_light.cpp
 						core/scene/scene_skybox.cpp
+						core/scene/scene_node.cpp
 
 
-						ecs/ecs_types.cpp
+						ecs/types.cpp
 
 
-						exception/exception/exception.cpp
-						exception/gfx_exception/gfx_exception.cpp
-						exception/rg_exception/rg_exception.cpp
-						exception/win_exception/win_exception.cpp
+						exceptions/base_exception/base_exception.cpp
+						exceptions/gfx_exception/gfx_exception.cpp
+						exceptions/rg_exception/rg_exception.cpp
+						exceptions/win_exception/win_exception.cpp
 
 
 						utils/pulsar_math.cpp
@@ -101,39 +104,40 @@ set(LIB_SOURCES			core/bindable/bindable/bindable.cpp
 set(LIB_SOURCES ${LIB_SOURCES} PARENT_SCOPE)
 
 
-set(LIB_INCLUDES		containers/manager.h
+set(LIB_INCLUDES		
+						components/transform_component.h
+						components/mesh_component.h
+
+
+						containers/manager.h
 						containers/fixed_vector.h
+						containers/sparse_set.h
 
 
-						core/bindable/bindable/_bindable.h
-
-						core/bindable/bindable/bindable.h
-						core/bindable/bindable/buffer_resource.h
-						core/bindable/const_buffer/const_buffer.h
-						core/bindable/const_buffer/const_buffers.h
-						core/bindable/const_buffer/frag_const_buffer.h
-						core/bindable/const_buffer/vert_const_buffer.h
-						core/bindable/cubemap/cubemap.h
-						core/bindable/depth_stencil/state/depth_stencil_state.h
-						core/bindable/depth_stencil/view/depth_stencil_view.h
-						core/bindable/depth_stencil/depth_stencil.h
-						core/bindable/dynamic_const_buffer/dynamic_const_buffer.h
-						core/bindable/dynamic_const_buffer/frag_dynamic_const_buffer.h
-						core/bindable/dynamic_const_buffer/vert_dynamic_const_buffer.h
-						core/bindable/input_layout/input_layout.h
-						core/bindable/mesh/mesh.h
-						core/bindable/rasterizer_state/rasterizer_state.h
-						core/bindable/render_target/render_target.h
-						core/bindable/render_texture/render_texture.h
-						core/bindable/sampler/sampler.h
-						core/bindable/shader/frag/frag_shader.h
-						core/bindable/shader/geom/geom_shader.h
-						core/bindable/shader/shader/shader.h
-						core/bindable/shader/vert/vert_shader.h
-						core/bindable/shader/shaders.h
-						core/bindable/texture/texture.h
-						core/bindable/viewport/viewport.h
-						core/bindable/bindables.h
+						core/bindables/bindable/bindable.h
+						core/bindables/bindable/buffer_resource.h
+						core/bindables/const_buffer/const_buffer.h
+						core/bindables/const_buffer/frag_const_buffer.h
+						core/bindables/const_buffer/vert_const_buffer.h
+						core/bindables/cubemap/cubemap.h
+						core/bindables/depth_stencil/depth_stencil_state.h
+						core/bindables/depth_stencil/depth_stencil_view.h
+						core/bindables/dynamic_const_buffer/dynamic_const_buffer.h
+						core/bindables/dynamic_const_buffer/frag_dynamic_const_buffer.h
+						core/bindables/dynamic_const_buffer/vert_dynamic_const_buffer.h
+						core/bindables/input_layout/input_layout.h
+						core/bindables/mesh/mesh.h
+						core/bindables/rasterizer_state/rasterizer_state.h
+						core/bindables/framebuffer/framebuffer.h
+						core/bindables/render_texture/render_texture.h
+						core/bindables/sampler/sampler.h
+						core/bindables/shaders/frag_shader.h
+						core/bindables/shaders/geom_shader.h
+						core/bindables/shaders/shader.h
+						core/bindables/shaders/vert_shader.h
+						core/bindables/shader_texture/shader_texture.h
+						core/bindables/viewport/viewport.h
+						core/bindables/bindables.h
 
 						core/component/camera/camera/camera.h
 						core/component/camera/camera_shader/camera_deferred_shader.h
@@ -173,6 +177,8 @@ set(LIB_INCLUDES		containers/manager.h
 						core/misc/transform/transform/transform.h
 						core/misc/transform/transform_shader.h
 
+						core/node/node.h
+
 						core/resource_manager/pulsar_resource_manager.h
 
 						#core/render_queue/render_queue.h
@@ -196,13 +202,13 @@ set(LIB_INCLUDES		containers/manager.h
 
 
 						dcb/dcb.h
-						dcb/dcb_types.h
-						dcb/dcb_layout_elem.h
-						dcb/dcb_layout.h
-						dcb/dcb_raw_layout.h
-						dcb/dcb_baked_layout.h
-						dcb/dcb_layout_elem_ref.h
-						dcb/dcb_buffer.h
+						dcb/types.h
+						dcb/layout_elem.h
+						dcb/layout.h
+						dcb/raw_layout.h
+						dcb/baked_layout.h
+						dcb/layout_elem_ref.h
+						dcb/buffer.h
 
 
 						def/def_cubemaps.h
@@ -221,24 +227,26 @@ set(LIB_INCLUDES		containers/manager.h
 						def/pulsar_def.h
 
 
-						ecs/ecs_types.h
-						ecs/ecs_registry.h
-						ecs/ecs_entity_bin_tree_array.h
+						ecs/types.h
+						ecs/registry.h
+						ecs/entity_bin_tree_array.h
+						ecs/system.h
 
 
-						exception/exception/exception.h
-						exception/gfx_exception/gfx_exception.h
-						exception/macros/def_exc_macros.h
-						exception/macros/pulsar_exc.h
-						exception/macros/gfx_exc_macros.h
-						exception/macros/rg_exc_macros.h
-						exception/macros/win_exc_macros.h
-						exception/rg_exception/rg_exception.h
-						exception/win_exception/win_exception.h
+						exceptions/base_exception/base_exception.h
+						exceptions/gfx_exception/gfx_exception.h
+						exceptions/macro/def_exc_macros.h
+						exceptions/macro/gfx_exc_macros.h
+						exceptions/macro/rg_exc_macros.h
+						exceptions/macro/win_exc_macros.h
+						exceptions/rg_exception/rg_exception.h
+						exceptions/win_exception/win_exception.h
+						exceptions/pulsar_exc.h
 
 
 						utils/pulsar_math.h
 						utils/pulsar_utils.h
+						utils/singleton.h
 
 
 						window/window.h
@@ -248,30 +256,11 @@ set(LIB_INCLUDES		containers/manager.h
 set(LIB_INCLUDES ${LIB_INCLUDES} PARENT_SCOPE)
 
 
-set(LIB_INCLUDE_DIRS	containers
+set(LIB_INCLUDE_DIRS	
+						containers
 
 
-						core/bindable/bindable
-						core/bindable/const_buffer
-						core/bindable/cubemap
-						core/bindable/depth_stencil/state
-						core/bindable/depth_stencil/view
-						core/bindable/depth_stencil
-						core/bindable/dynamic_const_buffer
-						core/bindable/input_layout
-						core/bindable/mesh
-						core/bindable/rasterizer_state
-						core/bindable/render_target
-						core/bindable/render_texture
-						core/bindable/sampler
-						core/bindable/shader/frag
-						core/bindable/shader/geom
-						core/bindable/shader/shader
-						core/bindable/shader/vert
-						core/bindable/shader
-						core/bindable/texture
-						core/bindable/viewport
-						core/bindable
+						core/bindables
 
 						core/component/camera/camera
 						core/component/camera/camera_shader
@@ -292,8 +281,6 @@ set(LIB_INCLUDE_DIRS	containers
 						core/entity/light
 						core/entity/object
 						core/entity
-
-						core/filesystem
 
 						core/gfx
 
@@ -322,25 +309,26 @@ set(LIB_INCLUDE_DIRS	containers
 						core/unclassified
 
 
+						core
+
+
 						def
 
 
-						exception/exception
-						exception/gfx_exception
-						exception/macros
-						exception/rg_exception
-						exception/win_exception
+						exceptions/base_exception
+						exceptions/gfx_exception
+						exceptions/macros
+						exceptions/rg_exception
+						exceptions/win_exception
 
 
-						utils
+						#utils
 
 
 						window
 
 
 						./)
-
-
 
 target_sources(${PROJECT_NAME} PUBLIC ${LIB_SOURCES} ${LIB_INCLUDES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${LIB_INCLUDE_DIRS})

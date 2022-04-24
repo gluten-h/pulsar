@@ -2,10 +2,8 @@
 #include "texture2d.h"
 
 
-void		PULSAR::TEXTURE2D::set_texture_memory(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
+void	PULSAR::texture2d::create_texture2d(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
 {
-	HRESULT hr;
-
 	D3D11_TEXTURE2D_DESC td;
 	td.Width = width;
 	td.Height = height;
@@ -18,21 +16,26 @@ void		PULSAR::TEXTURE2D::set_texture_memory(float width, float height, DXGI_FORM
 	td.BindFlags = bind_flags;
 	td.CPUAccessFlags = cpu_access_flags;
 	td.MiscFlags = 0u;
-	GFX_ASSERT(this->device->CreateTexture2D(&td, NULL, &this->texture));
+	GFX_ASSERT(PULSAR::gfx::get().device()->CreateTexture2D(&td, NULL, &this->mp_texture));
 }
 
-void		PULSAR::TEXTURE2D::remove_texture_memory()
+void	PULSAR::texture2d::free()
 {
-	if (this->texture)
+	if (this->mp_texture)
 	{
-		ULONG ref_count = this->texture->Release();
+		ULONG ref_count = this->mp_texture->Release();
 		if (ref_count == 0)
-			this->texture = NULL;
+			this->mp_texture = NULL;
 	}
 }
 
-void		PULSAR::TEXTURE2D::set_texture(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
+void	PULSAR::texture2d::set(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
 {
-	this->remove_texture_memory();
-	this->set_texture_memory(width, height, format, bind_flags, cpu_access_flags);
+	this->free();
+	this->create_texture2d(width, height, format, bind_flags, cpu_access_flags);
+}
+
+ID3D11Texture2D		*PULSAR::texture2d::get()
+{
+	return (this->mp_texture);
 }

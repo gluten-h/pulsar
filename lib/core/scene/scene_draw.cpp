@@ -2,7 +2,7 @@
 #include "scene.h"
 
 
-void		PULSAR::SCENE::draw()
+void		PULSAR::scene::draw()
 {
 	for (auto &it : this->entity_manager)
 	{
@@ -10,7 +10,7 @@ void		PULSAR::SCENE::draw()
 	}
 }
 
-void		PULSAR::SCENE::draw_skybox()
+void		PULSAR::scene::draw_skybox()
 {
 	this->skybox.draw();
 }

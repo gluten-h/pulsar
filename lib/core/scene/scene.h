@@ -8,11 +8,20 @@
 #include "skybox.h"
 #include "frag_const_buffer.h"
 
+#include "ecs/registry.h"
+
+#include "components/transform_component.h"
+
 
 namespace PULSAR
 {
-	class SCENE
+	class node;
+
+	class scene
 	{
+	private:
+		friend class node;
+
 	private:
 		int		id = -1;
 		bool	is_alloc = false;
@@ -25,10 +34,13 @@ namespace PULSAR
 
 		PULSAR::SKYBOX		skybox;
 
+
+		PULSAR::ecs::registry m_registry;
+
 	public:
-		SCENE	&operator=(const SCENE &s) = delete;
-		SCENE(const SCENE &s) = delete;
-		SCENE(){ }
+		scene	&operator=(const scene &s) = delete;
+		scene(const scene &s) = delete;
+		scene(){ }
 
 		int		get_id() const
 		{
@@ -52,19 +64,22 @@ namespace PULSAR
 		void	remove_entity(unsigned int id);
 		PULSAR::ENTITY		*get_entity(unsigned int id);
 
+		PULSAR::node	create_node();
+
+
 		void	add_light(PULSAR::LIGHT *light);
 		void	remove_light(PULSAR::LIGHT *light);
 		void	remove_light(unsigned int id);
-		PULSAR::LIGHT		*get_light(unsigned int id);
+		PULSAR::LIGHT	*get_light(unsigned int id);
 
 		void	set_skybox_material(const PULSAR::SKYBOX_MATERIAL &mat);
 		void	set_skybox_material(PULSAR::SKYBOX_MATERIAL *mat);
 		void	set_skybox_mesh(const PULSAR::MESH &mesh);
 		void	set_skybox_mesh(PULSAR::MESH *mesh);
 
-		static SCENE	*create()
+		static scene	*create()
 		{
-			SCENE *scene = new SCENE;
+			PULSAR::scene *scene = new PULSAR::scene;
 			scene->id = PULSAR::SCENE_MANAGER::get_instance().add(scene);
 			if (scene->id == -1)
 			{

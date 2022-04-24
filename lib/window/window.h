@@ -1,7 +1,7 @@
 #pragma once
 
 #include "unclassified.h"
-#include "pulsar_exc.h"
+#include "exceptions/pulsar_exc.h"
 #include "win_manager.h"
 #include "pulsar_resource_manager.h"
 #include "pulsar_input.h"
@@ -46,7 +46,7 @@ namespace PULSAR
 		PULSAR::DEFERRED_BUFFER		deferred_buffer;
 
 		PULSAR::CAMERA	*curr_camera = NULL;
-		PULSAR::SCENE	*curr_scene = NULL;
+		PULSAR::scene	*curr_scene = NULL;
 
 		PULSAR::DS_STATE	skybox_ds_state;
 
@@ -187,7 +187,7 @@ namespace PULSAR
 		void	remove_update(WIN_UPDATE_DEF win_update);
 
 		void	set_camera(CAMERA *cam);
-		void	set_scene(SCENE *scene);
+		void	set_scene(scene *scene);
 
 		HWND	get_hwnd() const;
 

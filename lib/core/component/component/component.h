@@ -1,7 +1,7 @@
 #pragma once
 
 #include "unclassified.h"
-#include "pulsar_exc.h"
+#include "exceptions/pulsar_exc.h"
 #include "component_manager.h"
 
 

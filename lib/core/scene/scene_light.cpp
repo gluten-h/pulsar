@@ -2,14 +2,14 @@
 #include "scene.h"
 
 
-void		PULSAR::SCENE::add_light(PULSAR::LIGHT *light)
+void		PULSAR::scene::add_light(PULSAR::LIGHT *light)
 {
 	int id = this->light_manager.add(light);
 	if (id > -1)
 		light->add_to_scene(this->id, id);
 }
 
-void		PULSAR::SCENE::remove_light(PULSAR::LIGHT *light)
+void		PULSAR::scene::remove_light(PULSAR::LIGHT *light)
 {
 	if (light->get_local_id(this->id) == -1)
 		return;
@@ -18,7 +18,7 @@ void		PULSAR::SCENE::remove_light(PULSAR::LIGHT *light)
 	light->remove_from_scene(this->id);
 }
 
-void		PULSAR::SCENE::remove_light(unsigned int light_id)
+void		PULSAR::scene::remove_light(unsigned int light_id)
 {
 	PULSAR::LIGHT *light_ptr = this->light_manager.get_elem(light_id);
 	if (!light_ptr)
@@ -31,7 +31,7 @@ void		PULSAR::SCENE::remove_light(unsigned int light_id)
 	light_ptr->remove_from_scene(this->id);
 }
 
-PULSAR::LIGHT		*PULSAR::SCENE::get_light(unsigned int light_id)
+PULSAR::LIGHT		*PULSAR::scene::get_light(unsigned int light_id)
 {
 	return (this->light_manager.get_elem(light_id));
 }

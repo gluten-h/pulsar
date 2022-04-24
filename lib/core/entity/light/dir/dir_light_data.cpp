@@ -47,7 +47,7 @@ void		PULSAR::DIR_LIGHT::destroy()
 
 	for (auto &it : this->scene_local_id)
 	{
-		PULSAR::SCENE *scene_ptr = PULSAR::SCENE_MANAGER::get_instance().get_elem(it.first);
+		PULSAR::scene *scene_ptr = PULSAR::SCENE_MANAGER::get_instance().get_elem(it.first);
 		if (scene_ptr)
 			scene_ptr->remove_light(it.second);
 	}

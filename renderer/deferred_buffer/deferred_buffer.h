@@ -20,7 +20,7 @@ namespace PULSAR
 		G_BUFFER_POS,
 		G_BUFFER_ALBEDO,
 		G_BUFFER_NORMAL,
-		G_BUFFER_RMAE,
+		G_BUFFER_RMAE,		//	roughness, metalness, ambient, exposure
 		G_BUFFER_COUNT,
 	};
 
@@ -41,10 +41,10 @@ namespace PULSAR
 
 		PULSAR::SAMPLER			sampler;
 
-		PULSAR::VERT_SHADER		deferred_vs;			//		MAYBE MAKE THESE STATIC
+		PULSAR::VERT_SHADER		deferred_vs;
 		PULSAR::FRAG_SHADER		deferred_fs;
 
-		PULSAR::VERT_SHADER		post_effects_vs;		//		MAYBE MAKE THESE STATIC
+		PULSAR::VERT_SHADER		post_effects_vs;
 		PULSAR::FRAG_SHADER		post_effects_fs;
 
 	public:

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "pulsar_exc.h"
+#include "exceptions/pulsar_exc.h"
 #include "rg_component.h"
 #include "buffer_resource.h"
 

@@ -2,36 +2,36 @@
 #include "texture2d.h"
 
 
-void		PULSAR::TEXTURE2D::copy_assign(const PULSAR::TEXTURE2D &t)
+void	PULSAR::texture2d::copy_assign(const PULSAR::texture2d &t)
 {
-	this->texture = t.texture;
-	if (this->texture)
-		this->texture->AddRef();
+	this->mp_texture = t.mp_texture;
+	if (this->mp_texture)
+		this->mp_texture->AddRef();
 }
 
 
-PULSAR::TEXTURE2D		&PULSAR::TEXTURE2D::operator=(const PULSAR::TEXTURE2D &t)
+PULSAR::texture2d	&PULSAR::texture2d::operator=(const PULSAR::texture2d &t)
 {
-	if (this->texture != t.texture)
-		this->remove_texture_memory();
+	if (this->mp_texture != t.mp_texture)
+		this->free();
 	this->copy_assign(t);
 
 	return (*this);
 }
 
-PULSAR::TEXTURE2D::TEXTURE2D(const PULSAR::TEXTURE2D &t)
+PULSAR::texture2d::texture2d(const PULSAR::texture2d &t)
 {
 	this->copy_assign(t);
 }
 
-PULSAR::TEXTURE2D::TEXTURE2D(){ }
+PULSAR::texture2d::texture2d(){ }
 
-PULSAR::TEXTURE2D::TEXTURE2D(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
+PULSAR::texture2d::texture2d(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
 {
-	this->set_texture_memory(width, height, format, bind_flags, cpu_access_flags);
+	this->create_texture2d(width, height, format, bind_flags, cpu_access_flags);
 }
 
-PULSAR::TEXTURE2D::~TEXTURE2D()
+PULSAR::texture2d::~texture2d()
 {
-	this->remove_texture_memory();
+	this->free();
 }

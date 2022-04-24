@@ -3,10 +3,14 @@ cmake_minimum_required(VERSION 3.20)
 
 set(REN_SOURCES			deferred_buffer/deferred_buffer_get.cpp
 
+						_gfx/_gfx.cpp
+
 						misc/cam_controller/cam_controller.cpp)
 set(REN_SOURCES ${REN_SOURCES} PARENT_SCOPE)
 
 set(REN_INCLUDES		deferred_buffer/deferred_buffer.h
+
+						_gfx/_gfx.h
 
 						managers/win_manager.h
 						managers/bindable_manager.h
@@ -39,8 +43,6 @@ set(REN_INCLUDE_DIRS	deferred_buffer
 						rg_lib/pass
 						
 						./)
-
-
 
 target_sources(${PROJECT_NAME} PUBLIC ${REN_SOURCES} ${REN_INCLUDES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${REN_INCLUDE_DIRS})
