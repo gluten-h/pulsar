@@ -1,16 +1,17 @@
 
 cmake_minimum_required(VERSION 3.20)
 
-set(REN_SOURCES			deferred_buffer/deferred_buffer_get.cpp
-
-						_gfx/_gfx.cpp
+set(REN_SOURCES			
+						deferred_buffer/deferred_buffer_get.cpp
 
 						misc/cam_controller/cam_controller.cpp)
 set(REN_SOURCES ${REN_SOURCES} PARENT_SCOPE)
 
-set(REN_INCLUDES		deferred_buffer/deferred_buffer.h
+set(REN_INCLUDES		
+						components/transform_component.h
+						components/mesh_component.h
 
-						_gfx/_gfx.h
+						deferred_buffer/deferred_buffer.h
 
 						managers/win_manager.h
 						managers/bindable_manager.h

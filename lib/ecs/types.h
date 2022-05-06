@@ -11,7 +11,7 @@ namespace PULSAR
 	namespace ecs
 	{
 		const size_t MAX_COMPONENTS_TYPES = 32ull;
-		const size_t INVALID_ENTITY = (std::numeric_limits<size_t>::max)();
+		const size_t null = (std::numeric_limits<size_t>::max)();
 
 		using entity = uint32_t;
 		using component_type_id = uint32_t;

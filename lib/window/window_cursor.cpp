@@ -2,27 +2,27 @@
 #include "window.h"
 
 
-void		PULSAR::WINDOW::hide_cursor()
+void	PULSAR::window::hide_cursor()
 {
 	while (ShowCursor(FALSE) >= 0);
 }
 
-void		PULSAR::WINDOW::show_cursor()
+void	PULSAR::window::show_cursor()
 {
 	while (ShowCursor(TRUE) > 0);
 }
 
-void		PULSAR::WINDOW::clamp_cursor()
+void	PULSAR::window::clamp_cursor()
 {
 	RECT rect;
-	GetClientRect(this->hwnd, &rect);
-	MapWindowPoints(this->hwnd, NULL, reinterpret_cast<POINT*>(&rect), 2u);
+	GetClientRect(this->m_hwnd, &rect);
+	MapWindowPoints(this->m_hwnd, NULL, (POINT*)(&rect), 2u);
 	ClipCursor(&rect);
-	this->is_cursor_clamped = true;
+	this->m_cursor_clamped = true;
 }
 
-void		PULSAR::WINDOW::free_cursor()
+void	PULSAR::window::free_cursor()
 {
 	ClipCursor(NULL);
-	this->is_cursor_clamped = false;
+	this->m_cursor_clamped = false;
 }

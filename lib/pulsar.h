@@ -9,17 +9,17 @@
 #include "pulsar_resource_manager.h"
 #include "rg_components.h"
 #include "scene.h"
-#include "pulsar_def.h"
+#include "def/pulsar_def.h"
 #include "exceptions/pulsar_exc.h"
 #include "utils/pulsar_math.h"
-#include "window.h"
+#include "window/window.h"
 
 
 namespace PULSAR
 {
-	void	init()
+	void	init(HINSTANCE h_instance)
 	{
-		
+		PULSAR::window::init(h_instance);
 	}
 
 	void	terminate()

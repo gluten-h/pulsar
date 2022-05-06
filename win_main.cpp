@@ -1,17 +1,110 @@
 
+//#define NOMINMAX
+
 #include "pulsar.h"
 
 using namespace PULSAR;
 
 #include "cam_controller.h"
 
+#include "ecs/registry.h"
+#include "node/node.h"
+#include "containers/sparse_set.h"
 
-int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_cmd_line, int n_cmd_show)
+
+int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_cmd_line, int n_cmd_show)
 {
-	PULSAR_D3D::init();
-	WINDOW::init(h_instance);
+	/*{
+		struct transform_comp
+		{
+			int a = 1;
 
-	WINDOW *win = WINDOW::create("PULSAR", WS_VISIBLE | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720);
+			transform_comp() = default;
+			transform_comp(int a) : a(a)
+			{
+			}
+		};
+		struct mesh_comp
+		{
+			int b = 2;
+		};
+		struct mat_comp
+		{
+			int c = 3;
+		};
+
+
+		{
+			PULSAR::sparse_set<uint32_t> s_set;
+			s_set.insert(0u);
+			s_set.insert(5u);
+			s_set.insert(3u);
+			s_set.insert(1u);
+			s_set.insert(10u);
+
+			s_set.erase(5u);
+
+			for (auto v : s_set)
+			{
+				uint32_t a = v;
+			}
+
+
+			int f = 1;
+		}
+
+
+
+		PULSAR::ecs::registry reg;
+
+		auto id0 = reg.create();
+		auto id1 = reg.create();
+		auto id2 = reg.create();
+		auto id3 = reg.create();
+		auto id4 = reg.create();
+		auto id5 = reg.create();
+
+
+		reg.emplace<transform_comp>(id0);
+		reg.emplace<mesh_comp>(id0);
+
+		reg.emplace<transform_comp>(id1, 42);
+		reg.emplace<mat_comp>(id1);
+		reg.emplace<mesh_comp>(id1);
+
+		reg.emplace<transform_comp>(id2, 41);
+		reg.emplace<transform_comp>(id4, 43);
+
+		bool id0_mat_e = reg.has<mat_comp>(id0);
+		bool id1_trans_e = reg.has<transform_comp>(id1);
+
+		reg.get<mat_comp>(id1).c = 21;
+
+		const PULSAR::ecs::group trans_mesh_group = reg.group<transform_comp, mesh_comp>();
+		const PULSAR::ecs::group mesh_mat_group = reg.group<mesh_comp, mat_comp>();
+		const PULSAR::ecs::group trans_group = reg.group<transform_comp>();
+		const PULSAR::ecs::group mesh_group = reg.group<mesh_comp>();
+		const PULSAR::ecs::group empty_group = reg.group<int>();
+
+
+		reg.erase<transform_comp>(id1);
+		reg.erase<mesh_comp>(id1);
+		reg.erase<mat_comp>(id1);
+
+		id1_trans_e = reg.has<transform_comp>(id1);
+
+		reg.destroy(id0);
+
+		int a = 1;
+	}*/
+	exit(0);
+
+
+
+	//PULSAR_D3D::init();
+	PULSAR::init(h_instance);
+
+	PULSAR::window::get().set("PULSAR", 1280, 720);
 
 	CAMERA *camera = CAMERA::create();
 	TRANSFORM cam_transform = TRANSFORM(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(1.0f, 1.0f, 1.0f));
@@ -22,7 +115,7 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	win->add_update(cam_controller, &cam_controller_data);
 
 
-	SCENE *scene = SCENE::create();
+	scene *scene = scene::create();
 	win->set_scene(scene);
 
 	SKYBOX_MATERIAL *skybox_mat = SKYBOX_MATERIAL::create();
@@ -30,13 +123,9 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	scene->set_skybox_material(skybox_mat);
 
 
-	VERT_SHADER *gb_pass_vs = VERT_SHADER::create();
-	GEOM_SHADER *gb_pass_gs = GEOM_SHADER::create();
-	FRAG_SHADER *gb_pass_fs = FRAG_SHADER::create();
-
-	gb_pass_vs->set(L"shaders/g_buffer/g_buffer_pass_vs.hlsl", VERT_SHADER_ENTRY, NULL);
-	gb_pass_gs->set(L"shaders/g_buffer/g_buffer_pass_gs.hlsl", GEOM_SHADER_ENTRY, NULL);
-	gb_pass_fs->set(L"shaders/g_buffer/g_buffer_pass_fs.hlsl", FRAG_SHADER_ENTRY, NULL);
+	vert_shader gb_pass_vs(L"shaders/g_buffer/g_buffer_pass_vs.hlsl");
+	geom_shader gb_pass_gs(L"shaders/g_buffer/g_buffer_pass_gs.hlsl");
+	frag_shader gb_pass_fs(L"shaders/g_buffer/g_buffer_pass_fs.hlsl");
 
 
 	OBJECT *cube_obj = OBJECT::create();
@@ -69,7 +158,7 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	sph_mat->ao() = 0.01f;
 	sph_obj->set_material(sph_mat);
 
-	
+
 	sph1_obj->set_mesh(STD_SPHERE64_MESH);
 
 	MATERIAL *sph1_mat = MATERIAL::create();
@@ -109,9 +198,7 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 		{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		{ "UV", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	};
-
-	INPUT_LAYOUT *input_layout = INPUT_LAYOUT::create();
-	input_layout->set(gb_pass_vs->get_shader_blob(), ied, (UINT)std::size(ied));
+	input_layout input_layout(gb_pass_vs.get_shader_blob(), ied, (UINT)std::size(ied));
 
 
 	cube_obj->add_bindable(gb_pass_vs);
@@ -168,6 +255,7 @@ int CALLBACK		WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_
 	}
 
 	RESOURCE_MANAGER::terminate();
+	PULSAR::terminate();
 
 	return (0);
 }

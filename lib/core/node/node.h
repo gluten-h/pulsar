@@ -14,12 +14,13 @@ namespace PULSAR
 		friend class scene;
 
 	private:
-		const PULSAR::ecs::entity m_id = PULSAR::ecs::INVALID_ENTITY;
+		const PULSAR::ecs::entity m_id = PULSAR::ecs::null;
 		PULSAR::scene *mp_scene = NULL;
 
 	public:
-		node() = delete;
+		node() = default;
 		node(PULSAR::ecs::entity id, PULSAR::scene *p_scene) : m_id(id), mp_scene(p_scene){ }
+		~node() = default;
 
 		void	destroy();
 		bool	is_valid() const;

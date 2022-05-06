@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "dcb/types.h"
-#include "dcb/layout_elem.h"
-#include "dcb/raw_layout.h"
-#include "dcb/baked_layout.h"
-#include "dcb/buffer.h"
+#include "types.h"
+#include "layout_elem.h"
+#include "raw_layout.h"
+#include "baked_layout.h"
+#include "buffer.h"

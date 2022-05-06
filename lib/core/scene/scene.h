@@ -1,12 +1,12 @@
 #pragma once
 
 #include "fixed_vector.h"
-#include "def_scene.h"
+#include "config/scene.h"
 #include "scene_manager.h"
 #include "entity.h"
 #include "light.h"
 #include "skybox.h"
-#include "frag_const_buffer.h"
+#include "const_buffers/frag_const_buffer.h"
 
 #include "ecs/registry.h"
 
@@ -30,7 +30,7 @@ namespace PULSAR
 		PULSAR::LIGHT_MANAGER		light_manager;
 
 		PULSAR::SHADER_LIGHT_SCENE								light_scene;
-		PULSAR::FRAG_CONST_BUFFER<PULSAR::SHADER_LIGHT_SCENE>	light_scene_cbuffer;
+		PULSAR::frag_const_buffer<PULSAR::SHADER_LIGHT_SCENE>	light_scene_cbuffer;
 
 		PULSAR::SKYBOX		skybox;
 
@@ -74,8 +74,8 @@ namespace PULSAR
 
 		void	set_skybox_material(const PULSAR::SKYBOX_MATERIAL &mat);
 		void	set_skybox_material(PULSAR::SKYBOX_MATERIAL *mat);
-		void	set_skybox_mesh(const PULSAR::MESH &mesh);
-		void	set_skybox_mesh(PULSAR::MESH *mesh);
+		void	set_skybox_mesh(const PULSAR::mesh &mesh);
+		void	set_skybox_mesh(PULSAR::mesh *mesh);
 
 		static scene	*create()
 		{

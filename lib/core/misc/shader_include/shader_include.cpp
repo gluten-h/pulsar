@@ -1,6 +1,6 @@
 
 #include "shader_include.h"
-#include "def_system.h"
+#include "config/system.h"
 
 #include <sstream>
 #include <fstream>

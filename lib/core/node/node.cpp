@@ -9,7 +9,7 @@ void	PULSAR::node::destroy()
 
 bool	PULSAR::node::is_valid() const
 {
-	return (this->m_id != PULSAR::ecs::INVALID_ENTITY);
+	return (this->m_id != PULSAR::ecs::null);
 }
 
 PULSAR::node::operator bool() const

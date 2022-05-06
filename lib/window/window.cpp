@@ -1,33 +1,69 @@
 
 #include "window.h"
+#include "exceptions/win_exception.h"
+#include "def/window.h"
+#include "pulsar_input.h"
 
 
-bool	PULSAR::WINDOW::is_initialized = false;
-
-HINSTANCE		PULSAR::WINDOW::h_instance = NULL;
-WNDCLASSEX		PULSAR::WINDOW::wc;
-
-std::unordered_map<HWND, PULSAR::WINDOW*>		PULSAR::WINDOW::hwnd_win;
+HINSTANCE	PULSAR::window::m_h_instance = NULL;
+WNDCLASSEX	PULSAR::window::m_wc;
 
 
-void		PULSAR::WINDOW::create_window(const LPCSTR win_name, const DWORD win_style, int x, int y, int w, int h, HINSTANCE h_instance)
+PULSAR::window::window()
 {
-	HRESULT hr;
+	this->set(PULSAR::DEFAULT_WINDOW_SETTINGS.name, PULSAR::DEFAULT_WINDOW_SETTINGS.style, PULSAR::DEFAULT_WINDOW_SETTINGS.width, PULSAR::DEFAULT_WINDOW_SETTINGS.height);
+}
 
-	RECT wr = { 0, 0, w, h };
-	AdjustWindowRect(&wr, win_style, FALSE);
+bool	PULSAR::window::process_events()
+{
+	static MSG msg;
 
-	HWND hwnd = CreateWindowEx(NULL, WIN_CLASS_NAME, __T(win_name), win_style, x, y, wr.right - wr.left, wr.bottom - wr.top, NULL, NULL, h_instance, NULL);
-	if (!hwnd)
-		THROW_WIN_LAST_EXC();
+	PULSAR::MOUSE::reset_input();
+	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+	{
+		if (msg.message == WM_QUIT)
+			return (false);
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
 
-	this->hwnd = hwnd;
-	WINDOW::hwnd_win[hwnd] = this;
+	return (true);
+}
 
-	this->render_target.set(this->hwnd, TRUE);
-	this->deferred_buffer.set_deferred_buffer((float)w, (float)h);
-	this->skybox_ds_state.set(TRUE, D3D11_COMPARISON_LESS_EQUAL, D3D11_DEPTH_WRITE_MASK_ZERO);
+void	PULSAR::window::init(HINSTANCE h_instance)
+{
+	window::m_h_instance = h_instance;
+	ZeroMemory(&window::m_wc, sizeof(WNDCLASSEX));
+
+	window::m_wc.cbSize = sizeof(WNDCLASSEX);
+	window::m_wc.style = CS_OWNDC;
+	window::m_wc.lpfnWndProc = window::win_proc;
+	window::m_wc.cbClsExtra = 0;
+	window::m_wc.cbWndExtra = 0;
+	window::m_wc.hInstance = h_instance;
+	window::m_wc.hIcon = NULL;
+	window::m_wc.hCursor = NULL;
+	window::m_wc.hbrBackground = NULL;
+	window::m_wc.lpszMenuName = NULL;
+	window::m_wc.lpszClassName = PULSAR::DEFAULT_WINDOW_SETTINGS.class_name;
+	window::m_wc.hIconSm = NULL;
+	window::m_wc.hbrBackground = CreateSolidBrush(RGB(0, 0, 0));
+	if (!RegisterClassEx(&window::m_wc))
+		THROW_LAST_WIN_EXC();
+
+	RAWINPUTDEVICE rid;
+	rid.usUsagePage = 0x01;
+	rid.usUsage = 0x02;
+	rid.dwFlags = 0;
+	rid.hwndTarget = NULL;
+	if (!RegisterRawInputDevices(&rid, 1u, sizeof(RAWINPUTDEVICE)))
+		THROW_LAST_WIN_EXC();
 
 
-	this->rg = rg::create(&this->render_target, &this->deferred_buffer.get_ds_view());
+	window::get();
+}
+
+void	PULSAR::window::present() const
+{
+	this->m_framebuffer.present();
 }

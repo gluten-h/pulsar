@@ -1,22 +1,18 @@
 
 #include "window.h"
+#include "pulsar_input.h"
 
 
-LRESULT CALLBACK		PULSAR::WINDOW::win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+LRESULT CALLBACK	PULSAR::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-	PULSAR::WINDOW *win_ptr = WINDOW::hwnd_win[hwnd];
+	window &win = window::get();
 
 	switch (msg)
 	{
 		case WM_CLOSE:
 		{
-			win_ptr->destroy();
 			DestroyWindow(hwnd);
-			if (PULSAR::WIN_MANAGER::get_instance().size() <= 0)
-			{
-				PostQuitMessage(0);
-				return (0);
-			}
+			//PostQuitMessage(0);
 			return (0);
 		}
 		case WM_LBUTTONDOWN:
@@ -53,8 +49,8 @@ LRESULT CALLBACK		PULSAR::WINDOW::win_proc(HWND hwnd, UINT msg, WPARAM w_param, 
 		{
 			if (w_param & WA_ACTIVE || w_param & WA_CLICKACTIVE)
 			{
-				if (win_ptr && win_ptr->is_cursor_clamped)
-					win_ptr->clamp_cursor();
+				if (win.m_cursor_clamped)
+					win.clamp_cursor();
 			}
 			else
 			{
@@ -62,6 +58,15 @@ LRESULT CALLBACK		PULSAR::WINDOW::win_proc(HWND hwnd, UINT msg, WPARAM w_param, 
 				PULSAR::MOUSE::set_rmb_up_event();
 				PULSAR::MOUSE::set_mmb_up_event();
 			}
+			break;
+		}
+		case WM_SIZE:
+		{
+			UINT width = LOWORD(l_param);
+			UINT height = HIWORD(l_param);
+
+			win.get_framebuffer().resize(width, height);
+
 			break;
 		}
 		case WM_INPUT:

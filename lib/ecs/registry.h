@@ -23,11 +23,11 @@ namespace PULSAR
 			PULSAR::ecs::entity m_entity_id_iter = 0u;
 
 			std::unordered_map<PULSAR::ecs::entity, signature> m_entities_signatures;
-			std::unordered_map<PULSAR::ecs::entity, std::unordered_map<PULSAR::ecs::component_type_id, void*>> m_entities_components;
+			std::unordered_map<PULSAR::ecs::entity, std::unordered_map<PULSAR::ecs::component_type_id, void *>> m_entities_components;
 
-			PULSAR::ecs::entity_bin_tree_array<MAX_COMPONENTS_TYPES> m_entity_tree;
+			PULSAR::ecs::entity_bin_tree_array m_entity_tree;
 
-			std::vector<PULSAR::ecs::system*> m_systems;
+			std::vector<PULSAR::ecs::system *> m_systems;
 
 		private:
 			template<std::size_t I = 0, typename... Tp>
@@ -100,7 +100,7 @@ namespace PULSAR
 
 					delete entity_components[component_type_id];
 					T *new_component = new T(args...);
-					entity_components[component_type_id] = (void*)new_component;
+					entity_components[component_type_id] = (void *)new_component;
 
 					return (*new_component);
 				}
@@ -109,7 +109,7 @@ namespace PULSAR
 					auto &entity_components = this->m_entities_components[entity];
 
 					T *new_component = new T(args...);
-					entity_components[component_type_id] = (void*)new_component;
+					entity_components[component_type_id] = (void *)new_component;
 
 					this->m_entity_tree.erase(old_sig, entity);
 					this->m_entity_tree.specify_path(new_sig, entity);
@@ -151,7 +151,7 @@ namespace PULSAR
 
 
 			template <typename T>
-			T	&get(const PULSAR::ecs::entity entity)
+			T &get(const PULSAR::ecs::entity entity)
 			{
 				const PULSAR::ecs::component_type_id component_type_id = PULSAR::ecs::component_type::id<T>();
 				assert(("Component type id overflow", component_type_id < MAX_COMPONENTS_TYPES));
