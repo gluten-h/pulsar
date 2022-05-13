@@ -1,7 +1,7 @@
 #pragma once
 
+#include "_gfx/_gfx.h"
 #include <vector>
-#include <minwindef.h>
 
 
 namespace PULSAR

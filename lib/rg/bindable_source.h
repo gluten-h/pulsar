@@ -1,3 +1,4 @@
+#pragma once
 
 #include "source.h"
 #include "bindable/bindable.h"
@@ -25,7 +26,7 @@ namespace PULSAR
 			bindable_source() = delete;
 			bindable_source(const std::string &name, T *&buffer) : PULSAR::rg::source(name)
 			{
-				*this->mp_buffer = &buffer;
+				this->mp_buffer = &buffer;
 			}
 			~bindable_source() = default;
 

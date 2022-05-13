@@ -1,7 +1,9 @@
+#pragma once
 
 #include "source.h"
-#include "bindable/buffer_resource.h"
 #include <type_traits>
+#include "bindable/buffer_resource.h"
+#include "exceptions/rg_exception.h"
 
 
 namespace PULSAR
@@ -23,14 +25,14 @@ namespace PULSAR
 			buffer_source<T> &operator=(buffer_source<T>&&) = delete;
 			buffer_source(const buffer_source<T>&) = delete;
 			buffer_source(buffer_source<T>&&) = delete;
-			buffer_source() = delete;
+
 			buffer_source(const std::string &name, T *&buffer) : PULSAR::rg::source(name)
 			{
-				*this->mp_buffer = &buffer;
+				this->mp_buffer = &buffer;
 			}
 			~buffer_source() = default;
 
-			PULSAR::buffer_resource		**yield_buffer() override
+			PULSAR::buffer_resource		**yield_buffer_resource() override
 			{
 				if (this->m_linked)
 					THROW_RG_EXC("Source " + this->name() + " has already been linked");

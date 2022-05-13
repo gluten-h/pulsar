@@ -59,7 +59,7 @@ void	PULSAR::rg::pass::register_source(PULSAR::rg::source *source)
 void	PULSAR::rg::pass::link_input(const std::string &input_name, const std::string &source_path)
 {
 	PULSAR::rg::input *input = this->get_input(input_name);
-	std::vector<std::string> split = PULSAR::utils::str_split(source_path, PULSAR::rg::RG_PATH_DELIM);
+	std::vector<std::string> split = PULSAR::utils::str_split(source_path, RG_PATH_DELIM);
 	if (split.size() != 2ull)
 		THROW_RG_EXC("Invalid source path format");
 

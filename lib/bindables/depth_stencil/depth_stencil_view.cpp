@@ -2,7 +2,7 @@
 #include "depth_stencil_view.h"
 
 
-PULSAR::depth_stencil_view::depth_stencil_view(float width, float height)
+PULSAR::depth_stencil_view::depth_stencil_view(UINT width, UINT height)
 {
 	this->create_ds_view(width, height);
 }

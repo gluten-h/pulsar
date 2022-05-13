@@ -2,6 +2,11 @@
 #include "depth_stencil_state.h"
 
 
+PULSAR::depth_stencil_state::depth_stencil_state()
+{
+
+}
+
 PULSAR::depth_stencil_state::depth_stencil_state(BOOL depth_enable, D3D11_COMPARISON_FUNC depth_comp_func, D3D11_DEPTH_WRITE_MASK depth_write_mask)
 {
 	this->set(depth_enable, depth_comp_func, depth_write_mask);

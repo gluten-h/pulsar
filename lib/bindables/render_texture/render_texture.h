@@ -17,7 +17,7 @@ namespace PULSAR
 		mutable ID3D11DepthStencilView *mp_ds_view = NULL;
 
 	private:
-		void	create_rt(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags);
+		void	create_rt(UINT width, UINT height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags);
 		void	free();
 
 	public:
@@ -26,15 +26,16 @@ namespace PULSAR
 		render_texture(const render_texture&) = delete;
 		render_texture(render_texture&&) = delete;
 		render_texture() = default;
-		render_texture(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags, UINT slot = 0u);
+		render_texture(UINT width, UINT height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags, UINT slot = 0u);
 		~render_texture();
 
-		void	set(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags);
+		void	set(UINT width, UINT height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags);
 		void	set_slot(UINT slot);
 
-		ID3D11RenderTargetView *get_render_target();
-		ID3D11ShaderResourceView *get_shader_resource();
-		ID3D11DepthStencilView	*&ds_view();
+		ID3D11RenderTargetView *render_target();
+		ID3D11ShaderResourceView *shader_resource();
+		ID3D11DepthStencilView	*ds_view();
+		XMUINT2	size() const;
 
 		void	resize(UINT width, UINT height) override;
 		void	clear() override;

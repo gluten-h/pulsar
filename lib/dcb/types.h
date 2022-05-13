@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DirectXMath.h>
+#include "utils/math.h"
 
 
 #define DCB_RAW_DATA_TYPES					\
@@ -43,28 +43,28 @@ namespace PULSAR
 		{
 			static const bool is_valid = true;
 
-			using sys_type = DirectX::XMFLOAT2;
+			using sys_type = XMFLOAT2;
 			static const size_t hlsl_size = sizeof(sys_type);
 		};
 		template<> struct type_attr<Float3>
 		{
 			static const bool is_valid = true;
 
-			using sys_type = DirectX::XMFLOAT3;
+			using sys_type = XMFLOAT3;
 			static const size_t hlsl_size = sizeof(sys_type);
 		};
 		template<> struct type_attr<Float4>
 		{
 			static const bool is_valid = true;
 
-			using sys_type = DirectX::XMFLOAT4;
+			using sys_type = XMFLOAT4;
 			static const size_t hlsl_size = sizeof(sys_type);
 		};
 		template<> struct type_attr<Matrix>
 		{
 			static const bool is_valid = true;
 
-			using sys_type = DirectX::XMMATRIX;
+			using sys_type = XMMATRIX;
 			static const size_t hlsl_size = sizeof(sys_type);
 		};
 		template<> struct type_attr<Bool>

@@ -40,3 +40,8 @@ bool	PULSAR::dcb::buffer::is_modified() const noexcept
 {
 	return (this->m_is_modified);
 }
+
+void	PULSAR::dcb::buffer::set_updated()
+{
+	this->m_is_modified = false;
+}

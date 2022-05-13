@@ -1,3 +1,4 @@
+#pragma once
 
 #include "input.h"
 #include "bindable/buffer_resource.h"
@@ -38,7 +39,7 @@ namespace PULSAR
 
 			void	bind(PULSAR::rg::source *source) override
 			{
-				T **buffer = (T**)(source->yield_buffer());
+				T **buffer = (T**)(source->yield_buffer_resource());
 				if (typeid(**buffer).hash_code() != typeid(T).hash_code())
 					THROW_RG_EXC("Type of the buffer input " + this->name() + " is not compatible with type of the buffer source " + source->name());
 

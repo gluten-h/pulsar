@@ -1,4 +1,4 @@
-#pragma once
-
-#include "object.h"
-#include "lights.h"
+//#pragma once
+//
+//#include "object.h"
+//#include "lights.h"

@@ -9,6 +9,6 @@ void	PULSAR::frag_dynamic_const_buffer::bind() const
 
 void	PULSAR::frag_dynamic_const_buffer::unbind() const
 {
-	static ID3D11Buffer *null_ptr[1] = { NULL };
+	ID3D11Buffer *null_ptr[1] = { NULL };
 	PULSAR::gfx::get().device_context()->PSSetConstantBuffers(this->m_slot, 0u, null_ptr);
 }

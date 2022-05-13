@@ -19,7 +19,7 @@ namespace PULSAR
 		depth_stencil_state &operator=(depth_stencil_state&&) = delete;
 		depth_stencil_state(const depth_stencil_state &dss) = delete;
 		depth_stencil_state(depth_stencil_state&&) = delete;
-		depth_stencil_state() = default;
+		depth_stencil_state();
 		depth_stencil_state(BOOL depth_enable = TRUE, D3D11_COMPARISON_FUNC depth_comp_func = D3D11_COMPARISON_LESS, D3D11_DEPTH_WRITE_MASK depth_write_mask = D3D11_DEPTH_WRITE_MASK_ALL);
 		~depth_stencil_state();
 

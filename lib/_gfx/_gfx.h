@@ -19,9 +19,8 @@
 #include <dxgi1_2.h>
 #include <dxgi.h>
 #include <d3dcompiler.h>
-#include <D3DX10math.h>
-#include <DirectXMath.h>
 #include <wrl.h>
+#include <tchar.h>
 
 #include <DirectXTex.h>
 #include <DDSTextureLoader.h>
@@ -29,8 +28,6 @@
 
 using namespace DirectX;
 using namespace Microsoft::WRL;
-
-//#include <tchar.h>
 
 #include "utils/singleton.h"
 

@@ -2,14 +2,51 @@
 cmake_minimum_required(VERSION 3.20)
 
 set(REN_SOURCES			
+						components/camera/camera.cpp
+						components/camera/perspective_camera.cpp
+
 						deferred_buffer/deferred_buffer_get.cpp
 
-						misc/cam_controller/cam_controller.cpp)
+						misc/cam_controller/cam_controller.cpp
+
+						node/node.cpp
+
+						scene/scene.cpp
+						scene/scene_draw.cpp
+						scene/scene_light.cpp
+						scene/scene_skybox.cpp
+						scene/scene_node.cpp
+
+						render_graph/pulsar_render_graph.cpp
+
+						passes/clear_buffer_pass.cpp
+						passes/present_pass.cpp)
 set(REN_SOURCES ${REN_SOURCES} PARENT_SCOPE)
 
 set(REN_INCLUDES		
-						components/transform_component.h
+						components/camera/camera.h
+						components/camera/perspective_camera.h
+						components/camera/camera_component.h
+
+						components/transform/transform_component.h
+
 						components/mesh_component.h
+
+						config/camera.h
+						config/cubemap.h
+						config/deferred.h
+						config/material.h
+						config/mesh.h
+						config/misc.h
+						config/rasterizer_state.h
+						config/render_graph.h
+						config/scene.h
+						config/shader.h
+						config/skybox_material.h
+						config/skybox.h
+						config/shader_texture.h
+						config/window.h
+						config/pulsar.h
 
 						deferred_buffer/deferred_buffer.h
 
@@ -23,26 +60,27 @@ set(REN_INCLUDES
 
 						misc/cam_controller/cam_controller.h
 
-						render_graph/rg.h
+						node/node.h
 
-						rg_lib/base_pass/rg_bindable_pass.h
-						rg_lib/base_pass/rg_fullscreen_pass.h
-						rg_lib/pass/buffer_clear_pass.h
-						rg_lib/pass/present_pass.h)
+						scene/scene.h
+
+						render_graph/pulsar_render_graph.h
+
+						passes/fullscreen_pass.h
+						passes/clear_buffer_pass.h
+						passes/present_pass.h)
 set(REN_INCLUDES ${REN_INCLUDES} PARENT_SCOPE)
 
-set(REN_INCLUDE_DIRS	deferred_buffer
+set(REN_INCLUDE_DIRS	
+
+						components
+
+						deferred_buffer
 
 						managers/win_manager
 						managers
 
 						misc/cam_controller
-
-						render_graph
-
-						rg_lib/base_pass
-						rg_lib/pass
-						
 						./)
 
 target_sources(${PROJECT_NAME} PUBLIC ${REN_SOURCES} ${REN_INCLUDES})

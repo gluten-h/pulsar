@@ -20,7 +20,7 @@ namespace PULSAR
 		sampler &operator=(sampler&&) = delete;
 		sampler(const sampler&) = delete;
 		sampler(sampler&&) = delete;
-		sampler() = default;
+		sampler();
 		sampler(UINT slot = 0u);
 		~sampler();
 

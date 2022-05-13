@@ -1,3 +1,4 @@
+#pragma once
 
 #include "input.h"
 #include "exceptions/rg_exception.h"
@@ -26,7 +27,7 @@ namespace PULSAR
 			bindable_input() = delete;
 			bindable_input(const std::string &name, T *&target) : PULSAR::rg::input(name)
 			{
-				*this->mp_source_bindable = &target;
+				this->mp_source_bindable = &target;
 			}
 			~bindable_input() = default;
 

@@ -23,7 +23,7 @@ void	PULSAR::mesh::bind() const
 
 void	PULSAR::mesh::unbind() const
 {
-	static ID3D11Buffer *null_ptr[1] = { NULL };
+	ID3D11Buffer *null_ptr[1] = { NULL };
 	PULSAR::gfx::get().device_context()->IASetVertexBuffers(0u, 1u, null_ptr, NULL, NULL);
 	PULSAR::gfx::get().device_context()->IASetIndexBuffer(NULL, DXGI_FORMAT_R32_UINT, 0u);
 }

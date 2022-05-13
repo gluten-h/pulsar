@@ -1,7 +1,7 @@
 
 #include "window.h"
 #include "exceptions/win_exception.h"
-#include "def/window.h"
+#include "config/window.h"
 
 
 void	PULSAR::window::set(const LPCSTR name, int width, int height)
@@ -17,13 +17,7 @@ void	PULSAR::window::set(const LPCSTR name, int width, int height)
 		THROW_LAST_WIN_EXC();
 
 	this->m_hwnd = hwnd;
-
-	//this->render_target.set(this->m_hwnd, TRUE);
-	//this->deferred_buffer.set_deferred_buffer((float)width, (float)height);
-	//this->skybox_ds_state.set(TRUE, D3D11_COMPARISON_LESS_EQUAL, D3D11_DEPTH_WRITE_MASK_ZERO);
-
-
-	//this->rg = rg::create(&this->render_target, &this->deferred_buffer.get_ds_view());
+	this->m_framebuffer.set(this->m_hwnd);
 }
 
 void	PULSAR::window::set_name(const LPCSTR name)
@@ -43,12 +37,21 @@ void	PULSAR::window::resize(UINT width, UINT height)
 	this->m_framebuffer.resize(width, height);
 }
 
-HWND	PULSAR::window::get_hwnd()
+HWND	PULSAR::window::hwnd()
 {
 	return (this->m_hwnd);
 }
 
-PULSAR::framebuffer		&PULSAR::window::get_framebuffer()
+PULSAR::framebuffer		&PULSAR::window::framebuffer()
 {
 	return (this->m_framebuffer);
+}
+
+XMUINT2		PULSAR::window::size() const
+{
+	RECT rect;
+	if (!GetWindowRect(this->m_hwnd, &rect))
+		THROW_LAST_WIN_EXC();
+
+	return (XMUINT2(rect.right - rect.left, rect.bottom - rect.top));
 }

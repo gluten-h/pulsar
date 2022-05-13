@@ -48,9 +48,6 @@ set(LIB_SOURCES
 						core/component/material/material/material_props.cpp
 						core/component/skybox_material/skybox_material/skybox_material.cpp
 
-						#core/d3d/id3d/pulsar_id3d.cpp
-						#core/id3d/pulsar_d3d.cpp
-
 						core/entity/light/dir/dir_light_data.cpp
 						core/entity/light/dir/dir_light_get.cpp
 						core/entity/light/dir/dir_light.cpp
@@ -64,7 +61,6 @@ set(LIB_SOURCES
 						core/input/mouse/pulsar_mouse_button.cpp
 						core/input/mouse/pulsar_mouse.cpp
 
-						core/misc/shader_include/shader_include.cpp
 						core/misc/skybox/skybox_data.cpp
 						core/misc/skybox/skybox_def.cpp
 						core/misc/skybox/skybox.cpp
@@ -72,15 +68,8 @@ set(LIB_SOURCES
 						core/misc/texture2d/texture2d.cpp
 						core/misc/transform/transform/transform.cpp
 
-						core/node/node.cpp
 
 						core/resource_manager/pulsar_resource_manager.cpp
-
-						core/scene/scene_draw.cpp
-						core/scene/scene_entity.cpp
-						core/scene/scene_light.cpp
-						core/scene/scene_skybox.cpp
-						core/scene/scene_node.cpp
 
 
 						dcb/baked_layout.cpp
@@ -110,8 +99,9 @@ set(LIB_SOURCES
 						rg/source.cpp
 
 
-						utils/pulsar_math.cpp
-						utils/pulsar_utils.cpp
+						utils/math.cpp
+						utils/utils.cpp
+						utils/shader_include.cpp
 
 
 						window/window_cursor.cpp
@@ -159,15 +149,11 @@ set(LIB_INCLUDES
 						core/component/camera/camera_shader/camera_post_effects_shader.h
 						core/component/component/component.h
 						core/component/material/material/material.h
-						core/component/material/material_def.h
+						core/component/material/material_const.h
 						core/component/skybox_material/skybox_material/skybox_material.h
 						core/component/skybox_material/skybox_material_def.h
 						core/component/skybox_material/skybox_material_shader.h
 						core/component/components.h
-
-						#core/d3d/id3d/pulsar_id3d.h
-						core/id3d/pulsar_id3d.h
-						#core/id3d/pulsar_d3d.h
 
 						core/entity/entity/bindable_entity.h
 						core/entity/entity/entity.h
@@ -186,13 +172,10 @@ set(LIB_INCLUDES
 						core/input/mouse/pulsar_mouse.h
 						core/input/pulsar_input.h
 
-						core/misc/shader_include/shader_include.h
 						core/misc/skybox/skybox.h
 						core/misc/texture2d/texture2d.h
 						core/misc/transform/transform/transform.h
 						core/misc/transform/transform_shader.h
-
-						core/node/node.h
 
 						core/resource_manager/pulsar_resource_manager.h
 
@@ -211,8 +194,6 @@ set(LIB_INCLUDES
 						core/rg_component/rg_source/rg_sources.h
 						core/rg_component/rg_components.h
 
-						core/scene/scene.h
-
 
 						dcb/dcb.h
 						dcb/types.h
@@ -224,33 +205,18 @@ set(LIB_INCLUDES
 						dcb/buffer.h
 
 
-						config/cubemaps.h
-						config/deferred.h
-						config/materials.h
-						config/meshes.h
-						config/misc.h
-						config/rasterizer_states.h
-						config/system.h
-						config/scene.h
-						config/shaders.h
-						config/skybox_materials.h
-						config/skybox.h
-						config/textures.h
-						config/window.h
-						config/pulsar_def.h
-
-
 						ecs/types.h
 						ecs/registry.h
 						ecs/entity_bin_tree_array.h
 						ecs/system.h
+						ecs/ecs.h
 
 
 						exceptions/base_exception.h
 						exceptions/gfx_exception.h
 						exceptions/rg_exception.h
 						exceptions/win_exception.h
-						exceptions/pulsar_exc.h
+						exceptions/exceptions.h
 
 
 						_gfx/_gfx.h
@@ -267,9 +233,10 @@ set(LIB_INCLUDES
 						rg/bindable_source.h
 
 
-						utils/pulsar_math.h
-						utils/pulsar_utils.h
+						utils/math.h
+						utils/utils.h
 						utils/singleton.h
+						utils/shader_include.h
 
 
 						window/window.h
@@ -285,17 +252,14 @@ set(LIB_INCLUDE_DIRS
 
 						bindables
 
-						core/component/camera/camera
-						core/component/camera/camera_shader
-						core/component/component
-						core/component/material/material
-						core/component/material
-						core/component/skybox_material/skybox_material
-						core/component/skybox_material
-						core/component
-
-						#core/d3d/id3d
-						core/id3d
+						#core/component/camera/camera
+						c#ore/component/camera/camera_shader
+						#core/component/component
+						#core/component/material/material
+						#core/component/material
+						#core/component/skybox_material/skybox_material
+						#core/component/skybox_material
+						#core/component
 
 						core/entity/entity
 						core/entity/light/dir
@@ -310,22 +274,15 @@ set(LIB_INCLUDE_DIRS
 						core/input/mouse
 						core/input
 
-						core/misc/shader_include
-						core/misc/skybox
-						core/misc/texture2d
-						core/misc/transform/transform
-						core/misc/transform
+						#core/misc/shader_include
+						#core/misc/skybox
+						#core/misc/texture2d
+						#core/misc/transform/transform
+						#core/misc/transform
 
 						core/resource_manager
 
 						core/render_queue
-
-						#core/rg_component/render_graph
-						#core/rg_component/rg_component
-						#core/rg_component/rg_input
-						#core/rg_component/rg_pass
-						#core/rg_component/rg_source
-						#core/rg_component
 
 						core/scene
 

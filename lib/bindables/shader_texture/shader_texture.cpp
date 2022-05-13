@@ -20,6 +20,6 @@ void	PULSAR::shader_texture::bind() const
 
 void	PULSAR::shader_texture::unbind() const
 {
-	static ID3D11ShaderResourceView *null_ptr[1] = { NULL };
+	ID3D11ShaderResourceView *null_ptr[1] = { NULL };
 	PULSAR::gfx::get().device_context()->PSSetShaderResources(this->m_slot, 1u, null_ptr);
 }

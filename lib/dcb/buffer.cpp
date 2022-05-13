@@ -1,7 +1,8 @@
 
 #include "buffer.h"
-#include "layout_elem_ref.h"
+#include "raw_layout.h"
 #include "baked_layout.h"
+#include "layout_elem_ref.h"
 
 
 PULSAR::dcb::buffer::buffer(PULSAR::dcb::raw_layout &&raw_layout) : buffer(PULSAR::dcb::baked_layout(std::move(raw_layout)))

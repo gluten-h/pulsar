@@ -26,7 +26,6 @@ namespace PULSAR
 	{
 	private:
 		static HINSTANCE m_h_instance;
-		static WNDCLASSEX m_wc;
 
 		HWND	m_hwnd = NULL;
 		bool	m_cursor_clamped = false;
@@ -45,35 +44,38 @@ namespace PULSAR
 		//rg		*rg = NULL;
 
 	private:
-		void	draw_g_pass();
-		void	draw_deferred();
-		void	draw_skybox();
-		void	draw_post_effects();
+		//void	draw_g_pass();
+		//void	draw_deferred();
+		//void	draw_skybox();
+		//void	draw_post_effects();
+
+		void	set(const LPCSTR name, int width, int height);
 
 		static LRESULT CALLBACK		win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
-
-		window();
-		~window() = default;
 
 	public:
 		window &operator=(const window&) = delete;
 		window &operator=(window&&) = delete;
 		window(const window&) = delete;
 		window(window&&) = delete;
+		window();
+		~window() = default;
 
 		static void		init(HINSTANCE h_instance);
 
-		void	set(const LPCSTR name, int width, int height);
+
 		void	set_name(const LPCSTR name);
 		void	resize(UINT width, UINT height);
 
 		bool	process_events();
+		void	begin_frame();
 		//void	update();
 		//void	draw();
 		void	present() const;
 
-		HWND	get_hwnd();
-		PULSAR::framebuffer		&get_framebuffer();
+		HWND	hwnd();
+		PULSAR::framebuffer		&framebuffer();
+		XMUINT2	size() const;
 
 		void	hide_cursor();
 		void	show_cursor();

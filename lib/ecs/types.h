@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include <limits>
+#include <typeinfo>
 #include <unordered_map>
 #include <span>
 

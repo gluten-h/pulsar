@@ -1,7 +1,7 @@
 #pragma once
 
 #include "bindable/bindable.h"
-#include "dcb/buffer.h"
+#include "dcb/dcb.h"
 
 
 namespace PULSAR
@@ -22,7 +22,7 @@ namespace PULSAR
 		dynamic_const_buffer &operator=(dynamic_const_buffer&&) = delete;
 		dynamic_const_buffer(const dynamic_const_buffer&) = delete;
 		dynamic_const_buffer(dynamic_const_buffer&&) = delete;
-		dynamic_const_buffer() = default;
+		dynamic_const_buffer();
 		dynamic_const_buffer(UINT slot = 0u);
 		dynamic_const_buffer(PULSAR::dcb::buffer *dcb_buffer, UINT slot = 0u);
 		~dynamic_const_buffer();

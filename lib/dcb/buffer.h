@@ -27,10 +27,7 @@ namespace PULSAR
 			bool	m_is_modified = false;
 
 		private:
-			void	set_updated()
-			{
-				this->m_is_modified = false;
-			}
+			void	set_updated();
 
 		public:
 			buffer &operator=(const buffer&) = delete;

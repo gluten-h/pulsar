@@ -3,7 +3,7 @@
 #include "exceptions/gfx_exception.h"
 
 
-void	PULSAR::depth_stencil_view::create_ds_view(float width, float height)
+void	PULSAR::depth_stencil_view::create_ds_view(UINT width, UINT height)
 {
 	HRESULT hr;
 
@@ -43,7 +43,7 @@ void	PULSAR::depth_stencil_view::free()
 	}
 }
 
-void	PULSAR::depth_stencil_view::set(float width, float height)
+void	PULSAR::depth_stencil_view::set(UINT width, UINT height)
 {
 	this->free();
 	this->create_ds_view(width, height);

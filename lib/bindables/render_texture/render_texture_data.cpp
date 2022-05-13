@@ -3,7 +3,7 @@
 #include "exceptions/gfx_exception.h"
 
 
-void	PULSAR::render_texture::create_rt(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
+void	PULSAR::render_texture::create_rt(UINT width, UINT height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
 {
 	D3D11_TEXTURE2D_DESC td;
 	D3D11_RENDER_TARGET_VIEW_DESC rtvd;
@@ -55,7 +55,7 @@ void	PULSAR::render_texture::free()
 	}
 }
 
-void	PULSAR::render_texture::set(float width, float height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
+void	PULSAR::render_texture::set(UINT width, UINT height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags)
 {
 	this->free();
 	this->create_rt(width, height, format, bind_flags, cpu_access_flags);
@@ -66,7 +66,32 @@ void	PULSAR::render_texture::set_slot(UINT slot)
 	this->m_slot = slot;
 }
 
-ID3D11DepthStencilView	*&PULSAR::render_texture::ds_view()
+ID3D11RenderTargetView	*PULSAR::render_texture::render_target()
+{
+	return (this->mp_rtv);
+}
+
+ID3D11ShaderResourceView	*PULSAR::render_texture::shader_resource()
+{
+	return (this->mp_srv);
+}
+
+ID3D11DepthStencilView	*PULSAR::render_texture::ds_view()
 {
 	return (this->mp_ds_view);
+}
+
+XMUINT2	PULSAR::render_texture::size() const
+{
+	XMUINT2 size(0u, 0u);
+	D3D11_TEXTURE2D_DESC td;
+
+	if (!this->mp_texture)
+		return (size);
+
+	this->mp_texture->GetDesc(&td);
+	size.x = td.Width;
+	size.y = td.Height;
+
+	return (size);
 }

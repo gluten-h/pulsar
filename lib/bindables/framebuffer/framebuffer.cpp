@@ -1,6 +1,7 @@
 
 #include "framebuffer.h"
 #include "exceptions/gfx_exception.h"
+#include "utils/math.h"
 
 
 PULSAR::framebuffer::framebuffer(HWND hwnd, BOOL windowed)
@@ -34,7 +35,8 @@ void	PULSAR::framebuffer::resize(UINT width, UINT height)
 
 void	PULSAR::framebuffer::clear()
 {
-	PULSAR::gfx::get().device_context()->ClearRenderTargetView(this->mp_render_target, D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f));
+	float clear_color[4] = { 0.0f, 0.0f, 0.0f, 1.0 };
+	PULSAR::gfx::get().device_context()->ClearRenderTargetView(this->mp_render_target, clear_color);
 }
 
 void	PULSAR::framebuffer::present() const
@@ -49,7 +51,7 @@ void	PULSAR::framebuffer::bind() const
 
 void	PULSAR::framebuffer::unbind() const
 {
-	static ID3D11RenderTargetView *null_ptr[1] = { NULL };
+	ID3D11RenderTargetView *null_ptr[1] = { NULL };
 	PULSAR::gfx::get().device_context()->OMSetRenderTargets(1u, null_ptr, NULL);
 	this->mp_ds_view = NULL;
 }

@@ -2,7 +2,7 @@
 #include "shader.h"
 #include "filesystem/filesystem.h"
 #include "exceptions/gfx_exception.h"
-#include "shader_include.h"
+#include "utils/shader_include.h"
 
 
 void	PULSAR::shader::free()

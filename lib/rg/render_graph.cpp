@@ -7,6 +7,18 @@
 #include "rg_const.h"
 
 
+PULSAR::rg::render_graph	*PULSAR::rg::render_graph::mp_active_rg = NULL;
+
+void	PULSAR::rg::render_graph::set_active(PULSAR::rg::render_graph *render_graph)
+{
+	PULSAR::rg::render_graph::mp_active_rg = render_graph;
+}
+PULSAR::rg::render_graph	*PULSAR::rg::render_graph::get_active()
+{
+	return (PULSAR::rg::render_graph::mp_active_rg);
+}
+
+
 PULSAR::rg::render_graph::render_graph()
 {
 	this->m_passes.resize(PULSAR::rg::MAX_PASS_LEVELS);

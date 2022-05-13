@@ -3,6 +3,11 @@
 #include "exceptions/gfx_exception.h"
 
 
+PULSAR::dynamic_const_buffer::dynamic_const_buffer()
+{
+
+}
+
 PULSAR::dynamic_const_buffer::dynamic_const_buffer(UINT slot)
 {
 	this->m_slot = slot;

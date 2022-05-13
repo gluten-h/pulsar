@@ -1,7 +1,6 @@
 
 #include "entity_bin_tree_array.h"
 
-//PULSAR::ecs::entity_bin_tree_array::
 
 PULSAR::ecs::entity_bin_tree_array::entity_bin_tree_array()
 {
