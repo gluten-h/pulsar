@@ -1,6 +1,6 @@
 #pragma once
 
-#include "bindable/bindable.h"
+#include "gfx/gfx.h"
 #include <vector>
 
 
@@ -11,7 +11,7 @@ namespace PULSAR
 		OBJ
 	};
 
-	class mesh : public PULSAR::bindable
+	class mesh
 	{
 	private:
 		struct mesh_data
@@ -65,9 +65,9 @@ namespace PULSAR
 		void	set(LPCWSTR file, MESH_FILE_FORMAT file_format);
 		void	set_primitive_topology(D3D_PRIMITIVE_TOPOLOGY primitive_topology);
 
-		UINT	get_index_count() const;
+		UINT	get_index_count() const noexcept;
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 }

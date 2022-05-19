@@ -2,6 +2,7 @@
 
 #include <unordered_map>
 #include <vector>
+#include <string>
 
 
 namespace PULSAR
@@ -39,7 +40,7 @@ namespace PULSAR
 			std::unordered_map<std::string, PULSAR::rg::input*>		&get_all_inputs();
 
 			virtual void	validate() const;
-			virtual void	execute() = 0;
+			virtual void	execute(float delta_time) = 0;
 		};
 	}
 }

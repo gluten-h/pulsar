@@ -1,14 +1,25 @@
 
 #include "window.h"
-#include "pulsar_input.h"
+//#include "pulsar_input.h"
 
 
 LRESULT CALLBACK	PULSAR::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-	//window &win = window::get();
+	PULSAR::window *win = (PULSAR::window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (msg)
 	{
+		case WM_NCCREATE:
+		{
+			LPCREATESTRUCT lpcs = (LPCREATESTRUCT)l_param;
+			PULSAR::window *self = (PULSAR::window*)lpcs->lpCreateParams;
+			self->m_hwnd = hwnd;
+			self->m_framebuffer.set(self->m_hwnd);
+
+			SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)self);
+
+			break;
+		}
 		case WM_CLOSE:
 		{
 			DestroyWindow(hwnd);
@@ -53,8 +64,8 @@ LRESULT CALLBACK	PULSAR::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, L
 		{
 			if (w_param & WA_ACTIVE || w_param & WA_CLICKACTIVE)
 			{
-				//if (win.m_cursor_clamped)
-				//	win.clamp_cursor();
+				if (win->m_cursor_clamped)
+					win->clamp_cursor();
 			}
 			else
 			{
@@ -69,7 +80,8 @@ LRESULT CALLBACK	PULSAR::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, L
 			UINT width = LOWORD(l_param);
 			UINT height = HIWORD(l_param);
 
-			//win.framebuffer().resize(width, height);
+			if (width && height)
+				win->framebuffer().resize(width, height);
 
 			break;
 		}

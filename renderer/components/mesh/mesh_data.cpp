@@ -40,7 +40,7 @@ void	PULSAR::mesh::set_primitive_topology(D3D_PRIMITIVE_TOPOLOGY primitive_topol
 	this->m_primitive_topology = primitive_topology;
 }
 
-UINT	PULSAR::mesh::get_index_count() const
+UINT	PULSAR::mesh::get_index_count() const noexcept
 {
 	return ((UINT)this->m_mesh_data.m_indices.size());
 }

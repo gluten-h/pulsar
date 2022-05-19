@@ -1,11 +1,10 @@
 #pragma once
 
 #include "bindables.h"
-//#include "components.h"
-#include "entities.h"
-#include "gfx.h"
-#include "_gfx/_gfx.h"
-#include "pulsar_input.h"
+#include "components.h"
+//#include "entities.h"
+#include "gfx/gfx.h"
+//#include "pulsar_input.h"
 //#include "pulsar_resource_manager.h"
 //#include "rg_components.h"
 #include "node/node.h"
@@ -14,7 +13,7 @@
 #include "exceptions/exceptions.h"
 #include "utils/math.h"
 #include "window/window.h"
-#include "render_graph/pulsar_render_graph.h"
+#include "pulsar_render_graph/pulsar_render_graph.h"
 
 
 namespace PULSAR
@@ -26,6 +25,6 @@ namespace PULSAR
 
 	void	terminate()
 	{
-		
+
 	}
 }

@@ -29,6 +29,7 @@ namespace PULSAR
 
 		void	set(HWND hwnd, BOOL windowed = TRUE);
 		ID3D11DepthStencilView	*&ds_view();
+		XMUINT2	size() const;
 
 		void	resize(UINT width, UINT height) override;
 		void	clear() override;

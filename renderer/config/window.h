@@ -3,6 +3,8 @@
 #include <tchar.h>
 
 
+#define FPS_FRAMES_SKIP_COUNT 8
+
 namespace PULSAR
 {
 	const struct

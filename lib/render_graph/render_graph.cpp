@@ -7,18 +7,6 @@
 #include "rg_const.h"
 
 
-PULSAR::rg::render_graph	*PULSAR::rg::render_graph::mp_active_rg = NULL;
-
-void	PULSAR::rg::render_graph::set_active(PULSAR::rg::render_graph *render_graph)
-{
-	PULSAR::rg::render_graph::mp_active_rg = render_graph;
-}
-PULSAR::rg::render_graph	*PULSAR::rg::render_graph::get_active()
-{
-	return (PULSAR::rg::render_graph::mp_active_rg);
-}
-
-
 PULSAR::rg::render_graph::render_graph()
 {
 	this->m_passes.resize(PULSAR::rg::MAX_PASS_LEVELS);
@@ -97,11 +85,11 @@ void	PULSAR::rg::render_graph::validate() const
 	}
 }
 
-void	PULSAR::rg::render_graph::execute()
+void	PULSAR::rg::render_graph::execute(float delta_time)
 {
 	for (auto &level : this->m_passes)
 	{
 		for (auto *pass : level)
-			pass->execute();
+			pass->execute(delta_time);
 	}
 }

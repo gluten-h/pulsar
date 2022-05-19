@@ -1,6 +1,6 @@
 #pragma once
 
-#include "_gfx/_gfx.h"
+#include "gfx/gfx.h"
 #include <vector>
 
 

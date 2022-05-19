@@ -16,9 +16,9 @@ namespace PULSAR
 		}
 		~transform_component() = default;
 
-		operator XMMATRIX &()
-		{
-			return (this->transform);
-		}
+		//operator XMMATRIX &()
+		//{
+		//	return (this->transform);
+		//}
 	};
 }

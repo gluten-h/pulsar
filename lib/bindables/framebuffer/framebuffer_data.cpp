@@ -1,6 +1,8 @@
 
 #include "framebuffer/framebuffer.h"
 #include "exceptions/gfx_exception.h"
+#include "exceptions/win_exception.h"
+#include "utils/math.h"
 
 
 void	PULSAR::framebuffer::create_feamebuffer(HWND hwnd, BOOL windowed)
@@ -47,4 +49,19 @@ void	PULSAR::framebuffer::set(HWND hwnd, BOOL windowed)
 ID3D11DepthStencilView	*&PULSAR::framebuffer::ds_view()
 {
 	return (this->mp_ds_view);
+}
+
+XMUINT2		PULSAR::framebuffer::size() const
+{
+	if (!this->mp_swap_chain)
+		return (XMUINT2(0u, 0u));
+
+	DXGI_SWAP_CHAIN_DESC swd;
+	RECT rect;
+
+	this->mp_swap_chain->GetDesc(&swd);
+	if (!GetClientRect(swd.OutputWindow, &rect))
+		THROW_LAST_WIN_EXC();
+
+	return (XMUINT2(rect.right - rect.left, rect.bottom - rect.top));
 }

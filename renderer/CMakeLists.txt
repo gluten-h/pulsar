@@ -5,6 +5,14 @@ set(REN_SOURCES
 						components/camera/camera.cpp
 						components/camera/perspective_camera.cpp
 
+						components/material/material.cpp
+						components/material/material_props.cpp
+
+						components/mesh/mesh_d3d.cpp
+						components/mesh/mesh_data.cpp
+						components/mesh/mesh_obj.cpp
+						components/mesh/mesh.cpp
+
 						deferred_buffer/deferred_buffer_get.cpp
 
 						misc/cam_controller/cam_controller.cpp
@@ -17,10 +25,11 @@ set(REN_SOURCES
 						scene/scene_skybox.cpp
 						scene/scene_node.cpp
 
-						render_graph/pulsar_render_graph.cpp
+						pulsar_render_graph/pulsar_render_graph.cpp
 
-						passes/clear_buffer_pass.cpp
-						passes/present_pass.cpp)
+						passes/clear_buffers_pass.cpp
+						passes/present_pass.cpp
+						passes/g_buffer_pass.cpp)
 set(REN_SOURCES ${REN_SOURCES} PARENT_SCOPE)
 
 set(REN_INCLUDES		
@@ -30,7 +39,13 @@ set(REN_INCLUDES
 
 						components/transform/transform_component.h
 
-						components/mesh_component.h
+						components/material/material.h
+						components/material/material_component.h
+
+						components/mesh/mesh.h
+						components/mesh/mesh_component.h
+
+						components/components.h
 
 						config/camera.h
 						config/cubemap.h
@@ -64,11 +79,13 @@ set(REN_INCLUDES
 
 						scene/scene.h
 
-						render_graph/pulsar_render_graph.h
+						pulsar_render_graph/pulsar_render_graph.h
 
 						passes/fullscreen_pass.h
-						passes/clear_buffer_pass.h
-						passes/present_pass.h)
+						passes/render_queue_pass.h
+						passes/clear_buffers_pass.h
+						passes/present_pass.h
+						passes/g_buffer_pass.h)
 set(REN_INCLUDES ${REN_INCLUDES} PARENT_SCOPE)
 
 set(REN_INCLUDE_DIRS	

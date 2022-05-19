@@ -13,13 +13,16 @@ namespace PULSAR
 		UINT m_slot = 0u;
 
 	private:
+		void	copy_assign(const shader_texture &st);
 		void	create_shader_texture(const LPCWSTR file);
+		void	free_texture();
+		void	free_srv();
 		void	free();
 
 	public:
-		shader_texture &operator=(const shader_texture&) = delete;
+		shader_texture &operator=(const shader_texture &st);
 		shader_texture &operator=(shader_texture&&) = delete;
-		shader_texture(const shader_texture&) = delete;
+		shader_texture(const shader_texture &st);
 		shader_texture(shader_texture&&) = delete;
 		shader_texture() = default;
 		shader_texture(const LPCWSTR file, UINT slot = 0u);

@@ -2,6 +2,17 @@
 #include "shader_texture.h"
 
 
+PULSAR::shader_texture	&PULSAR::shader_texture::operator=(const PULSAR::shader_texture &st)
+{
+	this->copy_assign(st);
+	return (*this);
+}
+
+PULSAR::shader_texture::shader_texture(const PULSAR::shader_texture &st)
+{
+	this->copy_assign(st);
+}
+
 PULSAR::shader_texture::shader_texture(const LPCWSTR file, UINT slot)
 {
 	this->create_shader_texture(file);

@@ -13,14 +13,13 @@
 
 
 #include <Windows.h>
-
+#include <wrl.h>
+#include <tchar.h>
 #include <d3d11.h>
 #include <d3dx11.h>
 #include <dxgi1_2.h>
 #include <dxgi.h>
 #include <d3dcompiler.h>
-#include <wrl.h>
-#include <tchar.h>
 
 #include <DirectXTex.h>
 #include <DDSTextureLoader.h>
@@ -48,5 +47,7 @@ namespace PULSAR
 		IDXGIFactory	*idxgi_factory();
 		ID3D11Device	*device();
 		ID3D11DeviceContext		*device_context();
+
+		void	draw_indexed(UINT index_count) const;
 	};
 }

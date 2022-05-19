@@ -16,10 +16,6 @@ set(LIB_SOURCES
 						bindables/dynamic_const_buffers/vert_dynamic_const_buffer.cpp
 						bindables/input_layout/input_layout_data.cpp
 						bindables/input_layout/input_layout.cpp
-						bindables/mesh/mesh_d3d.cpp
-						bindables/mesh/mesh_data.cpp
-						bindables/mesh/mesh_obj.cpp
-						bindables/mesh/mesh.cpp
 						bindables/rasterizer_state/rasterizer_state_data.cpp
 						bindables/rasterizer_state/rasterizer_state.cpp
 						bindables/framebuffer/framebuffer_data.cpp
@@ -45,7 +41,6 @@ set(LIB_SOURCES
 						core/component/camera/camera/camera_get.cpp
 						core/component/camera/camera/camera_update.cpp
 						core/component/camera/camera/camera.cpp
-						core/component/material/material/material_props.cpp
 						core/component/skybox_material/skybox_material/skybox_material.cpp
 
 						core/entity/light/dir/dir_light_data.cpp
@@ -55,8 +50,6 @@ set(LIB_SOURCES
 						core/entity/light/point/point_light_get.cpp
 						core/entity/light/point/point_light.cpp
 						core/entity/object/object.cpp
-
-						core/gfx/gfx.cpp
 
 						core/input/mouse/pulsar_mouse_button.cpp
 						core/input/mouse/pulsar_mouse.cpp
@@ -90,13 +83,17 @@ set(LIB_SOURCES
 						exceptions/win_exception.cpp
 
 
-						_gfx/_gfx.cpp
+						gfx/gfx.cpp
 
 
-						rg/render_graph.cpp
-						rg/pass.cpp
-						rg/input.cpp
-						rg/source.cpp
+						render_queue/render_queue.cpp
+						render_queue/job.cpp
+
+
+						render_graph/render_graph.cpp
+						render_graph/pass.cpp
+						render_graph/input.cpp
+						render_graph/source.cpp
 
 
 						utils/math.cpp
@@ -104,7 +101,6 @@ set(LIB_SOURCES
 						utils/shader_include.cpp
 
 
-						window/window_cursor.cpp
 						window/window_draw.cpp
 						window/window_update.cpp
 						window/window.cpp
@@ -131,7 +127,6 @@ set(LIB_INCLUDES
 						bindables/dynamic_const_buffers/frag_dynamic_const_buffer.h
 						bindables/dynamic_const_buffers/vert_dynamic_const_buffer.h
 						bindables/input_layout/input_layout.h
-						bindables/mesh/mesh.h
 						bindables/rasterizer_state/rasterizer_state.h
 						bindables/framebuffer/framebuffer.h
 						bindables/render_texture/render_texture.h
@@ -148,8 +143,6 @@ set(LIB_INCLUDES
 						core/component/camera/camera_shader/camera_deferred_shader.h
 						core/component/camera/camera_shader/camera_post_effects_shader.h
 						core/component/component/component.h
-						core/component/material/material/material.h
-						core/component/material/material_const.h
 						core/component/skybox_material/skybox_material/skybox_material.h
 						core/component/skybox_material/skybox_material_def.h
 						core/component/skybox_material/skybox_material_shader.h
@@ -165,10 +158,6 @@ set(LIB_INCLUDES
 						core/entity/object/object.h
 						core/entity/entities.h
 
-						core/filesystem/filesystem.h
-
-						core/gfx/gfx.h
-
 						core/input/mouse/pulsar_mouse.h
 						core/input/pulsar_input.h
 
@@ -178,8 +167,6 @@ set(LIB_INCLUDES
 						core/misc/transform/transform_shader.h
 
 						core/resource_manager/pulsar_resource_manager.h
-
-						#core/render_queue/render_queue.h
 
 						core/rg_component/render_graph/render_graph.h
 						core/rg_component/rg_component/rg_component.h
@@ -219,18 +206,26 @@ set(LIB_INCLUDES
 						exceptions/exceptions.h
 
 
-						_gfx/_gfx.h
+						filesystem/filesystem.h
 
 
-						rg/rg_const.h
-						rg/render_graph.h
-						rg/pass.h
-						rg/input.h
-						rg/buffer_input.h
-						rg/bindable_input.h
-						rg/source.h
-						rg/buffer_source.h
-						rg/bindable_source.h
+						gfx/gfx.h
+
+
+						render_queue/types.h
+						render_queue/render_queue.h
+						render_queue/job.h
+
+
+						render_graph/rg_const.h
+						render_graph/render_graph.h
+						render_graph/pass.h
+						render_graph/input.h
+						render_graph/buffer_input.h
+						render_graph/bindable_input.h
+						render_graph/source.h
+						render_graph/buffer_source.h
+						render_graph/bindable_source.h
 
 
 						utils/math.h
@@ -248,12 +243,10 @@ set(LIB_INCLUDES ${LIB_INCLUDES} PARENT_SCOPE)
 
 set(LIB_INCLUDE_DIRS	
 						containers
-
-
 						bindables
 
 						#core/component/camera/camera
-						c#ore/component/camera/camera_shader
+						#core/component/camera/camera_shader
 						#core/component/component
 						#core/component/material/material
 						#core/component/material
@@ -261,18 +254,16 @@ set(LIB_INCLUDE_DIRS
 						#core/component/skybox_material
 						#core/component
 
-						core/entity/entity
-						core/entity/light/dir
-						core/entity/light/light
-						core/entity/light/point
-						core/entity/light
-						core/entity/object
-						core/entity
+						#core/entity/entity
+						#core/entity/light/dir
+						#core/entity/light/light
+						#core/entity/light/point
+						#core/entity/light
+						#core/entity/object
+						#core/entity
 
-						core/gfx
-
-						core/input/mouse
-						core/input
+						#core/input/mouse
+						#core/input
 
 						#core/misc/shader_include
 						#core/misc/skybox
@@ -280,14 +271,14 @@ set(LIB_INCLUDE_DIRS
 						#core/misc/transform/transform
 						#core/misc/transform
 
-						core/resource_manager
+						#core/resource_manager
 
-						core/render_queue
+						#core/render_queue
 
-						core/scene
+						#core/scene
 
 
-						core
+						#core
 
 
 						./)

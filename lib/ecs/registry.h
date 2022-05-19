@@ -41,7 +41,6 @@ namespace PULSAR
 			{
 				signature sig;
 				sig.set(PULSAR::ecs::component_type::id<decltype(std::get<I>(t))>(), 1);
-
 				sig |= read_type_bits<I + 1, Tp...>(t);
 
 				return (sig);
@@ -84,7 +83,6 @@ namespace PULSAR
 				this->m_entities_signatures.erase(entity);
 			}
 
-			// create another 'emplace' function with ability to add multiple components at once
 			template <typename T, typename... Args>
 			T	&emplace(const PULSAR::ecs::entity entity, Args&&... args)
 			{
@@ -175,11 +173,11 @@ namespace PULSAR
 				this->m_systems.push_back(system);
 			}
 
-			void	execute_systems()
+			void	execute_systems(float delta_time)
 			{
 				for (auto *system : this->m_systems)
 				{
-					system->execute();
+					system->execute(delta_time);
 				}
 			}
 		};

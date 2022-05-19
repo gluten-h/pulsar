@@ -1,8 +1,6 @@
 
 #include "pulsar.h"
 
-//using namespace PULSAR;
-
 #include "cam_controller.h"
 
 
@@ -10,100 +8,14 @@
 
 int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_cmd_line, int n_cmd_show)
 {
-	/*{
-		struct transform_comp
-		{
-			int a = 1;
-
-			transform_comp() = default;
-			transform_comp(int a) : a(a)
-			{
-			}
-		};
-		struct mesh_comp
-		{
-			int b = 2;
-		};
-		struct mat_comp
-		{
-			int c = 3;
-		};
-
-
-		{
-			PULSAR::sparse_set<uint32_t> s_set;
-			s_set.insert(0u);
-			s_set.insert(5u);
-			s_set.insert(3u);
-			s_set.insert(1u);
-			s_set.insert(10u);
-
-			s_set.erase(5u);
-
-			for (auto v : s_set)
-			{
-				uint32_t a = v;
-			}
-
-
-			int f = 1;
-		}
-
-
-
-		PULSAR::ecs::registry reg;
-
-		auto id0 = reg.create();
-		auto id1 = reg.create();
-		auto id2 = reg.create();
-		auto id3 = reg.create();
-		auto id4 = reg.create();
-		auto id5 = reg.create();
-
-
-		reg.emplace<transform_comp>(id0);
-		reg.emplace<mesh_comp>(id0);
-
-		reg.emplace<transform_comp>(id1, 42);
-		reg.emplace<mat_comp>(id1);
-		reg.emplace<mesh_comp>(id1);
-
-		reg.emplace<transform_comp>(id2, 41);
-		reg.emplace<transform_comp>(id4, 43);
-
-		bool id0_mat_e = reg.has<mat_comp>(id0);
-		bool id1_trans_e = reg.has<transform_comp>(id1);
-
-		reg.get<mat_comp>(id1).c = 21;
-
-		const PULSAR::ecs::group trans_mesh_group = reg.group<transform_comp, mesh_comp>();
-		const PULSAR::ecs::group mesh_mat_group = reg.group<mesh_comp, mat_comp>();
-		const PULSAR::ecs::group trans_group = reg.group<transform_comp>();
-		const PULSAR::ecs::group mesh_group = reg.group<mesh_comp>();
-		const PULSAR::ecs::group empty_group = reg.group<int>();
-
-
-		reg.erase<transform_comp>(id1);
-		reg.erase<mesh_comp>(id1);
-		reg.erase<mat_comp>(id1);
-
-		id1_trans_e = reg.has<transform_comp>(id1);
-
-		reg.destroy(id0);
-
-		int a = 1;
-	}*/
-	//exit(0);
-
-
-
-	//PULSAR_D3D::init();
 	PULSAR::init(h_instance);
 
-	PULSAR::window::get().resize(1280u, 720u);
+	PULSAR::window win("PULSAR", 1280, 720);
+	PULSAR::pulsar_render_graph render_graph(win.framebuffer());
 
-	PULSAR::pulsar_render_graph rg;
-	PULSAR::rg::render_graph::set_active(&rg);
+
+
+
 
 	//// XMMatrixPerspectiveFovLH
 	//CAMERA *camera = CAMERA::create();
@@ -234,7 +146,9 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 	//sph2_obj->transform.position = XMFLOAT3(-1.25f, 0.0f, 1.75f);
 	//sph2_obj->transform.scale = XMFLOAT3(0.5f, 0.5f, 0.5f);
 
-	while (PULSAR::window::get().process_events())
+	int i = 0;
+
+	while (win.process_events())
 	{
 		//for (auto &it : PULSAR::WIN_MANAGER::get_instance())
 		//{
@@ -252,12 +166,18 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		//	win->present();
 		//}
 		//GFX::set_delta_time();
-		//if (PULSAR::rg::render_graph::get_active())
-		//	PULSAR::rg::render_graph::get_active()->execute();
+
+		std::string dt_str = "delta_time: " + std::to_string(win.delta_time()) + '\n';
+		OutputDebugString(dt_str.c_str());
+
+		win.begin_frame();
+		render_graph.execute(win.delta_time());
+		win.end_frame();
+	
+		i++;
 	}
 
-	//RESOURCE_MANAGER::terminate();
-	//PULSAR::terminate();
+	PULSAR::terminate();
 
 	return (0);
 }

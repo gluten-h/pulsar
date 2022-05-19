@@ -15,7 +15,7 @@ namespace PULSAR
 			system(const PULSAR::ecs::registry *p_registry) : mp_registry(p_registry){ }
 
 		public:
-			virtual void	execute() = 0;
+			virtual void	execute(float delta_time) = 0;
 		};
 	}
 }

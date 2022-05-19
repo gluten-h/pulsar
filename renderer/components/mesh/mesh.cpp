@@ -1,5 +1,6 @@
 
 #include "mesh.h"
+#include "gfx/gfx.h"
 
 
 PULSAR::mesh::mesh(LPCWSTR file, PULSAR::MESH_FILE_FORMAT file_format)

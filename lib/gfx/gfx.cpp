@@ -1,5 +1,5 @@
 
-#include "_gfx/_gfx.h"
+#include "gfx.h"
 #include "exceptions/win_exception.h"
 #include "exceptions/gfx_exception.h"
 
@@ -14,6 +14,7 @@ PULSAR::gfx::gfx()
 
 	GFX_ASSERT(D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, device_flags, NULL, NULL, D3D11_SDK_VERSION, &this->mp_device, NULL, &this->mp_device_context));
 }
+
 PULSAR::gfx::~gfx()
 {
 	this->mp_device->Release();
@@ -26,11 +27,18 @@ IDXGIFactory	*PULSAR::gfx::idxgi_factory()
 {
 	return (this->mp_idxgi_factory);
 }
+
 ID3D11Device	*PULSAR::gfx::device()
 {
 	return (this->mp_device);
 }
+
 ID3D11DeviceContext		*PULSAR::gfx::device_context()
 {
 	return (this->mp_device_context);
+}
+
+void	PULSAR::gfx::draw_indexed(UINT index_count) const
+{
+	this->mp_device_context->DrawIndexed(index_count, 0u, 0u);
 }

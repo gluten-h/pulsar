@@ -1,20 +1,15 @@
 
 #include "window.h"
 #include "exceptions/win_exception.h"
-#include "config/window.h"
-#include "pulsar_input.h"
-#include "scene/scene.h"
-#include "node/node.h"
-#include "transform/transform_component.h"
-#include "camera/camera_component.h"
+//#include "pulsar_input.h"
 
 
 HINSTANCE	PULSAR::window::m_h_instance = NULL;
 
 
-PULSAR::window::window()
+PULSAR::window::window(const LPCSTR name, UINT width, UINT height)
 {
-	this->set(PULSAR::DEFAULT_WINDOW_SETTINGS.name, PULSAR::DEFAULT_WINDOW_SETTINGS.width, PULSAR::DEFAULT_WINDOW_SETTINGS.height);
+	this->set(name, width, height);
 }
 
 void	PULSAR::window::init(HINSTANCE h_instance)
@@ -47,9 +42,6 @@ void	PULSAR::window::init(HINSTANCE h_instance)
 	rid.hwndTarget = NULL;
 	if (!RegisterRawInputDevices(&rid, 1u, sizeof(RAWINPUTDEVICE)))
 		THROW_LAST_WIN_EXC();
-
-	//default window initialization
-	window::get();
 }
 
 bool	PULSAR::window::process_events()
@@ -68,7 +60,45 @@ bool	PULSAR::window::process_events()
 	return (true);
 }
 
-void	PULSAR::window::present() const
+void	PULSAR::window::begin_frame()
 {
-	this->m_framebuffer.present();
+	this->m_begin_frame_time_point = std::chrono::high_resolution_clock::now();
+}
+
+void	PULSAR::window::end_frame()
+{
+	auto end_frame_time_point = std::chrono::high_resolution_clock::now();
+	this->m_frames_time_elapsed += std::chrono::duration_cast<std::chrono::milliseconds>(end_frame_time_point - this->m_begin_frame_time_point).count();
+	this->m_frames_skipped++;
+	if (this->m_frames_skipped >= FPS_FRAMES_SKIP_COUNT)
+	{
+		this->m_delta_time = (float)this->m_frames_time_elapsed / (float)this->m_frames_skipped / 1000.0f;
+		this->m_frames_time_elapsed = 0.0f;
+		this->m_frames_skipped = 0u;
+	}
+}
+
+void	PULSAR::window::hide_cursor()
+{
+	while (ShowCursor(FALSE) >= 0);
+}
+
+void	PULSAR::window::show_cursor()
+{
+	while (ShowCursor(TRUE) > 0);
+}
+
+void	PULSAR::window::clamp_cursor()
+{
+	RECT rect;
+	GetClientRect(this->m_hwnd, &rect);
+	MapWindowPoints(this->m_hwnd, NULL, (POINT*)(&rect), 2u);
+	ClipCursor(&rect);
+	this->m_cursor_clamped = true;
+}
+
+void	PULSAR::window::free_cursor()
+{
+	ClipCursor(NULL);
+	this->m_cursor_clamped = false;
 }
