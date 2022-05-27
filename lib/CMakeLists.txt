@@ -1,335 +1,173 @@
 
 cmake_minimum_required(VERSION 3.20)
 
-set(LIB_SOURCES			core/bindable/bindable/bindable.cpp
-						core/bindable/cubemap/cubemap_data.cpp
-						core/bindable/cubemap/cubemap_dds.cpp
-						core/bindable/cubemap/cubemap.cpp
-						core/bindable/depth_stencil/state/depth_stencil_state_data.cpp
-						core/bindable/depth_stencil/state/depth_stencil_state.cpp
-						core/bindable/depth_stencil/view/depth_stencil_view_data.cpp
-						core/bindable/depth_stencil/view/depth_stencil_view_get.cpp
-						core/bindable/depth_stencil/view/depth_stencil_view.cpp
-						core/bindable/input_layout/input_layout_data.cpp
-						core/bindable/input_layout/input_layout.cpp
-						core/bindable/mesh/mesh_d3d.cpp
-						core/bindable/mesh/mesh_data.cpp
-						core/bindable/mesh/mesh_obj.cpp
-						core/bindable/mesh/mesh.cpp
-						core/bindable/rasterizer_state/rasterizer_state_data.cpp
-						core/bindable/rasterizer_state/rasterizer_state.cpp
-						core/bindable/render_target/render_target_data.cpp
-						core/bindable/render_target/render_target_misc.cpp
-						core/bindable/render_target/render_target.cpp
-						core/bindable/render_texture/render_texture_data.cpp
-						core/bindable/render_texture/render_texture_get.cpp
-						core/bindable/render_texture/render_texture_misc.cpp
-						core/bindable/render_texture/render_texture.cpp
-						core/bindable/sampler/sampler_data.cpp
-						core/bindable/sampler/sampler.cpp
-						core/bindable/shader/frag/frag_shader_data.cpp
-						core/bindable/shader/frag/frag_shader.cpp
-						core/bindable/shader/geom/geom_shader_data.cpp
-						core/bindable/shader/geom/geom_shader.cpp
-						core/bindable/shader/shader/shader_data.cpp
-						core/bindable/shader/vert/vert_shader_data.cpp
-						core/bindable/shader/vert/vert_shader.cpp
-						core/bindable/texture/texture_data.cpp
-						core/bindable/texture/texture.cpp
-						core/bindable/viewport/viewport_data.cpp
-						core/bindable/viewport/viewport.cpp
-
-						core/component/camera/camera/camera_data.cpp
-						core/component/camera/camera/camera_def.cpp
-						core/component/camera/camera/camera_get.cpp
-						core/component/camera/camera/camera_update.cpp
-						core/component/camera/camera/camera.cpp
-						core/component/material/material/material_props.cpp
-						core/component/skybox_material/skybox_material/skybox_material.cpp
-
-						core/d3d/id3d/pulsar_id3d.cpp
-						core/d3d/pulsar_d3d.cpp
-
-						core/entity/light/dir/dir_light_data.cpp
-						core/entity/light/dir/dir_light_get.cpp
-						core/entity/light/dir/dir_light.cpp
-						core/entity/light/point/point_light_data.cpp
-						core/entity/light/point/point_light_get.cpp
-						core/entity/light/point/point_light.cpp
-						core/entity/object/object.cpp
-
-						core/gfx/gfx.cpp
-
-						core/input/mouse/pulsar_mouse_button.cpp
-						core/input/mouse/pulsar_mouse.cpp
-
-						core/misc/shader_include/shader_include.cpp
-						core/misc/skybox/skybox_data.cpp
-						core/misc/skybox/skybox_def.cpp
-						core/misc/skybox/skybox.cpp
-						core/misc/texture2d/texture2d_data.cpp
-						core/misc/texture2d/texture2d.cpp
-						core/misc/transform/transform/transform.cpp
-
-						core/resource_manager/pulsar_resource_manager.cpp
-
-						core/scene/scene_draw.cpp
-						core/scene/scene_entity.cpp
-						core/scene/scene_light.cpp
-						core/scene/scene_skybox.cpp
+set(LIB_SOURCES	
+						bindables/bindable/buffer_resource.cpp
+						bindables/cubemap/cubemap_data.cpp
+						bindables/cubemap/cubemap_dds.cpp
+						bindables/cubemap/cubemap.cpp
+						bindables/depth_stencil/depth_stencil_state_data.cpp
+						bindables/depth_stencil/depth_stencil_state.cpp
+						bindables/depth_stencil/depth_stencil_view_data.cpp
+						bindables/depth_stencil/depth_stencil_view.cpp
+						bindables/dynamic_const_buffers/dynamic_const_buffer.cpp
+						bindables/dynamic_const_buffers/dynamic_const_buffer_data.cpp
+						bindables/dynamic_const_buffers/frag_dynamic_const_buffer.cpp
+						bindables/dynamic_const_buffers/vert_dynamic_const_buffer.cpp
+						bindables/input_layout/input_layout_data.cpp
+						bindables/input_layout/input_layout.cpp
+						bindables/rasterizer_state/rasterizer_state_data.cpp
+						bindables/rasterizer_state/rasterizer_state.cpp
+						bindables/framebuffer/framebuffer_data.cpp
+						bindables/framebuffer/framebuffer.cpp
+						bindables/render_texture/render_texture_data.cpp
+						bindables/render_texture/render_texture.cpp
+						bindables/sampler/sampler_data.cpp
+						bindables/sampler/sampler.cpp
+						bindables/shaders/frag_shader_data.cpp
+						bindables/shaders/frag_shader.cpp
+						bindables/shaders/geom_shader_data.cpp
+						bindables/shaders/geom_shader.cpp
+						bindables/shaders/shader_data.cpp
+						bindables/shaders/vert_shader_data.cpp
+						bindables/shaders/vert_shader.cpp
+						bindables/shader_texture/shader_texture_data.cpp
+						bindables/shader_texture/shader_texture.cpp
+						bindables/viewport/viewport_data.cpp
+						bindables/viewport/viewport.cpp
 
 
-						exception/exception/exception.cpp
-						exception/gfx_exception/gfx_exception.cpp
-						exception/rg_exception/rg_exception.cpp
-						exception/win_exception/win_exception.cpp
+						dcb/baked_layout.cpp
+						dcb/buffer.cpp
+						dcb/buffer_data.cpp
+						dcb/layout_elem.cpp
+						dcb/layout_elem_memory.cpp
+						dcb/raw_layout.cpp
 
 
-						utils/pulsar_math.cpp
-						utils/pulsar_utils.cpp
+						ecs/entity_bin_tree_array.cpp
+						ecs/types.cpp
 
 
-						window/window_cursor.cpp
-						window/window_draw.cpp
-						window/window_misc.cpp
-						window/window_update.cpp
+						exceptions/base_exception.cpp
+						exceptions/gfx_exception.cpp
+						exceptions/rg_exception.cpp
+						exceptions/win_exception.cpp
+
+
+						gfx/gfx.cpp
+
+
+						render_queue/render_queue.cpp
+						render_queue/job.cpp
+
+
+						render_graph/render_graph.cpp
+						render_graph/pass.cpp
+						render_graph/input.cpp
+						render_graph/source.cpp
+
+
+						utils/math.cpp
+						utils/utils.cpp
+						utils/shader_include.cpp
+
+
 						window/window.cpp
-						window/window_proc.cpp)
+						window/window_proc.cpp
+						window/window_data.cpp)
 set(LIB_SOURCES ${LIB_SOURCES} PARENT_SCOPE)
 
 
-set(LIB_INCLUDES		containers/manager/manager.h
-						containers/fixed_vector/fixed_vector.h
+set(LIB_INCLUDES		
+						containers/sparse_set.h
 
 
-						core/bindable/bindable/bindable.h
-						core/bindable/bindable/buffer_resource.h
-						core/bindable/const_buffer/const_buffer.h
-						core/bindable/const_buffer/const_buffers.h
-						core/bindable/const_buffer/frag_const_buffer.h
-						core/bindable/const_buffer/vert_const_buffer.h
-						core/bindable/cubemap/cubemap.h
-						core/bindable/depth_stencil/state/depth_stencil_state.h
-						core/bindable/depth_stencil/view/depth_stencil_view.h
-						core/bindable/depth_stencil/depth_stencil.h
-						core/bindable/dynamic_const_buffer/dynamic_const_buffer.h
-						core/bindable/dynamic_const_buffer/frag_dynamic_const_buffer.h
-						core/bindable/dynamic_const_buffer/vert_dynamic_const_buffer.h
-						core/bindable/input_layout/input_layout.h
-						core/bindable/mesh/mesh.h
-						core/bindable/rasterizer_state/rasterizer_state.h
-						core/bindable/render_target/render_target.h
-						core/bindable/render_texture/render_texture.h
-						core/bindable/sampler/sampler.h
-						core/bindable/shader/frag/frag_shader.h
-						core/bindable/shader/geom/geom_shader.h
-						core/bindable/shader/shader/shader.h
-						core/bindable/shader/vert/vert_shader.h
-						core/bindable/shader/shaders.h
-						core/bindable/texture/texture.h
-						core/bindable/viewport/viewport.h
-						core/bindable/bindables.h
-
-						core/component/camera/camera/camera.h
-						core/component/camera/camera_shader/camera_deferred_shader.h
-						core/component/camera/camera_shader/camera_post_effects_shader.h
-						core/component/component/component.h
-						core/component/material/material/material.h
-						core/component/material/material_def.h
-						core/component/skybox_material/skybox_material/skybox_material.h
-						core/component/skybox_material/skybox_material_def.h
-						core/component/skybox_material/skybox_material_shader.h
-						core/component/components.h
-
-						core/d3d/id3d/pulsar_id3d.h
-						core/d3d/pulsar_d3d.h
-
-						core/entity/entity/bindable_entity.h
-						core/entity/entity/entity.h
-						core/entity/light/dir/dir_light.h
-						core/entity/light/light/light_shader.h
-						core/entity/light/light/light.h
-						core/entity/light/point/point_light.h
-						core/entity/light/lights.h
-						core/entity/object/object.h
-						core/entity/entities.h
-
-						core/filesystem/filesystem.h
-
-						core/gfx/gfx.h
-
-						core/input/mouse/pulsar_mouse.h
-						core/input/pulsar_input.h
-
-						core/misc/shader_include/shader_include.h
-						core/misc/skybox/skybox.h
-						core/misc/texture2d/texture2d.h
-						core/misc/transform/transform/transform.h
-						core/misc/transform/transform_shader.h
-
-						core/resource_manager/pulsar_resource_manager.h
-
-						#core/render_queue/render_queue.h
-
-						core/rg_component/render_graph/render_graph.h
-						core/rg_component/rg_component/rg_component.h
-						core/rg_component/rg_input/rg_bindable_input.h
-						core/rg_component/rg_input/rg_buffer_input.h
-						core/rg_component/rg_input/rg_input.h
-						core/rg_component/rg_input/rg_inputs.h
-						core/rg_component/rg_pass/rg_pass.h
-						core/rg_component/rg_source/rg_bindable_source.h
-						core/rg_component/rg_source/rg_buffer_source.h
-						core/rg_component/rg_source/rg_source.h
-						core/rg_component/rg_source/rg_sources.h
-						core/rg_component/rg_components.h
-
-						core/scene/scene.h
+						bindables/bindable/bindable.h
+						bindables/bindable/buffer_resource.h
+						bindables/const_buffers/const_buffer.h
+						bindables/const_buffers/frag_const_buffer.h
+						bindables/const_buffers/vert_const_buffer.h
+						bindables/cubemap/cubemap.h
+						bindables/depth_stencil/depth_stencil_state.h
+						bindables/depth_stencil/depth_stencil_view.h
+						bindables/dynamic_const_buffers/dynamic_const_buffer.h
+						bindables/dynamic_const_buffers/frag_dynamic_const_buffer.h
+						bindables/dynamic_const_buffers/vert_dynamic_const_buffer.h
+						bindables/input_layout/input_layout.h
+						bindables/rasterizer_state/rasterizer_state.h
+						bindables/framebuffer/framebuffer.h
+						bindables/render_texture/render_texture.h
+						bindables/sampler/sampler.h
+						bindables/shaders/frag_shader.h
+						bindables/shaders/geom_shader.h
+						bindables/shaders/shader.h
+						bindables/shaders/vert_shader.h
+						bindables/shader_texture/shader_texture.h
+						bindables/viewport/viewport.h
+						bindables/bindables.h
 
 
 						dcb/dcb.h
-						dcb/dcb_types.h
-						dcb/dcb_layout_elem.h
-						dcb/dcb_layout.h
-						dcb/dcb_raw_layout.h
-						dcb/dcb_baked_layout.h
-						dcb/dcb_layout_elem_ref.h
-						dcb/dcb_buffer.h
+						dcb/types.h
+						dcb/layout_elem.h
+						dcb/layout.h
+						dcb/raw_layout.h
+						dcb/baked_layout.h
+						dcb/layout_elem_ref.h
+						dcb/buffer.h
 
 
-						def/def_cubemaps.h
-						def/def_deferred.h
-						def/def_materials.h
-						def/def_meshes.h
-						def/def_misc.h
-						def/def_rasterizer_states.h
-						def/def_system.h
-						def/def_scene.h
-						def/def_shaders.h
-						def/def_skybox_materials.h
-						def/def_skybox.h
-						def/def_textures.h
-						def/def_window.h
-						def/pulsar_def.h
+						ecs/types.h
+						ecs/registry.h
+						ecs/entity_bin_tree_array.h
+						ecs/system.h
+						ecs/ecs.h
 
 
-						exception/exception/exception.h
-						exception/gfx_exception/gfx_exception.h
-						exception/macros/def_exc_macros.h
-						exception/macros/pulsar_exc.h
-						exception/macros/gfx_exc_macros.h
-						exception/macros/rg_exc_macros.h
-						exception/macros/win_exc_macros.h
-						exception/rg_exception/rg_exception.h
-						exception/win_exception/win_exception.h
+						exceptions/base_exception.h
+						exceptions/gfx_exception.h
+						exceptions/rg_exception.h
+						exceptions/win_exception.h
+						exceptions/exceptions.h
 
 
-						utils/pulsar_math.h
-						utils/pulsar_utils.h
+						filesystem/filesystem.h
 
 
-						window/window.h
+						gfx/gfx.h
 
 
-						pulsar.h)
+						render_queue/types.h
+						render_queue/render_queue.h
+						render_queue/job.h
+
+
+						render_graph/rg_const.h
+						render_graph/render_graph.h
+						render_graph/pass.h
+						render_graph/input.h
+						render_graph/buffer_input.h
+						render_graph/bindable_input.h
+						render_graph/source.h
+						render_graph/buffer_source.h
+						render_graph/bindable_source.h
+
+
+						utils/math.h
+						utils/utils.h
+						utils/singleton.h
+						utils/shader_include.h
+
+
+						window/window.h)
 set(LIB_INCLUDES ${LIB_INCLUDES} PARENT_SCOPE)
 
 
-set(LIB_INCLUDE_DIRS	containers/manager
-						containers/fixed_vector
-
-
-						core/bindable/bindable
-						core/bindable/const_buffer
-						core/bindable/cubemap
-						core/bindable/depth_stencil/state
-						core/bindable/depth_stencil/view
-						core/bindable/depth_stencil
-						core/bindable/dynamic_const_buffer
-						core/bindable/input_layout
-						core/bindable/mesh
-						core/bindable/rasterizer_state
-						core/bindable/render_target
-						core/bindable/render_texture
-						core/bindable/sampler
-						core/bindable/shader/frag
-						core/bindable/shader/geom
-						core/bindable/shader/shader
-						core/bindable/shader/vert
-						core/bindable/shader
-						core/bindable/texture
-						core/bindable/viewport
-						core/bindable
-
-						core/component/camera/camera
-						core/component/camera/camera_shader
-						core/component/component
-						core/component/material/material
-						core/component/material
-						core/component/skybox_material/skybox_material
-						core/component/skybox_material
-						core/component
-
-						core/d3d/id3d
-						core/d3d
-
-						core/entity/entity
-						core/entity/light/dir
-						core/entity/light/light
-						core/entity/light/point
-						core/entity/light
-						core/entity/object
-						core/entity
-
-						core/filesystem
-
-						core/gfx
-
-						core/input/mouse
-						core/input
-
-						core/misc/shader_include
-						core/misc/skybox
-						core/misc/texture2d
-						core/misc/transform/transform
-						core/misc/transform
-
-						core/resource_manager
-
-						core/render_queue
-
-						core/rg_component/render_graph
-						core/rg_component/rg_component
-						core/rg_component/rg_input
-						core/rg_component/rg_pass
-						core/rg_component/rg_source
-						core/rg_component
-
-						core/scene
-
-
-						dcb
-
-
-						def
-
-
-						exception/exception
-						exception/gfx_exception
-						exception/macros
-						exception/rg_exception
-						exception/win_exception
-
-
-						utils
-
-
-						window
-
-
+set(LIB_INCLUDE_DIRS	
+						containers
+						bindables
 						./)
-
-
 
 target_sources(${PROJECT_NAME} PUBLIC ${LIB_SOURCES} ${LIB_INCLUDES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${LIB_INCLUDE_DIRS})

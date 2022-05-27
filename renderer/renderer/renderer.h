@@ -1,0 +1,42 @@
+#pragma once
+
+#include "utils/singleton.h"
+#include "transform/transform.h"
+#include "camera/camera.h"
+#include "light/light.h"
+#include "const_buffers/vert_const_buffer.h"
+#include "const_buffers/frag_const_buffer.h"
+
+
+namespace pulsar
+{
+	class transform;
+
+	class renderer : public pulsar::singleton<renderer>
+	{
+	private:
+		using vert_camera_cbuffer = pulsar::vert_const_buffer<pulsar::vert_camera>;
+		using frag_camera_cbuffer = pulsar::frag_const_buffer<pulsar::frag_camera>;
+		using deferred_frag_lights_cbuffer = pulsar::frag_const_buffer<pulsar::deferred_frag_lights>;
+
+		vert_camera_cbuffer *mp_vert_camera_cbuffer = NULL;
+		frag_camera_cbuffer *mp_frag_camera_cbuffer = NULL;
+		deferred_frag_lights_cbuffer *mp_deferred_frag_lights_cbuffer = NULL;
+
+	public:
+		renderer &operator=(const renderer&) = delete;
+		renderer &operator=(renderer&&) = delete;
+		renderer(const renderer&) = delete;
+		renderer(renderer&&) = delete;
+		renderer() = default;
+		~renderer() = default;
+
+		pulsar::vert_const_buffer<pulsar::vert_camera>	*get_vert_camera_cbuffer();
+		pulsar::frag_const_buffer<pulsar::frag_camera>	*get_frag_camera_cbuffer();
+		pulsar::frag_const_buffer<pulsar::deferred_frag_lights>	*get_deferred_frag_lights_cbuffer();
+
+		void	submit_vert_camera_cbuffer(pulsar::vert_const_buffer<pulsar::vert_camera> *cbuffer);
+		void	submit_frag_camera_cbuffer(pulsar::frag_const_buffer<pulsar::frag_camera> *cbuffer);
+		void	submit_deferred_frag_lights_cbuffer(pulsar::frag_const_buffer<pulsar::deferred_frag_lights> *cbuffer);
+	};
+}

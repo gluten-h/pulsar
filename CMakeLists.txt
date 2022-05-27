@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.20)
 
 project(pulsar LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_SUPPRESS_REGENERATION true)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
@@ -48,7 +48,6 @@ list(TRANSFORM REN_INCLUDES PREPEND "renderer/")
 list(TRANSFORM SHADER_SOURCES PREPEND "shaders/")
 list(TRANSFORM SHADER_INCLUDE_DIRS PREPEND "shaders/")
 
-set_property(SOURCE ${SHADER_SOURCES} PROPERTY VS_SETTINGS "AdditionalIncludeDirectories=shaders/skybox/")
 set_property(SOURCE ${SHADER_SOURCES} PROPERTY VS_SETTINGS "ExcludedFromBuild=true")
 
 set(ALL_SOURCE_FILES win_main.cpp ${CMAKE_LISTS} ${LIB_SOURCES} ${LIB_INCLUDES} ${REN_SOURCES} ${REN_INCLUDES} ${SHADER_SOURCES})

@@ -1,33 +1,104 @@
 
 #include "window.h"
+#include "exceptions/win_exception.h"
+//#include "pulsar_input.h"
 
 
-bool	PULSAR::WINDOW::is_initialized = false;
-
-HINSTANCE		PULSAR::WINDOW::h_instance = NULL;
-WNDCLASSEX		PULSAR::WINDOW::wc;
-
-std::unordered_map<HWND, PULSAR::WINDOW*>		PULSAR::WINDOW::hwnd_win;
+HINSTANCE	pulsar::window::m_h_instance = NULL;
 
 
-void		PULSAR::WINDOW::create_window(const LPCSTR win_name, const DWORD win_style, int x, int y, int w, int h, HINSTANCE h_instance)
+pulsar::window::window(const LPCSTR name, UINT width, UINT height)
 {
-	HRESULT hr;
+	this->set(name, width, height);
+}
 
-	RECT wr = { 0, 0, w, h };
-	AdjustWindowRect(&wr, win_style, FALSE);
+void	pulsar::window::init(HINSTANCE h_instance)
+{
+	window::m_h_instance = h_instance;
 
-	HWND hwnd = CreateWindowEx(NULL, WIN_CLASS_NAME, __T(win_name), win_style, x, y, wr.right - wr.left, wr.bottom - wr.top, NULL, NULL, h_instance, NULL);
-	if (!hwnd)
-		THROW_WIN_LAST_EXC();
+	WNDCLASSEX wc;
+	ZeroMemory(&wc, sizeof(WNDCLASSEX));
 
-	this->hwnd = hwnd;
-	WINDOW::hwnd_win[hwnd] = this;
+	wc.cbSize = sizeof(WNDCLASSEX);
+	wc.style = CS_OWNDC;
+	wc.lpfnWndProc = window::win_proc;
+	wc.cbClsExtra = 0;
+	wc.cbWndExtra = 0;
+	wc.hInstance = h_instance;
+	wc.hIcon = NULL;
+	wc.hCursor = NULL;
+	wc.hbrBackground = NULL;
+	wc.lpszMenuName = NULL;
+	wc.lpszClassName = pulsar::DEFAULT_WINDOW_SETTINGS.class_name;
+	wc.hIconSm = NULL;
+	wc.hbrBackground = CreateSolidBrush(RGB(0, 0, 0));
+	if (!RegisterClassEx(&wc))
+		THROW_LAST_WIN_EXC();
 
-	this->render_target.set(this->hwnd, TRUE);
-	this->deferred_buffer.set_deferred_buffer((float)w, (float)h);
-	this->skybox_ds_state.set(TRUE, D3D11_COMPARISON_LESS_EQUAL, D3D11_DEPTH_WRITE_MASK_ZERO);
+	RAWINPUTDEVICE rid;
+	rid.usUsagePage = 0x01;
+	rid.usUsage = 0x02;
+	rid.dwFlags = 0;
+	rid.hwndTarget = NULL;
+	if (!RegisterRawInputDevices(&rid, 1u, sizeof(RAWINPUTDEVICE)))
+		THROW_LAST_WIN_EXC();
+}
 
+bool	pulsar::window::process_events()
+{
+	MSG msg;
 
-	this->rg = rg::create(&this->render_target, &this->deferred_buffer.get_ds_view());
+	//pulsar::MOUSE::reset_input();
+	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+	{
+		if (msg.message == WM_QUIT)
+			return (false);
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
+	return (true);
+}
+
+void	pulsar::window::begin_frame()
+{
+	this->m_begin_frame_time_point = std::chrono::high_resolution_clock::now();
+}
+
+void	pulsar::window::end_frame()
+{
+	auto end_frame_time_point = std::chrono::high_resolution_clock::now();
+	this->m_frames_time_elapsed += std::chrono::duration_cast<std::chrono::milliseconds>(end_frame_time_point - this->m_begin_frame_time_point).count();
+	this->m_frames_skipped++;
+	if (this->m_frames_skipped >= FPS_FRAMES_SKIP_COUNT)
+	{
+		this->m_delta_time = (float)this->m_frames_time_elapsed / (float)this->m_frames_skipped / 1000.0f;
+		this->m_frames_time_elapsed = 0.0f;
+		this->m_frames_skipped = 0u;
+	}
+}
+
+void	pulsar::window::hide_cursor()
+{
+	while (ShowCursor(FALSE) >= 0);
+}
+
+void	pulsar::window::show_cursor()
+{
+	while (ShowCursor(TRUE) > 0);
+}
+
+void	pulsar::window::clamp_cursor()
+{
+	RECT rect;
+	GetClientRect(this->m_hwnd, &rect);
+	MapWindowPoints(this->m_hwnd, NULL, (POINT*)(&rect), 2u);
+	ClipCursor(&rect);
+	this->m_cursor_clamped = true;
+}
+
+void	pulsar::window::free_cursor()
+{
+	ClipCursor(NULL);
+	this->m_cursor_clamped = false;
 }
