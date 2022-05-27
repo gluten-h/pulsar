@@ -2,22 +2,22 @@
 #include "scene.h"
 
 
-//void		PULSAR::scene::set_skybox_material(const PULSAR::SKYBOX_MATERIAL &mat)
+//void		pulsar::scene::set_skybox_material(const pulsar::SKYBOX_MATERIAL &mat)
 //{
 //	this->skybox.set_material(mat);
 //}
 //
-//void		PULSAR::scene::set_skybox_material(PULSAR::SKYBOX_MATERIAL *mat)
+//void		pulsar::scene::set_skybox_material(pulsar::SKYBOX_MATERIAL *mat)
 //{
 //	this->skybox.set_material(mat);
 //}
 //
-//void		PULSAR::scene::set_skybox_mesh(const PULSAR::mesh &mesh)
+//void		pulsar::scene::set_skybox_mesh(const pulsar::mesh &mesh)
 //{
 //	this->skybox.set_mesh(mesh);
 //}
 //
-//void		PULSAR::scene::set_skybox_mesh(PULSAR::mesh *mesh)
+//void		pulsar::scene::set_skybox_mesh(pulsar::mesh *mesh)
 //{
 //	this->skybox.set_mesh(mesh);
 //}

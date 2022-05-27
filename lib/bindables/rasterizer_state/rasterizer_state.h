@@ -3,9 +3,9 @@
 #include "bindable/bindable.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class rasterizer_state : public PULSAR::bindable
+	class rasterizer_state : public pulsar::bindable
 	{
 	private:
 		ID3D11RasterizerState *mp_rs = NULL;
@@ -26,7 +26,7 @@ namespace PULSAR
 		void	set(D3D11_FILL_MODE fill_mode, D3D11_CULL_MODE cull_mode);
 		ID3D11RasterizerState	*get();
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 }

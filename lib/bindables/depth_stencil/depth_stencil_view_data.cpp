@@ -3,7 +3,7 @@
 #include "exceptions/gfx_exception.h"
 
 
-void	PULSAR::depth_stencil_view::create_ds_view(UINT width, UINT height)
+void	pulsar::depth_stencil_view::create_ds_view(UINT width, UINT height)
 {
 	HRESULT hr;
 
@@ -22,14 +22,14 @@ void	PULSAR::depth_stencil_view::create_ds_view(UINT width, UINT height)
 	td.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 	td.CPUAccessFlags = 0u;
 	td.MiscFlags = 0u;
-	GFX_ASSERT(PULSAR::gfx::get().device()->CreateTexture2D(&td, NULL, &this->mp_texture));
+	GFX_ASSERT(pulsar::gfx::instance().device()->CreateTexture2D(&td, NULL, &this->mp_texture));
 
 	dsvd.Format = DXGI_FORMAT_D32_FLOAT;
 	dsvd.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-	GFX_ASSERT(PULSAR::gfx::get().device()->CreateDepthStencilView(this->mp_texture, &dsvd, &this->mp_ds_view));
+	GFX_ASSERT(pulsar::gfx::instance().device()->CreateDepthStencilView(this->mp_texture, &dsvd, &this->mp_ds_view));
 }
 
-void	PULSAR::depth_stencil_view::free()
+void	pulsar::depth_stencil_view::free()
 {
 	if (this->mp_texture)
 	{
@@ -43,17 +43,17 @@ void	PULSAR::depth_stencil_view::free()
 	}
 }
 
-void	PULSAR::depth_stencil_view::set(UINT width, UINT height)
+void	pulsar::depth_stencil_view::set(UINT width, UINT height)
 {
 	this->free();
 	this->create_ds_view(width, height);
 }
 
-ID3D11Texture2D		*PULSAR::depth_stencil_view::get_texture()
+ID3D11Texture2D		*pulsar::depth_stencil_view::get_texture()
 {
 	return (this->mp_texture);
 }
-ID3D11DepthStencilView		*PULSAR::depth_stencil_view::get_view()
+ID3D11DepthStencilView		*pulsar::depth_stencil_view::get_view()
 {
 	return (this->mp_ds_view);
 }

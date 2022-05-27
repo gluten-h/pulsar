@@ -3,7 +3,7 @@
 #include "bindable/bindable.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	const LPCSTR VERT_TARGET = "vs_5_0";
 	const LPCSTR GEOM_TARGET = "gs_5_0";
@@ -14,7 +14,7 @@ namespace PULSAR
 	const LPCSTR FRAG_ENTRY = "frag";
 
 
-class shader : public PULSAR::bindable
+class shader : public pulsar::bindable
 {
 protected:
 	ID3DBlob *mp_shader_blob = NULL;

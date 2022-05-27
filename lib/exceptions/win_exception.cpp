@@ -2,12 +2,12 @@
 #include "win_exception.h"
 
 
-PULSAR::win_exception::win_exception(int line, LPCTSTR file, HRESULT hr) noexcept : PULSAR::base_exception(line, file)
+pulsar::win_exception::win_exception(int line, LPCTSTR file, HRESULT hr) noexcept : pulsar::base_exception(line, file)
 {
 	this->m_hr = hr;
 }
 
-const char		*PULSAR::win_exception::what() const noexcept
+const char		*pulsar::win_exception::what() const noexcept
 {
 	std::ostringstream oss;
 
@@ -22,12 +22,12 @@ const char		*PULSAR::win_exception::what() const noexcept
 	return (this->m_what_buffer.c_str());
 }
 
-std::string		PULSAR::win_exception::get_type() const noexcept
+std::string		pulsar::win_exception::get_type() const noexcept
 {
 	return (std::string("WINDOW_EXCEPTION"));
 }
 
-std::string		PULSAR::win_exception::get_error_string(HRESULT hr) const noexcept
+std::string		pulsar::win_exception::get_error_string(HRESULT hr) const noexcept
 {
 	_com_error err(hr);
 	LPCTSTR err_msg = err.ErrorMessage();

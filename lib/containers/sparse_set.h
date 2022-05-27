@@ -7,7 +7,7 @@
 #include <algorithm>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	template <typename T>
 	class sparse_set

@@ -6,9 +6,9 @@
 #include "config/shader.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class fullscreen_pass : public PULSAR::rg::pass
+	class fullscreen_pass : public pulsar::rg::pass
 	{
 	public:
 		fullscreen_pass &operator=(const fullscreen_pass&) = delete;
@@ -16,15 +16,18 @@ namespace PULSAR
 		fullscreen_pass(const fullscreen_pass&) = delete;
 		fullscreen_pass(fullscreen_pass&&) = delete;
 		fullscreen_pass() = delete;
-		fullscreen_pass(const std::string &name) : PULSAR::rg::pass(name){ }
+		fullscreen_pass(const std::string &name) : pulsar::rg::pass(name){ }
 		~fullscreen_pass() = default;
 
-		void	execute(float delta_time) override
+		void	execute() override
 		{
-			PULSAR::BACK_FACE_CULL_RS.bind();
-			PULSAR::FULLSCREEN_VS.bind();
-			PULSAR::gfx::get().device_context()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-			PULSAR::gfx::get().device_context()->Draw(4u, 0u);
+			pulsar::BACK_FACE_CULL_RS.bind();
+			pulsar::FULLSCREEN_VS.bind();
+			pulsar::gfx::instance().device_context()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+			pulsar::gfx::instance().device_context()->Draw(4u, 0u);
+
+			pulsar::FULLSCREEN_VS.unbind();
+			pulsar::BACK_FACE_CULL_RS.unbind();
 		}
 	};
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace PULSAR
+namespace pulsar
 {
 	template <typename T>
 	class singleton
@@ -11,7 +11,7 @@ namespace PULSAR
 		virtual ~singleton() = default;
 
 	public:
-		static T	&get()
+		static T	&instance()
 		{
 			static T instance;
 			return (instance);

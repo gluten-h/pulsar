@@ -2,12 +2,12 @@
 #include "gfx_exception.h"
 
 
-PULSAR::gfx_exception::gfx_exception(int line, LPCTSTR file, HRESULT hr) noexcept : PULSAR::base_exception(line, file)
+pulsar::gfx_exception::gfx_exception(int line, LPCTSTR file, HRESULT hr) noexcept : pulsar::base_exception(line, file)
 {
 	this->m_hr = hr;
 }
 
-const char		*PULSAR::gfx_exception::what() const noexcept
+const char		*pulsar::gfx_exception::what() const noexcept
 {
 	std::ostringstream oss;
 
@@ -23,12 +23,12 @@ const char		*PULSAR::gfx_exception::what() const noexcept
 	return (this->m_what_buffer.c_str());
 }
 
-std::string		PULSAR::gfx_exception::get_type() const noexcept
+std::string		pulsar::gfx_exception::get_type() const noexcept
 {
 	return (std::string("gfx_exception"));
 }
 
-std::string		PULSAR::gfx_exception::get_error_string() const noexcept
+std::string		pulsar::gfx_exception::get_error_string() const noexcept
 {
 	std::string err_str;
 
@@ -43,7 +43,7 @@ std::string		PULSAR::gfx_exception::get_error_string() const noexcept
 	return (err_str);
 }
 
-std::string		PULSAR::gfx_exception::get_error_descriprtion() const noexcept
+std::string		pulsar::gfx_exception::get_error_descriprtion() const noexcept
 {
 	std::string err_desc;
 

@@ -5,6 +5,8 @@ set(REN_SOURCES
 						components/camera/camera.cpp
 						components/camera/perspective_camera.cpp
 
+						components/transform/transform.cpp
+
 						components/material/material.cpp
 						components/material/material_props.cpp
 
@@ -13,23 +15,35 @@ set(REN_SOURCES
 						components/mesh/mesh_obj.cpp
 						components/mesh/mesh.cpp
 
-						deferred_buffer/deferred_buffer_get.cpp
+						components/light/light.cpp
+						components/light/point_light.cpp
+						components/light/dir_light.cpp
+
+						components/skybox_material/skybox_material.cpp
+						components/skybox_material/skybox_material_props.cpp
 
 						misc/cam_controller/cam_controller.cpp
 
 						node/node.cpp
 
+						renderer/renderer.cpp
+
 						scene/scene.cpp
-						scene/scene_draw.cpp
-						scene/scene_light.cpp
 						scene/scene_skybox.cpp
 						scene/scene_node.cpp
 
-						pulsar_render_graph/pulsar_render_graph.cpp
+						systems/camera_system.cpp
+						systems/render_system.cpp
+						systems/light_system.cpp
+
+						pulsar_render_graph/deferred_render_graph.cpp
 
 						passes/clear_buffers_pass.cpp
 						passes/present_pass.cpp
-						passes/g_buffer_pass.cpp)
+						passes/g_buffer_pass.cpp
+						passes/deferred_pass.cpp
+						passes/skybox_pass.cpp
+						passes/post_effects_pass.cpp)
 set(REN_SOURCES ${REN_SOURCES} PARENT_SCOPE)
 
 set(REN_INCLUDES		
@@ -37,6 +51,7 @@ set(REN_INCLUDES
 						components/camera/perspective_camera.h
 						components/camera/camera_component.h
 
+						components/transform/transform.h
 						components/transform/transform_component.h
 
 						components/material/material.h
@@ -45,57 +60,52 @@ set(REN_INCLUDES
 						components/mesh/mesh.h
 						components/mesh/mesh_component.h
 
+						components/light/light.h
+						components/light/point_light.h
+						components/light/dir_light.h
+						components/light/light_component.h
+
+						components/skybox_material/skybox_material.h
+
 						components/components.h
 
-						config/camera.h
+						config/pulsar_config.h
+						config/config.h
 						config/cubemap.h
-						config/deferred.h
 						config/material.h
 						config/mesh.h
-						config/misc.h
 						config/rasterizer_state.h
-						config/render_graph.h
-						config/scene.h
 						config/shader.h
-						config/skybox_material.h
-						config/skybox.h
 						config/shader_texture.h
-						config/window.h
-						config/pulsar.h
-
-						deferred_buffer/deferred_buffer.h
-
-						managers/win_manager.h
-						managers/bindable_manager.h
-						managers/component_manager.h
-						managers/entity_manager.h
-						managers/light_manager.h
-						managers/rg_component_manager.h
-						managers/scene_manager.h
 
 						misc/cam_controller/cam_controller.h
 
 						node/node.h
 
+						renderer/renderer.h
+
 						scene/scene.h
 
-						pulsar_render_graph/pulsar_render_graph.h
+						systems/camera_system.h
+						systems/render_system.h
+						systems/light_system.h
+
+						pulsar_render_graph/deferred_render_graph.h
 
 						passes/fullscreen_pass.h
-						passes/render_queue_pass.h
 						passes/clear_buffers_pass.h
 						passes/present_pass.h
-						passes/g_buffer_pass.h)
+						passes/g_buffer_pass.h
+						passes/deferred_pass.h
+						passes/skybox_pass.h
+						passes/post_effects_pass.h
+
+						pulsar.h)
 set(REN_INCLUDES ${REN_INCLUDES} PARENT_SCOPE)
 
 set(REN_INCLUDE_DIRS	
 
 						components
-
-						deferred_buffer
-
-						managers/win_manager
-						managers
 
 						misc/cam_controller
 						./)

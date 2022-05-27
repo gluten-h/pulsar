@@ -11,7 +11,7 @@
 #include <tuple>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace ecs
 	{
@@ -20,27 +20,27 @@ namespace PULSAR
 		private:
 			using signature = std::bitset<MAX_COMPONENTS_TYPES>;
 
-			PULSAR::ecs::entity m_entity_id_iter = 0u;
+			pulsar::ecs::entity m_entity_id_iter = 0u;
 
-			std::unordered_map<PULSAR::ecs::entity, signature> m_entities_signatures;
-			std::unordered_map<PULSAR::ecs::entity, std::unordered_map<PULSAR::ecs::component_type_id, void*>> m_entities_components;
+			std::unordered_map<pulsar::ecs::entity, signature> m_entities_signatures;
+			std::unordered_map<pulsar::ecs::entity, std::unordered_map<pulsar::ecs::component_type_id, void*>> m_entities_components;
 
-			PULSAR::ecs::entity_bin_tree_array m_entity_tree;
+			pulsar::ecs::entity_bin_tree_array m_entity_tree;
 
-			std::vector<PULSAR::ecs::system*> m_systems;
+			std::vector<pulsar::ecs::system*> m_systems;
 
 		private:
 			template<std::size_t I = 0, typename... Tp>
-			inline typename std::enable_if<I == sizeof...(Tp), signature>::type		read_type_bits(std::tuple<Tp...> &t)
+			inline typename std::enable_if<I == sizeof...(Tp), signature>::type		read_type_bits(std::tuple<Tp...> &t) const
 			{
 				return (signature());
 			}
 
 			template<std::size_t I = 0, typename... Tp>
-			inline typename std::enable_if < I < sizeof...(Tp), signature>::type	read_type_bits(std::tuple<Tp...> &t)
+			inline typename std::enable_if < I < sizeof...(Tp), signature>::type	read_type_bits(std::tuple<Tp...> &t) const
 			{
 				signature sig;
-				sig.set(PULSAR::ecs::component_type::id<decltype(std::get<I>(t))>(), 1);
+				sig.set(pulsar::ecs::component_type::id<decltype(std::get<I>(t))>(), 1);
 				sig |= read_type_bits<I + 1, Tp...>(t);
 
 				return (sig);
@@ -55,9 +55,9 @@ namespace PULSAR
 			registry &operator=(const registry &) = delete;
 			registry &operator=(registry &&) = delete;
 
-			PULSAR::ecs::entity		create()
+			pulsar::ecs::entity		create()		// TODO: implement create<components...>() function to create entity with specified components
 			{
-				PULSAR::ecs::entity entity = this->m_entity_id_iter++;
+				pulsar::ecs::entity entity = this->m_entity_id_iter++;
 
 				signature sig;
 				this->m_entities_signatures[entity] = sig;
@@ -68,7 +68,7 @@ namespace PULSAR
 				return (entity);
 			}
 
-			void	destroy(const PULSAR::ecs::entity entity)
+			void	destroy(const pulsar::ecs::entity entity)
 			{
 				assert(("Entity id is invalid", this->m_entities_signatures.find(entity) != this->m_entities_signatures.end()));
 
@@ -84,9 +84,9 @@ namespace PULSAR
 			}
 
 			template <typename T, typename... Args>
-			T	&emplace(const PULSAR::ecs::entity entity, Args&&... args)
+			T	&emplace(const pulsar::ecs::entity entity, Args&&... args)
 			{
-				const PULSAR::ecs::component_type_id component_type_id = PULSAR::ecs::component_type::id<T>();
+				const pulsar::ecs::component_type_id component_type_id = pulsar::ecs::component_type::id<T>();
 				assert(("Component type id overflow", component_type_id < MAX_COMPONENTS_TYPES));
 				assert(("Entity id is invalid", this->m_entities_signatures.find(entity) != this->m_entities_signatures.end()));
 
@@ -117,9 +117,9 @@ namespace PULSAR
 			}
 
 			template <typename T>
-			void	erase(const PULSAR::ecs::entity entity)
+			void	erase(const pulsar::ecs::entity entity)
 			{
-				const PULSAR::ecs::component_type_id component_type_id = PULSAR::ecs::component_type::id<T>();
+				const pulsar::ecs::component_type_id component_type_id = pulsar::ecs::component_type::id<T>();
 				assert(("Component type id overflow", component_type_id < MAX_COMPONENTS_TYPES));
 				assert(("Entity id is invalid", this->m_entities_signatures.find(entity) != this->m_entities_signatures.end()));
 
@@ -136,9 +136,9 @@ namespace PULSAR
 
 
 			template <typename T>
-			bool	has(const PULSAR::ecs::entity entity) const
+			bool	has(const pulsar::ecs::entity entity) const
 			{
-				const PULSAR::ecs::component_type_id component_type_id = PULSAR::ecs::component_type::id<T>();
+				const pulsar::ecs::component_type_id component_type_id = pulsar::ecs::component_type::id<T>();
 				assert(("Component type id overflow", component_type_id < MAX_COMPONENTS_TYPES));
 				assert(("Entity id is invalid", this->m_entities_signatures.find(entity) != this->m_entities_signatures.end()));
 
@@ -149,9 +149,9 @@ namespace PULSAR
 
 
 			template <typename T>
-			T	&get(const PULSAR::ecs::entity entity)
+			T	&get(const pulsar::ecs::entity entity)
 			{
-				const PULSAR::ecs::component_type_id component_type_id = PULSAR::ecs::component_type::id<T>();
+				const pulsar::ecs::component_type_id component_type_id = pulsar::ecs::component_type::id<T>();
 				assert(("Component type id overflow", component_type_id < MAX_COMPONENTS_TYPES));
 				assert(("Entity id is invalid", this->m_entities_signatures.find(entity) != this->m_entities_signatures.end()));
 
@@ -159,7 +159,7 @@ namespace PULSAR
 			}
 
 			template <typename T, typename... Ts>
-			const PULSAR::ecs::group	group() const
+			const pulsar::ecs::group	group()
 			{
 				std::tuple<T, Ts...> tup;
 				signature sig = this->read_type_bits(tup);
@@ -168,7 +168,7 @@ namespace PULSAR
 			}
 
 
-			void	register_system(PULSAR::ecs::system *system)
+			void	register_system(pulsar::ecs::system *system)
 			{
 				this->m_systems.push_back(system);
 			}

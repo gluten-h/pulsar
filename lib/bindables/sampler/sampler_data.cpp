@@ -3,7 +3,7 @@
 #include "exceptions/gfx_exception.h"
 
 
-void	PULSAR::sampler::create_sampler()
+void	pulsar::sampler::create_sampler()
 {
 	HRESULT hr;
 
@@ -14,10 +14,10 @@ void	PULSAR::sampler::create_sampler()
 	sd.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	sd.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 
-	GFX_ASSERT(PULSAR::gfx::get().device()->CreateSamplerState(&sd, &this->mp_sampler));
+	GFX_ASSERT(pulsar::gfx::instance().device()->CreateSamplerState(&sd, &this->mp_sampler));
 }
 
-void	PULSAR::sampler::free()
+void	pulsar::sampler::free()
 {
 	if (this->mp_sampler)
 	{
@@ -26,7 +26,7 @@ void	PULSAR::sampler::free()
 	}
 }
 
-void	PULSAR::sampler::set_slot(UINT slot)
+void	pulsar::sampler::set_slot(UINT slot)
 {
 	this->m_slot = slot;
 }

@@ -31,9 +31,9 @@ using namespace Microsoft::WRL;
 #include "utils/singleton.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class gfx : public PULSAR::singleton<gfx>
+	class gfx : public pulsar::singleton<gfx>
 	{
 	private:
 		IDXGIFactory *mp_idxgi_factory = NULL;

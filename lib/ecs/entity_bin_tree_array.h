@@ -6,7 +6,7 @@
 #include "ecs/types.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace ecs
 	{
@@ -26,16 +26,16 @@ namespace PULSAR
 			};
 
 		private:
-			std::vector<PULSAR::ecs::entity> m_data;
+			std::vector<pulsar::ecs::entity> m_data;
 			tree_node *m_root = NULL;
 
 		public:
 			entity_bin_tree_array();
 			~entity_bin_tree_array();
 
-			void	specify_path(const std::bitset<PULSAR::ecs::MAX_COMPONENTS_TYPES> &signature, const PULSAR::ecs::entity &value);
-			void	erase(const std::bitset<PULSAR::ecs::MAX_COMPONENTS_TYPES> &signature, const PULSAR::ecs::entity &value);
-			const PULSAR::ecs::group	group(const std::bitset<PULSAR::ecs::MAX_COMPONENTS_TYPES> &signature);
+			void	specify_path(const std::bitset<pulsar::ecs::MAX_COMPONENTS_TYPES> &signature, const pulsar::ecs::entity &value);
+			void	erase(const std::bitset<pulsar::ecs::MAX_COMPONENTS_TYPES> &signature, const pulsar::ecs::entity &value);
+			const pulsar::ecs::group	group(const std::bitset<pulsar::ecs::MAX_COMPONENTS_TYPES> &signature);
 		};
 	}
 }

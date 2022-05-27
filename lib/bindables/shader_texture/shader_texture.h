@@ -3,9 +3,9 @@
 #include "bindable/bindable.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class shader_texture : public PULSAR::bindable
+	class shader_texture : public pulsar::bindable
 	{
 	private:
 		ID3D11Texture2D *mp_texture = NULL;
@@ -31,7 +31,7 @@ namespace PULSAR
 		void	set(const LPCWSTR file);
 		void	set_slot(UINT slot);
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 }

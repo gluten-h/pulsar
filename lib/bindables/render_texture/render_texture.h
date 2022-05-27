@@ -4,17 +4,15 @@
 #include "bindable/buffer_resource.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class render_texture : public PULSAR::bindable, public PULSAR::buffer_resource
+	class render_texture : public pulsar::bindable, public pulsar::buffer_resource
 	{
 	private:
 		ID3D11Texture2D *mp_texture = NULL;
 		ID3D11RenderTargetView *mp_rtv = NULL;
 		ID3D11ShaderResourceView *mp_srv = NULL;
 		UINT m_slot = 0u;
-
-		mutable ID3D11DepthStencilView *mp_ds_view = NULL;
 
 	private:
 		void	create_rt(UINT width, UINT height, DXGI_FORMAT format, UINT bind_flags, UINT cpu_access_flags);
@@ -34,14 +32,13 @@ namespace PULSAR
 
 		ID3D11RenderTargetView *render_target();
 		ID3D11ShaderResourceView *shader_resource();
-		ID3D11DepthStencilView	*ds_view();
 		XMUINT2	size() const;
 
 		void	resize(UINT width, UINT height) override;
 		void	clear() override;
 
 		void	bind_srv() const;
-		void	bind_rtv() const;
+		void	bind_rtv(ID3D11DepthStencilView *ds_view = NULL) const;
 
 		void	unbind_srv() const;
 		void	unbind_rtv() const;

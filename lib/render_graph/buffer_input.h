@@ -6,15 +6,15 @@
 #include <type_traits>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace rg
 	{
 		template <typename T>
-		class buffer_input : public PULSAR::rg::input
+		class buffer_input : public pulsar::rg::input
 		{
 		private:
-			static_assert(std::is_base_of_v<PULSAR::buffer_resource, T>, "Buffer input target type must be a buffer_resource type");
+			static_assert(std::is_base_of_v<pulsar::buffer_resource, T>, "Buffer input target type must be a buffer_resource type");
 
 		private:
 			T **mp_source_buffer = NULL;
@@ -25,7 +25,7 @@ namespace PULSAR
 			buffer_input(const buffer_input<T>&) = delete;
 			buffer_input(buffer_input<T>&&) = delete;
 			buffer_input() = delete;
-			buffer_input(const std::string &name, T *&target) : PULSAR::rg::input(name)
+			buffer_input(const std::string &name, T *&target) : pulsar::rg::input(name)
 			{
 				this->mp_source_buffer = &target;
 			}
@@ -37,7 +37,7 @@ namespace PULSAR
 					THROW_RG_EXC("Unlinked input: " + this->name());
 			}
 
-			void	bind(PULSAR::rg::source *source) override
+			void	bind(pulsar::rg::source *source) override
 			{
 				T **buffer = (T**)(source->yield_buffer_resource());
 				if (typeid(**buffer).hash_code() != typeid(T).hash_code())

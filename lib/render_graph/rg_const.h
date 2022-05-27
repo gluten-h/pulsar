@@ -3,7 +3,7 @@
 #include <cstdint>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace rg
 	{

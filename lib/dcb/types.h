@@ -11,7 +11,7 @@
 	DCB_RDT_MACRO(Matrix)					\
 	DCB_RDT_MACRO(Bool)
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace dcb
 	{

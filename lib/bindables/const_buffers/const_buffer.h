@@ -1,18 +1,21 @@
 #pragma once
 
 #include "bindable/bindable.h"
+#include "exceptions/gfx_exception.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	template <typename T>
-	class const_buffer : public PULSAR::bindable
+	class const_buffer : public pulsar::bindable
 	{
 	protected:
 		ID3D11Buffer *mp_buffer = NULL;
 		UINT m_slot = 0u;
 		const T *mp_data = NULL;
 		size_t m_data_size = 0;
+
+		bool m_is_modified = false;
 
 	protected:
 		void	create_buffer(const T &data)
@@ -34,7 +37,7 @@ namespace PULSAR
 			sd.pSysMem = &data;
 			sd.SysMemPitch = 0u;
 			sd.SysMemSlicePitch = 0u;
-			GFX_ASSERT(PULSAR::gfx::get().device()->CreateBuffer(&bd, &sd, &this->mp_buffer));
+			GFX_ASSERT(pulsar::gfx::instance().device()->CreateBuffer(&bd, &sd, &this->mp_buffer));
 		}
 
 		void	create_buffer()
@@ -49,7 +52,7 @@ namespace PULSAR
 			bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 			bd.MiscFlags = 0u;
 
-			GFX_ASSERT(PULSAR::gfx::get().device()->CreateBuffer(&bd, NULL, &this->buffer));
+			GFX_ASSERT(pulsar::gfx::instance().device()->CreateBuffer(&bd, NULL, &this->mp_buffer));
 		}
 
 		void	free()
@@ -82,33 +85,46 @@ namespace PULSAR
 			this->free();
 		}
 
+		bool	is_modified() const
+		{
+			return (this->m_is_modified);
+		}
+		void	set_modified()
+		{
+			this->m_is_modified = true;
+		}
+
 		void	update()
 		{
+			this->m_is_modified = false;
+
 			D3D11_MAPPED_SUBRESOURCE ms;
-			GFX_ASSERT(PULSAR::gfx::get().device_context()->Map(this->mp_buffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &ms));
+			GFX_ASSERT(pulsar::gfx::instance().device_context()->Map(this->mp_buffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &ms));
 			memcpy(ms.pData, this->mp_data, this->m_data_size);
-			PULSAR::gfx::get().device_context()->Unmap(this->mp_buffer, 0u);
+			pulsar::gfx::instance().device_context()->Unmap(this->mp_buffer, 0u);
 		}
 		void	update(const T &data)
 		{
+			this->m_is_modified = false;
+
 			this->mp_data = &data;
 			this->m_data_size = sizeof(data);
 
 			D3D11_MAPPED_SUBRESOURCE ms;
-			GFX_ASSERT(PULSAR::gfx::get().device_context()->Map(this->mp_buffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &ms));
+			GFX_ASSERT(pulsar::gfx::instance().device_context()->Map(this->mp_buffer, 0u, D3D11_MAP_WRITE_DISCARD, 0u, &ms));
 			memcpy(ms.pData, &data, sizeof(data));
-			PULSAR::gfx::get().device_context()->Unmap(this->mp_buffer, 0u);
+			pulsar::gfx::instance().device_context()->Unmap(this->mp_buffer, 0u);
 		}
 
 		void	set_data(const T &data)
 		{
-			this->remove_data_memory();
-			this->set_data_memory(data);
+			this->free();
+			this->create_buffer(data);
 		}
 
 		void	set_slot(UINT slot)
 		{
-			this->slot = slot;
+			this->m_slot = slot;
 		}
 	};
 }

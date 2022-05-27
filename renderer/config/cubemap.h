@@ -1,13 +1,11 @@
 #pragma once
 
+#include "config.h"
 #include "cubemap/cubemap.h"
 
 
-#define CUBEMAP_BLACK_PATH L"resources/pulsar/cubemap_black.dds"
-#define CUBEMAP_WHITE_PATH L"resources/pulsar/cubemap_white.dds"
-
-namespace PULSAR
+namespace pulsar
 {
-	const PULSAR::cubemap CUBEMAP_BLACK(CUBEMAP_BLACK_PATH);
-	const PULSAR::cubemap CUBEMAP_WHITE(CUBEMAP_WHITE_PATH);
+	const pulsar::cubemap BLACK_CUBEMAP(pulsar::BLACK_CUBEMAP_PATH);
+	const pulsar::cubemap WHITE_CUBEMAP(pulsar::WHITE_CUBEMAP_PATH);
 }

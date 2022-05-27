@@ -2,12 +2,12 @@
 #include "camera.h"
 
 
-PULSAR::camera::camera(const XMMATRIX &projection)
+pulsar::camera::camera(const XMMATRIX &projection)
 {
 	this->m_projection = projection;
 }
 
-const XMMATRIX	&PULSAR::camera::projection() const
+const XMMATRIX	&pulsar::camera::get_projection() const
 {
 	return (this->m_projection);
 }

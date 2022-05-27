@@ -3,9 +3,9 @@
 #include "bindable/bindable.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class input_layout : public PULSAR::bindable
+	class input_layout : public pulsar::bindable
 	{
 	private:
 		ID3D11InputLayout	*mp_layout = NULL;
@@ -25,7 +25,7 @@ namespace PULSAR
 
 		void	set(ID3DBlob *shader_blob, const D3D11_INPUT_ELEMENT_DESC *ied, UINT ied_num_elements);
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 }

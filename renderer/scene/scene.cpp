@@ -1,31 +1,61 @@
 
 #include "scene.h"
+#include "node/node.h"
+#include "camera/camera_component.h"
+
+#include "systems/camera_system.h"
+#include "systems/render_system.h"
+#include "systems/light_system.h"
 
 
-PULSAR::scene *PULSAR::scene::mp_active_scene = NULL;
+pulsar::scene *pulsar::scene::mp_active_scene = NULL;
 
 
-void	PULSAR::scene::set_active_scene(PULSAR::scene *scene)
+pulsar::scene::scene()
 {
-	PULSAR::scene::mp_active_scene = scene;
+	this->register_system<pulsar::camera_system>(&this->m_registry);
+	this->register_system<pulsar::render_system>(&this->m_registry);
+	this->register_system<pulsar::light_system>(&this->m_registry);
 }
 
-PULSAR::scene	*PULSAR::scene::get_active_scene()
+pulsar::scene::~scene()
 {
-	return (PULSAR::scene::mp_active_scene);
+	for (pulsar::ecs::system *sys : this->m_systems)
+		delete sys;
 }
 
-PULSAR::node	*PULSAR::scene::get_main_camera()
+pulsar::ecs::registry	&pulsar::scene::registry()
 {
-	return (this->mp_main_camera);
+	return (this->m_registry);
 }
 
-void	PULSAR::scene::set_main_camera(PULSAR::node *camera)
+void	pulsar::scene::set_active_scene(pulsar::scene *scene)
+{
+	pulsar::scene::mp_active_scene = scene;
+}
+
+pulsar::scene	*pulsar::scene::get_active_scene()
+{
+	return (pulsar::scene::mp_active_scene);
+}
+
+void	pulsar::scene::set_main_camera(pulsar::node *camera)
 {
 	this->mp_main_camera = camera;
 }
 
-const PULSAR::ecs::registry		&PULSAR::scene::registry() const
+pulsar::node	*pulsar::scene::get_main_camera()
 {
-	return (this->m_registry);
+	return (this->mp_main_camera);
+}
+
+pulsar::skybox_material		&pulsar::scene::skybox_material()
+{
+	return (this->m_skybox_material);
+}
+
+void	pulsar::scene::update(float delta_time)
+{
+	for (pulsar::ecs::system *sys : this->m_systems)
+		sys->execute(delta_time);
 }

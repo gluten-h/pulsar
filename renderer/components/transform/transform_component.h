@@ -1,24 +1,19 @@
 #pragma once
 
-#include "utils/math.h"
+#include "transform.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	struct transform_component
 	{
-		XMMATRIX transform = XMMatrixIdentity();
+		pulsar::transform transform;
 
 		transform_component() = default;
-		transform_component(const XMMATRIX &transform)
+		transform_component(const pulsar::transform &transform)
 		{
 			this->transform = transform;
 		}
 		~transform_component() = default;
-
-		//operator XMMATRIX &()
-		//{
-		//	return (this->transform);
-		//}
 	};
 }

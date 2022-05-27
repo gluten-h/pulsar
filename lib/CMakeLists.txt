@@ -36,34 +36,6 @@ set(LIB_SOURCES
 						bindables/viewport/viewport_data.cpp
 						bindables/viewport/viewport.cpp
 
-						core/component/camera/camera/camera_data.cpp
-						core/component/camera/camera/camera_def.cpp
-						core/component/camera/camera/camera_get.cpp
-						core/component/camera/camera/camera_update.cpp
-						core/component/camera/camera/camera.cpp
-						core/component/skybox_material/skybox_material/skybox_material.cpp
-
-						core/entity/light/dir/dir_light_data.cpp
-						core/entity/light/dir/dir_light_get.cpp
-						core/entity/light/dir/dir_light.cpp
-						core/entity/light/point/point_light_data.cpp
-						core/entity/light/point/point_light_get.cpp
-						core/entity/light/point/point_light.cpp
-						core/entity/object/object.cpp
-
-						core/input/mouse/pulsar_mouse_button.cpp
-						core/input/mouse/pulsar_mouse.cpp
-
-						core/misc/skybox/skybox_data.cpp
-						core/misc/skybox/skybox_def.cpp
-						core/misc/skybox/skybox.cpp
-						core/misc/texture2d/texture2d_data.cpp
-						core/misc/texture2d/texture2d.cpp
-						core/misc/transform/transform/transform.cpp
-
-
-						core/resource_manager/pulsar_resource_manager.cpp
-
 
 						dcb/baked_layout.cpp
 						dcb/buffer.cpp
@@ -101,8 +73,6 @@ set(LIB_SOURCES
 						utils/shader_include.cpp
 
 
-						window/window_draw.cpp
-						window/window_update.cpp
 						window/window.cpp
 						window/window_proc.cpp
 						window/window_data.cpp)
@@ -110,8 +80,6 @@ set(LIB_SOURCES ${LIB_SOURCES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDES		
-						containers/manager.h
-						containers/fixed_vector.h
 						containers/sparse_set.h
 
 
@@ -138,48 +106,6 @@ set(LIB_INCLUDES
 						bindables/shader_texture/shader_texture.h
 						bindables/viewport/viewport.h
 						bindables/bindables.h
-
-						core/component/camera/camera/camera.h
-						core/component/camera/camera_shader/camera_deferred_shader.h
-						core/component/camera/camera_shader/camera_post_effects_shader.h
-						core/component/component/component.h
-						core/component/skybox_material/skybox_material/skybox_material.h
-						core/component/skybox_material/skybox_material_def.h
-						core/component/skybox_material/skybox_material_shader.h
-						core/component/components.h
-
-						core/entity/entity/bindable_entity.h
-						core/entity/entity/entity.h
-						core/entity/light/dir/dir_light.h
-						core/entity/light/light/light_shader.h
-						core/entity/light/light/light.h
-						core/entity/light/point/point_light.h
-						core/entity/light/lights.h
-						core/entity/object/object.h
-						core/entity/entities.h
-
-						core/input/mouse/pulsar_mouse.h
-						core/input/pulsar_input.h
-
-						core/misc/skybox/skybox.h
-						core/misc/texture2d/texture2d.h
-						core/misc/transform/transform/transform.h
-						core/misc/transform/transform_shader.h
-
-						core/resource_manager/pulsar_resource_manager.h
-
-						core/rg_component/render_graph/render_graph.h
-						core/rg_component/rg_component/rg_component.h
-						core/rg_component/rg_input/rg_bindable_input.h
-						core/rg_component/rg_input/rg_buffer_input.h
-						core/rg_component/rg_input/rg_input.h
-						core/rg_component/rg_input/rg_inputs.h
-						core/rg_component/rg_pass/rg_pass.h
-						core/rg_component/rg_source/rg_bindable_source.h
-						core/rg_component/rg_source/rg_buffer_source.h
-						core/rg_component/rg_source/rg_source.h
-						core/rg_component/rg_source/rg_sources.h
-						core/rg_component/rg_components.h
 
 
 						dcb/dcb.h
@@ -234,53 +160,13 @@ set(LIB_INCLUDES
 						utils/shader_include.h
 
 
-						window/window.h
-
-
-						pulsar.h)
+						window/window.h)
 set(LIB_INCLUDES ${LIB_INCLUDES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDE_DIRS	
 						containers
 						bindables
-
-						#core/component/camera/camera
-						#core/component/camera/camera_shader
-						#core/component/component
-						#core/component/material/material
-						#core/component/material
-						#core/component/skybox_material/skybox_material
-						#core/component/skybox_material
-						#core/component
-
-						#core/entity/entity
-						#core/entity/light/dir
-						#core/entity/light/light
-						#core/entity/light/point
-						#core/entity/light
-						#core/entity/object
-						#core/entity
-
-						#core/input/mouse
-						#core/input
-
-						#core/misc/shader_include
-						#core/misc/skybox
-						#core/misc/texture2d
-						#core/misc/transform/transform
-						#core/misc/transform
-
-						#core/resource_manager
-
-						#core/render_queue
-
-						#core/scene
-
-
-						#core
-
-
 						./)
 
 target_sources(${PROJECT_NAME} PUBLIC ${LIB_SOURCES} ${LIB_INCLUDES})

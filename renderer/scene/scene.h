@@ -10,9 +10,14 @@
 //#include "dynamic_const_buffers/vert_dynamic_const_buffer.h"
 
 #include "ecs/registry.h"
+#include "light/light.h"
+#include "skybox_material/skybox_material.h"
+#include "const_buffers/frag_const_buffer.h"
+#include <vector>
+#include <type_traits>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class node;
 
@@ -24,22 +29,14 @@ namespace PULSAR
 	private:
 		static scene *mp_active_scene;
 
-	private:
-		//PULSAR::ENTITY_MANAGER		entity_manager;
-		//PULSAR::LIGHT_MANAGER		light_manager;
+		pulsar::ecs::registry m_registry;
+		std::vector<pulsar::ecs::system*> m_systems;
 
-		//PULSAR::SHADER_LIGHT_SCENE								light_scene;
-		//PULSAR::frag_const_buffer<PULSAR::SHADER_LIGHT_SCENE>	light_scene_cbuffer;
-
-		//PULSAR::SKYBOX		skybox;
-
-
-		PULSAR::ecs::registry m_registry;
-
-		PULSAR::node *mp_main_camera = NULL;
+		pulsar::skybox_material m_skybox_material;
+		pulsar::node *mp_main_camera = NULL;
 
 	public:
-		static void		set_active_scene(PULSAR::scene *scene);
+		static void		set_active_scene(pulsar::scene *scene);
 		static scene	*get_active_scene();
 
 	public:
@@ -47,46 +44,26 @@ namespace PULSAR
 		scene &operator=(scene&&) = delete;
 		scene(const scene&) = delete;
 		scene(scene&&) = delete;
-		scene() = default;
-		~scene() = default;
+		scene();
+		~scene();
 
-		//void	update_shader_light_scene()
-		//{
-		//	this->light_scene.light_count = this->light_manager.size();
-		//	this->light_scene_cbuffer.set_slot(DEFERRED_LIGHT_SLOT);
-		//
-		//	int i = 0;
-		//	for (auto &it : this->light_manager)
-		//	{
-		//		it.data->set_shader_light(this->light_scene.light[i++]);
-		//	}
-		//}
+		pulsar::ecs::registry	&registry();
 
-		PULSAR::node	create_node();
+		void	set_main_camera(pulsar::node *camera);
+		pulsar::node	*get_main_camera();
 
-		PULSAR::node	*get_main_camera();
-		void	set_main_camera(PULSAR::node *camera);
+		pulsar::skybox_material		&skybox_material();
 
-		const PULSAR::ecs::registry	&registry() const;
+		// TODO: implement create_node<components...>() function to create node with specified components
+		pulsar::node	create_node();
+		
+		template <typename T, typename... Args>
+		void	register_system(Args&&... args)
+		{
+			static_assert(std::is_base_of_v<pulsar::ecs::system, T>, "Invalid system-type");
+			this->m_systems.push_back((pulsar::ecs::system*)(new T(args...)));
+		}
 
-		//void	add_light(PULSAR::LIGHT *light);
-		//void	remove_light(PULSAR::LIGHT *light);
-		//void	remove_light(unsigned int id);
-		//PULSAR::LIGHT	*get_light(unsigned int id);
-
-		//void	set_skybox_material(const PULSAR::SKYBOX_MATERIAL &mat);
-		//void	set_skybox_material(PULSAR::SKYBOX_MATERIAL *mat);
-		//void	set_skybox_mesh(const PULSAR::mesh &mesh);
-		//void	set_skybox_mesh(PULSAR::mesh *mesh);
-
-		void	draw();
-		void	draw_skybox();
-
-		//void	bind()
-		//{
-		//	this->update_shader_light_scene();
-		//	this->light_scene_cbuffer.update(this->light_scene);
-		//	this->light_scene_cbuffer.bind();
-		//}
+		void	update(float delta_time);
 	};
 }

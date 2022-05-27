@@ -3,9 +3,9 @@
 #include <cassert>
 
 
-PULSAR::dcb::layout_elem	&PULSAR::dcb::layout_elem::operator[](const std::string &key)
+pulsar::dcb::layout_elem	&pulsar::dcb::layout_elem::operator[](const std::string &key)
 {
-	assert(("Getting access to non-struct element is forbidden", this->m_type == PULSAR::dcb::Struct));
+	assert(("Getting access to non-struct element is forbidden", this->m_type == pulsar::dcb::Struct));
 
 	auto &extra_data = *this->m_extra_data;
 	if (auto elem_it = extra_data.m_keys.find(key); elem_it != extra_data.m_keys.end())
@@ -13,40 +13,40 @@ PULSAR::dcb::layout_elem	&PULSAR::dcb::layout_elem::operator[](const std::string
 
 	return (layout_elem::get_empty_elem());
 }
-const PULSAR::dcb::layout_elem	&PULSAR::dcb::layout_elem::operator[](const std::string &key) const
+const pulsar::dcb::layout_elem	&pulsar::dcb::layout_elem::operator[](const std::string &key) const
 {
 	return (const_cast<layout_elem&>(*this)[key]);
 }
 
-PULSAR::dcb::layout_elem		&PULSAR::dcb::layout_elem::add(PULSAR::dcb::TYPE type, const std::string &key)
+pulsar::dcb::layout_elem		&pulsar::dcb::layout_elem::add(pulsar::dcb::TYPE type, const std::string &key)
 {
 	this->add_data(type, key);
 	return (*this);
 }
 
-bool	PULSAR::dcb::layout_elem::exists() const
+bool	pulsar::dcb::layout_elem::exists() const
 {
-	return (this->m_type != PULSAR::dcb::Empty);
+	return (this->m_type != pulsar::dcb::Empty);
 }
 
-PULSAR::dcb::layout_elem::layout_elem(PULSAR::dcb::TYPE type)
+pulsar::dcb::layout_elem::layout_elem(pulsar::dcb::TYPE type)
 {
-	assert(type != PULSAR::dcb::Empty);
+	assert(type != pulsar::dcb::Empty);
 
 	this->m_type = type;
-	if (this->m_type == PULSAR::dcb::Struct)
+	if (this->m_type == pulsar::dcb::Struct)
 		this->m_extra_data = std::make_shared<extra_data>();
 }
 
-PULSAR::dcb::layout_elem	&PULSAR::dcb::layout_elem::get_empty_elem()
+pulsar::dcb::layout_elem	&pulsar::dcb::layout_elem::get_empty_elem()
 {
 	static layout_elem empty_elem;
 	return (empty_elem);
 }
 
-void	PULSAR::dcb::layout_elem::add_data(PULSAR::dcb::TYPE type, const std::string &key)
+void	pulsar::dcb::layout_elem::add_data(pulsar::dcb::TYPE type, const std::string &key)
 {
-	assert(("Adding to non-struct element is forbidden", this->m_type == PULSAR::dcb::Struct));
+	assert(("Adding to non-struct element is forbidden", this->m_type == pulsar::dcb::Struct));
 	assert(("Invalid key name", this->validate_key(key)));
 
 	auto &extra_data = *this->m_extra_data;
@@ -56,7 +56,7 @@ void	PULSAR::dcb::layout_elem::add_data(PULSAR::dcb::TYPE type, const std::strin
 	extra_data.m_keys[key] = extra_data.m_elems.size() - 1;
 }
 
-bool	PULSAR::dcb::layout_elem::validate_key(const std::string &key)
+bool	pulsar::dcb::layout_elem::validate_key(const std::string &key)
 {
 	for (char c : key)
 	{

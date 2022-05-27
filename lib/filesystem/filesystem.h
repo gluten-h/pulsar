@@ -5,7 +5,7 @@
 #include <vector>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class filesystem
 	{

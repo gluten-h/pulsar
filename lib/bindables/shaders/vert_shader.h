@@ -3,9 +3,9 @@
 #include "shader.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class vert_shader : public PULSAR::shader
+	class vert_shader : public pulsar::shader
 	{
 	private:
 		ID3D11VertexShader *mp_shader = NULL;
@@ -20,13 +20,13 @@ namespace PULSAR
 		vert_shader(const vert_shader&) = delete;
 		vert_shader(vert_shader&&) = delete;
 		vert_shader() = default;
-		vert_shader(const LPCWSTR shader_file, const LPCSTR entry = PULSAR::VERT_ENTRY);
+		vert_shader(const LPCWSTR shader_file, const LPCSTR entry = pulsar::VERT_ENTRY);
 		~vert_shader();
 
-		void	set(const LPCWSTR shader_file, const LPCSTR entry = PULSAR::VERT_ENTRY);
+		void	set(const LPCWSTR shader_file, const LPCSTR entry = pulsar::VERT_ENTRY);
 		const ID3D11VertexShader	*get() const;
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 }

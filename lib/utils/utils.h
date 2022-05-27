@@ -2,10 +2,9 @@
 
 #include <string>
 #include <vector>
-#include <sstream>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace utils
 	{

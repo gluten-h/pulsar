@@ -2,13 +2,13 @@
 #include "base_exception.h"
 
 
-PULSAR::base_exception::base_exception(int line, LPCTSTR file) noexcept
+pulsar::base_exception::base_exception(int line, LPCTSTR file) noexcept
 {
 	this->m_line = line;
 	this->m_file = file;
 }
 
-const char		*PULSAR::base_exception::what() const noexcept
+const char		*pulsar::base_exception::what() const noexcept
 {
 	std::ostringstream oss;
 
@@ -18,12 +18,12 @@ const char		*PULSAR::base_exception::what() const noexcept
 	return (this->m_what_buffer.c_str());
 }
 
-std::string		PULSAR::base_exception::get_type() const noexcept
+std::string		pulsar::base_exception::get_type() const noexcept
 {
 	return (std::string("base_exception"));
 }
 
-std::string		PULSAR::base_exception::get_origin_string() const noexcept
+std::string		pulsar::base_exception::get_origin_string() const noexcept
 {
 	std::string str = "[FILE] ";
 #ifdef UNICODE

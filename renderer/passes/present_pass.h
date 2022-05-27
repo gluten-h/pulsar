@@ -4,15 +4,16 @@
 #include "render_graph/buffer_input.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class framebuffer;
 
-	class present_pass : public PULSAR::rg::pass
+	class present_pass : public pulsar::rg::pass
 	{
 	private:
-		PULSAR::framebuffer *mp_framebuffer = NULL;
-		PULSAR::rg::buffer_input<PULSAR::framebuffer> *mp_framebuffer_input = NULL;
+
+		pulsar::framebuffer *mp_framebuffer = NULL;
+		pulsar::rg::buffer_input<pulsar::framebuffer> *mp_framebuffer_input = NULL;
 
 	public:
 		present_pass &operator=(const present_pass&) = delete;
@@ -24,6 +25,6 @@ namespace PULSAR
 		~present_pass();
 
 		void	validate() const override;
-		void	execute(float delta_time) override;
+		void	execute() override;
 	};
 }

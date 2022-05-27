@@ -1,7 +1,9 @@
 #pragma once
 
+#include <cstddef>
 
-namespace PULSAR
+
+namespace pulsar
 {
 	namespace ecs
 	{
@@ -9,12 +11,18 @@ namespace PULSAR
 
 		class system
 		{
-		private:
-			const PULSAR::ecs::registry *mp_registry = NULL;
+		protected:
+			pulsar::ecs::registry *mp_registry = NULL;
 
-			system(const PULSAR::ecs::registry *p_registry) : mp_registry(p_registry){ }
-
+			system(pulsar::ecs::registry *registry)
+			{
+				this->mp_registry = registry;
+			}
+		
 		public:
+			system() = delete;
+			virtual ~system() = default;
+
 			virtual void	execute(float delta_time) = 0;
 		};
 	}

@@ -3,30 +3,34 @@
 #include "render_graph/pass.h"
 #include "render_graph/buffer_input.h"
 #include "render_graph/buffer_source.h"
-#include "config/render_graph.h"
+#include "config/config.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class framebuffer;
 	class depth_stencil_view;
 	class render_texture;
 
-	class clear_buffers_pass : public PULSAR::rg::pass
+	class clear_buffers_pass : public pulsar::rg::pass
 	{
 	private:
-		PULSAR::framebuffer *mp_framebuffer = NULL;
-		PULSAR::depth_stencil_view *mp_ds_view = NULL;
-		PULSAR::render_texture *mp_g_buffers[PULSAR::G_BUFFERS_COUNT] = { NULL };
+		pulsar::framebuffer *mp_framebuffer = NULL;
+		pulsar::depth_stencil_view *mp_ds_view = NULL;
+		pulsar::render_texture *mp_hdr_buffer = NULL;
+		pulsar::render_texture *mp_g_buffers[pulsar::G_BUFFERS_COUNT] = { NULL };
 
-		PULSAR::rg::buffer_input<PULSAR::framebuffer> *mp_framebuffer_input = NULL;
-		PULSAR::rg::buffer_source<PULSAR::framebuffer> *mp_frambuffer_source = NULL;
+		pulsar::rg::buffer_input<pulsar::framebuffer> *mp_framebuffer_input = NULL;
+		pulsar::rg::buffer_source<pulsar::framebuffer> *mp_frambuffer_source = NULL;
 
-		PULSAR::rg::buffer_input<PULSAR::depth_stencil_view> *mp_ds_view_input = NULL;
-		PULSAR::rg::buffer_source<PULSAR::depth_stencil_view> *mp_ds_view_source = NULL;
+		pulsar::rg::buffer_input<pulsar::depth_stencil_view> *mp_ds_view_input = NULL;
+		pulsar::rg::buffer_source<pulsar::depth_stencil_view> *mp_ds_view_source = NULL;
 
-		PULSAR::rg::buffer_input<PULSAR::render_texture> *mp_g_buffers_inputs[PULSAR::G_BUFFERS_COUNT] = { NULL };
-		PULSAR::rg::buffer_source<PULSAR::render_texture> *mp_g_buffers_sources[PULSAR::G_BUFFERS_COUNT] = { NULL };
+		pulsar::rg::buffer_input<pulsar::render_texture> *mp_hdr_buffer_input = NULL;
+		pulsar::rg::buffer_source<pulsar::render_texture> *mp_hdr_buffer_source = NULL;
+
+		pulsar::rg::buffer_input<pulsar::render_texture> *mp_g_buffers_inputs[pulsar::G_BUFFERS_COUNT] = { NULL };
+		pulsar::rg::buffer_source<pulsar::render_texture> *mp_g_buffers_sources[pulsar::G_BUFFERS_COUNT] = { NULL };
 
 	public:
 		clear_buffers_pass &operator=(const clear_buffers_pass&) = delete;
@@ -38,6 +42,6 @@ namespace PULSAR
 		~clear_buffers_pass();
 
 		void	validate() const override;
-		void	execute(float delta_time) override;
+		void	execute() override;
 	};
 }

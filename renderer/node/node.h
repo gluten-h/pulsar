@@ -6,17 +6,17 @@
 #include <utility>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class node
 	{
 	private:
-		PULSAR::ecs::entity m_id = PULSAR::ecs::null;
-		PULSAR::scene *mp_scene = NULL;
+		pulsar::ecs::entity m_id = pulsar::ecs::null;
+		pulsar::scene *mp_scene = NULL;
 
 	public:
 		node() = default;
-		node(PULSAR::ecs::entity id, PULSAR::scene *p_scene);
+		node(pulsar::ecs::entity id, pulsar::scene *p_scene);
 		~node() = default;
 
 		void	destroy();

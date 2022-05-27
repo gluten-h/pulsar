@@ -1,23 +1,21 @@
 
-#include "camera.h"
+#include "perspective_camera.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	struct camera_component
 	{
-		PULSAR::camera *camera = NULL;
+		pulsar::camera *camera = NULL;
+
+		float gamma = 2.2f;
+		float exposure = 1.0f;
 
 		camera_component() = default;
-		camera_component(PULSAR::camera *camera)
+		camera_component(pulsar::camera *camera)
 		{
 			this->camera = camera;
 		}
 		~camera_component() = default;
-
-		operator PULSAR::camera *()
-		{
-			return (this->camera);
-		}
 	};
 }

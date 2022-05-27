@@ -5,9 +5,9 @@
 #include <DxErr.h>
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class gfx_exception : public PULSAR::base_exception
+	class gfx_exception : public pulsar::base_exception
 	{
 	private:
 		HRESULT m_hr;
@@ -27,15 +27,15 @@ namespace PULSAR
 
 
 #ifdef UNICODE
-#define GFX_EXC(hr) PULSAR::gfx_exception(__LINE__, __WFILE__, hr)
+#define GFX_EXC(hr) pulsar::gfx_exception(__LINE__, __WFILE__, hr)
 #else
-#define GFX_EXC(hr) PULSAR::gfx_exception(__LINE__, __FILE__, hr)
+#define GFX_EXC(hr) pulsar::gfx_exception(__LINE__, __FILE__, hr)
 #endif
 
 #ifdef UNICODE
-#define LAST_GFX_EXC() PULSAR::gfx_exception(__LINE__, __WFILE__, GetLastError())
+#define LAST_GFX_EXC() pulsar::gfx_exception(__LINE__, __WFILE__, GetLastError())
 #else
-#define LAST_GFX_EXC(hr) PULSAR::gfx_exception(__LINE__, __FILE__, GetLastError())
+#define LAST_GFX_EXC(hr) pulsar::gfx_exception(__LINE__, __FILE__, GetLastError())
 #endif
 
 

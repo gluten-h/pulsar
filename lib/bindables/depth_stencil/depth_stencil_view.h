@@ -4,9 +4,9 @@
 #include "bindable/buffer_resource.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class depth_stencil_view : public PULSAR::bindable, public PULSAR::buffer_resource
+	class depth_stencil_view : public pulsar::bindable, public pulsar::buffer_resource
 	{
 	private:
 		ID3D11Texture2D *mp_texture = NULL;
@@ -32,8 +32,8 @@ namespace PULSAR
 		void	resize(UINT width, UINT height) override;
 		void	clear() override;
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 
 	using ds_view = depth_stencil_view;

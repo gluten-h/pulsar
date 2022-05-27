@@ -4,10 +4,10 @@
 #include "transform/transform_component.h"
 
 
-PULSAR::node	PULSAR::scene::create_node()
+pulsar::node	pulsar::scene::create_node()
 {
-	PULSAR::node node(this->m_registry.create(), this);
-	node.add_component<PULSAR::transform_component>();
+	pulsar::node node(this->m_registry.create(), this);
+	node.add_component<pulsar::transform_component>();
 
 	return (node);
 }

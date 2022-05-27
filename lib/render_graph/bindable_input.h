@@ -6,15 +6,15 @@
 #include <type_traits>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace rg
 	{
 		template <typename T>
-		class bindable_input : public PULSAR::rg::input
+		class bindable_input : public pulsar::rg::input
 		{
 		private:
-			static_assert(std::is_base_of_v<PULSAR::buffer_resource, T>, "Bindable input target type must be a bindable type");
+			static_assert(std::is_base_of_v<pulsar::buffer_resource, T>, "Bindable input target type must be a bindable type");
 
 		private:
 			T **mp_source_bindable = NULL;
@@ -25,7 +25,7 @@ namespace PULSAR
 			bindable_input(const bindable_input<T>&) = delete;
 			bindable_input(bindable_input<T>&&) = delete;
 			bindable_input() = delete;
-			bindable_input(const std::string &name, T *&target) : PULSAR::rg::input(name)
+			bindable_input(const std::string &name, T *&target) : pulsar::rg::input(name)
 			{
 				this->mp_source_bindable = &target;
 			}
@@ -37,7 +37,7 @@ namespace PULSAR
 					THROW_RG_EXC("Unlinked input: " + this->name());
 			}
 
-			void	bind(PULSAR::rg::source *source) override
+			void	bind(pulsar::rg::source *source) override
 			{
 				T **bindable = (T**)source->yield_bindable();
 				if (typeid(**bindable).hash_code() != typeid(T).hash_code())

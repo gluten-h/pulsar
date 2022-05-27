@@ -4,7 +4,7 @@
 #include "exceptions/gfx_exception.h"
 
 
-PULSAR::gfx::gfx()
+pulsar::gfx::gfx()
 {
 	WIN_ASSERT(CoInitializeEx(NULL, COINIT_MULTITHREADED));
 	GFX_ASSERT(CreateDXGIFactory(IID_IDXGIFactory, (void**)&this->mp_idxgi_factory));
@@ -15,7 +15,7 @@ PULSAR::gfx::gfx()
 	GFX_ASSERT(D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, device_flags, NULL, NULL, D3D11_SDK_VERSION, &this->mp_device, NULL, &this->mp_device_context));
 }
 
-PULSAR::gfx::~gfx()
+pulsar::gfx::~gfx()
 {
 	this->mp_device->Release();
 	this->mp_device_context->Release();
@@ -23,22 +23,22 @@ PULSAR::gfx::~gfx()
 	CoUninitialize();
 }
 
-IDXGIFactory	*PULSAR::gfx::idxgi_factory()
+IDXGIFactory	*pulsar::gfx::idxgi_factory()
 {
 	return (this->mp_idxgi_factory);
 }
 
-ID3D11Device	*PULSAR::gfx::device()
+ID3D11Device	*pulsar::gfx::device()
 {
 	return (this->mp_device);
 }
 
-ID3D11DeviceContext		*PULSAR::gfx::device_context()
+ID3D11DeviceContext		*pulsar::gfx::device_context()
 {
 	return (this->mp_device_context);
 }
 
-void	PULSAR::gfx::draw_indexed(UINT index_count) const
+void	pulsar::gfx::draw_indexed(UINT index_count) const
 {
 	this->mp_device_context->DrawIndexed(index_count, 0u, 0u);
 }

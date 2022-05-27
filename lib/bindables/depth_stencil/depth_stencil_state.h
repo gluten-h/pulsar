@@ -3,9 +3,9 @@
 #include "bindable/bindable.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class depth_stencil_state : public PULSAR::bindable
+	class depth_stencil_state : public pulsar::bindable
 	{
 	private:
 		ID3D11DepthStencilState *mp_ds_state = NULL;
@@ -26,8 +26,8 @@ namespace PULSAR
 		void	set(BOOL depth_enable, D3D11_COMPARISON_FUNC depth_comp_func, D3D11_DEPTH_WRITE_MASK depth_write_mask);
 		ID3D11DepthStencilState		*get();
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 
 	using ds_state = depth_stencil_state;

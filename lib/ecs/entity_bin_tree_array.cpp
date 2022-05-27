@@ -2,12 +2,12 @@
 #include "entity_bin_tree_array.h"
 
 
-PULSAR::ecs::entity_bin_tree_array::entity_bin_tree_array()
+pulsar::ecs::entity_bin_tree_array::entity_bin_tree_array()
 {
 	this->m_root = new tree_node;
 }
 
-PULSAR::ecs::entity_bin_tree_array::~entity_bin_tree_array()
+pulsar::ecs::entity_bin_tree_array::~entity_bin_tree_array()
 {
 	tree_node *curr_node = this->m_root;
 	while (curr_node)
@@ -43,7 +43,7 @@ PULSAR::ecs::entity_bin_tree_array::~entity_bin_tree_array()
 	}
 }
 
-void	PULSAR::ecs::entity_bin_tree_array::specify_path(const std::bitset<PULSAR::ecs::MAX_COMPONENTS_TYPES> &signature, const PULSAR::ecs::entity &value)
+void	pulsar::ecs::entity_bin_tree_array::specify_path(const std::bitset<pulsar::ecs::MAX_COMPONENTS_TYPES> &signature, const pulsar::ecs::entity &value)
 {
 	tree_node *curr_node = this->m_root;
 	size_t offset = 0ull;
@@ -92,7 +92,7 @@ void	PULSAR::ecs::entity_bin_tree_array::specify_path(const std::bitset<PULSAR::
 	this->m_data.insert(this->m_data.begin() + offset, value);
 }
 
-void	PULSAR::ecs::entity_bin_tree_array::erase(const std::bitset<PULSAR::ecs::MAX_COMPONENTS_TYPES> &signature, const PULSAR::ecs::entity &value)
+void	pulsar::ecs::entity_bin_tree_array::erase(const std::bitset<pulsar::ecs::MAX_COMPONENTS_TYPES> &signature, const pulsar::ecs::entity &value)
 {
 	tree_node *curr_node = this->m_root;
 	size_t offset = 0ull;
@@ -129,7 +129,7 @@ void	PULSAR::ecs::entity_bin_tree_array::erase(const std::bitset<PULSAR::ecs::MA
 	curr_node->m_size--;
 }
 
-const PULSAR::ecs::group	PULSAR::ecs::entity_bin_tree_array::group(const std::bitset<PULSAR::ecs::MAX_COMPONENTS_TYPES> &signature)
+const pulsar::ecs::group	pulsar::ecs::entity_bin_tree_array::group(const std::bitset<pulsar::ecs::MAX_COMPONENTS_TYPES> &signature)
 {
 	tree_node *curr_node = this->m_root;
 	size_t offset = 0ull;
@@ -141,7 +141,7 @@ const PULSAR::ecs::group	PULSAR::ecs::entity_bin_tree_array::group(const std::bi
 		offset += curr_node->m_size;
 
 		if (!curr_node->right)
-			return (PULSAR::ecs::group());
+			return (pulsar::ecs::group());
 		curr_node = curr_node->right;
 		i = 1ull;
 	}
@@ -155,13 +155,13 @@ const PULSAR::ecs::group	PULSAR::ecs::entity_bin_tree_array::group(const std::bi
 			bit_count--;
 
 			if (!curr_node->right)
-				return (PULSAR::ecs::group());
+				return (pulsar::ecs::group());
 			curr_node = curr_node->right;
 		}
 		else
 		{
 			if (!curr_node->left)
-				return (PULSAR::ecs::group());
+				return (pulsar::ecs::group());
 			curr_node = curr_node->left;
 		}
 
@@ -169,5 +169,5 @@ const PULSAR::ecs::group	PULSAR::ecs::entity_bin_tree_array::group(const std::bi
 	}
 	offset += curr_node->m_offset;
 
-	return (PULSAR::ecs::group(&this->m_data[offset], curr_node->m_size + curr_node->m_children_size));
+	return (pulsar::ecs::group(&this->m_data[offset], curr_node->m_size + curr_node->m_children_size));
 }

@@ -3,8 +3,8 @@
 #include "rasterizer_state/rasterizer_state.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	const PULSAR::rasterizer_state BACK_FACE_CULL_RS(D3D11_FILL_SOLID, D3D11_CULL_BACK);
-	const PULSAR::rasterizer_state FRONT_FACE_CULL_RS(D3D11_FILL_SOLID, D3D11_CULL_FRONT);
+	const pulsar::rasterizer_state BACK_FACE_CULL_RS(D3D11_FILL_SOLID, D3D11_CULL_BACK);
+	const pulsar::rasterizer_state FRONT_FACE_CULL_RS(D3D11_FILL_SOLID, D3D11_CULL_FRONT);
 }

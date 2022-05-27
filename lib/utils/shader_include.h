@@ -7,7 +7,7 @@
 #include <vector>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class shader_include : public ID3DInclude
 	{

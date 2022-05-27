@@ -4,7 +4,7 @@
 #include "exceptions/gfx_exception.h"
 
 
-void		PULSAR::cubemap::save_dds_cubemap(LPCWSTR *wic_path, LPCWSTR output_dds_path)
+void		pulsar::cubemap::save_dds_cubemap(LPCWSTR *wic_path, LPCWSTR output_dds_path)
 {
 	std::unique_ptr<ScratchImage> scratch_img[6];
 	Image img[6];
@@ -14,7 +14,7 @@ void		PULSAR::cubemap::save_dds_cubemap(LPCWSTR *wic_path, LPCWSTR output_dds_pa
 	for (size_t i = 0; i < 6; i++)
 	{
 		scratch_img[i] = std::make_unique<ScratchImage>();
-		GFX_ASSERT(LoadFromWICFile(PULSAR::filesystem::absolute_path(wic_path[i]).c_str(), WIC_FLAGS_NONE, NULL, *scratch_img[i]));
+		GFX_ASSERT(LoadFromWICFile(pulsar::filesystem::absolute_path(wic_path[i]).c_str(), WIC_FLAGS_NONE, NULL, *scratch_img[i]));
 		img[i] = *scratch_img[i]->GetImage(0, 0, 0);
 	}
 
@@ -29,5 +29,5 @@ void		PULSAR::cubemap::save_dds_cubemap(LPCWSTR *wic_path, LPCWSTR output_dds_pa
 	meta_data.format = img[0].format;
 	meta_data.dimension = TEX_DIMENSION_TEXTURE2D;
 
-	GFX_ASSERT(SaveToDDSFile(img, 6u, meta_data, DDS_FLAGS_NONE, PULSAR::filesystem::absolute_path(output_dds_path).c_str()));
+	GFX_ASSERT(SaveToDDSFile(img, 6u, meta_data, DDS_FLAGS_NONE, pulsar::filesystem::absolute_path(output_dds_path).c_str()));
 }

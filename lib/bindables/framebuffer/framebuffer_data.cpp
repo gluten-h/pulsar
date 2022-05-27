@@ -5,7 +5,7 @@
 #include "utils/math.h"
 
 
-void	PULSAR::framebuffer::create_feamebuffer(HWND hwnd, BOOL windowed)
+void	pulsar::framebuffer::create_feamebuffer(HWND hwnd, BOOL windowed)
 {
 	DXGI_SWAP_CHAIN_DESC scd;
 	ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
@@ -15,18 +15,18 @@ void	PULSAR::framebuffer::create_feamebuffer(HWND hwnd, BOOL windowed)
 	scd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	scd.OutputWindow = hwnd;
 	scd.Windowed = windowed;
-	scd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+	scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 
 	ID3D11Texture2D *buffer;
 
-	GFX_ASSERT(PULSAR::gfx::get().idxgi_factory()->CreateSwapChain(PULSAR::gfx::get().device(), &scd, &this->mp_swap_chain));
+	GFX_ASSERT(pulsar::gfx::instance().idxgi_factory()->CreateSwapChain(pulsar::gfx::instance().device(), &scd, &this->mp_swap_chain));
 	GFX_ASSERT(this->mp_swap_chain->GetBuffer(0u, __uuidof(ID3D11Texture2D), (void**)&buffer));
-	GFX_ASSERT(PULSAR::gfx::get().device()->CreateRenderTargetView(buffer, NULL, &this->mp_render_target));
+	GFX_ASSERT(pulsar::gfx::instance().device()->CreateRenderTargetView(buffer, NULL, &this->mp_render_target));
 
 	buffer->Release();
 }
 
-void	PULSAR::framebuffer::free()
+void	pulsar::framebuffer::free()
 {
 	if (this->mp_swap_chain)
 	{
@@ -40,18 +40,13 @@ void	PULSAR::framebuffer::free()
 	}
 }
 
-void	PULSAR::framebuffer::set(HWND hwnd, BOOL windowed)
+void	pulsar::framebuffer::set(HWND hwnd, BOOL windowed)
 {
 	this->free();
 	this->create_feamebuffer(hwnd, windowed);
 }
 
-ID3D11DepthStencilView	*&PULSAR::framebuffer::ds_view()
-{
-	return (this->mp_ds_view);
-}
-
-XMUINT2		PULSAR::framebuffer::size() const
+XMUINT2		pulsar::framebuffer::size() const
 {
 	if (!this->mp_swap_chain)
 		return (XMUINT2(0u, 0u));

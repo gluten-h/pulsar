@@ -6,7 +6,7 @@
 #include <string>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace dcb
 	{
@@ -25,7 +25,7 @@ namespace PULSAR
 				template<typename T>
 				operator	T*()
 				{
-					static_assert(PULSAR::dcb::reverse_attr_type<std::remove_const_t<T>>::is_valid, "Unsupported dcb type");
+					static_assert(pulsar::dcb::reverse_attr_type<std::remove_const_t<T>>::is_valid, "Unsupported dcb type");
 					return (&static_cast<T&>(*this->mp_ref));
 				}
 
@@ -37,12 +37,12 @@ namespace PULSAR
 			};
 
 		private:
-			const PULSAR::dcb::layout_elem	*mp_elem = NULL;
+			const pulsar::dcb::layout_elem	*mp_elem = NULL;
 			char	*mp_data = NULL;
 			bool	*mp_is_modified = NULL;
 
 		public:
-			layout_elem_ref(const PULSAR::dcb::layout_elem *layout_elem, char *data, bool *is_modified)
+			layout_elem_ref(const pulsar::dcb::layout_elem *layout_elem, char *data, bool *is_modified)
 			{
 				this->mp_elem = layout_elem;
 				this->mp_data = data;
@@ -62,7 +62,7 @@ namespace PULSAR
 			template<typename T>
 			operator	T&()
 			{
-				static_assert(PULSAR::dcb::reverse_attr_type<std::remove_const_t<T>>::is_valid, "Unsupported dcb type");
+				static_assert(pulsar::dcb::reverse_attr_type<std::remove_const_t<T>>::is_valid, "Unsupported dcb type");
 				return (*((T*)&this->mp_data[this->mp_elem->m_offset]));
 			}
 

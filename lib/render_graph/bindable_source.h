@@ -5,15 +5,15 @@
 #include <type_traits>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace rg
 	{
 		template <typename T>
-		class bindable_source : public PULSAR::rg::source
+		class bindable_source : public pulsar::rg::source
 		{
 		private:
-			static_assert(std::is_base_of_v<PULSAR::bindable, T>, "Bindable source target type must be a bindable type");
+			static_assert(std::is_base_of_v<pulsar::bindable, T>, "Bindable source target type must be a bindable type");
 
 		private:
 			T **mp_buffer = NULL;
@@ -24,15 +24,15 @@ namespace PULSAR
 			bindable_source(const bindable_source<T>&) = delete;
 			bindable_source(bindable_source<T>&&) = delete;
 			bindable_source() = delete;
-			bindable_source(const std::string &name, T *&buffer) : PULSAR::rg::source(name)
+			bindable_source(const std::string &name, T *&buffer) : pulsar::rg::source(name)
 			{
 				this->mp_buffer = &buffer;
 			}
 			~bindable_source() = default;
 
-			PULSAR::bindable	**yield_bindable() override
+			pulsar::bindable	**yield_bindable() override
 			{
-				return ((PULSAR::bindable**)this->mp_buffer);
+				return ((pulsar::bindable**)this->mp_buffer);
 			}
 		};
 	}

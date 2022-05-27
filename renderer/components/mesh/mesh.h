@@ -4,7 +4,7 @@
 #include <vector>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	enum class MESH_FILE_FORMAT
 	{
@@ -49,7 +49,7 @@ namespace PULSAR
 		ID3D11Buffer *mp_index_buffer = NULL;
 
 	private:
-		void	load_mesh_obj(LPCWSTR file);
+		bool	load_mesh_obj(LPCWSTR file);
 		void	create_mesh();
 		void	free();
 

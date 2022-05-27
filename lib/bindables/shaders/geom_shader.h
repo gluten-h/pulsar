@@ -3,9 +3,9 @@
 #include "shader.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class geom_shader : public PULSAR::shader
+	class geom_shader : public pulsar::shader
 	{
 	private:
 		ID3D11GeometryShader *mp_shader = NULL;
@@ -20,13 +20,13 @@ namespace PULSAR
 		geom_shader(const geom_shader&) = delete;
 		geom_shader(geom_shader&&) = delete;
 		geom_shader() = default;
-		geom_shader(const LPCWSTR shader_file, const LPCSTR entry = PULSAR::GEOM_ENTRY);
+		geom_shader(const LPCWSTR shader_file, const LPCSTR entry = pulsar::GEOM_ENTRY);
 		~geom_shader();
 
-		void	set(const LPCWSTR shader_file, const LPCSTR entry = PULSAR::GEOM_ENTRY);
+		void	set(const LPCWSTR shader_file, const LPCSTR entry = pulsar::GEOM_ENTRY);
 		const ID3D11GeometryShader	*get() const;
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 }

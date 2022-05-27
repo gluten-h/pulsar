@@ -4,15 +4,15 @@
 //#include "pulsar_input.h"
 
 
-HINSTANCE	PULSAR::window::m_h_instance = NULL;
+HINSTANCE	pulsar::window::m_h_instance = NULL;
 
 
-PULSAR::window::window(const LPCSTR name, UINT width, UINT height)
+pulsar::window::window(const LPCSTR name, UINT width, UINT height)
 {
 	this->set(name, width, height);
 }
 
-void	PULSAR::window::init(HINSTANCE h_instance)
+void	pulsar::window::init(HINSTANCE h_instance)
 {
 	window::m_h_instance = h_instance;
 
@@ -29,7 +29,7 @@ void	PULSAR::window::init(HINSTANCE h_instance)
 	wc.hCursor = NULL;
 	wc.hbrBackground = NULL;
 	wc.lpszMenuName = NULL;
-	wc.lpszClassName = PULSAR::DEFAULT_WINDOW_SETTINGS.class_name;
+	wc.lpszClassName = pulsar::DEFAULT_WINDOW_SETTINGS.class_name;
 	wc.hIconSm = NULL;
 	wc.hbrBackground = CreateSolidBrush(RGB(0, 0, 0));
 	if (!RegisterClassEx(&wc))
@@ -44,11 +44,11 @@ void	PULSAR::window::init(HINSTANCE h_instance)
 		THROW_LAST_WIN_EXC();
 }
 
-bool	PULSAR::window::process_events()
+bool	pulsar::window::process_events()
 {
 	MSG msg;
 
-	//PULSAR::MOUSE::reset_input();
+	//pulsar::MOUSE::reset_input();
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 	{
 		if (msg.message == WM_QUIT)
@@ -60,12 +60,12 @@ bool	PULSAR::window::process_events()
 	return (true);
 }
 
-void	PULSAR::window::begin_frame()
+void	pulsar::window::begin_frame()
 {
 	this->m_begin_frame_time_point = std::chrono::high_resolution_clock::now();
 }
 
-void	PULSAR::window::end_frame()
+void	pulsar::window::end_frame()
 {
 	auto end_frame_time_point = std::chrono::high_resolution_clock::now();
 	this->m_frames_time_elapsed += std::chrono::duration_cast<std::chrono::milliseconds>(end_frame_time_point - this->m_begin_frame_time_point).count();
@@ -78,17 +78,17 @@ void	PULSAR::window::end_frame()
 	}
 }
 
-void	PULSAR::window::hide_cursor()
+void	pulsar::window::hide_cursor()
 {
 	while (ShowCursor(FALSE) >= 0);
 }
 
-void	PULSAR::window::show_cursor()
+void	pulsar::window::show_cursor()
 {
 	while (ShowCursor(TRUE) > 0);
 }
 
-void	PULSAR::window::clamp_cursor()
+void	pulsar::window::clamp_cursor()
 {
 	RECT rect;
 	GetClientRect(this->m_hwnd, &rect);
@@ -97,7 +97,7 @@ void	PULSAR::window::clamp_cursor()
 	this->m_cursor_clamped = true;
 }
 
-void	PULSAR::window::free_cursor()
+void	pulsar::window::free_cursor()
 {
 	ClipCursor(NULL);
 	this->m_cursor_clamped = false;

@@ -2,9 +2,9 @@
 #include "camera.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class perspective_camera : public PULSAR::camera
+	class perspective_camera : public pulsar::camera
 	{
 	public:
 		perspective_camera &operator=(const perspective_camera&) = default;

@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <string>
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace rg
 	{
@@ -14,13 +14,13 @@ namespace PULSAR
 		class render_graph
 		{
 		private:
-			std::unordered_map<std::string, PULSAR::rg::source*> m_global_sources;
+			std::unordered_map<std::string, pulsar::rg::source*> m_global_sources;
 
-			std::unordered_map<std::string, PULSAR::rg::pass*> m_passes_reg;
-			std::vector<std::vector<PULSAR::rg::pass*>> m_passes;
+			std::unordered_map<std::string, pulsar::rg::pass*> m_passes_reg;
+			std::vector<std::vector<pulsar::rg::pass*>> m_passes; //	TODO: create a vector of passes at compile time; use unordered_map for more comfortable adding of passes
 
 		private:
-			void	link_pass(PULSAR::rg::pass *pass);
+			void	link_pass(pulsar::rg::pass *pass);
 
 		protected:
 			void	compile();
@@ -34,10 +34,10 @@ namespace PULSAR
 			render_graph();
 			~render_graph() = default;
 
-			void	register_global_source(PULSAR::rg::source *source);
-			void	add_pass(uint32_t level, PULSAR::rg::pass *pass);
+			void	register_global_source(pulsar::rg::source *source);
+			void	add_pass(uint32_t level, pulsar::rg::pass *pass);
 
-			void	execute(float delta_time);
+			void	execute();
 		};
 	}
 }

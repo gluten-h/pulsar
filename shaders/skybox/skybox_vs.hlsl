@@ -1,13 +1,9 @@
 
-
-cbuffer transform_cb : register(b0)
+cbuffer camera_cb : register(b0)
 {
-	matrix model;
 	matrix view;
 	matrix proj;
-	matrix norm;
-};
-
+}
 
 struct vs_out
 {
@@ -16,11 +12,11 @@ struct vs_out
 };
 
 
-vs_out		vert(float3 pos : POSITION)
+vs_out	vert(float3 pos : POSITION)
 {
 	vs_out output;
 	
-	output.pos = mul(proj, mul(view, float4(pos, 0.0f))).xyww;
+	output.pos = mul(float4(pos.xyz, 0.0f), mul(view, proj)).xyww;
 	output.world_pos = pos;
 
 	return (output);

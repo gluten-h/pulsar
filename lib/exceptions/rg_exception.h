@@ -3,9 +3,9 @@
 #include "base_exception.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class rg_exception : public PULSAR::base_exception
+	class rg_exception : public pulsar::base_exception
 	{
 	private:
 		std::string m_err_msg;
@@ -23,9 +23,9 @@ namespace PULSAR
 
 
 #ifdef UNICODE
-#define RG_EXC(err_msg) PULSAR::rg_exception(__LINE__, __WFILE__, err_msg)
+#define RG_EXC(err_msg) pulsar::rg_exception(__LINE__, __WFILE__, err_msg)
 #else
-#define RG_EXC(err_msg) PULSAR::rg_exception(__LINE__, __FILE__, err_msg)
+#define RG_EXC(err_msg) pulsar::rg_exception(__LINE__, __FILE__, err_msg)
 #endif
 
 #define THROW_RG_EXC(err_msg) throw RG_EXC(err_msg)

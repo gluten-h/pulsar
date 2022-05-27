@@ -46,18 +46,18 @@ XMFLOAT3	operator-(const XMFLOAT3 &lhs, const XMFLOAT3 &rhs)
 }
 
 
-float		PULSAR::lerp(float a, float b, float s)
+float		pulsar::lerp(float a, float b, float s)
 {
 	return (a + (b - a) * s);
 }
 
 
-float		PULSAR::deg2rad(float deg)
+float		pulsar::deg2rad(float deg)
 {
 	return (deg * XM_PI / 180.0f);
 }
 
-float		PULSAR::rad2deg(float rad)
+float		pulsar::rad2deg(float rad)
 {
 	return (rad * 180.0f / XM_PI);
 }

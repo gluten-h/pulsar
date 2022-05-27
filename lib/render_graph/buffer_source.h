@@ -6,15 +6,15 @@
 #include "exceptions/rg_exception.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace rg
 	{
 		template <typename T>
-		class buffer_source : public PULSAR::rg::source
+		class buffer_source : public pulsar::rg::source
 		{
 		private:
-			static_assert(std::is_base_of_v<PULSAR::buffer_resource, T>, "Buffer source target type must be a buffer_resource type");
+			static_assert(std::is_base_of_v<pulsar::buffer_resource, T>, "Buffer source target type must be a buffer_resource type");
 
 		private:
 			T **mp_buffer = NULL;
@@ -26,19 +26,19 @@ namespace PULSAR
 			buffer_source(const buffer_source<T>&) = delete;
 			buffer_source(buffer_source<T>&&) = delete;
 
-			buffer_source(const std::string &name, T *&buffer) : PULSAR::rg::source(name)
+			buffer_source(const std::string &name, T *&buffer) : pulsar::rg::source(name)
 			{
 				this->mp_buffer = &buffer;
 			}
 			~buffer_source() = default;
 
-			PULSAR::buffer_resource		**yield_buffer_resource() override
+			pulsar::buffer_resource		**yield_buffer_resource() override
 			{
 				if (this->m_linked)
 					THROW_RG_EXC("Source " + this->name() + " has already been linked");
 				this->m_linked = true;
 
-				return ((PULSAR::buffer_resource**)this->mp_buffer);
+				return ((pulsar::buffer_resource**)this->mp_buffer);
 			}
 		};
 	}

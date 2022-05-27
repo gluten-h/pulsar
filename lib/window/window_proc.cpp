@@ -3,16 +3,16 @@
 //#include "pulsar_input.h"
 
 
-LRESULT CALLBACK	PULSAR::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+LRESULT CALLBACK	pulsar::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-	PULSAR::window *win = (PULSAR::window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+	pulsar::window *win = (pulsar::window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 	switch (msg)
 	{
 		case WM_NCCREATE:
 		{
 			LPCREATESTRUCT lpcs = (LPCREATESTRUCT)l_param;
-			PULSAR::window *self = (PULSAR::window*)lpcs->lpCreateParams;
+			pulsar::window *self = (pulsar::window*)lpcs->lpCreateParams;
 			self->m_hwnd = hwnd;
 			self->m_framebuffer.set(self->m_hwnd);
 
@@ -32,32 +32,32 @@ LRESULT CALLBACK	PULSAR::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, L
 		}
 		case WM_LBUTTONDOWN:
 		{
-			//PULSAR::MOUSE::set_lmb_down_event();
+			//pulsar::MOUSE::set_lmb_down_event();
 			break;
 		}
 		case WM_LBUTTONUP:
 		{
-			//PULSAR::MOUSE::set_lmb_up_event();
+			//pulsar::MOUSE::set_lmb_up_event();
 			break;
 		}
 		case WM_RBUTTONDOWN:
 		{
-			//PULSAR::MOUSE::set_rmb_down_event();
+			//pulsar::MOUSE::set_rmb_down_event();
 			break;
 		}
 		case WM_RBUTTONUP:
 		{
-			//PULSAR::MOUSE::set_rmb_up_event();
+			//pulsar::MOUSE::set_rmb_up_event();
 			break;
 		}
 		case WM_MBUTTONDOWN:
 		{
-			//PULSAR::MOUSE::set_mmb_down_event();
+			//pulsar::MOUSE::set_mmb_down_event();
 			break;
 		}
 		case WM_MBUTTONUP:
 		{
-			//PULSAR::MOUSE::set_mmb_up_event();
+			//pulsar::MOUSE::set_mmb_up_event();
 			break;
 		}
 		case WM_ACTIVATE:
@@ -69,9 +69,9 @@ LRESULT CALLBACK	PULSAR::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, L
 			}
 			else
 			{
-				//PULSAR::MOUSE::set_lmb_up_event();
-				//PULSAR::MOUSE::set_rmb_up_event();
-				//PULSAR::MOUSE::set_mmb_up_event();
+				//pulsar::MOUSE::set_lmb_up_event();
+				//pulsar::MOUSE::set_rmb_up_event();
+				//pulsar::MOUSE::set_mmb_up_event();
 			}
 			break;
 		}
@@ -96,8 +96,8 @@ LRESULT CALLBACK	PULSAR::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, L
 				POINT g_pos;
 				GetCursorPos(&g_pos);
 
-				//PULSAR::MOUSE::set_delta_event(ri->data.mouse.lLastX, ri->data.mouse.lLastY);
-				//PULSAR::MOUSE::set_global_pos_event(g_pos.x, g_pos.y);
+				//pulsar::MOUSE::set_delta_event(ri->data.mouse.lLastX, ri->data.mouse.lLastY);
+				//pulsar::MOUSE::set_global_pos_event(g_pos.x, g_pos.y);
 			}
 			break;
 		}

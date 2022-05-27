@@ -3,7 +3,7 @@
 #include "exceptions/gfx_exception.h"
 
 
-void	PULSAR::dynamic_const_buffer::create_buffer(PULSAR::dcb::buffer *dcb_buffer)
+void	pulsar::dynamic_const_buffer::create_buffer(pulsar::dcb::buffer *dcb_buffer)
 {
 	if (!dcb_buffer)
 		return;
@@ -21,10 +21,10 @@ void	PULSAR::dynamic_const_buffer::create_buffer(PULSAR::dcb::buffer *dcb_buffer
 	sd.pSysMem = dcb_buffer->data();
 	sd.SysMemPitch = 0u;
 	sd.SysMemSlicePitch = 0u;
-	GFX_ASSERT(PULSAR::gfx::get().device()->CreateBuffer(&bd, &sd, &this->mp_buffer));
+	GFX_ASSERT(pulsar::gfx::instance().device()->CreateBuffer(&bd, &sd, &this->mp_buffer));
 }
 
-void	PULSAR::dynamic_const_buffer::free()
+void	pulsar::dynamic_const_buffer::free()
 {
 	if (this->mp_buffer)
 	{

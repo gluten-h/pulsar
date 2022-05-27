@@ -2,7 +2,7 @@
 #include "perspective_camera.h"
 
 
-PULSAR::perspective_camera::perspective_camera(const XMMATRIX &projection) : PULSAR::camera(projection)
+pulsar::perspective_camera::perspective_camera(const XMMATRIX &projection) : pulsar::camera(projection)
 {
 
 }

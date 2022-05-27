@@ -3,7 +3,7 @@
 #include <string>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class bindable;
 	class buffer_resource;
@@ -28,8 +28,8 @@ namespace PULSAR
 
 			const std::string	&name() const;
 
-			virtual PULSAR::bindable	**yield_bindable();
-			virtual PULSAR::buffer_resource		**yield_buffer_resource();
+			virtual pulsar::bindable	**yield_bindable();
+			virtual pulsar::buffer_resource		**yield_buffer_resource();
 
 			virtual void	validate() const;
 		};

@@ -1,37 +1,43 @@
 #pragma once
 
-#include "passes/render_queue_pass.h"
-#include "config/render_graph.h"
+#include "render_graph/pass.h"
+#include "config/config.h"
 #include "render_graph/buffer_input.h"
 #include "render_graph/buffer_source.h"
 #include "render_graph/bindable_input.h"
-#include "render_graph/bindable_source.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class depth_stencil_state;
+	class vert_shader;
+	class geom_shader;
+	class input_layout;
+	class sampler;
 	class depth_stencil_view;
 	class viewport;
 	class render_texture;
 
-	class g_buffer_pass : public PULSAR::render_queue_pass
+	class g_buffer_pass : public pulsar::rg::pass
 	{
 	private:
-		PULSAR::depth_stencil_state *mp_ds_state = NULL;
+		pulsar::depth_stencil_state *mp_ds_state = NULL;
+		pulsar::vert_shader *mp_g_buffer_vs = NULL;
+		pulsar::geom_shader *mp_g_buffer_gs = NULL;
+		pulsar::input_layout *mp_input_layout = NULL;
+		pulsar::sampler *mp_sampler = NULL;
 
-		PULSAR::depth_stencil_view *mp_ds_view = NULL;
-		PULSAR::viewport *mp_viewport = NULL;
-		PULSAR::render_texture *mp_g_buffers[PULSAR::G_BUFFERS_COUNT] = { NULL };
+		pulsar::depth_stencil_view *mp_ds_view = NULL;
+		pulsar::viewport *mp_viewport = NULL;
+		pulsar::render_texture *mp_g_buffers[pulsar::G_BUFFERS_COUNT] = { NULL };
 
-		PULSAR::rg::buffer_input<PULSAR::depth_stencil_view> *mp_ds_view_input = NULL;
-		PULSAR::rg::buffer_source<PULSAR::depth_stencil_view> *mp_ds_view_source = NULL;
+		pulsar::rg::buffer_input<pulsar::depth_stencil_view> *mp_ds_view_input = NULL;
+		pulsar::rg::buffer_source<pulsar::depth_stencil_view> *mp_ds_view_source = NULL;
 
-		PULSAR::rg::bindable_input<PULSAR::viewport> *mp_viewport_input = NULL;
-		PULSAR::rg::bindable_source<PULSAR::viewport> *mp_viewport_source = NULL;
+		pulsar::rg::bindable_input<pulsar::viewport> *mp_viewport_input = NULL;
 
-		PULSAR::rg::buffer_input<PULSAR::render_texture> *mp_g_buffers_inputs[PULSAR::G_BUFFERS_COUNT] = { NULL };
-		PULSAR::rg::buffer_source<PULSAR::render_texture> *mp_g_buffers_sources[PULSAR::G_BUFFERS_COUNT] = { NULL };
+		pulsar::rg::buffer_input<pulsar::render_texture> *mp_g_buffers_inputs[pulsar::G_BUFFERS_COUNT] = { NULL };
+		pulsar::rg::buffer_source<pulsar::render_texture> *mp_g_buffers_sources[pulsar::G_BUFFERS_COUNT] = { NULL };
 
 	public:
 		g_buffer_pass &operator=(const g_buffer_pass&) = delete;
@@ -43,6 +49,6 @@ namespace PULSAR
 		~g_buffer_pass();
 
 		void	validate() const override;
-		void	execute(float delta_time) override;
+		void	execute() override;
 	};
 }

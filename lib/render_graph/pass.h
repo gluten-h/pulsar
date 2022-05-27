@@ -5,7 +5,7 @@
 #include <string>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace rg
 	{
@@ -17,8 +17,8 @@ namespace PULSAR
 		private:
 			std::string m_name;
 
-			std::unordered_map<std::string, PULSAR::rg::input*> m_inputs;
-			std::unordered_map<std::string, PULSAR::rg::source*> m_sources;
+			std::unordered_map<std::string, pulsar::rg::input*> m_inputs;
+			std::unordered_map<std::string, pulsar::rg::source*> m_sources;
 
 		public:
 			pass &operator=(const pass&) = delete;
@@ -31,16 +31,16 @@ namespace PULSAR
 
 			const std::string	&name() const;
 
-			void	register_input(PULSAR::rg::input *input);
-			void	register_source(PULSAR::rg::source *source);
+			void	register_input(pulsar::rg::input *input);
+			void	register_source(pulsar::rg::source *source);
 			void	link_input(const std::string &input_name, const std::string &source_path);
 
-			PULSAR::rg::input	*get_input(const std::string &input_name);
-			PULSAR::rg::source	*get_source(const std::string &source_name);
-			std::unordered_map<std::string, PULSAR::rg::input*>		&get_all_inputs();
+			pulsar::rg::input	*get_input(const std::string &input_name);
+			pulsar::rg::source	*get_source(const std::string &source_name);
+			std::unordered_map<std::string, pulsar::rg::input*>		&get_all_inputs();
 
 			virtual void	validate() const;
-			virtual void	execute(float delta_time) = 0;
+			virtual void	execute() = 0;
 		};
 	}
 }

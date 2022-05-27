@@ -3,9 +3,9 @@
 #include "bindable/bindable.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class sampler : public PULSAR::bindable
+	class sampler : public pulsar::bindable
 	{
 	private:
 		ID3D11SamplerState *mp_sampler = NULL;
@@ -21,12 +21,12 @@ namespace PULSAR
 		sampler(const sampler&) = delete;
 		sampler(sampler&&) = delete;
 		sampler();
-		sampler(UINT slot = 0u);
+		sampler(UINT slot);
 		~sampler();
 
 		void	set_slot(UINT slot);
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 }

@@ -3,9 +3,9 @@
 #include "shader.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class frag_shader : public PULSAR::shader
+	class frag_shader : public pulsar::shader
 	{
 	private:
 		ID3D11PixelShader *mp_shader = NULL;
@@ -20,13 +20,13 @@ namespace PULSAR
 		frag_shader(const frag_shader&) = delete;
 		frag_shader(frag_shader&&) = delete;
 		frag_shader() = default;
-		frag_shader(const LPCWSTR shader_file, const LPCSTR entry = PULSAR::FRAG_ENTRY);
+		frag_shader(const LPCWSTR shader_file, const LPCSTR entry = pulsar::FRAG_ENTRY);
 		~frag_shader();
 
-		void	set(const LPCWSTR shader_file, const LPCSTR entry = PULSAR::FRAG_ENTRY);
+		void	set(const LPCWSTR shader_file, const LPCSTR entry = pulsar::FRAG_ENTRY);
 		const ID3D11PixelShader		*get() const;
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 }

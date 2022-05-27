@@ -4,15 +4,13 @@
 #include "bindable/buffer_resource.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class framebuffer : public PULSAR::bindable, public PULSAR::buffer_resource
+	class framebuffer : public pulsar::bindable, public pulsar::buffer_resource
 	{
 	private:
 		IDXGISwapChain *mp_swap_chain = NULL;
 		ID3D11RenderTargetView *mp_render_target = NULL;
-
-		mutable ID3D11DepthStencilView *mp_ds_view = NULL;
 
 	private:
 		void	create_feamebuffer(HWND hwnd, BOOL windowed);
@@ -28,14 +26,13 @@ namespace PULSAR
 		~framebuffer();
 
 		void	set(HWND hwnd, BOOL windowed = TRUE);
-		ID3D11DepthStencilView	*&ds_view();
 		XMUINT2	size() const;
 
 		void	resize(UINT width, UINT height) override;
 		void	clear() override;
 		void	present() const;
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind(ID3D11DepthStencilView *mp_ds_view = NULL) const;
+		void	unbind() const;
 	};
 }

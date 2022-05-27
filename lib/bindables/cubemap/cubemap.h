@@ -3,7 +3,7 @@
 #include "bindable/bindable.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	enum class CUBEMAP_DDS
 	{
@@ -11,22 +11,25 @@ namespace PULSAR
 		KEEP_IF_EXISTS
 	};
 
-	class cubemap : PULSAR::bindable
+	class cubemap : pulsar::bindable
 	{
 	private:
-		ID3D11Texture2D *mp_texture2d = NULL;
+		ID3D11Texture2D *mp_texture = NULL;
 		ID3D11ShaderResourceView *mp_srv = NULL;
 		UINT m_slot = 0u;
 
 	private:
+		void	copy_assign(const cubemap &c);
+		void	free_texture();
+		void	free_srv();
 		void	free();
 		void	create_cubemap(LPCWSTR dds_path);
 		void	save_dds_cubemap(LPCWSTR *wic_path, LPCWSTR output_dds_path);
 
 	public:
-		cubemap	&operator=(const cubemap&) = delete;
+		cubemap	&operator=(const cubemap &c);
 		cubemap &operator=(cubemap&&) = delete;
-		cubemap(const cubemap&) = delete;
+		cubemap(const cubemap &c);
 		cubemap(cubemap&&) = delete;
 		cubemap() = default;
 		cubemap(LPCWSTR *wic_path, LPCWSTR output_dds_path, CUBEMAP_DDS dds_behavior = CUBEMAP_DDS::OVERWRITE, UINT slot = 0u);
@@ -37,7 +40,7 @@ namespace PULSAR
 		void	set(LPCWSTR dds_path);
 		void	set_slot(UINT slot);
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 }

@@ -4,7 +4,7 @@
 #include <vector>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class buffer_resource
 	{

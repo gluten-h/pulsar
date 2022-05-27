@@ -1,19 +1,15 @@
 #pragma once
 
+#include "config.h"
 #include "mesh/mesh.h"
 
 
-#define CUBE_OBJ_PATH L"resources/std/cube.obj"
-
-#define SPHERE16_OBJ_PATH L"resources/std/sphere16.obj"
-#define SPHERE32_OBJ_PATH L"resources/std/sphere32.obj"
-#define SPHERE64_OBJ_PATH L"resources/std/sphere64.obj"
-
-namespace PULSAR
+namespace pulsar
 {
-	const PULSAR::mesh CUBE;// = PULSAR::mesh(STD_CUBE_OBJ_PATH, PULSAR::MESH_FILE_FORMAT::OBJ);
+	//	TODO: create primitive class inherited from mesh and write geometry data directly in constructor
+	const pulsar::mesh CUBE = pulsar::mesh(pulsar::CUBE_OBJ_PATH, pulsar::MESH_FILE_FORMAT::OBJ);
 	
-	const PULSAR::mesh SPHERE16;// = PULSAR::mesh(STD_SPHERE16_OBJ_PATH, PULSAR::MESH_FILE_FORMAT::OBJ);
-	const PULSAR::mesh SPHERE32;// = PULSAR::mesh(STD_SPHERE32_OBJ_PATH, PULSAR::MESH_FILE_FORMAT::OBJ);
-	const PULSAR::mesh SPHERE64;// = PULSAR::mesh(STD_SPHERE64_OBJ_PATH, PULSAR::MESH_FILE_FORMAT::OBJ);
+	const pulsar::mesh SPHERE16;// = pulsar::mesh(pulsar::SPHERE16_OBJ_PATH, pulsar::MESH_FILE_FORMAT::OBJ);
+	const pulsar::mesh SPHERE32;// = pulsar::mesh(pulsar::SPHERE32_OBJ_PATH, pulsar::MESH_FILE_FORMAT::OBJ);
+	const pulsar::mesh SPHERE64 = pulsar::mesh(pulsar::SPHERE64_OBJ_PATH, pulsar::MESH_FILE_FORMAT::OBJ);
 }

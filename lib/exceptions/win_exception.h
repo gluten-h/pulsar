@@ -6,9 +6,9 @@
 #include <comdef.h>
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class win_exception : public PULSAR::base_exception
+	class win_exception : public pulsar::base_exception
 	{
 	private:
 		HRESULT m_hr;
@@ -27,15 +27,15 @@ namespace PULSAR
 
 
 #ifdef UNICODE
-#define WIN_EXC(hr) PULSAR::win_exception(__LINE__, __WFILE__, hr)
+#define WIN_EXC(hr) pulsar::win_exception(__LINE__, __WFILE__, hr)
 #else
-#define WIN_EXC(hr) PULSAR::win_exception(__LINE__, __FILE__, hr)
+#define WIN_EXC(hr) pulsar::win_exception(__LINE__, __FILE__, hr)
 #endif
 
 #ifdef UNICODE
-#define LAST_WIN_EXC() PULSAR::win_exception(__LINE__, __WFILE__, GetLastError())
+#define LAST_WIN_EXC() pulsar::win_exception(__LINE__, __WFILE__, GetLastError())
 #else
-#define LAST_WIN_EXC(hr) PULSAR::win_exception(__LINE__, __FILE__, GetLastError())
+#define LAST_WIN_EXC(hr) pulsar::win_exception(__LINE__, __FILE__, GetLastError())
 #endif
 
 

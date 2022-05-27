@@ -1,69 +1,69 @@
 
 #include "material.h"
-#include "config/material.h"
+#include "config/config.h"
 
 
-PULSAR::shader_texture	&PULSAR::material::albedo_map()
+pulsar::shader_texture	&pulsar::material::albedo_map()
 {
 	return (this->m_albedo_map);
 }
 
-PULSAR::dcb::layout_elem_ref	PULSAR::material::albedo_color()
+pulsar::dcb::layout_elem_ref	pulsar::material::albedo_color()
 {
-	return (this->m_dcb_buffer[MATERIAL_DCB_ALBEDO_COLOR]);
+	return (this->m_dcb_buffer[pulsar::MATERIAL_DCB_ALBEDO_COLOR]);
 }
 
-PULSAR::dcb::layout_elem_ref	PULSAR::material::albedo_map_srgb()
+pulsar::dcb::layout_elem_ref	pulsar::material::albedo_map_srgb()
 {
-	return (this->m_dcb_buffer[MATERIAL_DCB_ALBEDO_MAP_SRGB]);
+	return (this->m_dcb_buffer[pulsar::MATERIAL_DCB_ALBEDO_MAP_SRGB]);
 }
 
-PULSAR::shader_texture	&PULSAR::material::normal_map()
+pulsar::shader_texture	&pulsar::material::normal_map()
 {
 	return (this->m_normal_map);
 }
 
-PULSAR::dcb::layout_elem_ref	PULSAR::material::normal_factor()
+pulsar::dcb::layout_elem_ref	pulsar::material::normal_factor()
 {
-	return (this->m_dcb_buffer[MATERIAL_DCB_NORMAL_FACTOR]);
+	return (this->m_dcb_buffer[pulsar::MATERIAL_DCB_NORMAL_FACTOR]);
 }
 
-PULSAR::shader_texture	&PULSAR::material::roughness_map()
+pulsar::shader_texture	&pulsar::material::roughness_map()
 {
 	return (this->m_roughness_map);
 }
 
-PULSAR::dcb::layout_elem_ref	PULSAR::material::roughness()
+pulsar::dcb::layout_elem_ref	pulsar::material::roughness()
 {
-	return (this->m_dcb_buffer[MATERIAL_DCB_ROUGHNESS]);
+	return (this->m_dcb_buffer[pulsar::MATERIAL_DCB_ROUGHNESS]);
 }
 
-PULSAR::shader_texture	&PULSAR::material::metalness_map()
+pulsar::shader_texture	&pulsar::material::metalness_map()
 {
 	return (this->m_metalness_map);
 }
 
-PULSAR::dcb::layout_elem_ref	PULSAR::material::metalness()
+pulsar::dcb::layout_elem_ref	pulsar::material::metalness()
 {
-	return (this->m_dcb_buffer[MATERIAL_DCB_METALNESS]);
+	return (this->m_dcb_buffer[pulsar::MATERIAL_DCB_METALNESS]);
 }
 
-PULSAR::shader_texture	&PULSAR::material::ao_map()
+pulsar::shader_texture	&pulsar::material::ao_map()
 {
 	return (this->m_ao_map);
 }
 
-PULSAR::dcb::layout_elem_ref	PULSAR::material::ao()
+pulsar::dcb::layout_elem_ref	pulsar::material::ao()
 {
-	return (this->m_dcb_buffer[MATERIAL_DCB_AO]);
+	return (this->m_dcb_buffer[pulsar::MATERIAL_DCB_AO]);
 }
 
-PULSAR::shader_texture	&PULSAR::material::exposure_map()
+pulsar::shader_texture	&pulsar::material::exposure_map()
 {
 	return (this->m_exposure_map);
 }
 
-PULSAR::dcb::layout_elem_ref	PULSAR::material::exposure()
+pulsar::dcb::layout_elem_ref	pulsar::material::exposure()
 {
-	return (this->m_dcb_buffer[MATERIAL_DCB_EXPOSURE]);
+	return (this->m_dcb_buffer[pulsar::MATERIAL_DCB_EXPOSURE]);
 }

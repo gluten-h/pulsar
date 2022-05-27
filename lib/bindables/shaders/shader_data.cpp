@@ -5,7 +5,7 @@
 #include "utils/shader_include.h"
 
 
-void	PULSAR::shader::free()
+void	pulsar::shader::free()
 {
 	if (this->mp_shader_blob)
 	{
@@ -14,18 +14,24 @@ void	PULSAR::shader::free()
 	}
 }
 
-PULSAR::shader::~shader()
+pulsar::shader::~shader()
 {
 	this->free();
 }
 
-void	PULSAR::shader::create_shader(const LPCWSTR shader_file, const LPCSTR entry, const LPCSTR target)
+void	pulsar::shader::create_shader(const LPCWSTR shader_file, const LPCSTR entry, const LPCSTR target)
 {
-	PULSAR::shader_include shader_inc;
-	GFX_ASSERT(D3DCompileFromFile(PULSAR::filesystem::absolute_path(shader_file).c_str(), NULL, &shader_inc, entry, target, NULL, NULL, &this->mp_shader_blob, NULL));
+	pulsar::shader_include shader_inc;
+
+	UINT flags = D3DCOMPILE_ENABLE_STRICTNESS;
+#ifdef _DEBUG
+	flags |= D3DCOMPILE_DEBUG;
+#endif
+
+	GFX_ASSERT(D3DCompileFromFile(pulsar::filesystem::absolute_path(shader_file).c_str(), NULL, &shader_inc, entry, target, flags, 0u, &this->mp_shader_blob, NULL));
 }
 
-ID3DBlob	*PULSAR::shader::get_shader_blob() const
+ID3DBlob	*pulsar::shader::get_shader_blob() const
 {
 	return (this->mp_shader_blob);
 }

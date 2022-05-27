@@ -3,7 +3,7 @@
 #include <string>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace rg
 	{
@@ -34,7 +34,7 @@ namespace PULSAR
 			void	set_source(const std::string &source_pass_name, const std::string &source_name);
 
 			virtual void	validate() const;
-			virtual void	bind(PULSAR::rg::source *source) = 0;
+			virtual void	bind(pulsar::rg::source *source) = 0;
 		};
 	}
 }

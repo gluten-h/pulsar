@@ -5,7 +5,7 @@
 #include <vector>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class dynamic_const_buffer;
 
@@ -19,10 +19,10 @@ namespace PULSAR
 		class buffer
 		{
 		private:
-			friend class PULSAR::dynamic_const_buffer;
+			friend class pulsar::dynamic_const_buffer;
 
 		private:
-			std::shared_ptr<PULSAR::dcb::layout_elem>	mp_root;
+			std::shared_ptr<pulsar::dcb::layout_elem>	mp_root;
 			std::vector<char>	m_data;
 			bool	m_is_modified = false;
 
@@ -35,18 +35,18 @@ namespace PULSAR
 			buffer(const buffer&) = delete;
 			buffer(buffer&&) = delete;
 			buffer() = default;
-			buffer(PULSAR::dcb::raw_layout &&raw_layout);
-			buffer(PULSAR::dcb::baked_layout &&baked_layout);
-			buffer(PULSAR::dcb::raw_layout &raw_layout);
-			buffer(const PULSAR::dcb::baked_layout &baked_layout);
+			buffer(pulsar::dcb::raw_layout &&raw_layout);
+			buffer(pulsar::dcb::baked_layout &&baked_layout);
+			buffer(pulsar::dcb::raw_layout &raw_layout);
+			buffer(const pulsar::dcb::baked_layout &baked_layout);
 			~buffer() = default;
 
-			PULSAR::dcb::layout_elem_ref	operator[](const std::string &key);
+			pulsar::dcb::layout_elem_ref	operator[](const std::string &key);
 
-			void	set_layout(PULSAR::dcb::raw_layout &&raw_layout);
-			void	set_layout(PULSAR::dcb::baked_layout &&baked_layout);
-			void	set_layout(PULSAR::dcb::raw_layout &raw_layout);
-			void	set_layout(const PULSAR::dcb::baked_layout &baked_layout);
+			void	set_layout(pulsar::dcb::raw_layout &&raw_layout);
+			void	set_layout(pulsar::dcb::baked_layout &&baked_layout);
+			void	set_layout(pulsar::dcb::raw_layout &raw_layout);
+			void	set_layout(const pulsar::dcb::baked_layout &baked_layout);
 
 			const char	*data() const noexcept;
 			size_t	size() const noexcept;

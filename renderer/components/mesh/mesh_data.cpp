@@ -3,7 +3,7 @@
 #include "filesystem/filesystem.h"
 
 
-void	PULSAR::mesh::free()
+void	pulsar::mesh::free()
 {
 	this->m_mesh_data.clear();
 
@@ -19,28 +19,28 @@ void	PULSAR::mesh::free()
 	}
 }
 
-void	PULSAR::mesh::set(LPCWSTR file, PULSAR::MESH_FILE_FORMAT file_format)
+void	pulsar::mesh::set(LPCWSTR file, pulsar::MESH_FILE_FORMAT file_format)
 {
 	this->free();
 
 	switch (file_format)
 	{
-		case PULSAR::MESH_FILE_FORMAT::OBJ:
+		case pulsar::MESH_FILE_FORMAT::OBJ:
 		{
-			this->load_mesh_obj(PULSAR::filesystem::absolute_path(file).c_str());
-			this->create_mesh();
+			if (this->load_mesh_obj(pulsar::filesystem::absolute_path(file).c_str()))
+				this->create_mesh();
 
 			break;
 		}
 	}
 }
 
-void	PULSAR::mesh::set_primitive_topology(D3D_PRIMITIVE_TOPOLOGY primitive_topology)
+void	pulsar::mesh::set_primitive_topology(D3D_PRIMITIVE_TOPOLOGY primitive_topology)
 {
 	this->m_primitive_topology = primitive_topology;
 }
 
-UINT	PULSAR::mesh::get_index_count() const noexcept
+UINT	pulsar::mesh::get_index_count() const noexcept
 {
 	return ((UINT)this->m_mesh_data.m_indices.size());
 }

@@ -4,9 +4,9 @@
 #include "bindable/buffer_resource.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
-	class viewport : public PULSAR::bindable, public PULSAR::buffer_resource
+	class viewport : public pulsar::bindable, public pulsar::buffer_resource
 	{
 	private:
 		D3D11_VIEWPORT m_viewport = { 0 };
@@ -29,7 +29,7 @@ namespace PULSAR
 		void	resize(UINT width, UINT height) override;
 		void	clear() override;
 
-		void	bind() const override;
-		void	unbind() const override;
+		void	bind() const;
+		void	unbind() const;
 	};
 }

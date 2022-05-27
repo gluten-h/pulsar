@@ -7,7 +7,7 @@
 #include <span>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace ecs
 	{

@@ -2,29 +2,29 @@
 #include "sampler.h"
 
 
-PULSAR::sampler::sampler()
+pulsar::sampler::sampler()
 {
-
+	this->m_slot = 0u;
 }
 
-PULSAR::sampler::sampler(UINT slot)
+pulsar::sampler::sampler(UINT slot)
 {
 	this->create_sampler();
 	this->set_slot(slot);
 }
 
-PULSAR::sampler::~sampler()
+pulsar::sampler::~sampler()
 {
 	this->free();
 }
 
-void	PULSAR::sampler::bind() const
+void	pulsar::sampler::bind() const
 {
-	PULSAR::gfx::get().device_context()->PSSetSamplers(this->m_slot, 1u, &this->mp_sampler);
+	pulsar::gfx::instance().device_context()->PSSetSamplers(this->m_slot, 1u, &this->mp_sampler);
 }
 
-void	PULSAR::sampler::unbind() const
+void	pulsar::sampler::unbind() const
 {
 	ID3D11SamplerState *null_ptr[1] = { NULL };
-	PULSAR::gfx::get().device_context()->PSSetSamplers(this->m_slot, 1u, null_ptr);
+	pulsar::gfx::instance().device_context()->PSSetSamplers(this->m_slot, 1u, null_ptr);
 }

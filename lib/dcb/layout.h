@@ -4,17 +4,17 @@
 #include <memory>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	namespace dcb
 	{
 		class layout
 		{
 		protected:
-			std::shared_ptr<PULSAR::dcb::layout_elem>	m_root;
+			std::shared_ptr<pulsar::dcb::layout_elem>	m_root;
 
 		protected:
-			layout(std::shared_ptr<PULSAR::dcb::layout_elem> root)
+			layout(std::shared_ptr<pulsar::dcb::layout_elem> root)
 			{
 				this->m_root = std::move(root);
 			}

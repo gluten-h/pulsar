@@ -1,12 +1,12 @@
 
 #include "mesh.h"
-#include "utils/pulsar_utils.h"
+#include "utils/utils.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 
 
-void	PULSAR::mesh::load_mesh_obj(LPCWSTR file)
+bool	pulsar::mesh::load_mesh_obj(LPCWSTR file)
 {
 	std::vector<float> verts;
 	std::vector<float> normals;
@@ -14,12 +14,12 @@ void	PULSAR::mesh::load_mesh_obj(LPCWSTR file)
 
 	std::ifstream is(file);
 	if (!is)
-		return;
+		return (false);
 
 	std::string line;
 	while (std::getline(is, line, '\n'))
 	{
-		std::vector<std::string> split = PULSAR::utils::str_split(line.c_str(), ' ');
+		std::vector<std::string> split = pulsar::utils::str_split(line.c_str(), ' ');
 		if (!split.size())
 			continue;
 
@@ -62,10 +62,10 @@ void	PULSAR::mesh::load_mesh_obj(LPCWSTR file)
 			int i = -1;
 			while (++i < 3)
 			{
-				std::vector<std::string> vert_info = PULSAR::utils::str_split(split[(UINT64)i + 1].c_str(), '/');
+				std::vector<std::string> vert_info = pulsar::utils::str_split(split[(UINT64)i + 1].c_str(), '/');
 
 				int vert_id = std::stoi(vert_info[0]) - 1;
-				PULSAR::mesh::mesh_data::vert_data vert;
+				pulsar::mesh::mesh_data::vert_data vert;
 				vert.x = verts[(UINT64)vert_id * 3 + 0];
 				vert.y = verts[(UINT64)vert_id * 3 + 1];
 				vert.z = verts[(UINT64)vert_id * 3 + 2];
@@ -97,4 +97,6 @@ void	PULSAR::mesh::load_mesh_obj(LPCWSTR file)
 	verts.clear();
 	normals.clear();
 	uvs.clear();
+
+	return (true);
 }

@@ -1,11 +1,26 @@
+#pragma once
 
 #include "utils/math.h"
-#include "config/camera.h"
+#include "config/config.h"
 #include "dynamic_const_buffers/vert_dynamic_const_buffer.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
+	struct vert_camera
+	{
+		XMMATRIX view;
+		XMMATRIX proj;
+	};
+	struct frag_camera
+	{
+		XMFLOAT3 pos;
+		float gamma;
+
+		XMFLOAT3 dir;
+		float exposure;
+	};
+
 	class camera
 	{
 	private:
@@ -21,6 +36,6 @@ namespace PULSAR
 		~camera() = default;
 
 	public:
-		const XMMATRIX	&projection() const;
+		const XMMATRIX	&get_projection() const;
 	};
 }

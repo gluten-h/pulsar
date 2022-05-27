@@ -3,7 +3,7 @@
 #include "exceptions/gfx_exception.h"
 
 
-void	PULSAR::mesh::create_mesh()
+void	pulsar::mesh::create_mesh()
 {
 	D3D11_BUFFER_DESC vbd;
 	D3D11_BUFFER_DESC ibd;
@@ -31,6 +31,6 @@ void	PULSAR::mesh::create_mesh()
 	vsd.pSysMem = this->m_mesh_data.m_verts.data();
 	isd.pSysMem = this->m_mesh_data.m_indices.data();
 
-	GFX_ASSERT(PULSAR::gfx::get().device()->CreateBuffer(&vbd, &vsd, &this->mp_vertex_buffer));
-	GFX_ASSERT(PULSAR::gfx::get().device()->CreateBuffer(&ibd, &isd, &this->mp_index_buffer));
+	GFX_ASSERT(pulsar::gfx::instance().device()->CreateBuffer(&vbd, &vsd, &this->mp_vertex_buffer));
+	GFX_ASSERT(pulsar::gfx::instance().device()->CreateBuffer(&ibd, &isd, &this->mp_index_buffer));
 }

@@ -12,7 +12,7 @@
 #define WIDE1(x) WIDE2(x)
 #define __WFILE__ WIDE1(__FILE__)
 
-namespace PULSAR
+namespace pulsar
 {
 	class base_exception : public std::exception
 	{

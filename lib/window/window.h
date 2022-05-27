@@ -1,12 +1,12 @@
 #pragma once
 
 #include "gfx/gfx.h"
-#include "config/window.h"
+#include "config/config.h"
 #include "framebuffer/framebuffer.h"
 #include <chrono>
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class window
 	{
@@ -16,7 +16,7 @@ namespace PULSAR
 		HWND	m_hwnd = NULL;
 		bool	m_cursor_clamped = false;
 
-		PULSAR::framebuffer m_framebuffer;
+		pulsar::framebuffer m_framebuffer;
 
 		std::chrono::time_point<std::chrono::high_resolution_clock> m_begin_frame_time_point;
 		float m_frames_time_elapsed = 0.0f;
@@ -34,7 +34,7 @@ namespace PULSAR
 		window(const window&) = delete;
 		window(window&&) = delete;
 		window() = delete;
-		window(const LPCSTR name = PULSAR::DEFAULT_WINDOW_SETTINGS.name, UINT width = PULSAR::DEFAULT_WINDOW_SETTINGS.width, UINT height = PULSAR::DEFAULT_WINDOW_SETTINGS.height);
+		window(const LPCSTR name = pulsar::DEFAULT_WINDOW_SETTINGS.name, UINT width = pulsar::DEFAULT_WINDOW_SETTINGS.width, UINT height = pulsar::DEFAULT_WINDOW_SETTINGS.height);
 		~window() = default;
 
 		static void		init(HINSTANCE h_instance);
@@ -47,7 +47,7 @@ namespace PULSAR
 		void	end_frame();
 
 		HWND	hwnd();
-		PULSAR::framebuffer		&framebuffer();
+		pulsar::framebuffer		&framebuffer();
 		XMUINT2	size() const;
 		float	delta_time() const;
 

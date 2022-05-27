@@ -3,12 +3,14 @@
 #include "gfx/gfx.h"
 
 
-namespace PULSAR
+namespace pulsar
 {
 	class bindable
 	{
 	public:
-		virtual void	bind() const{ }
-		virtual void	unbind() const{ }
+		virtual ~bindable() = default;
+
+		//virtual void	bind() const{ }
+		//virtual void	unbind() const{ }
 	};
 }

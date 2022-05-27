@@ -1,16 +1,16 @@
 
 #include "shader_include.h"
-#include "config/misc.h"
+#include "config/config.h"
 
 #include <sstream>
 #include <fstream>
 #include <iostream>
 
 
-bool	PULSAR::shader_include::m_is_initialized = false;
+bool	pulsar::shader_include::m_is_initialized = false;
 
 
-std::vector<std::filesystem::path>	&PULSAR::shader_include::include_dirs()
+std::vector<std::filesystem::path>	&pulsar::shader_include::include_dirs()
 {
 	static std::vector<std::filesystem::path> include_dirs;
 
@@ -27,7 +27,7 @@ std::vector<std::filesystem::path>	&PULSAR::shader_include::include_dirs()
 	return (include_dirs);
 }
 
-std::wstring	PULSAR::shader_include::absolute_path(const LPCSTR path)
+std::wstring	pulsar::shader_include::absolute_path(const LPCSTR path)
 {
 	for (auto &p : shader_include::include_dirs())
 	{
@@ -47,7 +47,7 @@ std::wstring	PULSAR::shader_include::absolute_path(const LPCSTR path)
 	return (std::wstring());
 }
 
-HRESULT		PULSAR::shader_include::Open(D3D_INCLUDE_TYPE include_type, LPCSTR p_file_name, LPCVOID p_parent_data, LPCVOID *pp_data, UINT *p_bytes)
+HRESULT		pulsar::shader_include::Open(D3D_INCLUDE_TYPE include_type, LPCSTR p_file_name, LPCVOID p_parent_data, LPCVOID *pp_data, UINT *p_bytes)
 {
 	std::wstring path;
 	if (include_type == D3D_INCLUDE_LOCAL)
@@ -69,7 +69,7 @@ HRESULT		PULSAR::shader_include::Open(D3D_INCLUDE_TYPE include_type, LPCSTR p_fi
 	return (S_OK);
 }
 
-HRESULT		PULSAR::shader_include::Close(LPCVOID p_data)
+HRESULT		pulsar::shader_include::Close(LPCVOID p_data)
 {
 	free((void*)p_data);
 	return (S_OK);
