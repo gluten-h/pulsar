@@ -16,9 +16,17 @@ namespace pulsar
 		void	clear_linked();
 
 	public:
-		void	link_buffer_resource(buffer_resource *p_buffer_resource)
+		void	link_buffer_resource(buffer_resource *buffer_resource)
 		{
-			this->m_linked_buffer_resources.push_back(p_buffer_resource);
+			this->m_linked_buffer_resources.push_back(buffer_resource);
+		}
+		void	unlink_buffer_resource(buffer_resource *buffer_resource)
+		{
+			auto it = std::find(this->m_linked_buffer_resources.begin(), this->m_linked_buffer_resources.end(), buffer_resource);
+			if (it == this->m_linked_buffer_resources.end())
+				return;
+
+			this->m_linked_buffer_resources.erase(it);
 		}
 
 		virtual void	resize(UINT width, UINT height) = 0;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "types.h"
 #include <cstddef>
 
 
@@ -7,8 +8,6 @@ namespace pulsar
 {
 	namespace ecs
 	{
-		class registry;
-
 		class system
 		{
 		protected:

@@ -16,6 +16,7 @@ void	pulsar::framebuffer::create_feamebuffer(HWND hwnd, BOOL windowed)
 	scd.OutputWindow = hwnd;
 	scd.Windowed = windowed;
 	scd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+	scd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
 	ID3D11Texture2D *buffer;
 
@@ -30,6 +31,7 @@ void	pulsar::framebuffer::free()
 {
 	if (this->mp_swap_chain)
 	{
+		this->mp_swap_chain->SetFullscreenState(FALSE, NULL);
 		this->mp_swap_chain->Release();
 		this->mp_swap_chain = NULL;
 	}

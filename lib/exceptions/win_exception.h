@@ -45,5 +45,5 @@ namespace pulsar
 #ifdef _DEBUG
 #define WIN_ASSERT(hr) if (hr != S_OK) THROW_WIN_EXC(hr)
 #else
-#define WIN_ASSERT(hr)
+#define WIN_ASSERT(hr) hr
 #endif

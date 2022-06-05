@@ -9,7 +9,7 @@
 //#include "const_buffers/frag_const_buffer.h"
 //#include "dynamic_const_buffers/vert_dynamic_const_buffer.h"
 
-#include "ecs/registry.h"
+#include "ecs/ecs.h"
 #include "light/light.h"
 #include "skybox_material/skybox_material.h"
 #include "const_buffers/frag_const_buffer.h"
@@ -54,7 +54,6 @@ namespace pulsar
 
 		pulsar::skybox_material		&skybox_material();
 
-		// TODO: implement create_node<components...>() function to create node with specified components
 		pulsar::node	create_node();
 		
 		template <typename T, typename... Args>

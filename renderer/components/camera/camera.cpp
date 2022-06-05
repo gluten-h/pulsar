@@ -2,12 +2,12 @@
 #include "camera.h"
 
 
-pulsar::camera::camera(const XMMATRIX &projection)
+pulsar::camera::camera(UINT width, UINT height)
 {
-	this->m_projection = projection;
+	this->m_viewport.set(width, height);
 }
 
-const XMMATRIX	&pulsar::camera::get_projection() const
+pulsar::viewport	&pulsar::camera::viewport()
 {
-	return (this->m_projection);
+	return (this->m_viewport);
 }

@@ -2,6 +2,7 @@
 
 #include "gfx/gfx.h"
 #include "config/config.h"
+#include "viewport/viewport.h"
 #include "framebuffer/framebuffer.h"
 #include <chrono>
 
@@ -12,10 +13,13 @@ namespace pulsar
 	{
 	private:
 		static HINSTANCE m_h_instance;
+		static window *mp_active_window;
 
-		HWND	m_hwnd = NULL;
-		bool	m_cursor_clamped = false;
+		HWND m_hwnd = NULL;
+		bool m_is_cursor_hidden = false;
+		bool m_is_cursor_clamped = false;
 
+		pulsar::viewport m_viewport;
 		pulsar::framebuffer m_framebuffer;
 
 		std::chrono::time_point<std::chrono::high_resolution_clock> m_begin_frame_time_point;
@@ -24,8 +28,10 @@ namespace pulsar
 		float m_delta_time = 0.0f;
 
 	private:
-		void	set(const LPCSTR name, UINT width, UINT height);
+		void	create_window(const LPCSTR name, UINT width, UINT height, BOOL resizable = FALSE);
+		static void		set_active_window(pulsar::window *window);
 
+		static void		win_proc_mouse(RAWMOUSE &raw_mouse);
 		static LRESULT CALLBACK		win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
 
 	public:
@@ -34,10 +40,11 @@ namespace pulsar
 		window(const window&) = delete;
 		window(window&&) = delete;
 		window() = delete;
-		window(const LPCSTR name = pulsar::DEFAULT_WINDOW_SETTINGS.name, UINT width = pulsar::DEFAULT_WINDOW_SETTINGS.width, UINT height = pulsar::DEFAULT_WINDOW_SETTINGS.height);
+		window(const LPCSTR name = pulsar::DEFAULT_WINDOW_SETTINGS.name, UINT width = pulsar::DEFAULT_WINDOW_SETTINGS.width, UINT height = pulsar::DEFAULT_WINDOW_SETTINGS.height, BOOL resizable = FALSE);
 		~window() = default;
 
 		static void		init(HINSTANCE h_instance);
+		static pulsar::window	*active_window();
 
 		void	set_name(const LPCSTR name);
 		void	resize(UINT width, UINT height);
@@ -47,6 +54,7 @@ namespace pulsar
 		void	end_frame();
 
 		HWND	hwnd();
+		pulsar::viewport	&viewport();
 		pulsar::framebuffer		&framebuffer();
 		XMUINT2	size() const;
 		float	delta_time() const;
@@ -55,5 +63,8 @@ namespace pulsar
 		void	show_cursor();
 		void	clamp_cursor();
 		void	free_cursor();
+	
+		bool	is_cursor_hidden() const;
+		bool	is_cursor_clamped() const;
 	};
 }

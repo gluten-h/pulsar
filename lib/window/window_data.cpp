@@ -5,17 +5,21 @@
 #include "utils/math.h"
 
 
-void	pulsar::window::set(const LPCSTR name, UINT width, UINT height)
+void	pulsar::window::create_window(const LPCSTR name, UINT width, UINT height, BOOL resizable)
 {
 	RECT wr = { 0, 0, width, height };
 	AdjustWindowRect(&wr, pulsar::DEFAULT_WINDOW_SETTINGS.style, FALSE);
 
 	const LPCTSTR class_name = pulsar::DEFAULT_WINDOW_SETTINGS.class_name;
-	const DWORD style = pulsar::DEFAULT_WINDOW_SETTINGS.style;
+	const DWORD style = pulsar::DEFAULT_WINDOW_SETTINGS.style | (WS_SIZEBOX * resizable);
 
 	HWND hwnd = CreateWindowEx(NULL, class_name, __T(name), style, CW_USEDEFAULT, CW_USEDEFAULT, wr.right - wr.left, wr.bottom - wr.top, NULL, NULL, window::m_h_instance, (LPVOID)this);
 	if (!hwnd)
 		THROW_LAST_WIN_EXC();
+
+	this->m_viewport.set(width, height);
+	this->m_framebuffer.set(hwnd);
+	this->m_viewport.link_buffer_resource(&this->m_framebuffer);
 }
 
 void	pulsar::window::set_name(const LPCSTR name)
@@ -32,12 +36,17 @@ void	pulsar::window::resize(UINT width, UINT height)
 	if (!SetWindowPos(this->m_hwnd, NULL, 0, 0, wr.right - wr.left, wr.bottom - wr.top, SWP_NOMOVE | SWP_NOZORDER))
 		THROW_LAST_WIN_EXC();
 
-	this->m_framebuffer.resize(width, height);
+	this->m_viewport.resize(width, height);
 }
 
 HWND	pulsar::window::hwnd()
 {
 	return (this->m_hwnd);
+}
+
+pulsar::viewport	&pulsar::window::viewport()
+{
+	return (this->m_viewport);
 }
 
 pulsar::framebuffer		&pulsar::window::framebuffer()

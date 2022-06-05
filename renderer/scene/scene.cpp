@@ -6,6 +6,7 @@
 #include "systems/camera_system.h"
 #include "systems/render_system.h"
 #include "systems/light_system.h"
+#include "systems/script_system.h"
 
 
 pulsar::scene *pulsar::scene::mp_active_scene = NULL;
@@ -16,6 +17,7 @@ pulsar::scene::scene()
 	this->register_system<pulsar::camera_system>(&this->m_registry);
 	this->register_system<pulsar::render_system>(&this->m_registry);
 	this->register_system<pulsar::light_system>(&this->m_registry);
+	this->register_system<pulsar::script_system>(&this->m_registry);
 }
 
 pulsar::scene::~scene()

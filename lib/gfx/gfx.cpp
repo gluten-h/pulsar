@@ -17,9 +17,12 @@ pulsar::gfx::gfx()
 
 pulsar::gfx::~gfx()
 {
-	this->mp_device->Release();
-	this->mp_device_context->Release();
-	this->mp_idxgi_factory->Release();
+	if (this->mp_device)
+		this->mp_device->Release();
+	if (this->mp_device_context)
+		this->mp_device_context->Release();
+	if (this->mp_idxgi_factory)
+		this->mp_idxgi_factory->Release();
 	CoUninitialize();
 }
 

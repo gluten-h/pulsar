@@ -11,6 +11,8 @@
 #pragma comment(lib, "uuid.lib")
 #pragma comment(lib, "legacy_stdio_definitions.lib")
 
+#pragma comment(lib, "directxtex.lib")
+
 
 #include <Windows.h>
 #include <wrl.h>

@@ -10,7 +10,7 @@ namespace pulsar
 {
 	namespace dcb
 	{
-		class layout_elem_ref
+		class layout_elem_ref	// TODO: implement const_layout_elem_ref
 		{
 		private:
 			class ptr
@@ -26,7 +26,7 @@ namespace pulsar
 				operator	T*()
 				{
 					static_assert(pulsar::dcb::reverse_attr_type<std::remove_const_t<T>>::is_valid, "Unsupported dcb type");
-					return (&static_cast<T&>(*this->mp_ref));
+					return (&(T&)(*this->mp_ref));
 				}
 
 			private:
@@ -70,7 +70,7 @@ namespace pulsar
 			T	&operator=(const T &rhs)
 			{
 				*this->mp_is_modified = true;
-				return (static_cast<T&>(*this) = rhs);
+				return ((T&)(*this) = rhs);
 			}
 
 

@@ -14,29 +14,26 @@
 #include "passes/post_effects_pass.h"
 #include "passes/present_pass.h"
 
-#include "scene/scene.h"
 
-
-pulsar::deferred_render_graph::deferred_render_graph(pulsar::framebuffer &framebuffer)
+pulsar::deferred_render_graph::deferred_render_graph(pulsar::viewport &viewport, pulsar::framebuffer &framebuffer)
 {
 	{
 		XMUINT2 framebuffer_size = framebuffer.size();
 
+		this->mp_viewport = &viewport;
 		this->mp_framebuffer = &framebuffer;
 		this->mp_ds_view = new pulsar::depth_stencil_view(framebuffer_size.x, framebuffer_size.y);
-		this->mp_viewport = new pulsar::viewport(framebuffer_size.x, framebuffer_size.y);
 		this->mp_hdr_buffer = new pulsar::render_texture(framebuffer_size.x, framebuffer_size.y, DXGI_FORMAT_R16G16B16A16_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE, 0u);
 
-		framebuffer.link_buffer_resource(this->mp_ds_view);
-		framebuffer.link_buffer_resource(this->mp_viewport);
-		framebuffer.link_buffer_resource(this->mp_hdr_buffer);
+		viewport.link_buffer_resource(this->mp_ds_view);
+		viewport.link_buffer_resource(this->mp_hdr_buffer);
 
 		int i = -1;
 		while (++i < pulsar::G_BUFFERS_COUNT)
 		{
 			this->mp_g_buffers[i] = new pulsar::render_texture(framebuffer_size.x, framebuffer_size.y, DXGI_FORMAT_R16G16B16A16_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE, 0u);
 			this->mp_g_buffers[i]->set_slot(i);
-			framebuffer.link_buffer_resource(this->mp_g_buffers[i]);
+			viewport.link_buffer_resource(this->mp_g_buffers[i]);
 		}
 	}
 
@@ -127,7 +124,6 @@ pulsar::deferred_render_graph::~deferred_render_graph()
 {
 	{
 		delete this->mp_ds_view;
-		delete this->mp_viewport;
 		delete this->mp_hdr_buffer;
 
 		int i = -1;

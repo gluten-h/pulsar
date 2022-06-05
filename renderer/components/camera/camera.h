@@ -2,6 +2,7 @@
 
 #include "utils/math.h"
 #include "config/config.h"
+#include "viewport/viewport.h"
 #include "dynamic_const_buffers/vert_dynamic_const_buffer.h"
 
 
@@ -23,19 +24,19 @@ namespace pulsar
 
 	class camera
 	{
-	private:
-		XMMATRIX m_projection = XMMatrixIdentity();;
-
 	protected:
+		pulsar::viewport m_viewport;
+
 		camera &operator=(const camera&) = default;
 		camera &operator=(camera&&) = default;
 		camera(const camera&) = default;
 		camera(camera&&) = default;
-		camera() = default;
-		camera(const XMMATRIX &projection);
-		~camera() = default;
+		camera() = delete;
+		camera(UINT width, UINT height);
+		virtual ~camera() = default;
 
 	public:
-		const XMMATRIX	&get_projection() const;
+		pulsar::viewport	&viewport();
+		virtual const XMMATRIX	&get_projection() const = 0;
 	};
 }

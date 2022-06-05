@@ -1,5 +1,6 @@
 #pragma once
 
+#include "utils/math.h"
 #include "bindable/bindable.h"
 #include "bindable/buffer_resource.h"
 
@@ -26,6 +27,7 @@ namespace pulsar
 		void	set(UINT width, UINT height, float min_depth = 0.0f, float max_depth = 1.0f);
 		D3D11_VIEWPORT	&get();
 
+		XMUINT2	size() const;
 		void	resize(UINT width, UINT height) override;
 		void	clear() override;
 

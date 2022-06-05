@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cstdint>
+#include <stdint.h>
 #include <esent.h>
 #include <tchar.h>
 #include <Windows.h>
@@ -58,8 +58,8 @@ namespace pulsar
 		const LPCTSTR class_name = __T("pulsar");
 		const LPCSTR name = "pulsar";
 		const DWORD style = WS_VISIBLE | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU;
-		int width = 1280;
-		int height = 720;
+		UINT width = 1280;
+		UINT height = 720;
 	} DEFAULT_WINDOW_SETTINGS;
 
 
@@ -91,18 +91,15 @@ namespace pulsar
 	const uint8_t POST_EFFECTS_FRAG_SAMPLER_SLOT = 0u;
 
 	// DCB
-	const char *const TRANSFORM_DCB_MODEL = "model";
-	const char *const TRANSFORM_DCB_NORM = "norm";
+	const char *const MATERIAL_DCB_ALBEDO_COLOR = "c";
+	const char *const MATERIAL_DCB_ALBEDO_MAP_SRGB = "s";
+	const char *const MATERIAL_DCB_NORMAL_FACTOR = "n";
+	const char *const MATERIAL_DCB_ROUGHNESS = "r";
+	const char *const MATERIAL_DCB_METALNESS = "m";
+	const char *const MATERIAL_DCB_AO = "a";
+	const char *const MATERIAL_DCB_EXPOSURE = "e";
 
-	const char *const MATERIAL_DCB_ALBEDO_COLOR = "albedo_color";
-	const char *const MATERIAL_DCB_ALBEDO_MAP_SRGB = "albedo_srgb";
-	const char *const MATERIAL_DCB_NORMAL_FACTOR = "normal_factor";
-	const char *const MATERIAL_DCB_ROUGHNESS = "roughness";
-	const char *const MATERIAL_DCB_METALNESS = "metalness";
-	const char *const MATERIAL_DCB_AO = "ao";
-	const char *const MATERIAL_DCB_EXPOSURE = "exposure";
-
-	const char *const SKYBOX_MATERIAL_DCB_ALBEDO_COLOR = "albedo_color";
-	const char *const SKYBOX_MATERIAL_DCB_ALBEDO_SRGB = "albedo_srgb";
-	const char *const SKYBOX_MATERIAL_DCB_EXPOSURE = "exposure";
+	const char *const SKYBOX_MATERIAL_DCB_ALBEDO_COLOR = "c";
+	const char *const SKYBOX_MATERIAL_DCB_ALBEDO_SRGB = "s";
+	const char *const SKYBOX_MATERIAL_DCB_EXPOSURE = "e";
 }

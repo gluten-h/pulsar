@@ -45,5 +45,5 @@ namespace pulsar
 #ifdef _DEBUG
 #define GFX_ASSERT(hr) if (hr != S_OK) THROW_GFX_EXC(hr)
 #else
-#define GFX_ASSERT(hr)
+#define GFX_ASSERT(hr) hr
 #endif

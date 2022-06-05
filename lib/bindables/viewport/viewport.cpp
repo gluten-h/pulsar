@@ -7,6 +7,11 @@ pulsar::viewport::viewport(UINT width, UINT height, float min_depth, float max_d
 	this->create_viewport(width, height, min_depth, max_depth);
 }
 
+XMUINT2		pulsar::viewport::size() const
+{
+	return (XMUINT2(this->m_viewport.Width, this->m_viewport.Height));
+}
+
 void	pulsar::viewport::resize(UINT width, UINT height)
 {
 	this->m_viewport.Width = width;

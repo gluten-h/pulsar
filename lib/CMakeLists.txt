@@ -45,10 +45,6 @@ set(LIB_SOURCES
 						dcb/raw_layout.cpp
 
 
-						ecs/entity_bin_tree_array.cpp
-						ecs/types.cpp
-
-
 						exceptions/base_exception.cpp
 						exceptions/gfx_exception.cpp
 						exceptions/rg_exception.cpp
@@ -56,6 +52,9 @@ set(LIB_SOURCES
 
 
 						gfx/gfx.cpp
+
+
+						input/pulsar_input.cpp
 
 
 						render_queue/render_queue.cpp
@@ -118,9 +117,8 @@ set(LIB_INCLUDES
 						dcb/buffer.h
 
 
+						ecs/entt/entt.h
 						ecs/types.h
-						ecs/registry.h
-						ecs/entity_bin_tree_array.h
 						ecs/system.h
 						ecs/ecs.h
 
@@ -136,6 +134,11 @@ set(LIB_INCLUDES
 
 
 						gfx/gfx.h
+
+
+						input/pulsar_keycodes.h
+						input/pulsar_mousecodes.h
+						input/pulsar_input.h
 
 
 						render_queue/types.h

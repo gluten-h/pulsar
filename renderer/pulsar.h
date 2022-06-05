@@ -7,7 +7,7 @@
 #include "renderer/renderer.h"
 #include "config/pulsar_config.h"
 #include "components/components.h"
-//#include "pulsar_input.h"
+#include "input/pulsar_input.h"
 #include "node/node.h"
 #include "scene/scene.h"
 #include "exceptions/exceptions.h"

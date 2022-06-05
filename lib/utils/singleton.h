@@ -11,7 +11,7 @@ namespace pulsar
 		virtual ~singleton() = default;
 
 	public:
-		static T	&instance()
+		inline static T	&instance()
 		{
 			static T instance;
 			return (instance);

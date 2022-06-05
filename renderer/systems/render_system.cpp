@@ -1,6 +1,5 @@
 
 #include "render_system.h"
-#include "ecs/registry.h"
 #include "transform/transform_component.h"
 #include "mesh/mesh_component.h"
 #include "material/material_component.h"
@@ -15,9 +14,9 @@ pulsar::render_system::render_system(pulsar::ecs::registry *registry) : pulsar::
 void	pulsar::render_system::execute(float delta_time)
 {
 	pulsar::render_queue::instance().clear();
-	pulsar::ecs::group group = this->mp_registry->group<pulsar::transform_component, pulsar::mesh_component, pulsar::material_component>();
+	auto view = this->mp_registry->view<pulsar::transform_component, pulsar::mesh_component, pulsar::material_component>();
 
-	for (auto entity : group)
+	for (auto entity : view)
 	{
 		pulsar::transform &transform = this->mp_registry->get<pulsar::transform_component>(entity).transform;
 		pulsar::mesh *mesh = this->mp_registry->get<pulsar::mesh_component>(entity).mesh;

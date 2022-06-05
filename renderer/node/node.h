@@ -1,6 +1,5 @@
 #pragma once
 
-#include "ecs/registry.h"
 #include "scene/scene.h"
 #include <cassert>
 #include <utility>
@@ -26,7 +25,7 @@ namespace pulsar
 		template <typename T>
 		bool	has_component() const
 		{
-			return (this->mp_scene->m_registry.has<T>(this->m_id));
+			return (this->mp_scene->m_registry.any_of<T>(this->m_id));
 		}
 
 		template <typename T>
@@ -42,7 +41,6 @@ namespace pulsar
 			assert(("Node already has component", !this->has_component<T>()));
 			return (this->mp_scene->m_registry.emplace<T>(this->m_id, std::forward<Args>(args)...));
 		}
-
 
 		template <typename T>
 		void	remove_component()

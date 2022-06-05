@@ -26,15 +26,19 @@ void	pulsar::camera_system::execute(float delta_time)
 	if (!main_camera || !main_camera->has_component<pulsar::camera_component>())
 		return;
 
-	pulsar::transform_component &transform = main_camera->get_component<pulsar::transform_component>();
+	pulsar::transform &transform = main_camera->get_component<pulsar::transform_component>().transform;
 	pulsar::camera_component &camera = main_camera->get_component<pulsar::camera_component>();
 
-	this->m_vert_camera.view = XMMatrixTranspose(transform.transform.get_matrix());
+	const XMMATRIX &transform_mat = transform.get_matrix();
+	XMVECTOR forward_vec = XMVector3NormalizeEst(transform_mat.r[2]);
+	XMVECTOR up_vec = XMVector3NormalizeEst(transform_mat.r[1]);
+
+	this->m_vert_camera.view = XMMatrixTranspose(XMMatrixLookToLH(transform_mat.r[3], forward_vec, up_vec));
 	this->m_vert_camera.proj = XMMatrixTranspose(camera.camera->get_projection());
 
-	this->m_frag_camera.pos = transform.transform.get_position();
+	this->m_frag_camera.pos = transform.get_position();
 	this->m_frag_camera.gamma = camera.gamma;
-	this->m_frag_camera.dir = transform.transform.forward();
+	this->m_frag_camera.dir = transform.forward();
 	this->m_frag_camera.exposure = camera.exposure;
 
 	this->mp_vert_camera_cbuffer->update();

@@ -6,6 +6,7 @@ set(REN_SOURCES
 						components/camera/perspective_camera.cpp
 
 						components/transform/transform.cpp
+						components/transform/transform_attr.cpp
 
 						components/material/material.cpp
 						components/material/material_props.cpp
@@ -29,12 +30,14 @@ set(REN_SOURCES
 						renderer/renderer.cpp
 
 						scene/scene.cpp
-						scene/scene_skybox.cpp
 						scene/scene_node.cpp
+
+						scripts/camera_controller.cpp
 
 						systems/camera_system.cpp
 						systems/render_system.cpp
 						systems/light_system.cpp
+						systems/script_system.cpp
 
 						pulsar_render_graph/deferred_render_graph.cpp
 
@@ -67,6 +70,9 @@ set(REN_INCLUDES
 
 						components/skybox_material/skybox_material.h
 
+						components/script/script.h
+						components/script/script_component.h
+
 						components/components.h
 
 						config/pulsar_config.h
@@ -86,9 +92,12 @@ set(REN_INCLUDES
 
 						scene/scene.h
 
+						scripts/camera_controller.h
+
 						systems/camera_system.h
 						systems/render_system.h
 						systems/light_system.h
+						systems/script_system.h
 
 						pulsar_render_graph/deferred_render_graph.h
 

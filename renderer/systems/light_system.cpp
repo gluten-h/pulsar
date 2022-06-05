@@ -20,14 +20,11 @@ pulsar::light_system::~light_system()
 
 void	pulsar::light_system::execute(float delta_time)
 {
-	pulsar::ecs::group group = this->mp_registry->group<pulsar::transform_component, pulsar::light_component>();
-	this->m_deferred_frag_lights.lights_count = group.size();
+	auto view = this->mp_registry->view<pulsar::transform_component, pulsar::light_component>();
 
-	int i = -1;
-	while (++i < group.size())
+	int i = 0;
+	for (auto entity : view)
 	{
-		pulsar::ecs::entity entity = group[i];
-
 		pulsar::transform &transform = this->mp_registry->get<pulsar::transform_component>(entity).transform;
 		pulsar::light *light = this->mp_registry->get<pulsar::light_component>(entity).light;
 
@@ -54,7 +51,10 @@ void	pulsar::light_system::execute(float delta_time)
 				break;
 			}
 		}
+
+		i++;
 	}
+	this->m_deferred_frag_lights.lights_count = i;
 
 	this->mp_deferred_frag_lights_cbuffer->update();
 	pulsar::renderer::instance().submit_deferred_frag_lights_cbuffer(this->mp_deferred_frag_lights_cbuffer);

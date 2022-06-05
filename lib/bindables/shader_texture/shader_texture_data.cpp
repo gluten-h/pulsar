@@ -1,5 +1,6 @@
 
 #include "shader_texture.h"
+#include "gfx/gfx.h"
 #include "filesystem/filesystem.h"
 #include "exceptions/gfx_exception.h"
 

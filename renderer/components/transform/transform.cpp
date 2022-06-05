@@ -5,13 +5,21 @@
 
 pulsar::transform	&pulsar::transform::operator=(const pulsar::transform &t)
 {
-	this->set_matrix(t.m_mat);
+	this->m_mat = t.m_mat;
+	this->m_pos = t.m_pos;
+	this->m_rot = t.m_rot;
+	this->m_scale = t.m_scale;
+
 	return (*this);
 }
 
 pulsar::transform::transform(const transform &t)
 {
-	this->set_matrix(t.m_mat);
+	this->m_mat = t.m_mat;
+	this->m_pos = t.m_pos;
+	this->m_rot = t.m_rot;
+	this->m_scale = t.m_scale;
+	
 	this->init_cbuffer();
 }
 
@@ -27,45 +35,13 @@ void	pulsar::transform::init_cbuffer()
 	this->m_transform_cbuffer.set_modified();
 }
 
-const XMMATRIX	&pulsar::transform::get_matrix() const
-{
-	return (this->m_mat);
-}
-
-void	pulsar::transform::set_matrix(const XMMATRIX &matrix)
+void	pulsar::transform::construct_matrix()
 {
 	this->m_transform_cbuffer.set_modified();
-	this->m_mat = matrix;
-}
 
-XMFLOAT3	pulsar::transform::get_position() const
-{
-	XMVECTOR vec = this->m_mat.r[3];
-	return (XMFLOAT3(XMVectorGetX(vec), XMVectorGetY(vec), XMVectorGetZ(vec)));
-}
-
-void	pulsar::transform::set_position(const XMFLOAT3 &pos)
-{
-	this->m_transform_cbuffer.set_modified();
-	this->m_mat.r[3] = XMVectorSet(pos.x, pos.y, pos.z, 1.0f);
-}
-
-XMFLOAT3	pulsar::transform::forward() const
-{
-	XMVECTOR vec = XMVector3Normalize(this->m_mat.r[2]);
-	return (XMFLOAT3(XMVectorGetX(vec), XMVectorGetY(vec), XMVectorGetZ(vec)));
-}
-
-XMFLOAT3	pulsar::transform::right() const
-{
-	XMVECTOR vec = XMVector3Normalize(this->m_mat.r[0]);
-	return (XMFLOAT3(XMVectorGetX(vec), XMVectorGetY(vec), XMVectorGetZ(vec)));
-}
-
-XMFLOAT3	pulsar::transform::up() const
-{
-	XMVECTOR vec = XMVector3Normalize(this->m_mat.r[1]);
-	return (XMFLOAT3(XMVectorGetX(vec), XMVectorGetY(vec), XMVectorGetZ(vec)));
+	this->m_mat = XMMatrixScaling(this->m_scale.x, this->m_scale.y, this->m_scale.z)
+		* XMMatrixRotationRollPitchYaw(this->m_rot.x, this->m_rot.y, this->m_rot.z)
+		* XMMatrixTranslation(this->m_pos.x, this->m_pos.y, this->m_pos.z);
 }
 
 void	pulsar::transform::bind() const
