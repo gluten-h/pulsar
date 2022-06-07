@@ -19,7 +19,6 @@ namespace pulsar
 		bool m_is_cursor_hidden = false;
 		bool m_is_cursor_clamped = false;
 
-		pulsar::viewport m_viewport;
 		pulsar::framebuffer m_framebuffer;
 
 		std::chrono::time_point<std::chrono::high_resolution_clock> m_begin_frame_time_point;
@@ -32,6 +31,8 @@ namespace pulsar
 		static void		set_active_window(pulsar::window *window);
 
 		static void		win_proc_mouse(RAWMOUSE &raw_mouse);
+		static void		win_proc_keyboard(RAWKEYBOARD &raw_keyboard);
+
 		static LRESULT CALLBACK		win_proc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param);
 
 	public:
@@ -54,7 +55,6 @@ namespace pulsar
 		void	end_frame();
 
 		HWND	hwnd();
-		pulsar::viewport	&viewport();
 		pulsar::framebuffer		&framebuffer();
 		XMUINT2	size() const;
 		float	delta_time() const;

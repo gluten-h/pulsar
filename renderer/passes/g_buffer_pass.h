@@ -15,7 +15,6 @@ namespace pulsar
 	class input_layout;
 	class sampler;
 	class depth_stencil_view;
-	class viewport;
 	class render_texture;
 
 	class g_buffer_pass : public pulsar::rg::pass
@@ -28,13 +27,10 @@ namespace pulsar
 		pulsar::sampler *mp_sampler = NULL;
 
 		pulsar::depth_stencil_view *mp_ds_view = NULL;
-		pulsar::viewport *mp_viewport = NULL;
 		pulsar::render_texture *mp_g_buffers[pulsar::G_BUFFERS_COUNT] = { NULL };
 
 		pulsar::rg::buffer_input<pulsar::depth_stencil_view> *mp_ds_view_input = NULL;
 		pulsar::rg::buffer_source<pulsar::depth_stencil_view> *mp_ds_view_source = NULL;
-
-		pulsar::rg::bindable_input<pulsar::viewport> *mp_viewport_input = NULL;
 
 		pulsar::rg::buffer_input<pulsar::render_texture> *mp_g_buffers_inputs[pulsar::G_BUFFERS_COUNT] = { NULL };
 		pulsar::rg::buffer_source<pulsar::render_texture> *mp_g_buffers_sources[pulsar::G_BUFFERS_COUNT] = { NULL };

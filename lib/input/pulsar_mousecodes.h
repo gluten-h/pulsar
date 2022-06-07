@@ -5,8 +5,8 @@
 
 namespace pulsar
 {
-	using mouse_code = uint16_t;
-	enum : mouse_code
+	using mousecode = uint16_t;
+	enum : mousecode
 	{
 		LMB			= 0x00,
 		RMB			= 0x03,

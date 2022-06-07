@@ -55,6 +55,8 @@ set(LIB_SOURCES
 
 
 						input/pulsar_input.cpp
+						input/pulsar_input_mouse.cpp
+						input/pulsar_input_keyboard.cpp
 
 
 						render_queue/render_queue.cpp
@@ -79,9 +81,6 @@ set(LIB_SOURCES ${LIB_SOURCES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDES		
-						containers/sparse_set.h
-
-
 						bindables/bindable/bindable.h
 						bindables/bindable/buffer_resource.h
 						bindables/const_buffers/const_buffer.h
@@ -168,7 +167,6 @@ set(LIB_INCLUDES ${LIB_INCLUDES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDE_DIRS	
-						containers
 						bindables
 						./)
 

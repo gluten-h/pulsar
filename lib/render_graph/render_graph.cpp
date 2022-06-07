@@ -7,11 +7,6 @@
 #include "rg_const.h"
 
 
-pulsar::rg::render_graph::render_graph()
-{
-	this->m_passes.resize(pulsar::rg::MAX_PASS_LEVELS);
-}
-
 void	pulsar::rg::render_graph::register_global_source(pulsar::rg::source *source)
 {
 	const std::string &name = source->name();
@@ -21,17 +16,14 @@ void	pulsar::rg::render_graph::register_global_source(pulsar::rg::source *source
 	this->m_global_sources[name] = source;
 }
 
-void	pulsar::rg::render_graph::add_pass(uint32_t level, pulsar::rg::pass *pass)
+void	pulsar::rg::render_graph::add_pass(uint8_t level, pulsar::rg::pass *pass)
 {
-	if (level >= pulsar::rg::MAX_PASS_LEVELS)
-		THROW_RG_EXC("Dependency levels overflow");
-
 	const std::string &name = pass->name();
 	if (this->m_passes_reg.find(name) != this->m_passes_reg.end())
 		THROW_RG_EXC("Pass \'" + name + "\' already exists");
 
 	this->m_passes_reg[name] = pass;
-	this->m_passes[level].push_back(pass);
+	this->m_passes_levels[level].push_back(pass);
 }
 
 void	pulsar::rg::render_graph::link_pass(pulsar::rg::pass *pass)
@@ -69,10 +61,14 @@ void	pulsar::rg::render_graph::link_pass(pulsar::rg::pass *pass)
 
 void	pulsar::rg::render_graph::compile()
 {
-	for (auto &level : this->m_passes)
+	for (auto &[level, passes] : this->m_passes_levels)
 	{
-		for (auto *pass : level)
+		this->m_passes.push_back({ });
+		for (auto *pass : passes)
+		{
+			this->m_passes.back().push_back(pass);
 			this->link_pass(pass);
+		}
 	}
 }
 

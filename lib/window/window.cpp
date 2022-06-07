@@ -37,12 +37,21 @@ void	pulsar::window::init(HINSTANCE h_instance)
 	if (!RegisterClassEx(&wc))
 		THROW_LAST_WIN_EXC();
 
-	RAWINPUTDEVICE rid;
-	rid.usUsagePage = HID_USAGE_PAGE_GENERIC;
-	rid.usUsage = HID_USAGE_GENERIC_MOUSE;
-	rid.dwFlags = 0;
-	rid.hwndTarget = NULL;
-	if (!RegisterRawInputDevices(&rid, 1u, sizeof(RAWINPUTDEVICE)))
+	RAWINPUTDEVICE rid[2u];
+
+	// mouse
+	rid[0].usUsagePage = HID_USAGE_PAGE_GENERIC;
+	rid[0].usUsage = HID_USAGE_GENERIC_MOUSE;
+	rid[0].dwFlags = 0u;
+	rid[0].hwndTarget = NULL;
+
+	// keyboard
+	rid[1].usUsagePage = HID_USAGE_PAGE_GENERIC;
+	rid[1].usUsage = HID_USAGE_GENERIC_KEYBOARD;
+	rid[1].dwFlags = 0u;
+	rid[1].hwndTarget = NULL;
+
+	if (!RegisterRawInputDevices(rid, 2u, sizeof(RAWINPUTDEVICE)))
 		THROW_LAST_WIN_EXC();
 }
 
@@ -60,7 +69,7 @@ bool	pulsar::window::process_events()
 {
 	MSG msg;
 
-	pulsar::input::reset();
+	pulsar::input::one_frame_reset();
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 	{
 		if (msg.message == WM_QUIT)

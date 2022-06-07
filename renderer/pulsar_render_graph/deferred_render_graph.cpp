@@ -15,37 +15,34 @@
 #include "passes/present_pass.h"
 
 
-pulsar::deferred_render_graph::deferred_render_graph(pulsar::viewport &viewport, pulsar::framebuffer &framebuffer)
+pulsar::deferred_render_graph::deferred_render_graph(pulsar::framebuffer &framebuffer)
 {
 	{
 		XMUINT2 framebuffer_size = framebuffer.size();
 
-		this->mp_viewport = &viewport;
 		this->mp_framebuffer = &framebuffer;
 		this->mp_ds_view = new pulsar::depth_stencil_view(framebuffer_size.x, framebuffer_size.y);
 		this->mp_hdr_buffer = new pulsar::render_texture(framebuffer_size.x, framebuffer_size.y, DXGI_FORMAT_R16G16B16A16_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE, 0u);
 
-		viewport.link_buffer_resource(this->mp_ds_view);
-		viewport.link_buffer_resource(this->mp_hdr_buffer);
+		framebuffer.link_buffer_resource(this->mp_ds_view);
+		framebuffer.link_buffer_resource(this->mp_hdr_buffer);
 
 		int i = -1;
 		while (++i < pulsar::G_BUFFERS_COUNT)
 		{
 			this->mp_g_buffers[i] = new pulsar::render_texture(framebuffer_size.x, framebuffer_size.y, DXGI_FORMAT_R16G16B16A16_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE, 0u);
 			this->mp_g_buffers[i]->set_slot(i);
-			viewport.link_buffer_resource(this->mp_g_buffers[i]);
+			framebuffer.link_buffer_resource(this->mp_g_buffers[i]);
 		}
 	}
 
 	{
 		this->mp_framebuffer_source = new pulsar::rg::buffer_source<pulsar::framebuffer>(pulsar::RG_G_FRAMEBUFFER, this->mp_framebuffer);
 		this->mp_ds_view_source = new pulsar::rg::buffer_source<pulsar::depth_stencil_view>(pulsar::RG_G_DS_VIEW, this->mp_ds_view);
-		this->mp_viewport_source = new pulsar::rg::bindable_source<pulsar::viewport>(pulsar::RG_G_VIEWPORT, this->mp_viewport);
 		this->mp_hdr_buffer_source = new pulsar::rg::buffer_source<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
 
 		this->register_global_source(this->mp_framebuffer_source);
 		this->register_global_source(this->mp_ds_view_source);
-		this->register_global_source(this->mp_viewport_source);
 		this->register_global_source(this->mp_hdr_buffer_source);
 
 		int i = -1;
@@ -73,7 +70,6 @@ pulsar::deferred_render_graph::deferred_render_graph(pulsar::viewport &viewport,
 		this->mp_g_buffer_pass = new pulsar::g_buffer_pass("g_buffer");
 
 		this->mp_g_buffer_pass->link_input(pulsar::RG_G_DS_VIEW, this->mp_clear_buffers_pass->name() + std::string(".") + pulsar::RG_G_DS_VIEW);
-		this->mp_g_buffer_pass->link_input(pulsar::RG_G_VIEWPORT, pulsar::rg::RG_ROOT + std::string(".") + pulsar::RG_G_VIEWPORT);
 		int i = -1;
 		while (++i < pulsar::G_BUFFERS_COUNT)
 			this->mp_g_buffer_pass->link_input(pulsar::RG_G_G_BUFFERS[i], this->mp_clear_buffers_pass->name() + std::string(".") + pulsar::RG_G_G_BUFFERS[i]);
@@ -84,7 +80,6 @@ pulsar::deferred_render_graph::deferred_render_graph(pulsar::viewport &viewport,
 		this->mp_deferred_pass = new pulsar::deferred_pass("deferred");
 	
 		this->mp_deferred_pass->link_input(pulsar::RG_G_DS_VIEW, this->mp_g_buffer_pass->name() + std::string(".") + pulsar::RG_G_DS_VIEW);
-		this->mp_deferred_pass->link_input(pulsar::RG_G_VIEWPORT, pulsar::rg::RG_ROOT + std::string(".") + pulsar::RG_G_VIEWPORT);
 		this->mp_deferred_pass->link_input(pulsar::RG_G_HDR_BUFFER, this->mp_clear_buffers_pass->name() + std::string(".") + pulsar::RG_G_HDR_BUFFER);
 		int i = -1;
 		while (++i < pulsar::G_BUFFERS_COUNT)
@@ -96,7 +91,6 @@ pulsar::deferred_render_graph::deferred_render_graph(pulsar::viewport &viewport,
 		this->mp_skybox_pass = new pulsar::skybox_pass("skybox");
 	
 		this->mp_skybox_pass->link_input(pulsar::RG_G_DS_VIEW, this->mp_deferred_pass->name() + std::string(".") + pulsar::RG_G_DS_VIEW);
-		this->mp_skybox_pass->link_input(pulsar::RG_G_VIEWPORT, pulsar::rg::RG_ROOT + std::string(".") + pulsar::RG_G_VIEWPORT);
 		this->mp_skybox_pass->link_input(pulsar::RG_G_HDR_BUFFER, this->mp_deferred_pass->name() + std::string(".") + pulsar::RG_G_HDR_BUFFER);
 	
 		this->add_pass(3u, this->mp_skybox_pass);
@@ -106,7 +100,6 @@ pulsar::deferred_render_graph::deferred_render_graph(pulsar::viewport &viewport,
 	
 		this->mp_post_effects_pass->link_input(pulsar::RG_G_FRAMEBUFFER, this->mp_clear_buffers_pass->name() + std::string(".") + pulsar::RG_G_FRAMEBUFFER);
 		this->mp_post_effects_pass->link_input(pulsar::RG_G_HDR_BUFFER, this->mp_skybox_pass->name() + std::string(".") + pulsar::RG_G_HDR_BUFFER);
-		this->mp_post_effects_pass->link_input(pulsar::RG_G_VIEWPORT, pulsar::rg::RG_ROOT + std::string(".") + pulsar::RG_G_VIEWPORT);
 	
 		this->add_pass(4u, this->mp_post_effects_pass);
 	}
@@ -133,7 +126,6 @@ pulsar::deferred_render_graph::~deferred_render_graph()
 	{
 		delete this->mp_framebuffer_source;
 		delete this->mp_ds_view_source;
-		delete this->mp_viewport_source;
 		delete this->mp_hdr_buffer_source;
 
 		int i = -1;

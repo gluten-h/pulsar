@@ -25,7 +25,7 @@ vs_out  vert(float3 pos : POSITION, float3 normal : NORMAL, float2 uv : UV)
 
 	output.pos = mul(float4(pos.xyz, 1.0f), mul(mul(model, view), proj));
 	output.world_pos = mul(float4(pos.xyz, 1.0f), model);
-	output.normal = mul(normal, (float3x3) norm);
+	output.normal = mul(normal, (float3x3)norm);
     output.uv = uv;
 
     return (output);

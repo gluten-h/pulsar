@@ -23,8 +23,6 @@ set(REN_SOURCES
 						components/skybox_material/skybox_material.cpp
 						components/skybox_material/skybox_material_props.cpp
 
-						misc/cam_controller/cam_controller.cpp
-
 						node/node.cpp
 
 						renderer/renderer.cpp
@@ -33,6 +31,7 @@ set(REN_SOURCES
 						scene/scene_node.cpp
 
 						scripts/camera_controller.cpp
+						scripts/node_rotation.cpp
 
 						systems/camera_system.cpp
 						systems/render_system.cpp
@@ -84,8 +83,6 @@ set(REN_INCLUDES
 						config/shader.h
 						config/shader_texture.h
 
-						misc/cam_controller/cam_controller.h
-
 						node/node.h
 
 						renderer/renderer.h
@@ -93,6 +90,7 @@ set(REN_INCLUDES
 						scene/scene.h
 
 						scripts/camera_controller.h
+						scripts/node_rotation.h
 
 						systems/camera_system.h
 						systems/render_system.h
@@ -115,8 +113,6 @@ set(REN_INCLUDES ${REN_INCLUDES} PARENT_SCOPE)
 set(REN_INCLUDE_DIRS	
 
 						components
-
-						misc/cam_controller
 						./)
 
 target_sources(${PROJECT_NAME} PUBLIC ${REN_SOURCES} ${REN_INCLUDES})

@@ -34,15 +34,11 @@ pulsar::skybox_pass::skybox_pass(const std::string &name) : pulsar::rg::pass(nam
 	this->mp_ds_view_input = new pulsar::rg::buffer_input<pulsar::depth_stencil_view>(pulsar::RG_G_DS_VIEW, this->mp_ds_view);
 	this->mp_ds_view_source = new pulsar::rg::buffer_source<pulsar::depth_stencil_view>(pulsar::RG_G_DS_VIEW, this->mp_ds_view);
 
-	this->mp_viewport_input = new pulsar::rg::bindable_input<pulsar::viewport>(pulsar::RG_G_VIEWPORT, this->mp_viewport);
-
 	this->register_input(this->mp_hdr_buffer_input);
 	this->register_source(this->mp_hdr_buffer_source);
 
 	this->register_input(this->mp_ds_view_input);
 	this->register_source(this->mp_ds_view_source);
-
-	this->register_input(this->mp_viewport_input);
 }
 
 pulsar::skybox_pass::~skybox_pass()
@@ -58,8 +54,6 @@ pulsar::skybox_pass::~skybox_pass()
 
 	delete this->mp_ds_view_input;
 	delete this->mp_ds_view_source;
-
-	delete this->mp_viewport_input;
 }
 
 void	pulsar::skybox_pass::validate() const
@@ -68,8 +62,6 @@ void	pulsar::skybox_pass::validate() const
 		THROW_RG_EXC("HDR Buffer isn't bound");
 	if (!this->mp_ds_view)
 		THROW_RG_EXC("Depth Stencil View isn't bound");
-	if (!this->mp_viewport)
-		THROW_RG_EXC("Viewport isn't bound");
 }
 
 void	pulsar::skybox_pass::execute()
@@ -80,6 +72,7 @@ void	pulsar::skybox_pass::execute()
 	if (!active_scene || !active_scene->get_main_camera())
 		return;
 
+	auto *camera_viewport = renderer.get_main_camera_viewport();
 	auto *vert_camera_cbuffer = renderer.get_vert_camera_cbuffer();
 	auto *frag_camera_cbuffer = renderer.get_frag_camera_cbuffer();
 	auto &skybox_material = active_scene->skybox_material();
@@ -92,7 +85,7 @@ void	pulsar::skybox_pass::execute()
 		this->mp_ds_state->bind();
 		this->mp_sampler->bind();
 		this->mp_input_layout->bind();
-		this->mp_viewport->bind();
+		camera_viewport->bind();
 		this->mp_hdr_buffer->bind_rtv(this->mp_ds_view->get_view());
 
 		vert_camera_cbuffer->set_slot(pulsar::SKYBOX_VERT_CAMERA_SLOT);
@@ -110,7 +103,7 @@ void	pulsar::skybox_pass::execute()
 		vert_camera_cbuffer->unbind();
 
 		this->mp_hdr_buffer->unbind_rtv();
-		this->mp_viewport->unbind();
+		camera_viewport->unbind();
 		this->mp_input_layout->unbind();
 		this->mp_sampler->unbind();
 		this->mp_ds_state->unbind();

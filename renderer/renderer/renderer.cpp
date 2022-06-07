@@ -2,6 +2,11 @@
 #include "renderer.h"
 
 
+pulsar::viewport	*pulsar::renderer::get_main_camera_viewport()
+{
+	return (this->mp_main_camera_viewport);
+}
+
 pulsar::vert_const_buffer<pulsar::vert_camera>	*pulsar::renderer::get_vert_camera_cbuffer()
 {
 	return (this->mp_vert_camera_cbuffer);
@@ -15,6 +20,12 @@ pulsar::frag_const_buffer<pulsar::frag_camera>	*pulsar::renderer::get_frag_camer
 pulsar::frag_const_buffer<pulsar::deferred_frag_lights>		*pulsar::renderer::get_deferred_frag_lights_cbuffer()
 {
 	return (this->mp_deferred_frag_lights_cbuffer);
+}
+
+
+void	pulsar::renderer::submit_main_camera_viewport(pulsar::viewport *viewport)
+{
+	this->mp_main_camera_viewport = viewport;
 }
 
 void	pulsar::renderer::submit_vert_camera_cbuffer(pulsar::vert_const_buffer<pulsar::vert_camera> *cbuffer)

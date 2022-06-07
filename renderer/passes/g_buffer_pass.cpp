@@ -37,12 +37,8 @@ pulsar::g_buffer_pass::g_buffer_pass(const std::string &name) : pulsar::rg::pass
 	this->mp_ds_view_input = new pulsar::rg::buffer_input<pulsar::depth_stencil_view>(pulsar::RG_G_DS_VIEW, this->mp_ds_view);
 	this->mp_ds_view_source = new pulsar::rg::buffer_source<pulsar::depth_stencil_view>(pulsar::RG_G_DS_VIEW, this->mp_ds_view);
 
-	this->mp_viewport_input = new pulsar::rg::bindable_input<pulsar::viewport>(pulsar::RG_G_VIEWPORT, this->mp_viewport);
-
 	this->register_input(this->mp_ds_view_input);
 	this->register_source(this->mp_ds_view_source);
-
-	this->register_input(this->mp_viewport_input);
 
 	int i = -1;
 	while (++i < pulsar::G_BUFFERS_COUNT)
@@ -66,8 +62,6 @@ pulsar::g_buffer_pass::~g_buffer_pass()
 	delete this->mp_ds_view_input;
 	delete this->mp_ds_view_source;
 
-	delete this->mp_viewport_input;
-
 	int i = -1;
 	while (++i < pulsar::G_BUFFERS_COUNT)
 	{
@@ -80,8 +74,6 @@ void	pulsar::g_buffer_pass::validate() const
 {
 	if (!this->mp_ds_view)
 		THROW_RG_EXC("Depth Stencil View isn't bound");
-	if (!this->mp_viewport)
-		THROW_RG_EXC("Viewport isn't bound");
 
 	int i = -1;
 	while (++i < pulsar::G_BUFFERS_COUNT)
@@ -107,6 +99,7 @@ void	pulsar::g_buffer_pass::execute()
 	while (++i < pulsar::G_BUFFERS_COUNT)
 		g_buffers_data[i] = this->mp_g_buffers[i]->render_target();
 
+	auto *camera_viewport = renderer.get_main_camera_viewport();
 	auto *vert_camera_cbuffer = renderer.get_vert_camera_cbuffer();
 
 	{
@@ -116,7 +109,7 @@ void	pulsar::g_buffer_pass::execute()
 		this->mp_g_buffer_gs->bind();
 		this->mp_input_layout->bind();
 		this->mp_sampler->bind();
-		this->mp_viewport->bind();
+		camera_viewport->bind();
 		device_context->OMSetRenderTargets(pulsar::G_BUFFERS_COUNT, g_buffers_data, this->mp_ds_view->get_view());
 
 		vert_camera_cbuffer->set_slot(pulsar::G_BUFFER_VERT_CAMERA_SLOT);
@@ -129,7 +122,7 @@ void	pulsar::g_buffer_pass::execute()
 		vert_camera_cbuffer->unbind();
 
 		device_context->OMSetRenderTargets(pulsar::G_BUFFERS_COUNT, g_buffers_null, NULL);
-		this->mp_viewport->unbind();
+		camera_viewport->unbind();
 		this->mp_sampler->unbind();
 		this->mp_input_layout->unbind();
 		this->mp_g_buffer_gs->unbind();

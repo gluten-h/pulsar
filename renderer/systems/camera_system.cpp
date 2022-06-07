@@ -44,6 +44,7 @@ void	pulsar::camera_system::execute(float delta_time)
 	this->mp_vert_camera_cbuffer->update();
 	this->mp_frag_camera_cbuffer->update();
 
+	pulsar::renderer::instance().submit_main_camera_viewport(&camera.camera->viewport());
 	pulsar::renderer::instance().submit_vert_camera_cbuffer(this->mp_vert_camera_cbuffer);
 	pulsar::renderer::instance().submit_frag_camera_cbuffer(this->mp_frag_camera_cbuffer);
 }

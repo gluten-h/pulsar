@@ -15,7 +15,6 @@ namespace pulsar
 	class input_layout;
 	class render_texture;
 	class depth_stencil_view;
-	class viewport;
 
 	class skybox_pass : public pulsar::rg::pass
 	{
@@ -28,15 +27,12 @@ namespace pulsar
 
 		pulsar::render_texture *mp_hdr_buffer = NULL;
 		pulsar::depth_stencil_view *mp_ds_view = NULL;
-		pulsar::viewport *mp_viewport = NULL;
 
 		pulsar::rg::buffer_input<pulsar::render_texture> *mp_hdr_buffer_input = NULL;
 		pulsar::rg::buffer_source<pulsar::render_texture> *mp_hdr_buffer_source = NULL;
 
 		pulsar::rg::buffer_input<pulsar::depth_stencil_view> *mp_ds_view_input = NULL;
 		pulsar::rg::buffer_source<pulsar::depth_stencil_view> *mp_ds_view_source = NULL;
-
-		pulsar::rg::bindable_input<pulsar::viewport> *mp_viewport_input = NULL;
 
 	public:
 		skybox_pass &operator=(const skybox_pass&) = delete;

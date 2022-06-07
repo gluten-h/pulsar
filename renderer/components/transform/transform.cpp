@@ -49,7 +49,7 @@ void	pulsar::transform::bind() const
 	if (this->m_transform_cbuffer.is_modified())
 	{
 		this->m_shader_transform.model = XMMatrixTranspose(this->m_mat);
-		this->m_shader_transform.norm = XMMatrixTranspose(XMMatrixInverse(NULL, this->m_mat));
+		this->m_shader_transform.norm = (XMMatrixInverse(NULL, this->m_mat));
 
 		this->m_transform_cbuffer.update();
 	}

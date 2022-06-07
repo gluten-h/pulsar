@@ -14,7 +14,6 @@ namespace pulsar
 {
 	class frag_shader;
 	class depth_stencil_view;
-	class viewport;
 	class render_texture;
 	class sampler;
 
@@ -26,7 +25,6 @@ namespace pulsar
 
 		pulsar::render_texture *mp_hdr_buffer = NULL;
 		pulsar::depth_stencil_view *mp_ds_view = NULL;
-		pulsar::viewport *mp_viewport = NULL;
 		pulsar::render_texture *mp_g_buffers[pulsar::G_BUFFERS_COUNT] = { NULL };
 
 		pulsar::rg::buffer_input<pulsar::render_texture> *mp_hdr_buffer_input = NULL;
@@ -34,8 +32,6 @@ namespace pulsar
 
 		pulsar::rg::buffer_input<pulsar::depth_stencil_view> *mp_ds_view_input = NULL;
 		pulsar::rg::buffer_source<pulsar::depth_stencil_view> *mp_ds_view_source = NULL;
-
-		pulsar::rg::bindable_input<pulsar::viewport> *mp_viewport_input = NULL;
 
 		pulsar::rg::buffer_input<pulsar::render_texture> *mp_g_buffers_inputs[pulsar::G_BUFFERS_COUNT] = { NULL };
 		pulsar::rg::buffer_source<pulsar::render_texture> *mp_g_buffers_sources[pulsar::G_BUFFERS_COUNT] = { NULL };

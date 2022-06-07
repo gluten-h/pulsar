@@ -12,7 +12,6 @@ namespace pulsar
 	class sampler;
 	class framebuffer;
 	class render_texture;
-	class viewport;
 
 	class post_effects_pass : public pulsar::fullscreen_pass
 	{
@@ -22,15 +21,12 @@ namespace pulsar
 
 		pulsar::framebuffer *mp_framebuffer = NULL;
 		pulsar::render_texture *mp_hdr_buffer = NULL;
-		pulsar::viewport *mp_viewport = NULL;
 
 		pulsar::rg::buffer_input<pulsar::framebuffer> *mp_frambuffer_input = NULL;
 		pulsar::rg::buffer_source<pulsar::framebuffer> *mp_framebuffer_source = NULL;
 
 		pulsar::rg::buffer_input<pulsar::render_texture> *mp_hdr_buffer_input = NULL;
 		pulsar::rg::buffer_source<pulsar::render_texture> *mp_hdr_buffer_source = NULL;
-
-		pulsar::rg::bindable_input<pulsar::viewport> *mp_viewport_input = NULL;
 
 	public:
 		post_effects_pass &operator=(const post_effects_pass&) = delete;

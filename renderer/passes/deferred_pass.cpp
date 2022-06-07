@@ -23,15 +23,11 @@ pulsar::deferred_pass::deferred_pass(const std::string &name) : pulsar::fullscre
 	this->mp_ds_view_input = new pulsar::rg::buffer_input<pulsar::depth_stencil_view>(pulsar::RG_G_DS_VIEW, this->mp_ds_view);
 	this->mp_ds_view_source = new pulsar::rg::buffer_source<pulsar::depth_stencil_view>(pulsar::RG_G_DS_VIEW, this->mp_ds_view);
 
-	this->mp_viewport_input = new pulsar::rg::bindable_input<pulsar::viewport>(pulsar::RG_G_VIEWPORT, this->mp_viewport);
-
 	this->register_input(this->mp_hdr_buffer_input);
 	this->register_source(this->mp_hdr_buffer_source);
 
 	this->register_input(this->mp_ds_view_input);
 	this->register_source(this->mp_ds_view_source);
-
-	this->register_input(this->mp_viewport_input);
 
 	int i = -1;
 	while (++i < pulsar::G_BUFFERS_COUNT)
@@ -55,8 +51,6 @@ pulsar::deferred_pass::~deferred_pass()
 	delete this->mp_ds_view_input;
 	delete this->mp_ds_view_source;
 
-	delete this->mp_viewport_input;
-
 	int i = -1;
 	while (++i < pulsar::G_BUFFERS_COUNT)
 	{
@@ -69,8 +63,6 @@ void	pulsar::deferred_pass::validate() const
 {
 	if (!this->mp_ds_view)
 		THROW_RG_EXC("Depth Stencil View isn't bound");
-	if (!this->mp_viewport)
-		THROW_RG_EXC("Viewport isn't bound");
 	if (!this->mp_hdr_buffer)
 		THROW_RG_EXC("HDR Buffer isn't bound");
 
@@ -90,6 +82,7 @@ void	pulsar::deferred_pass::execute()
 	if (!active_scene || !active_scene->get_main_camera())
 		return;
 
+	auto *camera_viewport = renderer.get_main_camera_viewport();
 	auto *deferred_frag_lights_cbuffer = renderer.get_deferred_frag_lights_cbuffer();
 	auto *frag_camera_cbuffer = renderer.get_frag_camera_cbuffer();
 
@@ -98,7 +91,7 @@ void	pulsar::deferred_pass::execute()
 		this->mp_deferred_fs->bind();
 		this->mp_hdr_buffer->bind_rtv();
 		this->mp_sampler->bind();
-		this->mp_viewport->bind();
+		camera_viewport->bind();
 
 		deferred_frag_lights_cbuffer->bind();
 		frag_camera_cbuffer->set_slot(pulsar::DEFERRED_FRAG_CAMERA_SLOT);
@@ -119,7 +112,7 @@ void	pulsar::deferred_pass::execute()
 		frag_camera_cbuffer->unbind();
 		deferred_frag_lights_cbuffer->unbind();
 
-		this->mp_viewport->unbind();
+		camera_viewport->unbind();
 		this->mp_sampler->unbind();
 		this->mp_hdr_buffer->unbind_rtv();
 		this->mp_deferred_fs->unbind();

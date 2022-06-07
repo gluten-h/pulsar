@@ -21,15 +21,11 @@ pulsar::post_effects_pass::post_effects_pass(const std::string &name) : pulsar::
 	this->mp_hdr_buffer_input = new pulsar::rg::buffer_input<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
 	this->mp_hdr_buffer_source = new pulsar::rg::buffer_source<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
 
-	this->mp_viewport_input = new pulsar::rg::bindable_input<pulsar::viewport>(pulsar::RG_G_VIEWPORT, this->mp_viewport);
-
 	this->register_input(this->mp_frambuffer_input);
 	this->register_source(this->mp_framebuffer_source);
 
 	this->register_input(this->mp_hdr_buffer_input);
 	this->register_source(this->mp_hdr_buffer_source);
-
-	this->register_input(this->mp_viewport_input);
 }
 
 pulsar::post_effects_pass::~post_effects_pass()
@@ -42,8 +38,6 @@ pulsar::post_effects_pass::~post_effects_pass()
 
 	delete this->mp_hdr_buffer_input;
 	delete this->mp_hdr_buffer_source;
-
-	delete this->mp_viewport_input;
 }
 
 void	pulsar::post_effects_pass::validate() const
@@ -52,8 +46,6 @@ void	pulsar::post_effects_pass::validate() const
 		THROW_RG_EXC("Framebuffer isn't bound");
 	if (!this->mp_hdr_buffer)
 		THROW_RG_EXC("HDR Buffer isn't bound");
-	if (!this->mp_viewport)
-		THROW_RG_EXC("Viewport isn't bound");
 }
 
 void	pulsar::post_effects_pass::execute()
@@ -64,12 +56,13 @@ void	pulsar::post_effects_pass::execute()
 	if (!active_scene || !active_scene->get_main_camera())
 		return;
 
+	auto *camera_viewport = renderer.get_main_camera_viewport();
 	auto *frag_camera_cbuffer = renderer.get_frag_camera_cbuffer();
 
 	{
 		this->mp_post_effects_fs->bind();
 		this->mp_sampler->bind();
-		this->mp_viewport->bind();
+		camera_viewport->bind();
 		this->mp_hdr_buffer->bind_srv();
 		this->mp_framebuffer->bind();
 
@@ -84,7 +77,7 @@ void	pulsar::post_effects_pass::execute()
 
 		this->mp_framebuffer->unbind();
 		this->mp_hdr_buffer->unbind_srv();
-		this->mp_viewport->unbind();
+		camera_viewport->unbind();
 		this->mp_sampler->unbind();
 		this->mp_post_effects_fs->unbind();
 	}

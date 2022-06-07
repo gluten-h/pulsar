@@ -1,10 +1,8 @@
 
 #include "pulsar.h"
 
-#include "input/pulsar_input.h"
-#include "cam_controller.h"
-
 #include "scripts/camera_controller.h"
+#include "scripts/node_rotation.h"
 
 
 int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_cmd_line, int n_cmd_show)
@@ -12,7 +10,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 	pulsar::init(h_instance);
 
 	pulsar::window win("pulsar", 1280u, 720u);
-	pulsar::deferred_render_graph render_graph(win.viewport(), win.framebuffer());
+	pulsar::deferred_render_graph render_graph(win.framebuffer());
 
 	pulsar::scene scene;
 	pulsar::scene::set_active_scene(&scene);
@@ -32,11 +30,12 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 	
 		scene.set_main_camera(&camera_node);
 	}
-	win.viewport().link_buffer_resource(&camera.viewport());
+	win.framebuffer().link_buffer_resource(&camera.viewport());
 	
 	
 	pulsar::node cube = scene.create_node();
 	pulsar::material pepega_mat;
+	pulsar::node_rotation cube_nr(&cube, 0.25f, XMFLOAT3(1.0f, 0.0f, 1.0f));
 	{
 		pepega_mat.albedo_map().set(L"resources/textures/p3.jpg");
 		pepega_mat.normal_map().set(L"resources/textures/brick00/normal.png");
@@ -45,10 +44,12 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		cube.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(1.0f, 0.0f, 5.5f));
 		cube.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::CUBE);
 		cube.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &pepega_mat;
+		cube.add_component<pulsar::script_component>(&cube_nr);
 	}
 	
 	pulsar::node sphere = scene.create_node();
 	pulsar::material brick_mat;
+	pulsar::node_rotation sphere_nr(&sphere, 0.25f);
 	{
 		brick_mat.albedo_map().set(L"resources/textures/brick00/albedo.png");
 		brick_mat.normal_map().set(L"resources/textures/brick00/normal.png");
@@ -61,10 +62,12 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.5f, 0.5f, 0.5f));
 		sphere.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
 		sphere.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &brick_mat;
+		sphere.add_component<pulsar::script_component>(&sphere_nr);
 	}
 	
 	pulsar::node sphere1 = scene.create_node();
 	pulsar::material metal_mat;
+	pulsar::node_rotation sphere1_nr(&sphere1, 0.25f);
 	{
 		metal_mat.albedo_map().set(L"resources/textures/metal00/albedo.png");
 		metal_mat.normal_map().set(L"resources/textures/metal00/normal.png");
@@ -77,10 +80,12 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere1.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.5f, 0.5f, 0.5f));
 		sphere1.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
 		sphere1.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &metal_mat;
+		sphere1.add_component<pulsar::script_component>(&sphere1_nr);
 	}
 	
 	pulsar::node sphere2 = scene.create_node();
 	pulsar::material wood_mat;
+	pulsar::node_rotation sphere2_nr(&sphere2, 0.25f);
 	{
 		wood_mat.albedo_map().set(L"resources/textures/wood00/albedo.png");
 		wood_mat.normal_map().set(L"resources/textures/wood00/normal.png");
@@ -93,6 +98,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere2.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.5f, 0.5f, 0.5f));
 		sphere2.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
 		sphere2.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &wood_mat;
+		sphere2.add_component<pulsar::script_component>(&sphere2_nr);
 	}
 	
 	
@@ -113,23 +119,6 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 
 	while (win.process_events())
 	{
-		//for (auto &it : pulsar::WIN_MANAGER::get_instance())
-		//{
-		//	WINDOW *win = it.data;
-		//
-		//	float delta_time = gfx::instance_delta_time();
-		//	cube_obj->transform.rotation = XMFLOAT3(cube_obj->transform.rotation.x + delta_time * 0.25f, 0.0f, cube_obj->transform.rotation.z + delta_time * 0.25f);
-		//	sph_obj->transform.rotation = XMFLOAT3(sph_obj->transform.rotation.x + delta_time * 0.25f, sph_obj->transform.rotation.y + delta_time * 0.25f, sph_obj->transform.rotation.z + delta_time * 0.25f);
-		//	sph1_obj->transform.rotation = XMFLOAT3(sph1_obj->transform.rotation.x + delta_time * 0.25f, sph1_obj->transform.rotation.y + delta_time * 0.25f, sph1_obj->transform.rotation.z + delta_time * 0.25f);
-		//	sph2_obj->transform.rotation = XMFLOAT3(sph2_obj->transform.rotation.x + delta_time * 0.25f, sph2_obj->transform.rotation.y + delta_time * 0.25f, sph2_obj->transform.rotation.z + delta_time * 0.25f);
-		//
-		//	win->update();
-		//	win->draw();
-		//
-		//	win->present();
-		//}
-		//GFX::set_delta_time();
-	
 		//std::string dt_str = "delta_time: " + std::to_string(win.delta_time()) + '\n';
 		//OutputDebugString(dt_str.c_str());
 	

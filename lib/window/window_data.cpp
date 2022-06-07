@@ -17,9 +17,7 @@ void	pulsar::window::create_window(const LPCSTR name, UINT width, UINT height, B
 	if (!hwnd)
 		THROW_LAST_WIN_EXC();
 
-	this->m_viewport.set(width, height);
 	this->m_framebuffer.set(hwnd);
-	this->m_viewport.link_buffer_resource(&this->m_framebuffer);
 }
 
 void	pulsar::window::set_name(const LPCSTR name)
@@ -36,17 +34,12 @@ void	pulsar::window::resize(UINT width, UINT height)
 	if (!SetWindowPos(this->m_hwnd, NULL, 0, 0, wr.right - wr.left, wr.bottom - wr.top, SWP_NOMOVE | SWP_NOZORDER))
 		THROW_LAST_WIN_EXC();
 
-	this->m_viewport.resize(width, height);
+	this->m_framebuffer.resize(width, height);
 }
 
 HWND	pulsar::window::hwnd()
 {
 	return (this->m_hwnd);
-}
-
-pulsar::viewport	&pulsar::window::viewport()
-{
-	return (this->m_viewport);
 }
 
 pulsar::framebuffer		&pulsar::window::framebuffer()

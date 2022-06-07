@@ -38,24 +38,21 @@ LRESULT CALLBACK	pulsar::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, L
 					win->clamp_cursor();
 			}
 			else
-				pulsar::input::reset();
+				pulsar::input::full_reset();
 
 			break;
 		}
 		case WM_SIZE:
 		{
-			static bool a = 0;
-
 			UINT width = LOWORD(l_param);
 			UINT height = HIWORD(l_param);
 
 			//std::string msg = std::to_string(width) + ' ' + std::to_string(height) + '\n';
 			//OutputDebugString(msg.c_str());
 
-			// TODO: viewport size must be separated from window size
 			// TODO: ideally this code must be placed in some kind of event-system
 			if (width && height)
-				win->viewport().resize(width, height);
+				win->framebuffer().resize(width, height);
 
 			break;
 		}
@@ -66,8 +63,11 @@ LRESULT CALLBACK	pulsar::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, L
 			GetRawInputData((HRAWINPUT)l_param, RID_INPUT, raw_buffer, &size, sizeof(RAWINPUTHEADER));
 
 			RAWINPUT *raw_input = (RAWINPUT*)raw_buffer;
+
 			if (raw_input->header.dwType == RIM_TYPEMOUSE)
 				window::win_proc_mouse(raw_input->data.mouse);
+			else if (raw_input->header.dwType == RIM_TYPEKEYBOARD)
+				window::win_proc_keyboard(raw_input->data.keyboard);
 
 			break;
 		}
@@ -137,3 +137,15 @@ void	pulsar::window::win_proc_mouse(RAWMOUSE &raw_mouse)
 	}
 }
 
+void	pulsar::window::win_proc_keyboard(RAWKEYBOARD &raw_keyboard)
+{
+	if (raw_keyboard.MakeCode == 0xFF)
+		return;
+
+	bool E0_prefix = (raw_keyboard.Flags & RI_KEY_E0);
+
+	if (raw_keyboard.Flags == RI_KEY_MAKE)
+		pulsar::input::set_key_down(raw_keyboard.MakeCode, E0_prefix);
+	else if (raw_keyboard.Flags == RI_KEY_BREAK)
+		pulsar::input::set_key_up(raw_keyboard.MakeCode, E0_prefix);
+}

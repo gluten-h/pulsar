@@ -8,7 +8,6 @@
 
 namespace pulsar
 {
-	class viewport;
 	class framebuffer;
 	class depth_stencil_view;
 	class render_texture;
@@ -23,7 +22,6 @@ namespace pulsar
 	class deferred_render_graph : public pulsar::rg::render_graph
 	{
 	private:
-		pulsar::viewport *mp_viewport = NULL;
 		pulsar::framebuffer *mp_framebuffer = NULL;
 		pulsar::depth_stencil_view *mp_ds_view = NULL;
 		pulsar::render_texture *mp_hdr_buffer = NULL;
@@ -31,7 +29,6 @@ namespace pulsar
 
 		pulsar::rg::buffer_source<pulsar::framebuffer> *mp_framebuffer_source = NULL;
 		pulsar::rg::buffer_source<pulsar::depth_stencil_view> *mp_ds_view_source = NULL;
-		pulsar::rg::bindable_source<pulsar::viewport> *mp_viewport_source = NULL;
 		pulsar::rg::buffer_source<pulsar::render_texture> *mp_hdr_buffer_source;
 		pulsar::rg::buffer_source<pulsar::render_texture> *mp_g_buffers_sources[pulsar::G_BUFFERS_COUNT] = { NULL };
 
@@ -49,7 +46,7 @@ namespace pulsar
 		deferred_render_graph(const deferred_render_graph&) = delete;
 		deferred_render_graph(deferred_render_graph&&) = delete;
 		deferred_render_graph() = delete;
-		deferred_render_graph(pulsar::viewport &viewport, pulsar::framebuffer &framebuffer);
+		deferred_render_graph(pulsar::framebuffer &framebuffer);
 		~deferred_render_graph();
 	};
 }
