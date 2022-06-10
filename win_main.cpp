@@ -22,18 +22,15 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 	pulsar::perspective_camera camera(1280u, 720u, pulsar::deg2rad(80.0f), 0.001f, 1000.0f);
 	pulsar::camera_controller camera_controller(&camera_node, 5.0f, 6.0f, 0.8f);
 	{
-		XMVECTOR camera_pos = XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f);
-		XMVECTOR camera_forward = XMVectorSet(0.0f, 0.0f, 1.0f, 1.0f);
-		XMVECTOR camera_up = XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f);
 		camera_node.add_component<pulsar::camera_component>(&camera);
 		camera_node.add_component<pulsar::script_component>(&camera_controller);
-	
-		scene.set_main_camera(&camera_node);
 	}
 	win.framebuffer().link_buffer_resource(&camera.viewport());
-	
+	scene.set_main_camera(&camera_node);
+
 	
 	pulsar::node cube = scene.create_node();
+	pulsar::cube cube_mesh;
 	pulsar::material pepega_mat;
 	pulsar::node_rotation cube_nr(&cube, 0.25f, XMFLOAT3(1.0f, 0.0f, 1.0f));
 	{
@@ -42,11 +39,11 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		pepega_mat.normal_factor() = 1.0f;
 	
 		cube.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(1.0f, 0.0f, 5.5f));
-		cube.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::CUBE);
+		cube.add_component<pulsar::mesh_component>(&cube_mesh);
 		cube.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &pepega_mat;
 		cube.add_component<pulsar::script_component>(&cube_nr);
 	}
-	
+
 	pulsar::node sphere = scene.create_node();
 	pulsar::material brick_mat;
 	pulsar::node_rotation sphere_nr(&sphere, 0.25f);

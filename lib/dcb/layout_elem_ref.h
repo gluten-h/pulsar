@@ -10,7 +10,7 @@ namespace pulsar
 {
 	namespace dcb
 	{
-		class layout_elem_ref	// TODO: implement const_layout_elem_ref
+		class layout_elem_ref
 		{
 		private:
 			class ptr

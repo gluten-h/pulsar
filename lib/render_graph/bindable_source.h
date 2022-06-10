@@ -15,7 +15,6 @@ namespace pulsar
 		private:
 			static_assert(std::is_base_of_v<pulsar::bindable, T>, "Bindable source target type must be a bindable type");
 
-		private:
 			T **mp_buffer = NULL;
 
 		public:

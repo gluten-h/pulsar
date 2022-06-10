@@ -22,7 +22,7 @@ namespace pulsar
 			DCB_RAW_DATA_TYPES
 		#undef DCB_RDT_MACRO
 			Struct,
-			Array	//	TODO: implement later
+			//Array
 		};
 
 

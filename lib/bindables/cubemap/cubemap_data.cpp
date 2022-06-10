@@ -46,7 +46,7 @@ void	pulsar::cubemap::free()
 
 void	pulsar::cubemap::create_cubemap(LPCWSTR dds_path)
 {
-	GFX_ASSERT(CreateDDSTextureFromFileEx(pulsar::gfx::instance().device(), pulsar::filesystem::absolute_path(dds_path).c_str(), 6u, D3D11_USAGE_DEFAULT, D3D11_BIND_SHADER_RESOURCE, 0u,
+	GFX_ASSERT(CreateDDSTextureFromFileEx(pulsar::gfx::instance().device(), pulsar::filesystem::absolute_path(dds_path).c_str(), 6u, D3D11_USAGE_IMMUTABLE, D3D11_BIND_SHADER_RESOURCE, 0u,
 												D3D11_RESOURCE_MISC_TEXTURECUBE, false, (ID3D11Resource**)&this->mp_texture, &this->mp_srv));
 }
 

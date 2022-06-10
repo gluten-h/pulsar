@@ -1,14 +1,5 @@
 #pragma once
 
-//#include "fixed_vector.h"
-//#include "config/scene.h"
-//#include "scene_manager.h"
-//#include "entity.h"
-//#include "light.h"
-//#include "skybox.h"
-//#include "const_buffers/frag_const_buffer.h"
-//#include "dynamic_const_buffers/vert_dynamic_const_buffer.h"
-
 #include "ecs/ecs.h"
 #include "light/light.h"
 #include "skybox_material/skybox_material.h"

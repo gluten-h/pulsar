@@ -13,14 +13,14 @@ namespace pulsar
 
 	class mesh
 	{
-	private:
+	protected:
 		struct mesh_data
 		{
 			struct vert_data
 			{
-				float x = 0.0f, y = 0.0f, z = 0.0f;
-				float nx = 0.0f, ny = 0.0f, nz = 0.0f;
-				float uv_x = 0.0f, uv_y = 0.0f;
+				float pos[3];
+				float normal[3];
+				float uv[2];
 			};
 			struct t_mesh_specs
 			{
@@ -48,7 +48,6 @@ namespace pulsar
 		ID3D11Buffer *mp_vertex_buffer = NULL;
 		ID3D11Buffer *mp_index_buffer = NULL;
 
-	private:
 		bool	load_mesh_obj(LPCWSTR file);
 		void	create_mesh();
 		void	free();

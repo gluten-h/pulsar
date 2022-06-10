@@ -2,10 +2,10 @@
 #include "node/node.h"
 
 
-pulsar::node::node(pulsar::ecs::entity id, pulsar::scene *p_scene)
+pulsar::node::node(pulsar::ecs::entity id, pulsar::scene *scene)
 {
 	this->m_id = id;
-	this->mp_scene = p_scene;
+	this->mp_scene = scene;
 }
 
 void	pulsar::node::destroy()

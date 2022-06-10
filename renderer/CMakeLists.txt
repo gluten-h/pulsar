@@ -11,10 +11,11 @@ set(REN_SOURCES
 						components/material/material.cpp
 						components/material/material_props.cpp
 
-						components/mesh/mesh_d3d.cpp
 						components/mesh/mesh_data.cpp
 						components/mesh/mesh_obj.cpp
 						components/mesh/mesh.cpp
+						components/mesh/cube.cpp
+						#components/mesh/sphere.cpp
 
 						components/light/light.cpp
 						components/light/point_light.cpp
@@ -60,6 +61,9 @@ set(REN_INCLUDES
 						components/material/material_component.h
 
 						components/mesh/mesh.h
+						components/mesh/cube.h
+						#components/mesh/sphere.h
+						components/mesh/primitives.h
 						components/mesh/mesh_component.h
 
 						components/light/light.h

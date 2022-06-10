@@ -15,7 +15,7 @@ namespace pulsar
 
 	public:
 		node() = default;
-		node(pulsar::ecs::entity id, pulsar::scene *p_scene);
+		node(pulsar::ecs::entity id, pulsar::scene *scene);
 		~node() = default;
 
 		void	destroy();

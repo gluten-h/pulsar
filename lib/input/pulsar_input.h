@@ -14,7 +14,6 @@ namespace pulsar
 		friend class window;
 
 	private:
-		// TODO: ugly stuff
 		enum mouse_button_info
 		{
 			lmb = 0,
@@ -33,7 +32,6 @@ namespace pulsar
 			'pressed' will be active as many frames as button/key is down
 		*/
 
-		// TODO: maybe create another type of mouse-delta with interpolated values
 		static XMUINT2 m_mouse_pos;
 		static XMINT2 m_mouse_delta;
 		static bool m_buttons_states[mouse_button_info::size];
@@ -59,7 +57,6 @@ namespace pulsar
 		static void		set_key_down(pulsar::keycode key, bool E0_prefix);
 		static void		set_key_up(pulsar::keycode key, bool E0_prefix);
 		static bool		extract_key_state(pulsar::keycode key, pulsar::keycode keycode);
-		static pulsar::keycode	break_to_make(pulsar::keycode break_key);
 
 		static void		one_frame_reset_mouse();
 		static void		one_frame_reset_keyboard();

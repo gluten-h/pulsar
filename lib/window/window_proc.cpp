@@ -47,9 +47,6 @@ LRESULT CALLBACK	pulsar::window::win_proc(HWND hwnd, UINT msg, WPARAM w_param, L
 			UINT width = LOWORD(l_param);
 			UINT height = HIWORD(l_param);
 
-			//std::string msg = std::to_string(width) + ' ' + std::to_string(height) + '\n';
-			//OutputDebugString(msg.c_str());
-
 			// TODO: ideally this code must be placed in some kind of event-system
 			if (width && height)
 				win->framebuffer().resize(width, height);

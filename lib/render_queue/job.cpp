@@ -2,6 +2,7 @@
 #include "job.h"
 #include "gfx/gfx.h"
 #include "config/config.h"
+#include "transform/transform.h"
 #include "mesh/mesh.h"
 #include "material/material.h"
 

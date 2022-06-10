@@ -16,7 +16,6 @@ namespace pulsar
 		private:
 			static_assert(std::is_base_of_v<pulsar::buffer_resource, T>, "Buffer source target type must be a buffer_resource type");
 
-		private:
 			T **mp_buffer = NULL;
 			bool m_linked = false;
 

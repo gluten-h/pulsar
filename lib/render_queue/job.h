@@ -1,11 +1,11 @@
 #pragma once
 
 #include <stddef.h>
-#include "transform/transform.h"
 
 
 namespace pulsar
 {
+	class transform;
 	class mesh;
 	class material;
 

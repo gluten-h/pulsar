@@ -14,11 +14,11 @@ set(CMAKE_VS_SDK_INCLUDE_DIRECTORIES "$(IncludePath)" "$(DXSDK_DIR)Include")
 set(CMAKE_VS_SDK_LIBRARY_DIRECTORIES "$(LibraryPath)" "$(DXSDK_DIR)Lib/x64")
 
 
-set(CMAKE_LISTS "CMakeLists.txt" "lib/CMakeLists.txt" "renderer/CMakeLists.txt" "shaders/CMakeLists.txt")
+set(ADDITIONAL_FILES "TODO.md" "CMakeLists.txt" "lib/CMakeLists.txt" "renderer/CMakeLists.txt" "shaders/CMakeLists.txt")
 
 
 add_executable(${PROJECT_NAME} WIN32 win_main.cpp)
-target_sources(${PROJECT_NAME} PUBLIC ${CMAKE_LISTS})
+target_sources(${PROJECT_NAME} PUBLIC ${ADDITIONAL_FILES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "/MP /Ot /fp:fast /JMC")
 
@@ -50,7 +50,7 @@ list(TRANSFORM SHADER_INCLUDE_DIRS PREPEND "shaders/")
 
 set_property(SOURCE ${SHADER_SOURCES} PROPERTY VS_SETTINGS "ExcludedFromBuild=true")
 
-set(ALL_SOURCE_FILES win_main.cpp ${CMAKE_LISTS} ${LIB_SOURCES} ${LIB_INCLUDES} ${REN_SOURCES} ${REN_INCLUDES} ${SHADER_SOURCES})
+set(ALL_SOURCE_FILES win_main.cpp ${ADDITIONAL_FILES} ${LIB_SOURCES} ${LIB_INCLUDES} ${REN_SOURCES} ${REN_INCLUDES} ${SHADER_SOURCES})
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${ALL_SOURCE_FILES})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)

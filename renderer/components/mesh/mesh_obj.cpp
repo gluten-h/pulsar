@@ -66,26 +66,26 @@ bool	pulsar::mesh::load_mesh_obj(LPCWSTR file)
 
 				int vert_id = std::stoi(vert_info[0]) - 1;
 				pulsar::mesh::mesh_data::vert_data vert;
-				vert.x = verts[(UINT64)vert_id * 3 + 0];
-				vert.y = verts[(UINT64)vert_id * 3 + 1];
-				vert.z = verts[(UINT64)vert_id * 3 + 2];
+				vert.pos[0] = verts[(UINT64)vert_id * 3 + 0];
+				vert.pos[1] = verts[(UINT64)vert_id * 3 + 1];
+				vert.pos[2] = verts[(UINT64)vert_id * 3 + 2];
 
 				if (vert_info.size() >= 2 && !vert_info[1].empty())
 				{
 					this->m_mesh_data.m_mesh_specs.uv = true;
 					int uv_id = std::stoi(vert_info[1]) - 1;
 
-					vert.uv_x = uvs[(UINT64)uv_id * 2 + 0];
-					vert.uv_y = uvs[(UINT64)uv_id * 2 + 1];
+					vert.uv[0] = uvs[(UINT64)uv_id * 2 + 0];
+					vert.uv[1] = uvs[(UINT64)uv_id * 2 + 1];
 				}
 				if (vert_info.size() > 2)
 				{
 					this->m_mesh_data.m_mesh_specs.n = true;
 					int normal_id = std::stoi(vert_info[2]) - 1;
 
-					vert.nx = normals[(UINT64)normal_id * 3 + 0];
-					vert.ny = normals[(UINT64)normal_id * 3 + 1];
-					vert.nz = normals[(UINT64)normal_id * 3 + 2];
+					vert.normal[0] = normals[(UINT64)normal_id * 3 + 0];
+					vert.normal[1] = normals[(UINT64)normal_id * 3 + 1];
+					vert.normal[2] = normals[(UINT64)normal_id * 3 + 2];
 				}
 
 				this->m_mesh_data.m_verts.push_back(vert);

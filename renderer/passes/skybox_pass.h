@@ -8,6 +8,7 @@
 
 namespace pulsar
 {
+	class cube;
 	class vert_shader;
 	class frag_shader;
 	class depth_stencil_state;
@@ -19,6 +20,7 @@ namespace pulsar
 	class skybox_pass : public pulsar::rg::pass
 	{
 	private:
+		pulsar::cube *mp_skybox_mesh = NULL;
 		pulsar::vert_shader *mp_skybox_vs = NULL;
 		pulsar::frag_shader *mp_skybox_fs = NULL;
 		pulsar::depth_stencil_state *mp_ds_state = NULL;

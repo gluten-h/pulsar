@@ -4,6 +4,7 @@
 #include "config/rasterizer_state.h"
 #include "config/mesh.h"
 #include "renderer/renderer.h"
+#include "mesh/cube.h"
 #include "shaders/vert_shader.h"
 #include "shaders/frag_shader.h"
 #include "depth_stencil/depth_stencil_state.h"
@@ -22,6 +23,7 @@ pulsar::skybox_pass::skybox_pass(const std::string &name) : pulsar::rg::pass(nam
 		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
 	};
 
+	this->mp_skybox_mesh = new pulsar::cube;
 	this->mp_skybox_vs = new pulsar::vert_shader(pulsar::SKYBOX_VS_PATH);
 	this->mp_skybox_fs = new pulsar::frag_shader(pulsar::SKYBOX_FS_PATH);
 	this->mp_ds_state = new pulsar::depth_stencil_state(TRUE, D3D11_COMPARISON_LESS_EQUAL, D3D11_DEPTH_WRITE_MASK_ZERO);
@@ -43,6 +45,7 @@ pulsar::skybox_pass::skybox_pass(const std::string &name) : pulsar::rg::pass(nam
 
 pulsar::skybox_pass::~skybox_pass()
 {
+	delete this->mp_skybox_mesh;
 	delete this->mp_skybox_vs;
 	delete this->mp_skybox_fs;
 	delete this->mp_ds_state;
@@ -79,7 +82,7 @@ void	pulsar::skybox_pass::execute()
 
 	{
 		pulsar::FRONT_FACE_CULL_RS.bind();
-		pulsar::CUBE.bind();
+		this->mp_skybox_mesh->bind();
 		this->mp_skybox_vs->bind();
 		this->mp_skybox_fs->bind();
 		this->mp_ds_state->bind();
@@ -95,7 +98,7 @@ void	pulsar::skybox_pass::execute()
 		frag_camera_cbuffer->bind();
 	}
 
-	pulsar::gfx::instance().draw_indexed(pulsar::CUBE.get_index_count());
+	pulsar::gfx::instance().draw_indexed(this->mp_skybox_mesh->get_index_count());
 
 	{
 		frag_camera_cbuffer->unbind();
@@ -109,7 +112,7 @@ void	pulsar::skybox_pass::execute()
 		this->mp_ds_state->unbind();
 		this->mp_skybox_fs->unbind();
 		this->mp_skybox_vs->bind();
-		pulsar::CUBE.unbind();
+		this->mp_skybox_mesh->unbind();
 		pulsar::FRONT_FACE_CULL_RS.unbind();
 	}
 }

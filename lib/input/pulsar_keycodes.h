@@ -8,7 +8,7 @@ namespace pulsar
 	const uint16_t KEYCODES_COUNT = 256u;
 	using keycode = uint16_t;
 
-	// keycode-enums were constructed manually, may be errors
+	// keycode-enums were constructed manually, there may be errors
 	// keycodes: https://download.microsoft.com/download/1/6/1/161ba512-40e2-4cc9-843a-923143f3456c/translate.pdf
 	enum KEYCODES : keycode
 	{
@@ -134,8 +134,6 @@ namespace pulsar
 		KEY_RALT = 0xE038
 	};
 
-	// TODO: probably, there is no need of break-codes, because input api generates make-codes even when flag is RI_KEY_BREAK
-	// weird, need to figure this out, maybe I have misunderstood the documentation
 	enum BREAK_KEYCODES : keycode
 	{
 		BREAK_KEY_A = 0x9E,
