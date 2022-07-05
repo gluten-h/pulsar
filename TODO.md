@@ -1,5 +1,15 @@
 
-# LIB
+- [ ] entity:
+	- [ ] metadata:
+		- [ ] create metadata component and store all general entity-related information in it (name?, masks, etc?)
+	- [ ] masking:
+		- [ ] add the ability to bit-mask drawable geometry (viewport, shadows, reflections, lighting? etc), 32 bits would probably be enough
+- [ ] material:
+	- [ ] need to rework the way materials are handled by the render queue. maybe make it more abstracted from the material class (current system allows only to change material's fragment shader, but what about the ability to adjust other aspects of the rasterization stage, like rasterizer states, vertex shaders?, geometry shaders?, etc)
+- [ ] systems:
+	- [ ] there is no need to store a pointer to a scene registry, just pass it as a function argument
+- [ ] hierarchy:
+	- [ ] implement it
 - [ ] input:
 	- [ ] mouse:
 		- [ ] add interpolated version of mouse_delta
