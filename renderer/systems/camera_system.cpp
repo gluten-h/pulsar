@@ -8,7 +8,7 @@
 #include "camera/camera_component.h"
 
 
-pulsar::camera_system::camera_system(pulsar::ecs::registry *registry) : pulsar::ecs::system(registry)
+pulsar::camera_system::camera_system()
 {
 	this->mp_vert_camera_cbuffer = new vert_camera_cbuffer(this->m_vert_camera, 0u);
 	this->mp_frag_camera_cbuffer = new frag_camera_cbuffer(this->m_frag_camera, 0u);
@@ -20,10 +20,10 @@ pulsar::camera_system::~camera_system()
 	delete this->mp_frag_camera_cbuffer;
 }
 
-void	pulsar::camera_system::execute(float delta_time)
+void	pulsar::camera_system::execute(pulsar::ecs::registry &registry, float delta_time)
 {
 	pulsar::node *main_camera = pulsar::scene::get_active_scene()->get_main_camera();
-	if (!main_camera || !main_camera->has_component<pulsar::camera_component>())
+	if (!main_camera)
 		return;
 
 	pulsar::transform &transform = main_camera->get_component<pulsar::transform_component>().transform;

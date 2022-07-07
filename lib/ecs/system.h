@@ -10,19 +10,11 @@ namespace pulsar
 	{
 		class system
 		{
-		protected:
-			pulsar::ecs::registry *mp_registry = NULL;
-
-			system(pulsar::ecs::registry *registry)
-			{
-				this->mp_registry = registry;
-			}
-		
 		public:
-			system() = delete;
+			system() = default;
 			virtual ~system() = default;
 
-			virtual void	execute(float delta_time) = 0;
+			virtual void	execute(pulsar::ecs::registry &registry, float delta_time) = 0;
 		};
 	}
 }

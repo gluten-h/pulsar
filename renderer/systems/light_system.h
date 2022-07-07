@@ -16,10 +16,9 @@ namespace pulsar
 		deferred_frag_lights_cbuffer *mp_deferred_frag_lights_cbuffer = NULL;
 
 	public:
-		light_system() = delete;
-		light_system(pulsar::ecs::registry *registry);
+		light_system();
 		~light_system();
 
-		void	execute(float delta_time) override;
+		void	execute(pulsar::ecs::registry &registry, float delta_time) override;
 	};
 }

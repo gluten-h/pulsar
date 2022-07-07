@@ -22,7 +22,7 @@ namespace pulsar
 		pulsar::framebuffer m_framebuffer;
 
 		std::chrono::time_point<std::chrono::high_resolution_clock> m_begin_frame_time_point;
-		float m_frames_time_elapsed = 0.0f;
+		int64_t m_frames_time_elapsed = 0.0f;
 		uint8_t m_frames_skipped = 0u;
 		float m_delta_time = 0.0f;
 

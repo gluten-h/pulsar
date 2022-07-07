@@ -51,7 +51,7 @@ namespace pulsar
 
 	const uint16_t MAX_SCENE_LIGHTS_COUNT = 1024u;
 
-	const uint8_t FPS_FRAMES_SKIP_COUNT = 8u;
+	const uint8_t DELTA_TIME_FRAMES_SKIP_COUNT = 8u;
 	const struct
 	{
 		const LPCTSTR class_name = __T("pulsar");
@@ -61,6 +61,10 @@ namespace pulsar
 		UINT height = 720;
 	} DEFAULT_WINDOW_SETTINGS;
 
+	const char *const DEFAULT_ENTITY_NAME = "entity";
+
+	const uint32_t DEFAULT_ENTITY_VIEWPORT_MASK = 0x01;
+	const uint32_t DEFAULT_CAMERA_VIEWPORT_MASK = 0xFFFFFFFF;
 
 	// SLOTS
 	const uint8_t G_BUFFER_FRAG_MATERIAL_ALBEDO_MAP_SLOT = 0u;

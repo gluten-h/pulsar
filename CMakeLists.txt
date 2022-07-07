@@ -20,7 +20,7 @@ set(ADDITIONAL_FILES "TODO.md" "CMakeLists.txt" "lib/CMakeLists.txt" "renderer/C
 add_executable(${PROJECT_NAME} WIN32 win_main.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${ADDITIONAL_FILES})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "/MP /Ot /fp:fast /JMC")
+set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "/MP /Ot /JMC")
 
 add_subdirectory(lib)
 add_subdirectory(renderer)

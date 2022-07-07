@@ -8,7 +8,7 @@
 #include "gfx/gfx.h"
 
 
-pulsar::light_system::light_system(pulsar::ecs::registry *registry) : pulsar::ecs::system(registry)
+pulsar::light_system::light_system()
 {
 	this->mp_deferred_frag_lights_cbuffer = new deferred_frag_lights_cbuffer(this->m_deferred_frag_lights, pulsar::DEFERRED_FRAG_LIGHTS_SLOT);
 }
@@ -18,15 +18,15 @@ pulsar::light_system::~light_system()
 	delete this->mp_deferred_frag_lights_cbuffer;
 }
 
-void	pulsar::light_system::execute(float delta_time)
+void	pulsar::light_system::execute(pulsar::ecs::registry &registry, float delta_time)
 {
-	auto view = this->mp_registry->view<pulsar::transform_component, pulsar::light_component>();
+	auto view = registry.view<pulsar::transform_component, pulsar::light_component>();
 
 	int i = 0;
 	for (auto entity : view)
 	{
-		pulsar::transform &transform = this->mp_registry->get<pulsar::transform_component>(entity).transform;
-		pulsar::light *light = this->mp_registry->get<pulsar::light_component>(entity).light;
+		pulsar::transform &transform = view.get<pulsar::transform_component>(entity).transform;
+		pulsar::light *light = view.get<pulsar::light_component>(entity).light;
 
 		this->m_deferred_frag_lights.lights[i].type = (int)light->type();
 		switch (light->type())

@@ -7,3 +7,4 @@
 #include "light/light_component.h"
 #include "skybox_material/skybox_material.h"
 #include "script/script_component.h"
+#include "metadata/metadata_component.h"

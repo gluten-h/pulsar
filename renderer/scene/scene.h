@@ -45,7 +45,7 @@ namespace pulsar
 
 		pulsar::skybox_material		&skybox_material();
 
-		pulsar::node	create_node();
+		pulsar::node	create_node(const char *name = pulsar::DEFAULT_ENTITY_NAME);
 		
 		template <typename T, typename... Args>
 		void	register_system(Args&&... args)

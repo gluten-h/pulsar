@@ -3,18 +3,13 @@
 #include "script/script_component.h"
 
 
-pulsar::script_system::script_system(pulsar::ecs::registry *registry) : pulsar::ecs::system(registry)
+void	pulsar::script_system::execute(pulsar::ecs::registry &registry, float delta_time)
 {
-
-}
-
-void	pulsar::script_system::execute(float delta_time)
-{
-	auto view = this->mp_registry->view<pulsar::script_component>();
+	auto view = registry.view<pulsar::script_component>();
 
 	for (auto entity : view)
 	{
-		pulsar::script *script = this->mp_registry->get<pulsar::script_component>(entity).script;
+		pulsar::script *script = view.get<pulsar::script_component>(entity).script;
 		script->execute(delta_time);
 	}
 }

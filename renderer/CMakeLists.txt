@@ -35,7 +35,7 @@ set(REN_SOURCES
 						scripts/node_rotation.cpp
 
 						systems/camera_system.cpp
-						systems/render_system.cpp
+						systems/viewport_render_system.cpp
 						systems/light_system.cpp
 						systems/script_system.cpp
 
@@ -76,6 +76,8 @@ set(REN_INCLUDES
 						components/script/script.h
 						components/script/script_component.h
 
+						components/metadata/metadata_component.h
+
 						components/components.h
 
 						config/pulsar_config.h
@@ -87,6 +89,8 @@ set(REN_INCLUDES
 						config/shader.h
 						config/shader_texture.h
 
+						mask/mask.h
+
 						node/node.h
 
 						renderer/renderer.h
@@ -97,7 +101,7 @@ set(REN_INCLUDES
 						scripts/node_rotation.h
 
 						systems/camera_system.h
-						systems/render_system.h
+						systems/viewport_render_system.h
 						systems/light_system.h
 						systems/script_system.h
 

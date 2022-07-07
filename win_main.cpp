@@ -20,7 +20,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 
 	pulsar::node camera_node = scene.create_node();
 	pulsar::perspective_camera camera(1280u, 720u, pulsar::deg2rad(80.0f), 0.001f, 1000.0f);
-	pulsar::camera_controller camera_controller(&camera_node, 5.0f, 6.0f, 0.8f);
+	pulsar::camera_controller camera_controller(&camera_node, 5.0f, 6.0f, 0.7f);
 	{
 		camera_node.add_component<pulsar::camera_component>(&camera);
 		camera_node.add_component<pulsar::script_component>(&camera_controller);
@@ -28,7 +28,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 	win.framebuffer().link_buffer_resource(&camera.viewport());
 	scene.set_main_camera(&camera_node);
 
-	
+
 	pulsar::node cube = scene.create_node();
 	pulsar::cube cube_mesh;
 	pulsar::material pepega_mat;
@@ -54,14 +54,14 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		brick_mat.roughness_map().set(L"resources/textures/brick00/roughness.png");
 		brick_mat.metalness() = 0.0f;
 		brick_mat.ao() = 0.01f;
-	
+
 		sphere.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(0.0f, 0.0f, 1.75f));
 		sphere.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.5f, 0.5f, 0.5f));
 		sphere.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
 		sphere.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &brick_mat;
 		sphere.add_component<pulsar::script_component>(&sphere_nr);
 	}
-	
+
 	pulsar::node sphere1 = scene.create_node();
 	pulsar::material metal_mat;
 	pulsar::node_rotation sphere1_nr(&sphere1, 0.25f);
@@ -79,7 +79,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere1.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &metal_mat;
 		sphere1.add_component<pulsar::script_component>(&sphere1_nr);
 	}
-	
+
 	pulsar::node sphere2 = scene.create_node();
 	pulsar::material wood_mat;
 	pulsar::node_rotation sphere2_nr(&sphere2, 0.25f);
@@ -97,15 +97,15 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere2.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &wood_mat;
 		sphere2.add_component<pulsar::script_component>(&sphere2_nr);
 	}
-	
-	
+
+
 	pulsar::node pl_node = scene.create_node();
 	pulsar::point_light pl(XMFLOAT3(0.15f, 0.15f, 1.0f), 1.0f, 0.005f, 0.0007f);
 	{
 		pl_node.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(-5.0f, -2.0f, -1.0f));
 		pl_node.add_component<pulsar::light_component>().light = &pl;
 	}
-	
+
 	pulsar::node dl_node = scene.create_node();
 	pulsar::dir_light dl(XMFLOAT3(1.0f, 1.0f, 0.5f));
 	{
@@ -118,7 +118,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 	{
 		//std::string dt_str = "delta_time: " + std::to_string(win.delta_time()) + '\n';
 		//OutputDebugString(dt_str.c_str());
-	
+
 		win.begin_frame();
 		scene.update(win.delta_time());
 		render_graph.execute();

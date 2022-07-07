@@ -21,10 +21,9 @@ namespace pulsar
 		frag_camera_cbuffer *mp_frag_camera_cbuffer = NULL;
 
 	public:
-		camera_system() = delete;
-		camera_system(pulsar::ecs::registry *registry);
+		camera_system();
 		~camera_system();
 
-		void	execute(float delta_time) override;
+		void	execute(pulsar::ecs::registry &registry, float delta_time) override;
 	};
 }

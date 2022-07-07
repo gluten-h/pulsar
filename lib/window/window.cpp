@@ -1,8 +1,8 @@
 
+#include "input/pulsar_input.h"
+#include "exceptions/win_exception.h"
 #include "window.h"
 #include <hidusage.h>
-#include "exceptions/win_exception.h"
-#include "input/pulsar_input.h"
 
 
 HINSTANCE	pulsar::window::m_h_instance = NULL;
@@ -94,10 +94,9 @@ void	pulsar::window::end_frame()
 
 	auto end_frame_time_point = std::chrono::high_resolution_clock::now();
 	this->m_frames_time_elapsed += std::chrono::duration_cast<std::chrono::milliseconds>(end_frame_time_point - this->m_begin_frame_time_point).count();
-	this->m_frames_skipped++;
-	if (this->m_frames_skipped >= FPS_FRAMES_SKIP_COUNT)
+	if (++this->m_frames_skipped >= pulsar::DELTA_TIME_FRAMES_SKIP_COUNT)
 	{
-		this->m_delta_time = (float)this->m_frames_time_elapsed / (float)this->m_frames_skipped / 1000.0f;
+		this->m_delta_time = (float)this->m_frames_time_elapsed / (float)this->m_frames_skipped * 0.001f;
 		this->m_frames_time_elapsed = 0.0f;
 		this->m_frames_skipped = 0u;
 	}
