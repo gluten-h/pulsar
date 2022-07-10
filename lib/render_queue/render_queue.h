@@ -19,7 +19,7 @@ namespace pulsar
 		};
 
 	private:
-		std::array<rq_job, RENDERING_MODE::RENDERING_MODES_COUNT> m_queues;
+		std::array<rq_job, RQ_MODE::RQ_MODES_COUNT> m_queues;
 
 	public:
 		render_queue &operator=(const render_queue&) = delete;
@@ -30,7 +30,7 @@ namespace pulsar
 		render_queue(uint16_t max_jobs);
 		~render_queue() = default;
 
-		void	add_job(pulsar::RENDERING_MODE mode, pulsar::job &&job);
+		void	add_job(pulsar::RQ_MODE mode, pulsar::job &&job);
 		void	clear();
 		void	execute() const noexcept;
 	};

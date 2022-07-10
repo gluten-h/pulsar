@@ -58,6 +58,7 @@ set(REN_INCLUDES
 						components/transform/transform_component.h
 
 						components/material/material.h
+						components/material/rq_material.h
 						components/material/material_component.h
 
 						components/mesh/mesh.h

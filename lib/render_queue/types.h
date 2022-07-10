@@ -7,9 +7,9 @@ namespace pulsar
 {
 	const uint16_t MAX_JOBS_PER_RQ = 1024u;
 
-	enum RENDERING_MODE
+	enum RQ_MODE
 	{
 		RQ_OPAQUE,
-		RENDERING_MODES_COUNT
+		RQ_MODES_COUNT
 	};
 }

@@ -40,7 +40,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 	
 		cube.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(1.0f, 0.0f, 5.5f));
 		cube.add_component<pulsar::mesh_component>(&cube_mesh);
-		cube.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &pepega_mat;
+		cube.add_component<pulsar::material_component>(pulsar::rq_material(&pepega_mat));
 		cube.add_component<pulsar::script_component>(&cube_nr);
 	}
 
@@ -58,7 +58,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(0.0f, 0.0f, 1.75f));
 		sphere.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.5f, 0.5f, 0.5f));
 		sphere.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
-		sphere.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &brick_mat;
+		sphere.add_component<pulsar::material_component>(pulsar::rq_material(&brick_mat));
 		sphere.add_component<pulsar::script_component>(&sphere_nr);
 	}
 
@@ -76,7 +76,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere1.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(1.25f, 0.0f, 1.75f));
 		sphere1.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.5f, 0.5f, 0.5f));
 		sphere1.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
-		sphere1.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &metal_mat;
+		sphere1.add_component<pulsar::material_component>(pulsar::rq_material(&metal_mat));
 		sphere1.add_component<pulsar::script_component>(&sphere1_nr);
 	}
 
@@ -94,7 +94,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere2.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(-1.25f, 0.0f, 1.75f));
 		sphere2.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.5f, 0.5f, 0.5f));
 		sphere2.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
-		sphere2.add_component<pulsar::material_component>().rq_materials[pulsar::RENDERING_MODE::RQ_OPAQUE] = &wood_mat;
+		sphere2.add_component<pulsar::material_component>(pulsar::rq_material(&wood_mat));
 		sphere2.add_component<pulsar::script_component>(&sphere2_nr);
 	}
 

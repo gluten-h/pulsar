@@ -5,16 +5,14 @@
 	- [x] masking:
 		- [x] add the ability to bit-mask drawable geometry (viewport, shadows, reflections, lighting? etc), 32 bits would probably be enough
 - [ ] material:
-	- [ ] need to rework the way materials are handled by the render queue. maybe make it more abstracted from the material class (current system allows only to change material's fragment shader, but what about the ability to adjust other aspects of the rendering stage, like rasterizer states, vertex shaders?, geometry shaders?, etc)
+	- [x] need to rework the way materials are handled by the render queue
 - [x] systems:
 	- [x] there is no need to store a pointer to a scene registry, just pass it as a function argument
 - [ ] hierarchy:
 	- [ ] implement it
 - [ ] input:
-	- [ ] mouse:
-		- [ ] mouse_button_info is ugly
 	- [ ] keyboard:
-		- [ ] probably, there is no need of break-codes, input api generates make-codes even when specified flag is RI_KEY_BREAK
+		- [x] probably, there is no need of break-codes, input api generates make-codes even when specified flag is RI_KEY_BREAK
 - [ ] mesh:
 	- [ ] create mesh primitives and write geometry data in constructor directly without messing with files
 		- [x] cube

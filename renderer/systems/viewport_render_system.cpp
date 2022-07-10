@@ -29,11 +29,7 @@ void	pulsar::viewport_render_system::execute(pulsar::ecs::registry &registry, fl
 		pulsar::mesh *mesh = view.get<pulsar::mesh_component>(entity).mesh;
 		auto &rq_materials = view.get<pulsar::material_component>(entity).rq_materials;
 
-		int mode = -1;
-		while (++mode < pulsar::RENDERING_MODE::RENDERING_MODES_COUNT)
-		{
-			if (rq_materials[mode])
-				pulsar::render_queue::instance().add_job((pulsar::RENDERING_MODE)mode, pulsar::job(&transform, mesh, rq_materials[mode]));
-		}
+		for (pulsar::rq_material &mat : rq_materials)
+			pulsar::render_queue::instance().add_job(mat.mode, pulsar::job(&transform, mesh, mat.material));
 	}
 }
