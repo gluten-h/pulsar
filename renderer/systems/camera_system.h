@@ -2,8 +2,8 @@
 
 #include "ecs/system.h"
 #include "camera/camera.h"
-#include "const_buffers/vert_const_buffer.h"
-#include "const_buffers/frag_const_buffer.h"
+#include "gfx_resources/vert_cbuffer.h"
+#include "gfx_resources/frag_cbuffer.h"
 
 
 namespace pulsar
@@ -11,8 +11,8 @@ namespace pulsar
 	class camera_system : public pulsar::ecs::system
 	{
 	private:
-		using vert_camera_cbuffer = pulsar::vert_const_buffer<pulsar::vert_camera>;
-		using frag_camera_cbuffer = pulsar::frag_const_buffer<pulsar::frag_camera>;
+		using vert_camera_cbuffer = pulsar::vert_cbuffer<pulsar::vert_camera>;
+		using frag_camera_cbuffer = pulsar::frag_cbuffer<pulsar::frag_camera>;
 
 		pulsar::vert_camera m_vert_camera;
 		vert_camera_cbuffer *mp_vert_camera_cbuffer = NULL;

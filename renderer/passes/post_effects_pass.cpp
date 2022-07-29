@@ -2,11 +2,11 @@
 #include "post_effects_pass.h"
 #include "config/config.h"
 #include "renderer/renderer.h"
-#include "shaders/frag_shader.h"
-#include "sampler/sampler.h"
-#include "framebuffer/framebuffer.h"
-#include "render_texture/render_texture.h"
-#include "viewport/viewport.h"
+#include "gfx_resources/frag_shader.h"
+#include "gfx_resources/sampler.h"
+#include "gfx_resources/framebuffer.h"
+#include "gfx_resources/render_texture.h"
+#include "gfx_resources/viewport.h"
 #include "scene/scene.h"
 
 
@@ -15,11 +15,11 @@ pulsar::post_effects_pass::post_effects_pass(const std::string &name) : pulsar::
 	this->mp_post_effects_fs = new pulsar::frag_shader(pulsar::POST_EFFECTS_FS_PATH);
 	this->mp_sampler = new pulsar::sampler(pulsar::POST_EFFECTS_FRAG_SAMPLER_SLOT);
 
-	this->mp_frambuffer_input = new pulsar::rg::buffer_input<pulsar::framebuffer>(pulsar::RG_G_FRAMEBUFFER, this->mp_framebuffer);
-	this->mp_framebuffer_source = new pulsar::rg::buffer_source<pulsar::framebuffer>(pulsar::RG_G_FRAMEBUFFER, this->mp_framebuffer);
+	this->mp_frambuffer_input = new pulsar::rg::sync_input<pulsar::framebuffer>(pulsar::RG_G_FRAMEBUFFER, this->mp_framebuffer);
+	this->mp_framebuffer_source = new pulsar::rg::sync_source<pulsar::framebuffer>(pulsar::RG_G_FRAMEBUFFER, this->mp_framebuffer);
 
-	this->mp_hdr_buffer_input = new pulsar::rg::buffer_input<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
-	this->mp_hdr_buffer_source = new pulsar::rg::buffer_source<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
+	this->mp_hdr_buffer_input = new pulsar::rg::sync_input<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
+	this->mp_hdr_buffer_source = new pulsar::rg::sync_source<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
 
 	this->register_input(this->mp_frambuffer_input);
 	this->register_source(this->mp_framebuffer_source);

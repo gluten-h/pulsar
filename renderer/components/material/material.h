@@ -1,7 +1,7 @@
 #pragma once
 
-#include "shader_texture/shader_texture.h"
-#include "dynamic_const_buffers/frag_dynamic_const_buffer.h"
+#include "gfx_resources/shader_texture.h"
+#include "gfx_resources/frag_dynamic_cbuffer.h"
 
 
 namespace pulsar
@@ -12,7 +12,7 @@ namespace pulsar
 	{
 	private:
 		pulsar::dcb::buffer m_dcb_buffer;
-		pulsar::frag_dynamic_const_buffer m_cbuffer;
+		pulsar::frag_dynamic_cbuffer m_cbuffer;
 
 		pulsar::frag_shader const *mp_shader = NULL;
 

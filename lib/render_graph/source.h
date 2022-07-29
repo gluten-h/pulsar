@@ -5,8 +5,7 @@
 
 namespace pulsar
 {
-	class bindable;
-	class buffer_resource;
+	class sync_resource;
 
 	namespace rg
 	{
@@ -28,8 +27,8 @@ namespace pulsar
 
 			const std::string	&name() const;
 
-			virtual pulsar::bindable	**yield_bindable();
-			virtual pulsar::buffer_resource		**yield_buffer_resource();
+			virtual void	**get_async_data();
+			virtual pulsar::sync_resource	**yield_sync_data();
 
 			virtual void	validate() const;
 		};

@@ -13,15 +13,15 @@ const std::string	&pulsar::rg::source::name() const
 	return (this->m_name);
 }
 
-pulsar::bindable	**pulsar::rg::source::yield_bindable()
+void	**pulsar::rg::source::get_async_data()
 {
-	THROW_RG_EXC("Source " + this->m_name + " cannot be accessed as a bindable");
+	THROW_RG_EXC("Invalid source: " + this->m_name);
 	return (NULL);
 }
 
-pulsar::buffer_resource		**pulsar::rg::source::yield_buffer_resource()
+pulsar::sync_resource	**pulsar::rg::source::yield_sync_data()
 {
-	THROW_RG_EXC("Source " + this->m_name + " cannot be accessed as a buffer resource");
+	THROW_RG_EXC("Invalid source: " + this->m_name);
 	return (NULL);
 }
 

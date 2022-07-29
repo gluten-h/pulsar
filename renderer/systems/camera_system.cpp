@@ -10,8 +10,8 @@
 
 pulsar::camera_system::camera_system()
 {
-	this->mp_vert_camera_cbuffer = new vert_camera_cbuffer(this->m_vert_camera, 0u);
-	this->mp_frag_camera_cbuffer = new frag_camera_cbuffer(this->m_frag_camera, 0u);
+	this->mp_vert_camera_cbuffer = new vert_camera_cbuffer(&this->m_vert_camera, pulsar::CBUFFER_TYPE::DYNAMIC, 0u);
+	this->mp_frag_camera_cbuffer = new frag_camera_cbuffer(&this->m_frag_camera, pulsar::CBUFFER_TYPE::DYNAMIC, 0u);
 }
 
 pulsar::camera_system::~camera_system()

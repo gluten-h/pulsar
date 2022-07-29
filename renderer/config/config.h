@@ -36,7 +36,7 @@ namespace pulsar
 	const WCHAR SHADER_INCLUDE_DIRS_DELIM = L'?';
 
 	const char *const RG_G_FRAMEBUFFER = "framebuffer";
-	const char *const RG_G_DS_VIEW = "ds_view";
+	const char *const RG_G_DSV = "dsv";
 	const char *const RG_G_HDR_BUFFER = "hdr_buffer";
 
 	enum G_BUFFER

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "bindables.h"
+#include "gfx_resources/gfx_resources.h"
 #include "components.h"
 #include "gfx/gfx.h"
 #include "render_queue/render_queue.h"

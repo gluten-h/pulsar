@@ -1,7 +1,7 @@
 #pragma once
 
 #include "render_graph/pass.h"
-#include "render_graph/buffer_input.h"
+#include "render_graph/sync_input.h"
 
 
 namespace pulsar
@@ -13,7 +13,7 @@ namespace pulsar
 	private:
 
 		pulsar::framebuffer *mp_framebuffer = NULL;
-		pulsar::rg::buffer_input<pulsar::framebuffer> *mp_framebuffer_input = NULL;
+		pulsar::rg::sync_input<pulsar::framebuffer> *mp_framebuffer_input = NULL;
 
 	public:
 		present_pass &operator=(const present_pass&) = delete;

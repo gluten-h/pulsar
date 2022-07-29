@@ -4,9 +4,9 @@
 #include "transform/transform.h"
 #include "camera/camera.h"
 #include "light/light.h"
-#include "viewport/viewport.h"
-#include "const_buffers/vert_const_buffer.h"
-#include "const_buffers/frag_const_buffer.h"
+#include "gfx_resources/viewport.h"
+#include "gfx_resources/vert_cbuffer.h"
+#include "gfx_resources/frag_cbuffer.h"
 
 
 namespace pulsar
@@ -16,9 +16,9 @@ namespace pulsar
 	class renderer : public pulsar::singleton<renderer>
 	{
 	private:
-		using vert_camera_cbuffer = pulsar::vert_const_buffer<pulsar::vert_camera>;
-		using frag_camera_cbuffer = pulsar::frag_const_buffer<pulsar::frag_camera>;
-		using deferred_frag_lights_cbuffer = pulsar::frag_const_buffer<pulsar::deferred_frag_lights>;
+		using vert_camera_cbuffer = pulsar::vert_cbuffer<pulsar::vert_camera>;
+		using frag_camera_cbuffer = pulsar::frag_cbuffer<pulsar::frag_camera>;
+		using deferred_frag_lights_cbuffer = pulsar::frag_cbuffer<pulsar::deferred_frag_lights>;
 
 		// TODO: think about ability to render scene through multiple cameras,
 		// and how it should be stored inside the renderer (array of submitted cameras?)
@@ -36,13 +36,13 @@ namespace pulsar
 		~renderer() = default;
 
 		pulsar::viewport	*get_main_camera_viewport();
-		pulsar::vert_const_buffer<pulsar::vert_camera>	*get_vert_camera_cbuffer();
-		pulsar::frag_const_buffer<pulsar::frag_camera>	*get_frag_camera_cbuffer();
-		pulsar::frag_const_buffer<pulsar::deferred_frag_lights>	*get_deferred_frag_lights_cbuffer();
+		pulsar::vert_cbuffer<pulsar::vert_camera>	*get_vert_camera_cbuffer();
+		pulsar::frag_cbuffer<pulsar::frag_camera>	*get_frag_camera_cbuffer();
+		pulsar::frag_cbuffer<pulsar::deferred_frag_lights>	*get_deferred_frag_lights_cbuffer();
 
 		void	submit_main_camera_viewport(pulsar::viewport *viewport);
-		void	submit_vert_camera_cbuffer(pulsar::vert_const_buffer<pulsar::vert_camera> *cbuffer);
-		void	submit_frag_camera_cbuffer(pulsar::frag_const_buffer<pulsar::frag_camera> *cbuffer);
-		void	submit_deferred_frag_lights_cbuffer(pulsar::frag_const_buffer<pulsar::deferred_frag_lights> *cbuffer);
+		void	submit_vert_camera_cbuffer(pulsar::vert_cbuffer<pulsar::vert_camera> *cbuffer);
+		void	submit_frag_camera_cbuffer(pulsar::frag_cbuffer<pulsar::frag_camera> *cbuffer);
+		void	submit_deferred_frag_lights_cbuffer(pulsar::frag_cbuffer<pulsar::deferred_frag_lights> *cbuffer);
 	};
 }

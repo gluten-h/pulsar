@@ -7,7 +7,7 @@
 
 namespace pulsar
 {
-	class dynamic_const_buffer;
+	class dynamic_cbuffer;
 
 	namespace dcb
 	{
@@ -19,7 +19,7 @@ namespace pulsar
 		class buffer
 		{
 		private:
-			friend class pulsar::dynamic_const_buffer;
+			friend class pulsar::dynamic_cbuffer;
 
 		private:
 			std::shared_ptr<pulsar::dcb::layout_elem>	mp_root;

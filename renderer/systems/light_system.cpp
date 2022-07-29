@@ -10,7 +10,7 @@
 
 pulsar::light_system::light_system()
 {
-	this->mp_deferred_frag_lights_cbuffer = new deferred_frag_lights_cbuffer(this->m_deferred_frag_lights, pulsar::DEFERRED_FRAG_LIGHTS_SLOT);
+	this->mp_deferred_frag_lights_cbuffer = new deferred_frag_lights_cbuffer(&this->m_deferred_frag_lights, pulsar::CBUFFER_TYPE::DYNAMIC, pulsar::DEFERRED_FRAG_LIGHTS_SLOT);
 }
 
 pulsar::light_system::~light_system()

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "utils/math.h"
-#include "const_buffers/vert_const_buffer.h"
+#include "gfx_resources/vert_cbuffer.h"
 
 namespace pulsar
 {
@@ -14,8 +14,6 @@ namespace pulsar
 	class transform
 	{
 	private:
-		using cbuffer = pulsar::vert_const_buffer<pulsar::shader_transform>;
-
 		XMMATRIX m_mat = XMMatrixIdentity();
 
 		XMFLOAT3 m_pos = XMFLOAT3(0.0f, 0.0f, 0.0f);
@@ -23,7 +21,7 @@ namespace pulsar
 		XMFLOAT3 m_scale = XMFLOAT3(1.0f, 1.0f, 1.0f);
 
 		mutable pulsar::shader_transform m_shader_transform;
-		mutable cbuffer m_transform_cbuffer;
+		mutable pulsar::vert_cbuffer<pulsar::shader_transform> m_transform_cbuffer;
 
 	private:
 		void	init_cbuffer();

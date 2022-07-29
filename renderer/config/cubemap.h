@@ -1,7 +1,7 @@
 #pragma once
 
 #include "config.h"
-#include "cubemap/cubemap.h"
+#include "gfx_resources/cubemap.h"
 
 
 namespace pulsar

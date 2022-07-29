@@ -18,7 +18,7 @@ pulsar::skybox_material::skybox_material()
 	this->m_dcb_buffer[pulsar::SKYBOX_MATERIAL_DCB_ALBEDO_SRGB] = true;
 	this->m_dcb_buffer[pulsar::SKYBOX_MATERIAL_DCB_EXPOSURE] = 1.0f;
 
-	this->m_cbuffer.set_dcb_buffer(&this->m_dcb_buffer);
+	this->m_cbuffer.set(&this->m_dcb_buffer);
 	this->m_cbuffer.set_slot(pulsar::SKYBOX_FRAG_SKYBOX_MATERIAL_SLOT);
 	this->set_tex_bind_slots();
 }

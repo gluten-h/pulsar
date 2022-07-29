@@ -1,9 +1,9 @@
 #pragma once
 
 #include "passes/fullscreen_pass.h"
-#include "render_graph/buffer_input.h"
-#include "render_graph/buffer_source.h"
-#include "render_graph/bindable_input.h"
+#include "render_graph/sync_input.h"
+#include "render_graph/sync_source.h"
+#include "render_graph/async_input.h"
 
 
 namespace pulsar
@@ -22,11 +22,11 @@ namespace pulsar
 		pulsar::framebuffer *mp_framebuffer = NULL;
 		pulsar::render_texture *mp_hdr_buffer = NULL;
 
-		pulsar::rg::buffer_input<pulsar::framebuffer> *mp_frambuffer_input = NULL;
-		pulsar::rg::buffer_source<pulsar::framebuffer> *mp_framebuffer_source = NULL;
+		pulsar::rg::sync_input<pulsar::framebuffer> *mp_frambuffer_input = NULL;
+		pulsar::rg::sync_source<pulsar::framebuffer> *mp_framebuffer_source = NULL;
 
-		pulsar::rg::buffer_input<pulsar::render_texture> *mp_hdr_buffer_input = NULL;
-		pulsar::rg::buffer_source<pulsar::render_texture> *mp_hdr_buffer_source = NULL;
+		pulsar::rg::sync_input<pulsar::render_texture> *mp_hdr_buffer_input = NULL;
+		pulsar::rg::sync_source<pulsar::render_texture> *mp_hdr_buffer_source = NULL;
 
 	public:
 		post_effects_pass &operator=(const post_effects_pass&) = delete;

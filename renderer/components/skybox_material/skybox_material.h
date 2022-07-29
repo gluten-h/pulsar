@@ -1,7 +1,7 @@
 #pragma once
 
-#include "cubemap/cubemap.h"
-#include "dynamic_const_buffers/frag_dynamic_const_buffer.h"
+#include "gfx_resources/cubemap.h"
+#include "gfx_resources/frag_dynamic_cbuffer.h"
 
 
 namespace pulsar
@@ -10,7 +10,7 @@ namespace pulsar
 	{
 	private:
 		pulsar::dcb::buffer m_dcb_buffer;
-		pulsar::frag_dynamic_const_buffer m_cbuffer;
+		pulsar::frag_dynamic_cbuffer m_cbuffer;
 
 		pulsar::cubemap m_albedo_map;
 		pulsar::cubemap m_exposure_map;

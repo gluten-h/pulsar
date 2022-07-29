@@ -30,7 +30,7 @@ pulsar::transform::transform()
 
 void	pulsar::transform::init_cbuffer()
 {
-	this->m_transform_cbuffer.set_data(this->m_shader_transform);
+	this->m_transform_cbuffer.set(&this->m_shader_transform, pulsar::CBUFFER_TYPE::DYNAMIC);
 	this->m_transform_cbuffer.set_slot(pulsar::G_BUFFER_VERT_TRANSFORM_SLOT);
 	this->m_transform_cbuffer.set_modified();
 }

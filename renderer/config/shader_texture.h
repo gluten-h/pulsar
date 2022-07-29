@@ -1,7 +1,7 @@
 #pragma once
 
 #include "config.h"
-#include "shader_texture/shader_texture.h"
+#include "gfx_resources/shader_texture.h"
 
 
 namespace pulsar

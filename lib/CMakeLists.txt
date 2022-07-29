@@ -2,41 +2,6 @@
 cmake_minimum_required(VERSION 3.20)
 
 set(LIB_SOURCES	
-						bindables/bindable/buffer_resource.cpp
-						bindables/cubemap/cubemap_data.cpp
-						bindables/cubemap/cubemap_dds.cpp
-						bindables/cubemap/cubemap.cpp
-						bindables/depth_stencil/depth_stencil_state_data.cpp
-						bindables/depth_stencil/depth_stencil_state.cpp
-						bindables/depth_stencil/depth_stencil_view_data.cpp
-						bindables/depth_stencil/depth_stencil_view.cpp
-						bindables/dynamic_const_buffers/dynamic_const_buffer.cpp
-						bindables/dynamic_const_buffers/dynamic_const_buffer_data.cpp
-						bindables/dynamic_const_buffers/frag_dynamic_const_buffer.cpp
-						bindables/dynamic_const_buffers/vert_dynamic_const_buffer.cpp
-						bindables/input_layout/input_layout_data.cpp
-						bindables/input_layout/input_layout.cpp
-						bindables/rasterizer_state/rasterizer_state_data.cpp
-						bindables/rasterizer_state/rasterizer_state.cpp
-						bindables/framebuffer/framebuffer_data.cpp
-						bindables/framebuffer/framebuffer.cpp
-						bindables/render_texture/render_texture_data.cpp
-						bindables/render_texture/render_texture.cpp
-						bindables/sampler/sampler_data.cpp
-						bindables/sampler/sampler.cpp
-						bindables/shaders/frag_shader_data.cpp
-						bindables/shaders/frag_shader.cpp
-						bindables/shaders/geom_shader_data.cpp
-						bindables/shaders/geom_shader.cpp
-						bindables/shaders/shader_data.cpp
-						bindables/shaders/vert_shader_data.cpp
-						bindables/shaders/vert_shader.cpp
-						bindables/shader_texture/shader_texture_data.cpp
-						bindables/shader_texture/shader_texture.cpp
-						bindables/viewport/viewport_data.cpp
-						bindables/viewport/viewport.cpp
-
-
 						dcb/baked_layout.cpp
 						dcb/buffer.cpp
 						dcb/buffer_data.cpp
@@ -52,6 +17,29 @@ set(LIB_SOURCES
 
 
 						gfx/gfx.cpp
+
+
+						gfx_resources/texture_resource.cpp
+						gfx_resources/depth_stencil_view.cpp
+						gfx_resources/shader_texture.cpp
+						gfx_resources/render_texture.cpp
+						gfx_resources/cubemap.cpp
+						gfx_resources/framebuffer.cpp
+						gfx_resources/buffer_resource.cpp
+						gfx_resources/index_buffer.cpp
+						gfx_resources/shader.cpp
+						gfx_resources/vert_shader.cpp
+						gfx_resources/geom_shader.cpp
+						gfx_resources/frag_shader.cpp
+						gfx_resources/depth_stencil_state.cpp
+						gfx_resources/input_layout.cpp
+						gfx_resources/rasterizer_state.cpp
+						gfx_resources/sampler.cpp
+						gfx_resources/viewport.cpp
+						gfx_resources/dynamic_cbuffer.cpp
+						gfx_resources/vert_dynamic_cbuffer.cpp
+						gfx_resources/frag_dynamic_cbuffer.cpp
+						gfx_resources/sync_resource.cpp
 
 
 						input/pulsar_input.cpp
@@ -81,31 +69,6 @@ set(LIB_SOURCES ${LIB_SOURCES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDES		
-						bindables/bindable/bindable.h
-						bindables/bindable/buffer_resource.h
-						bindables/const_buffers/const_buffer.h
-						bindables/const_buffers/frag_const_buffer.h
-						bindables/const_buffers/vert_const_buffer.h
-						bindables/cubemap/cubemap.h
-						bindables/depth_stencil/depth_stencil_state.h
-						bindables/depth_stencil/depth_stencil_view.h
-						bindables/dynamic_const_buffers/dynamic_const_buffer.h
-						bindables/dynamic_const_buffers/frag_dynamic_const_buffer.h
-						bindables/dynamic_const_buffers/vert_dynamic_const_buffer.h
-						bindables/input_layout/input_layout.h
-						bindables/rasterizer_state/rasterizer_state.h
-						bindables/framebuffer/framebuffer.h
-						bindables/render_texture/render_texture.h
-						bindables/sampler/sampler.h
-						bindables/shaders/frag_shader.h
-						bindables/shaders/geom_shader.h
-						bindables/shaders/shader.h
-						bindables/shaders/vert_shader.h
-						bindables/shader_texture/shader_texture.h
-						bindables/viewport/viewport.h
-						bindables/bindables.h
-
-
 						dcb/dcb.h
 						dcb/types.h
 						dcb/layout_elem.h
@@ -135,6 +98,35 @@ set(LIB_INCLUDES
 						gfx/gfx.h
 
 
+						gfx_resources/gfx_resources.h
+						gfx_resources/texture_resource.h
+						gfx_resources/shader_texture.h
+						gfx_resources/depth_stencil_view.h
+						gfx_resources/render_texture.h
+						gfx_resources/cubemap.h
+						gfx_resources/framebuffer.h
+						gfx_resources/buffer_resource.h
+						gfx_resources/vertex_buffer.h
+						gfx_resources/index_buffer.h
+						gfx_resources/cbuffer.h
+						gfx_resources/vert_cbuffer.h
+						gfx_resources/frag_cbuffer.h
+						gfx_resources/shader.h
+						gfx_resources/vert_shader.h
+						gfx_resources/geom_shader.h
+						gfx_resources/frag_shader.h
+						gfx_resources/depth_stencil_state.h
+						gfx_resources/input_layout.h
+						gfx_resources/rasterizer_state.h
+						gfx_resources/sampler.h
+						gfx_resources/viewport.h
+						gfx_resources/dynamic_cbuffer.h
+						gfx_resources/vert_dynamic_cbuffer.h
+						gfx_resources/frag_dynamic_cbuffer.h
+						gfx_resources/sync_resource.h
+						gfx_resources/bind_group.h
+
+
 						input/pulsar_keycodes.h
 						input/pulsar_mousecodes.h
 						input/pulsar_input.h
@@ -149,11 +141,11 @@ set(LIB_INCLUDES
 						render_graph/render_graph.h
 						render_graph/pass.h
 						render_graph/input.h
-						render_graph/buffer_input.h
-						render_graph/bindable_input.h
+						render_graph/sync_input.h
+						render_graph/async_input.h
 						render_graph/source.h
-						render_graph/buffer_source.h
-						render_graph/bindable_source.h
+						render_graph/sync_source.h
+						render_graph/async_source.h
 
 
 						utils/math.h
@@ -167,7 +159,7 @@ set(LIB_INCLUDES ${LIB_INCLUDES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDE_DIRS	
-						bindables
+						#bindables
 						./)
 
 target_sources(${PROJECT_NAME} PUBLIC ${LIB_SOURCES} ${LIB_INCLUDES})

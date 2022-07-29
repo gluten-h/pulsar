@@ -2,8 +2,8 @@
 
 #include "config/config.h"
 #include "render_graph/render_graph.h"
-#include "render_graph/buffer_source.h"
-#include "render_graph/bindable_source.h"
+#include "render_graph/sync_source.h"
+#include "render_graph/async_source.h"
 
 
 namespace pulsar
@@ -23,14 +23,14 @@ namespace pulsar
 	{
 	private:
 		pulsar::framebuffer *mp_framebuffer = NULL;
-		pulsar::depth_stencil_view *mp_ds_view = NULL;
+		pulsar::depth_stencil_view *mp_dsv = NULL;
 		pulsar::render_texture *mp_hdr_buffer = NULL;
 		pulsar::render_texture *mp_g_buffers[pulsar::G_BUFFERS_COUNT] = { NULL };
 
-		pulsar::rg::buffer_source<pulsar::framebuffer> *mp_framebuffer_source = NULL;
-		pulsar::rg::buffer_source<pulsar::depth_stencil_view> *mp_ds_view_source = NULL;
-		pulsar::rg::buffer_source<pulsar::render_texture> *mp_hdr_buffer_source;
-		pulsar::rg::buffer_source<pulsar::render_texture> *mp_g_buffers_sources[pulsar::G_BUFFERS_COUNT] = { NULL };
+		pulsar::rg::sync_source<pulsar::framebuffer> *mp_framebuffer_source = NULL;
+		pulsar::rg::sync_source<pulsar::depth_stencil_view> *mp_ds_view_source = NULL;
+		pulsar::rg::sync_source<pulsar::render_texture> *mp_hdr_buffer_source;
+		pulsar::rg::sync_source<pulsar::render_texture> *mp_g_buffers_sources[pulsar::G_BUFFERS_COUNT] = { NULL };
 
 
 		pulsar::clear_buffers_pass *mp_clear_buffers_pass = NULL;

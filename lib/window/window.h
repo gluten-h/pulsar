@@ -1,9 +1,7 @@
 #pragma once
 
-#include "gfx/gfx.h"
 #include "config/config.h"
-#include "viewport/viewport.h"
-#include "framebuffer/framebuffer.h"
+#include "gfx_resources/framebuffer.h"
 #include <chrono>
 
 

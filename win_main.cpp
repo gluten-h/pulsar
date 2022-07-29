@@ -25,7 +25,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		camera_node.add_component<pulsar::camera_component>(&camera);
 		camera_node.add_component<pulsar::script_component>(&camera_controller);
 	}
-	win.framebuffer().link_buffer_resource(&camera.viewport());
+	win.framebuffer().link(&camera.viewport());
 	scene.set_main_camera(&camera_node);
 
 

@@ -6,14 +6,14 @@
 #include "config/shader.h"
 #include "config/rasterizer_state.h"
 #include "renderer/renderer.h"
-#include "depth_stencil/depth_stencil_state.h"
-#include "shaders/vert_shader.h"
-#include "shaders/geom_shader.h"
-#include "input_layout/input_layout.h"
-#include "sampler/sampler.h"
-#include "depth_stencil/depth_stencil_view.h"
-#include "viewport/viewport.h"
-#include "render_texture/render_texture.h"
+#include "gfx_resources/depth_stencil_state.h"
+#include "gfx_resources/vert_shader.h"
+#include "gfx_resources/geom_shader.h"
+#include "gfx_resources/input_layout.h"
+#include "gfx_resources/sampler.h"
+#include "gfx_resources/depth_stencil_view.h"
+#include "gfx_resources/viewport.h"
+#include "gfx_resources/render_texture.h"
 #include "render_queue/render_queue.h"
 #include "render_queue/job.h"
 #include "scene/scene.h"
@@ -28,23 +28,23 @@ pulsar::g_buffer_pass::g_buffer_pass(const std::string &name) : pulsar::rg::pass
 		{ "UV", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	};
 
-	this->mp_ds_state = new pulsar::depth_stencil_state(TRUE, D3D11_COMPARISON_LESS, D3D11_DEPTH_WRITE_MASK_ALL);
+	this->mp_dss = new pulsar::depth_stencil_state(TRUE, D3D11_COMPARISON_LESS, D3D11_DEPTH_WRITE_MASK_ALL);
 	this->mp_g_buffer_vs = new pulsar::vert_shader(pulsar::G_BUFFER_VS_PATH);
 	this->mp_g_buffer_gs = new pulsar::geom_shader(pulsar::G_BUFFER_GS_PATH);
-	this->mp_input_layout = new pulsar::input_layout(this->mp_g_buffer_vs->get_shader_blob(), ied, (UINT)std::size(ied));
+	this->mp_input_layout = new pulsar::input_layout(this->mp_g_buffer_vs->blob(), ied, (UINT)std::size(ied));
 	this->mp_sampler = new pulsar::sampler(pulsar::G_BUFFER_FRAG_SAMPLER_SLOT);
 
-	this->mp_ds_view_input = new pulsar::rg::buffer_input<pulsar::depth_stencil_view>(pulsar::RG_G_DS_VIEW, this->mp_ds_view);
-	this->mp_ds_view_source = new pulsar::rg::buffer_source<pulsar::depth_stencil_view>(pulsar::RG_G_DS_VIEW, this->mp_ds_view);
+	this->mp_dsv_input = new pulsar::rg::sync_input<pulsar::depth_stencil_view>(pulsar::RG_G_DSV, this->mp_dsv);
+	this->mp_dsv_source = new pulsar::rg::sync_source<pulsar::depth_stencil_view>(pulsar::RG_G_DSV, this->mp_dsv);
 
-	this->register_input(this->mp_ds_view_input);
-	this->register_source(this->mp_ds_view_source);
+	this->register_input(this->mp_dsv_input);
+	this->register_source(this->mp_dsv_source);
 
 	int i = -1;
 	while (++i < pulsar::G_BUFFERS_COUNT)
 	{
-		this->mp_g_buffers_inputs[i] = new pulsar::rg::buffer_input<pulsar::render_texture>(pulsar::RG_G_G_BUFFERS[i], this->mp_g_buffers[i]);
-		this->mp_g_buffers_sources[i] = new pulsar::rg::buffer_source<pulsar::render_texture>(pulsar::RG_G_G_BUFFERS[i], this->mp_g_buffers[i]);
+		this->mp_g_buffers_inputs[i] = new pulsar::rg::sync_input<pulsar::render_texture>(pulsar::RG_G_G_BUFFERS[i], this->mp_g_buffers[i]);
+		this->mp_g_buffers_sources[i] = new pulsar::rg::sync_source<pulsar::render_texture>(pulsar::RG_G_G_BUFFERS[i], this->mp_g_buffers[i]);
 
 		this->register_input(this->mp_g_buffers_inputs[i]);
 		this->register_source(this->mp_g_buffers_sources[i]);
@@ -53,14 +53,14 @@ pulsar::g_buffer_pass::g_buffer_pass(const std::string &name) : pulsar::rg::pass
 
 pulsar::g_buffer_pass::~g_buffer_pass()
 {
-	delete this->mp_ds_state;
+	delete this->mp_dss;
 	delete this->mp_g_buffer_vs;
 	delete this->mp_g_buffer_gs;
 	delete this->mp_input_layout;
 	delete this->mp_sampler;
 
-	delete this->mp_ds_view_input;
-	delete this->mp_ds_view_source;
+	delete this->mp_dsv_input;
+	delete this->mp_dsv_source;
 
 	int i = -1;
 	while (++i < pulsar::G_BUFFERS_COUNT)
@@ -72,7 +72,7 @@ pulsar::g_buffer_pass::~g_buffer_pass()
 
 void	pulsar::g_buffer_pass::validate() const
 {
-	if (!this->mp_ds_view)
+	if (!this->mp_dsv)
 		THROW_RG_EXC("Depth Stencil View isn't bound");
 
 	int i = -1;
@@ -97,20 +97,20 @@ void	pulsar::g_buffer_pass::execute()
 
 	int i = -1;
 	while (++i < pulsar::G_BUFFERS_COUNT)
-		g_buffers_data[i] = this->mp_g_buffers[i]->render_target();
+		g_buffers_data[i] = this->mp_g_buffers[i]->rtv();
 
 	auto *camera_viewport = renderer.get_main_camera_viewport();
 	auto *vert_camera_cbuffer = renderer.get_vert_camera_cbuffer();
 
 	{
 		pulsar::BACK_FACE_CULL_RS.bind();
-		this->mp_ds_state->bind();
+		this->mp_dss->bind();
 		this->mp_g_buffer_vs->bind();
 		this->mp_g_buffer_gs->bind();
 		this->mp_input_layout->bind();
 		this->mp_sampler->bind();
 		camera_viewport->bind();
-		device_context->OMSetRenderTargets(pulsar::G_BUFFERS_COUNT, g_buffers_data, this->mp_ds_view->get_view());
+		device_context->OMSetRenderTargets(pulsar::G_BUFFERS_COUNT, g_buffers_data, this->mp_dsv->dsv());
 
 		vert_camera_cbuffer->set_slot(pulsar::G_BUFFER_VERT_CAMERA_SLOT);
 		vert_camera_cbuffer->bind();
@@ -127,7 +127,7 @@ void	pulsar::g_buffer_pass::execute()
 		this->mp_input_layout->unbind();
 		this->mp_g_buffer_gs->unbind();
 		this->mp_g_buffer_vs->unbind();
-		this->mp_ds_state->unbind();
+		this->mp_dss->unbind();
 		pulsar::BACK_FACE_CULL_RS.unbind();
 	}
 }

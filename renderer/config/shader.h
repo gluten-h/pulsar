@@ -1,8 +1,8 @@
 #pragma once
 
 #include "config.h"
-#include "shaders/vert_shader.h"
-#include "shaders/frag_shader.h"
+#include "gfx_resources/vert_shader.h"
+#include "gfx_resources/frag_shader.h"
 
 
 namespace pulsar

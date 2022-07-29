@@ -1,4 +1,7 @@
 
+- [ ] mip maps
+- [ ] store all shader constants inside immutable cbuffers
+- [ ] bind_group: a class with an array of one-type bindables inside to bind them per one call (shader_textures, render_textures, samplers, viewports, cbuffers, dynamic_cbuffers)
 - [ ] entity:
 	- [x] metadata:
 		- [x] create metadata component and store all general entity-related information in it (name?, masks, etc?)

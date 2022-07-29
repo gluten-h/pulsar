@@ -1,12 +1,13 @@
 
 #include "present_pass.h"
-#include "framebuffer/framebuffer.h"
+#include "gfx_resources/framebuffer.h"
 #include "config/config.h"
+#include "exceptions/rg_exception.h"
 
 
 pulsar::present_pass::present_pass(const std::string &name) : pulsar::rg::pass(name)
 {
-	this->mp_framebuffer_input = new pulsar::rg::buffer_input<pulsar::framebuffer>(pulsar::RG_G_FRAMEBUFFER, this->mp_framebuffer);
+	this->mp_framebuffer_input = new pulsar::rg::sync_input<pulsar::framebuffer>(pulsar::RG_G_FRAMEBUFFER, this->mp_framebuffer);
 	this->register_input(this->mp_framebuffer_input);
 }
 

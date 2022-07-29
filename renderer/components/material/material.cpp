@@ -3,7 +3,7 @@
 #include "config/config.h"
 #include "config/shader_texture.h"
 #include "config/shader.h"
-#include "shaders/frag_shader.h"
+#include "gfx_resources/frag_shader.h"
 
 
 pulsar::material::material()
@@ -35,7 +35,7 @@ pulsar::material::material()
 	this->m_dcb_buffer[pulsar::MATERIAL_DCB_AO] = 0.0f;
 	this->m_dcb_buffer[pulsar::MATERIAL_DCB_EXPOSURE] = 1.0f;
 
-	this->m_cbuffer.set_dcb_buffer(&this->m_dcb_buffer);
+	this->m_cbuffer.set(&this->m_dcb_buffer);
 	this->m_cbuffer.set_slot(pulsar::G_BUFFER_FRAG_MATERIAL_SLOT);
 	this->set_tex_bind_slots();
 }

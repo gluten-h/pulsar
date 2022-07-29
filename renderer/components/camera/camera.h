@@ -2,8 +2,7 @@
 
 #include "utils/math.h"
 #include "config/config.h"
-#include "viewport/viewport.h"
-#include "dynamic_const_buffers/vert_dynamic_const_buffer.h"
+#include "gfx_resources/viewport.h"
 
 
 namespace pulsar
