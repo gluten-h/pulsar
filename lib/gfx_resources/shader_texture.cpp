@@ -75,6 +75,6 @@ void	pulsar::shader_texture::bind() const
 
 void	pulsar::shader_texture::unbind() const
 {
-	ID3D11ShaderResourceView *null_ptr[1] = { NULL };
-	pulsar::gfx::instance().device_context()->PSSetShaderResources(this->m_slot, 1u, null_ptr);
+	ID3D11ShaderResourceView *null[1] = { NULL };
+	pulsar::gfx::instance().device_context()->PSSetShaderResources(this->m_slot, 1u, null);
 }

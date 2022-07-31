@@ -1,20 +1,23 @@
 
+- [ ] geometry cbuffers
 - [ ] mip maps
 - [ ] store all shader constants inside immutable cbuffers
-- [ ] bind_group: a class with an array of one-type bindables inside to bind them per one call (shader_textures, render_textures, samplers, viewports, cbuffers, dynamic_cbuffers)
-- [ ] entity:
+- [ ] bind_group: a class with an array of one-type bindables stored inside to bind them per one call (shader_textures, render_textures, samplers, viewports, cbuffers, dynamic_cbuffers)
+	- [ ] viewport_bind_group
+	- [ ] geom_cbuffer_bind_group
+- [x] entity:
 	- [x] metadata:
 		- [x] create metadata component and store all general entity-related information in it (name?, masks, etc?)
 	- [x] masking:
 		- [x] add the ability to bit-mask drawable geometry (viewport, shadows, reflections, lighting? etc), 32 bits would probably be enough
-- [ ] material:
+- [x] material:
 	- [x] need to rework the way materials are handled by the render queue
 - [x] systems:
 	- [x] there is no need to store a pointer to a scene registry, just pass it as a function argument
 - [ ] hierarchy:
 	- [ ] implement it
 - [ ] input:
-	- [ ] keyboard:
+	- [x] keyboard:
 		- [x] probably, there is no need of break-codes, input api generates make-codes even when specified flag is RI_KEY_BREAK
 - [ ] mesh:
 	- [ ] create mesh primitives and write geometry data in constructor directly without messing with files

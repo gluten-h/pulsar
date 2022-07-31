@@ -111,12 +111,12 @@ void	pulsar::render_texture::bind_rtv(ID3D11DepthStencilView *dsv) const
 
 void	pulsar::render_texture::unbind_srv() const
 {
-	ID3D11ShaderResourceView *null_ptr[1] = { NULL };
-	pulsar::gfx::instance().device_context()->PSSetShaderResources(this->m_slot, 1u, null_ptr);
+	ID3D11ShaderResourceView *null[1] = { NULL };
+	pulsar::gfx::instance().device_context()->PSSetShaderResources(this->m_slot, 1u, null);
 }
 
 void	pulsar::render_texture::unbind_rtv() const
 {
-	ID3D11RenderTargetView *null_ptr[1] = { NULL };
-	pulsar::gfx::instance().device_context()->OMSetRenderTargets(1u, null_ptr, NULL);
+	ID3D11RenderTargetView *null[1] = { NULL };
+	pulsar::gfx::instance().device_context()->OMSetRenderTargets(1u, null, NULL);
 }

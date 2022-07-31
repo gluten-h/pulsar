@@ -26,7 +26,7 @@ void	pulsar::mesh::unbind() const
 {
 	UINT v_stride = 0u;
 	UINT v_offset = 0u;
-	ID3D11Buffer *null_ptr[1] = { NULL };
-	pulsar::gfx::instance().device_context()->IASetVertexBuffers(0u, 1u, null_ptr, &v_stride, &v_offset);
+	ID3D11Buffer *null[1] = { NULL };
+	pulsar::gfx::instance().device_context()->IASetVertexBuffers(0u, 1u, null, &v_stride, &v_offset);
 	pulsar::gfx::instance().device_context()->IASetIndexBuffer(NULL, DXGI_FORMAT_R32_UINT, 0u);
 }

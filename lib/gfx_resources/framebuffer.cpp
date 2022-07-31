@@ -101,6 +101,6 @@ void	pulsar::framebuffer::bind(ID3D11DepthStencilView *dsv) const
 
 void	pulsar::framebuffer::unbind() const
 {
-	ID3D11RenderTargetView *null_ptr[1] = { NULL };
-	pulsar::gfx::instance().device_context()->OMSetRenderTargets(1u, null_ptr, NULL);
+	ID3D11RenderTargetView *null[1] = { NULL };
+	pulsar::gfx::instance().device_context()->OMSetRenderTargets(1u, null, NULL);
 }

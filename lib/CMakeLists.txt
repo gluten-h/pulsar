@@ -124,7 +124,14 @@ set(LIB_INCLUDES
 						gfx_resources/vert_dynamic_cbuffer.h
 						gfx_resources/frag_dynamic_cbuffer.h
 						gfx_resources/sync_resource.h
-						gfx_resources/bind_group.h
+
+						gfx_resources/bind_group/rtv_bind_group.h
+						gfx_resources/bind_group/srv_bind_group.h
+						gfx_resources/bind_group/sampler_bind_group.h
+						gfx_resources/bind_group/viewport_bind_group.h
+						gfx_resources/bind_group/cbuffer_bind_group.h
+						gfx_resources/bind_group/vert_cbuffer_bind_group.h
+						gfx_resources/bind_group/frag_cbuffer_bind_group.h
 
 
 						input/pulsar_keycodes.h

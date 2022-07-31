@@ -40,6 +40,6 @@ void	pulsar::viewport::bind() const
 
 void	pulsar::viewport::unbind() const
 {
-	D3D11_VIEWPORT null_ptr[1] = { NULL };
-	pulsar::gfx::instance().device_context()->RSSetViewports(1u, null_ptr);
+	D3D11_VIEWPORT null[1] = { NULL };
+	pulsar::gfx::instance().device_context()->RSSetViewports(1u, null);
 }

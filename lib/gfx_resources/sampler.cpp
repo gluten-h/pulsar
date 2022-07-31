@@ -60,6 +60,6 @@ void	pulsar::sampler::bind() const
 
 void	pulsar::sampler::unbind() const
 {
-	ID3D11SamplerState *null_ptr[1] = { NULL };
-	pulsar::gfx::instance().device_context()->PSSetSamplers(this->m_slot, 1u, null_ptr);
+	ID3D11SamplerState *null[1] = { NULL };
+	pulsar::gfx::instance().device_context()->PSSetSamplers(this->m_slot, 1u, null);
 }
