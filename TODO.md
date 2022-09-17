@@ -1,5 +1,5 @@
 
-- [ ] the new g-buffer was added to store raw vertex normals, I don't think it is needed
+- [x] the new g-buffer was added to store raw vertex normals, I don't think it is needed
 - [x] geometry cbuffers
 - [ ] mip maps
 - [ ] store all shader constants inside immutable cbuffers

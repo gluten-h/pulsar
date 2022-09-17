@@ -59,12 +59,11 @@ namespace pulsar
 		G_BUFFER_POS,
 		G_BUFFER_ALBEDO,
 		G_BUFFER_NORMAL,
-		G_BUFFER_SURFACE_NORMAL,
 		G_BUFFER_RMAE,				//roughness, metalness, ambient, exposure
 		G_BUFFER_IRRADIANCE,
 		G_BUFFERS_COUNT,
 	};
-	const char *const RG_G_G_BUFFERS[G_BUFFERS_COUNT] = { "g_buffer_pos", "g_buffer_albedo", "g_buffer_normal", "g_buffer_surface_normal", "g_buffer_rmae", "g_buffer_irradiance" };
+	const char *const RG_G_G_BUFFERS[G_BUFFERS_COUNT] = { "g_buffer_pos", "g_buffer_albedo", "g_buffer_normal", "g_buffer_rmae", "g_buffer_irradiance" };
 	const char *const RG_G_VIEWPORT_RQ = "viewport_rq";
 	const char *const RG_G_SHADOWS_RQ = "shadows_rq";
 

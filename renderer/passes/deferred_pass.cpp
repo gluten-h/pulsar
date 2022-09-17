@@ -112,7 +112,7 @@ void	pulsar::deferred_pass::execute()
 	pulsar::ecs::entity light = submitted_lights[0];
 	pulsar::shadow_map *shadow_map = active_scene->registry().get<pulsar::light_component>(light).light->shadow_map();
 
-	shadow_map->set_slot(6u);
+	shadow_map->set_slot(5u);
 	shadow_map->bind_srv();
 
 	pulsar::fullscreen_pass::execute();

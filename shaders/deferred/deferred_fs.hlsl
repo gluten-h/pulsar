@@ -7,11 +7,10 @@
 Texture2D gb_position : register(t0);
 Texture2D gb_albedo : register(t1);
 Texture2D gb_normal : register(t2);
-Texture2D gb_surface_normal : register(t3);
-Texture2D gb_rmae : register(t4);
-Texture2D gb_irradiance : register(t5);
+Texture2D gb_rmae : register(t3);
+Texture2D gb_irradiance : register(t4);
 
-TextureCube shadow_map : register(t6);
+TextureCube shadow_map : register(t5);
 
 SamplerState smplr : register(s0);
 SamplerState shadow_smplr : register(s1);
@@ -73,9 +72,9 @@ float	shadow_mapping(float2 moments, float light_dist)
 	float p = step(light_dist, moments.x);
 	float variance = max(0.00002f, moments.y - moments.x * moments.x);
 	float d = light_dist - moments.x;
-	float p_max = linstep(0.3f, 1.0f, variance / (variance + d * d));// 0.3 is not hardcoded, it should be loaded to the shader
+	float p_max = linstep(0.3f, 1.0f, variance / (variance + d * d));// 0.3 isn't supposed to be hardcoded, it should be loaded to the shader
 
-	return (min(1.0f, max(p, p_max)));
+	return (max(p, p_max));
 }
 
 
@@ -85,7 +84,6 @@ float4	frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 	float3 albedo = gb_albedo.Sample(smplr, uv).xyz;
 	albedo = lerp(albedo, srgb_to_linear(albedo, cam_gamma), gb_albedo.Sample(smplr, uv).w);
 	float3 normal = gb_normal.Sample(smplr, uv).xyz;
-	//float3 surface_normal = gb_surface_normal.Sample(smplr, uv).xyz;
 
 	float4 rmae = gb_rmae.Sample(smplr, uv);
 	float roughness = rmae.x;
