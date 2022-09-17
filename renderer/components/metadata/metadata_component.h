@@ -24,6 +24,7 @@ namespace pulsar
 		void	on_construct(pulsar::ecs::registry &registry, pulsar::ecs::entity entity)
 		{
 			this->mask.viewport = pulsar::DEFAULT_ENTITY_VIEWPORT_MASK;
+			this->mask.shadows = pulsar::DEFAULT_ENTITY_SHADOWS_MASK;
 		}
 	};
 }

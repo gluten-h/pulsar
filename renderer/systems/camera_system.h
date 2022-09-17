@@ -15,14 +15,14 @@ namespace pulsar
 		using frag_camera_cbuffer = pulsar::frag_cbuffer<pulsar::frag_camera>;
 
 		pulsar::vert_camera m_vert_camera;
-		vert_camera_cbuffer *mp_vert_camera_cbuffer = NULL;
+		vert_camera_cbuffer m_vert_camera_cbuffer;
 
 		pulsar::frag_camera m_frag_camera;
-		frag_camera_cbuffer *mp_frag_camera_cbuffer = NULL;
+		frag_camera_cbuffer m_frag_camera_cbuffer;
 
 	public:
 		camera_system();
-		~camera_system();
+		~camera_system() = default;
 
 		void	execute(pulsar::ecs::registry &registry, float delta_time) override;
 	};

@@ -14,8 +14,6 @@
 #include "gfx_resources/depth_stencil_view.h"
 #include "gfx_resources/viewport.h"
 #include "gfx_resources/render_texture.h"
-#include "render_queue/render_queue.h"
-#include "render_queue/job.h"
 #include "scene/scene.h"
 
 
@@ -32,13 +30,17 @@ pulsar::g_buffer_pass::g_buffer_pass(const std::string &name) : pulsar::rg::pass
 	this->mp_g_buffer_vs = new pulsar::vert_shader(pulsar::G_BUFFER_VS_PATH);
 	this->mp_g_buffer_gs = new pulsar::geom_shader(pulsar::G_BUFFER_GS_PATH);
 	this->mp_input_layout = new pulsar::input_layout(this->mp_g_buffer_vs->blob(), ied, (UINT)std::size(ied));
-	this->mp_sampler = new pulsar::sampler(pulsar::G_BUFFER_FRAG_SAMPLER_SLOT);
+	this->mp_sampler = new pulsar::sampler(pulsar::FRAG_G_BUFFER_SAMPLER_SLOT);
 
 	this->mp_dsv_input = new pulsar::rg::sync_input<pulsar::depth_stencil_view>(pulsar::RG_G_DSV, this->mp_dsv);
 	this->mp_dsv_source = new pulsar::rg::sync_source<pulsar::depth_stencil_view>(pulsar::RG_G_DSV, this->mp_dsv);
 
+	this->mp_viewport_rq_input = new pulsar::rg::async_input<pulsar::viewport_rq>(pulsar::RG_G_VIEWPORT_RQ, this->mp_viewport_rq);
+
 	this->register_input(this->mp_dsv_input);
 	this->register_source(this->mp_dsv_source);
+
+	this->register_input(this->mp_viewport_rq_input);
 
 	int i = -1;
 	while (++i < pulsar::G_BUFFERS_COUNT)
@@ -68,6 +70,8 @@ pulsar::g_buffer_pass::~g_buffer_pass()
 		delete this->mp_g_buffers_inputs[i];
 		delete this->mp_g_buffers_sources[i];
 	}
+
+	delete this->mp_viewport_rq_input;
 }
 
 void	pulsar::g_buffer_pass::validate() const
@@ -81,6 +85,9 @@ void	pulsar::g_buffer_pass::validate() const
 		if (!this->mp_g_buffers[i])
 			THROW_RG_EXC("G-Buffer isn't bound");
 	}
+
+	if (!this->mp_viewport_rq)
+		THROW_RG_EXC("Viewport RQ isn't bound");
 }
 
 void	pulsar::g_buffer_pass::execute()
@@ -112,11 +119,11 @@ void	pulsar::g_buffer_pass::execute()
 		camera_viewport->bind();
 		device_context->OMSetRenderTargets(pulsar::G_BUFFERS_COUNT, g_buffers_data, this->mp_dsv->dsv());
 
-		vert_camera_cbuffer->set_slot(pulsar::G_BUFFER_VERT_CAMERA_SLOT);
+		vert_camera_cbuffer->set_slot(pulsar::VERT_G_BUFFER_CAMERA_SLOT);
 		vert_camera_cbuffer->bind();
 	}
 
-	pulsar::render_queue::instance().execute();
+	this->mp_viewport_rq->execute();
 
 	{
 		vert_camera_cbuffer->unbind();

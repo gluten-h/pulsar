@@ -9,6 +9,7 @@ Texture2D	mat_roughness_map : register(t2);
 Texture2D	mat_metalness_map : register(t3);
 Texture2D	mat_ao_map : register(t4);
 Texture2D	mat_exposure_map :register(t5);
+TextureCube mat_irradiance_map : register(t6);
 
 SamplerState smplr : register(s0);
 
@@ -22,8 +23,9 @@ cbuffer material_cb : register(b0)
 	float	mat_metalness;
 	float	mat_ao;
 	float	mat_exposure;
-	
-	float3	pd;
+	float	mat_irradiance_color;
+
+	float2	pd;
 };
 
 struct fs_out
@@ -31,7 +33,9 @@ struct fs_out
 	float4	position : SV_Target0;
 	float4	albedo : SV_Target1;
 	float4	normal : SV_Target2;
-	float4	rmae : SV_Target3;
+	float4	surface_normal : SV_Target3;
+	float4	rmae : SV_Target4;
+	float4	irradiance : SV_Target5;
 };
 
 
@@ -46,7 +50,9 @@ fs_out	frag(float4 pos : SV_POSITION, float4 world_pos : POSITION, float3 normal
 	output.position = world_pos;
 	output.albedo = float4(mat_albedo_map.Sample(smplr, uv).xyz * mat_albedo_color, mat_albedo_map_srgb);
 	output.normal = float4(normal_m, 1.0f);
+	output.surface_normal = float4(normalize(normal), 1.0f);
 	output.rmae = float4(mat_roughness_map.Sample(smplr, uv).x * mat_roughness, mat_metalness_map.Sample(smplr, uv).x * mat_metalness, mat_ao_map.Sample(smplr, uv).x * mat_ao, exposure);
+	output.irradiance = mat_irradiance_map.Sample(smplr, normal) * mat_irradiance_color;
 
 	return (output);
 }

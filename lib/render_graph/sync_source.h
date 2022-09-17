@@ -14,8 +14,6 @@ namespace pulsar
 		class sync_source : public pulsar::rg::source
 		{
 		private:
-			static_assert(std::is_base_of_v<pulsar::sync_resource, T>, "The sync_source target type must inherit the sync_resource class");
-
 			T **mp_buffer = NULL;
 			bool m_linked = false;
 
@@ -31,13 +29,13 @@ namespace pulsar
 			}
 			~sync_source() = default;
 
-			pulsar::sync_resource	**yield_sync_data() override
+			void	**yield_sync_data() override
 			{
 				if (this->m_linked)
 					THROW_RG_EXC("The source " + this->name() + " has already been linked");
 				this->m_linked = true;
 
-				return ((pulsar::sync_resource**)this->mp_buffer);
+				return ((void**)this->mp_buffer);
 			}
 		};
 	}

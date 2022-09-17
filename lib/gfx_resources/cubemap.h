@@ -29,6 +29,7 @@ namespace pulsar
 		cubemap(LPCWSTR dds_file, UINT slot = 0u);
 		~cubemap();
 
+		//Face order: pos_x, neg_x, pos_y, neg_y, pos_z, neg_z
 		void	set(LPCWSTR *files, LPCWSTR output_dds_path, FILE_CREATION behavior = FILE_CREATION::OVERWRITE);
 		void	set(LPCWSTR dds_file);
 		void	set_slot(UINT slot);

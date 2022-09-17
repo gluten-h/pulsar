@@ -9,8 +9,8 @@ namespace pulsar
 {
 	struct vert_camera
 	{
-		XMMATRIX view;
-		XMMATRIX proj;
+		XMFLOAT4X4 view;
+		XMFLOAT4X4 proj;
 	};
 	struct frag_camera
 	{
@@ -24,6 +24,7 @@ namespace pulsar
 	class camera
 	{
 	protected:
+		XMFLOAT4X4 m_mat;
 		pulsar::viewport m_viewport;
 
 		camera &operator=(const camera&) = default;
@@ -36,6 +37,6 @@ namespace pulsar
 
 	public:
 		pulsar::viewport	&viewport();
-		virtual const XMMATRIX	&get_projection() const = 0;
+		const XMFLOAT4X4	&projection() const;
 	};
 }

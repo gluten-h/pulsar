@@ -2,12 +2,9 @@
 #include "dir_light.h"
 
 
-pulsar::dir_light::dir_light() : pulsar::light(pulsar::LIGHT_TYPE::DIR)
-{
+pulsar::dir_light::dir_light() : pulsar::light(pulsar::LIGHT_TYPE::DIR, NULL){ }
 
-}
-
-pulsar::dir_light::dir_light(const XMFLOAT3 &color) : pulsar::light(pulsar::LIGHT_TYPE::DIR)
+pulsar::dir_light::dir_light(const XMFLOAT3 &color) : pulsar::light(pulsar::LIGHT_TYPE::DIR, NULL)
 {
 	this->m_color = color;
 }

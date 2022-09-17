@@ -19,14 +19,14 @@ pulsar::skybox_material::skybox_material()
 	this->m_dcb_buffer[pulsar::SKYBOX_MATERIAL_DCB_EXPOSURE] = 1.0f;
 
 	this->m_cbuffer.set(&this->m_dcb_buffer);
-	this->m_cbuffer.set_slot(pulsar::SKYBOX_FRAG_SKYBOX_MATERIAL_SLOT);
+	this->m_cbuffer.set_slot(pulsar::FRAG_SKYBOX_SKYBOX_MATERIAL_SLOT);
 	this->set_tex_bind_slots();
 }
 
 void	pulsar::skybox_material::set_tex_bind_slots()
 {
-	this->m_albedo_map.set_slot(pulsar::SKYBOX_FRAG_SKYBOX_MATERIAL_ALBEDO_MAP_SLOT);
-	this->m_exposure_map.set_slot(pulsar::SKYBOX_FRAG_SKYBOX_MATERIAL_EXPOSURE_MAP_SLOT);
+	this->m_albedo_map.set_slot(pulsar::FRAG_SKYBOX_SKYBOX_MATERIAL_ALBEDO_MAP_SLOT);
+	this->m_exposure_map.set_slot(pulsar::FRAG_SKYBOX_SKYBOX_MATERIAL_EXPOSURE_MAP_SLOT);
 }
 
 void	pulsar::skybox_material::bind()
@@ -41,7 +41,7 @@ void	pulsar::skybox_material::bind()
 
 void	pulsar::skybox_material::unbind()
 {	
-	this->m_exposure_map.bind();
-	this->m_albedo_map.bind();
-	this->m_cbuffer.bind();
+	this->m_exposure_map.unbind();
+	this->m_albedo_map.unbind();
+	this->m_cbuffer.unbind();
 }

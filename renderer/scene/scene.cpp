@@ -19,15 +19,18 @@ pulsar::scene::scene()
 	this->m_registry.on_construct<pulsar::metadata_component>().connect<entt::invoke<&pulsar::metadata_component::on_construct>>();
 	this->m_registry.on_construct<pulsar::camera_component>().connect<entt::invoke<&pulsar::camera_component::on_construct>>();
 
-	this->register_system<pulsar::camera_system>();
-	this->register_system<pulsar::viewport_render_system>();
-	this->register_system<pulsar::light_system>();
+	this->register_render_system<pulsar::camera_system>();
+	this->register_render_system<pulsar::viewport_render_system>();
+	this->register_render_system<pulsar::light_system>();
+
 	this->register_system<pulsar::script_system>();
 }
 
 pulsar::scene::~scene()
 {
 	for (pulsar::ecs::system *sys : this->m_systems)
+		delete sys;
+	for (pulsar::ecs::system *sys : this->m_render_systems)
 		delete sys;
 }
 
@@ -67,5 +70,11 @@ pulsar::skybox_material		&pulsar::scene::skybox_material()
 void	pulsar::scene::update(float delta_time)
 {
 	for (pulsar::ecs::system *sys : this->m_systems)
+		sys->execute(this->m_registry, delta_time);
+}
+
+void	pulsar::scene::update_render(float delta_time)
+{
+	for (pulsar::ecs::system *sys : this->m_render_systems)
 		sys->execute(this->m_registry, delta_time);
 }

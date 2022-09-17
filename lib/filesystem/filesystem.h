@@ -19,6 +19,11 @@ namespace pulsar
 		}
 
 	public:
+		static void		create_mount_point(const std::filesystem::path &absolute_path)
+		{
+			filesystem::mount_points().push_back(absolute_path);
+		}
+
 		static std::wstring		absolute_path(const LPCWSTR relative_path)
 		{
 			for (auto &point : filesystem::mount_points())
@@ -32,6 +37,21 @@ namespace pulsar
 			}
 
 			return (std::wstring());
+		}
+
+		static std::filesystem::path	path(const LPCWSTR relative_path)
+		{
+			for (auto &point : filesystem::mount_points())
+			{
+				std::filesystem::path fs_path = point;
+				fs_path.append(relative_path);
+				fs_path.make_preferred();
+
+				if (std::filesystem::exists(fs_path))
+					return (fs_path);
+			}
+
+			return (std::filesystem::path());
 		}
 	};
 }

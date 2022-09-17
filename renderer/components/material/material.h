@@ -1,6 +1,7 @@
 #pragma once
 
 #include "gfx_resources/shader_texture.h"
+#include "gfx_resources/cubemap.h"
 #include "gfx_resources/frag_dynamic_cbuffer.h"
 
 
@@ -22,8 +23,7 @@ namespace pulsar
 		pulsar::shader_texture m_metalness_map;
 		pulsar::shader_texture m_ao_map;
 		pulsar::shader_texture m_exposure_map;
-
-		//pulsar::shader_texture	*mp_irradiance_map = (pulsar::shader_texture*)&pulsar::STD_QUAD_WHITE_TEX;
+		pulsar::cubemap m_irradiance_map;
 
 	private:
 		void	set_tex_bind_slots();
@@ -53,5 +53,7 @@ namespace pulsar
 		pulsar::dcb::layout_elem_ref	ao();
 		pulsar::shader_texture			&exposure_map();
 		pulsar::dcb::layout_elem_ref	exposure();
+		pulsar::cubemap					&irradiance_map();
+		pulsar::dcb::layout_elem_ref	irradiance_color();
 	};
 }

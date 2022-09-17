@@ -21,6 +21,7 @@ namespace pulsar
 	private:
 		pulsar::frag_shader *mp_deferred_fs = NULL;
 		pulsar::sampler *mp_sampler = NULL;
+		pulsar::sampler *mp_shadow_sampler = NULL;
 
 		pulsar::render_texture *mp_hdr_buffer = NULL;
 		pulsar::depth_stencil_view *mp_dsv = NULL;

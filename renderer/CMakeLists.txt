@@ -15,11 +15,13 @@ set(REN_SOURCES
 						components/mesh/mesh_obj.cpp
 						components/mesh/mesh.cpp
 						components/mesh/cube.cpp
-						#components/mesh/sphere.cpp
+						components/mesh/quad.cpp
 
 						components/light/light.cpp
 						components/light/point_light.cpp
 						components/light/dir_light.cpp
+						components/light/shadow_map.cpp
+						components/light/point_shadow_map.cpp
 
 						components/skybox_material/skybox_material.cpp
 						components/skybox_material/skybox_material_props.cpp
@@ -28,11 +30,15 @@ set(REN_SOURCES
 
 						renderer/renderer.cpp
 
+						rq/viewport_job.cpp
+						rq/shadows_job.cpp
+
 						scene/scene.cpp
 						scene/scene_node.cpp
 
 						scripts/camera_controller.cpp
 						scripts/node_rotation.cpp
+						scripts/node_rotation_orbit.cpp
 
 						systems/camera_system.cpp
 						systems/viewport_render_system.cpp
@@ -46,7 +52,8 @@ set(REN_SOURCES
 						passes/g_buffer_pass.cpp
 						passes/deferred_pass.cpp
 						passes/skybox_pass.cpp
-						passes/post_effects_pass.cpp)
+						passes/post_effects_pass.cpp
+						passes/shadow_mapping_pass.cpp)
 set(REN_SOURCES ${REN_SOURCES} PARENT_SCOPE)
 
 set(REN_INCLUDES		
@@ -63,13 +70,15 @@ set(REN_INCLUDES
 
 						components/mesh/mesh.h
 						components/mesh/cube.h
-						#components/mesh/sphere.h
+						components/mesh/quad.h
 						components/mesh/primitives.h
 						components/mesh/mesh_component.h
 
 						components/light/light.h
 						components/light/point_light.h
 						components/light/dir_light.h
+						components/light/shadow_map.h
+						components/light/point_shadow_map.h
 						components/light/light_component.h
 
 						components/skybox_material/skybox_material.h
@@ -96,10 +105,16 @@ set(REN_INCLUDES
 
 						renderer/renderer.h
 
+						rq/viewport_rq.h
+						rq/viewport_job.h
+						rq/shadows_rq.h
+						rq/shadows_job.h
+
 						scene/scene.h
 
 						scripts/camera_controller.h
 						scripts/node_rotation.h
+						scripts/node_rotation_orbit.h
 
 						systems/camera_system.h
 						systems/viewport_render_system.h
@@ -115,6 +130,7 @@ set(REN_INCLUDES
 						passes/deferred_pass.h
 						passes/skybox_pass.h
 						passes/post_effects_pass.h
+						passes/shadow_mapping_pass.h
 
 						pulsar.h)
 set(REN_INCLUDES ${REN_INCLUDES} PARENT_SCOPE)

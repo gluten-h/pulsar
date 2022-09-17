@@ -1,10 +1,11 @@
 
-- [ ] geometry cbuffers
+- [ ] the new g-buffer was added to store raw vertex normals, I don't think it is needed
+- [x] geometry cbuffers
 - [ ] mip maps
 - [ ] store all shader constants inside immutable cbuffers
 - [ ] bind_group: a class with an array of one-type bindables stored inside to bind them per one call (shader_textures, render_textures, samplers, viewports, cbuffers, dynamic_cbuffers)
 	- [ ] viewport_bind_group
-	- [ ] geom_cbuffer_bind_group
+	- [x] geom_cbuffer_bind_group
 - [x] entity:
 	- [x] metadata:
 		- [x] create metadata component and store all general entity-related information in it (name?, masks, etc?)
@@ -14,11 +15,12 @@
 	- [x] need to rework the way materials are handled by the render queue
 - [x] systems:
 	- [x] there is no need to store a pointer to a scene registry, just pass it as a function argument
-- [ ] hierarchy:
-	- [ ] implement it
+	- [x] order of systems execution matters, render-systems must be executed just before render, need to store them in some render_only_systems container without the ability to modify it
+- [ ] hierarchy
 - [ ] input:
-	- [x] keyboard:
+	- [ ] keyboard:
 		- [x] probably, there is no need of break-codes, input api generates make-codes even when specified flag is RI_KEY_BREAK
+		- [ ] there is a bug with key_down functionality, a key constantly sends key_down messages
 - [ ] mesh:
 	- [ ] create mesh primitives and write geometry data in constructor directly without messing with files
 		- [x] cube

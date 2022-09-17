@@ -67,3 +67,13 @@ pulsar::dcb::layout_elem_ref	pulsar::material::exposure()
 {
 	return (this->m_dcb_buffer[pulsar::MATERIAL_DCB_EXPOSURE]);
 }
+
+pulsar::cubemap		&pulsar::material::irradiance_map()
+{
+	return (this->m_irradiance_map);
+}
+
+pulsar::dcb::layout_elem_ref	pulsar::material::irradiance_color()
+{
+	return (this->m_dcb_buffer[pulsar::MATERIAL_DCB_IRRADIANCE_COLOR]);
+}

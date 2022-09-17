@@ -3,8 +3,9 @@
 #include "render_graph/pass.h"
 #include "config/config.h"
 #include "render_graph/sync_input.h"
-#include "render_graph/sync_source.h"
 #include "render_graph/async_input.h"
+#include "render_graph/sync_source.h"
+#include "render_graph/async_source.h"
 
 
 namespace pulsar
@@ -16,6 +17,7 @@ namespace pulsar
 	class sampler;
 	class depth_stencil_view;
 	class render_texture;
+	class viewport_rq;
 
 	class g_buffer_pass : public pulsar::rg::pass
 	{
@@ -29,11 +31,15 @@ namespace pulsar
 		pulsar::depth_stencil_view *mp_dsv = NULL;
 		pulsar::render_texture *mp_g_buffers[pulsar::G_BUFFERS_COUNT] = { NULL };
 
+		pulsar::viewport_rq *mp_viewport_rq = NULL;
+
 		pulsar::rg::sync_input<pulsar::depth_stencil_view> *mp_dsv_input = NULL;
 		pulsar::rg::sync_source<pulsar::depth_stencil_view> *mp_dsv_source = NULL;
 
 		pulsar::rg::sync_input<pulsar::render_texture> *mp_g_buffers_inputs[pulsar::G_BUFFERS_COUNT] = { NULL };
 		pulsar::rg::sync_source<pulsar::render_texture> *mp_g_buffers_sources[pulsar::G_BUFFERS_COUNT] = { NULL };
+
+		pulsar::rg::async_input<pulsar::viewport_rq> *mp_viewport_rq_input = NULL;
 
 	public:
 		g_buffer_pass &operator=(const g_buffer_pass&) = delete;

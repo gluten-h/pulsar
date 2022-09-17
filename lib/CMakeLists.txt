@@ -38,6 +38,7 @@ set(LIB_SOURCES
 						gfx_resources/viewport.cpp
 						gfx_resources/dynamic_cbuffer.cpp
 						gfx_resources/vert_dynamic_cbuffer.cpp
+						gfx_resources/geom_dynamic_cbuffer.cpp
 						gfx_resources/frag_dynamic_cbuffer.cpp
 						gfx_resources/sync_resource.cpp
 
@@ -45,10 +46,6 @@ set(LIB_SOURCES
 						input/pulsar_input.cpp
 						input/pulsar_input_mouse.cpp
 						input/pulsar_input_keyboard.cpp
-
-
-						render_queue/render_queue.cpp
-						render_queue/job.cpp
 
 
 						render_graph/render_graph.cpp
@@ -69,6 +66,8 @@ set(LIB_SOURCES ${LIB_SOURCES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDES		
+						containers/array.h
+
 						dcb/dcb.h
 						dcb/types.h
 						dcb/layout_elem.h
@@ -110,6 +109,7 @@ set(LIB_INCLUDES
 						gfx_resources/index_buffer.h
 						gfx_resources/cbuffer.h
 						gfx_resources/vert_cbuffer.h
+						gfx_resources/geom_cbuffer.h
 						gfx_resources/frag_cbuffer.h
 						gfx_resources/shader.h
 						gfx_resources/vert_shader.h
@@ -122,6 +122,7 @@ set(LIB_INCLUDES
 						gfx_resources/viewport.h
 						gfx_resources/dynamic_cbuffer.h
 						gfx_resources/vert_dynamic_cbuffer.h
+						gfx_resources/geom_dynamic_cbuffer.h
 						gfx_resources/frag_dynamic_cbuffer.h
 						gfx_resources/sync_resource.h
 
@@ -131,6 +132,7 @@ set(LIB_INCLUDES
 						gfx_resources/bind_group/viewport_bind_group.h
 						gfx_resources/bind_group/cbuffer_bind_group.h
 						gfx_resources/bind_group/vert_cbuffer_bind_group.h
+						gfx_resources/bind_group/geom_cbuffer_bind_group.h
 						gfx_resources/bind_group/frag_cbuffer_bind_group.h
 
 
@@ -139,9 +141,7 @@ set(LIB_INCLUDES
 						input/pulsar_input.h
 
 
-						render_queue/types.h
 						render_queue/render_queue.h
-						render_queue/job.h
 
 
 						render_graph/rg_const.h

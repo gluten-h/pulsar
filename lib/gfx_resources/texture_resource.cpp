@@ -8,9 +8,9 @@ pulsar::texture_resource::~texture_resource()
 	this->destroy_texture();
 }
 
-void	pulsar::texture_resource::create_texture(D3D11_TEXTURE2D_DESC &td)
+void	pulsar::texture_resource::create_texture(D3D11_TEXTURE2D_DESC *td)
 {
-	GFX_ASSERT(pulsar::gfx::instance().device()->CreateTexture2D(&td, NULL, &this->mp_texture));
+	GFX_ASSERT(pulsar::gfx::instance().device()->CreateTexture2D(td, NULL, &this->mp_texture));
 }
 
 void	pulsar::texture_resource::destroy_texture()

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "input.h"
+#include "source.h"
 #include "exceptions/rg_exception.h"
 #include <string>
 #include <type_traits>

@@ -33,17 +33,15 @@ void	pulsar::render_texture::create_rt(UINT width, UINT height, DXGI_FORMAT form
 	td.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
 	td.CPUAccessFlags = 0u;
 	td.MiscFlags = 0u;
-	this->create_texture(td);
+	this->create_texture(&td);
 
 	rtvd.Format = format;
 	rtvd.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
-	rtvd.Texture2D.MipSlice = 0u;
 	GFX_ASSERT(pulsar::gfx::instance().device()->CreateRenderTargetView(this->mp_texture, &rtvd, &this->mp_rtv));
 
 	srvd.Format = format;
 	srvd.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 	srvd.Texture2D.MipLevels = 1u;
-	srvd.Texture2D.MostDetailedMip = 0u;
 	GFX_ASSERT(pulsar::gfx::instance().device()->CreateShaderResourceView(this->mp_texture, &srvd, &this->mp_srv));
 }
 

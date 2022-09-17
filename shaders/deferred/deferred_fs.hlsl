@@ -7,9 +7,14 @@
 Texture2D gb_position : register(t0);
 Texture2D gb_albedo : register(t1);
 Texture2D gb_normal : register(t2);
-Texture2D gb_rmae : register(t3);
+Texture2D gb_surface_normal : register(t3);
+Texture2D gb_rmae : register(t4);
+Texture2D gb_irradiance : register(t5);
+
+TextureCube shadow_map : register(t6);
 
 SamplerState smplr : register(s0);
+SamplerState shadow_smplr : register(s1);
 
 
 #define MAX_LIGHTS_COUNT 1024
@@ -58,23 +63,42 @@ cbuffer camera_cb : register(b1)
 };
 
 
-float4		frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
+float	linstep(float min, float max, float v)
+{
+	return (clamp((v - min) / (max - min), 0.0f, 1.0f));
+}
+
+float	shadow_mapping(float2 moments, float light_dist)
+{
+	float p = step(light_dist, moments.x);
+	float variance = max(0.00002f, moments.y - moments.x * moments.x);
+	float d = light_dist - moments.x;
+	float p_max = linstep(0.3f, 1.0f, variance / (variance + d * d));// 0.3 is not hardcoded, it should be loaded to the shader
+
+	return (min(1.0f, max(p, p_max)));
+}
+
+
+float4	frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 {
 	float3 pos = gb_position.Sample(smplr, uv).xyz;
 	float3 albedo = gb_albedo.Sample(smplr, uv).xyz;
 	albedo = lerp(albedo, srgb_to_linear(albedo, cam_gamma), gb_albedo.Sample(smplr, uv).w);
 	float3 normal = gb_normal.Sample(smplr, uv).xyz;
-	
+	//float3 surface_normal = gb_surface_normal.Sample(smplr, uv).xyz;
+
 	float4 rmae = gb_rmae.Sample(smplr, uv);
 	float roughness = rmae.x;
 	float metalness = rmae.y;
 	float ao = rmae.z;
 	float exposure = rmae.w;
-	
+	float irradiance = gb_irradiance.Sample(smplr, uv);
+	// !!! IOR !!!
+
 	float3 view_dir = normalize(cam_pos - pos);
-	float3 ambient = albedo * ao;
+	float3 ambient = irradiance * albedo * ao;
 	float4 color = float4(ambient.xyz, 1.0f);
-	
+
 	float3 F0 = float3(CT_F0, CT_F0, CT_F0);
 	F0 = lerp(F0, albedo, metalness);
 
@@ -83,7 +107,7 @@ float4		frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 		float3 light_dir = float3(0.0f, 0.0f, 0.0f);
 		float attenuation = 1.0f;
 		float3 radiance = l_scene.lights[i].color.xyz;
-		
+
 		switch (l_scene.lights[i].type)
 		{
 			case POINT_LIGHT:
@@ -92,7 +116,7 @@ float4		frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 				float dist = length(l_scene.lights[i].pos_dir - pos);
 				attenuation = 1.0f / (l_scene.lights[i].const_att + l_scene.lights[i].linear_att * dist + l_scene.lights[i].quad_att * (dist * dist));
 				radiance = l_scene.lights[i].color.xyz * attenuation;
-				
+
 				break;
 			}
 			case DIR_LIGHT:
@@ -103,21 +127,29 @@ float4		frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 			default:
 				break;
 		}
-		
+
 		float3 n_dot_l = max(0.0f, dot(normal, light_dir));
 		float3 halfway_dir = normalize(view_dir + light_dir);
-		
-		float3 F = fresnel_schlick(max(0.0f, dot(halfway_dir, view_dir)), F0);
+
+		float3 F = fresnel_schlick(max(0.0f, dot(halfway_dir, view_dir)), F0, roughness);
 		float3 k_spec = F;
 		float3 k_diff = float3(1.0f, 1.0f, 1.0f) - k_spec;
 		k_diff *= (1.0f - metalness);
 
 		float3 diff_brdf = oren_nayar(view_dir, light_dir, normal, albedo, roughness);
 		float3 spec_brdf = cook_torrance(view_dir, light_dir, halfway_dir, normal, F, roughness);
-		
-		color += float4((k_diff * diff_brdf + spec_brdf) * radiance * n_dot_l, 1.0f);
+
+
+		float light_dist = length(l_scene.lights[i].pos_dir - pos);
+		float2 shadow_moments = shadow_map.Sample(shadow_smplr, -light_dir).xy;
+		float shadow_factor = shadow_mapping(shadow_moments, light_dist);
+
+		//color = float4(shadow_factor, shadow_factor, shadow_factor, 1.0f);
+
+
+		color += float4((k_diff * diff_brdf + spec_brdf) * radiance * n_dot_l, 1.0f) * shadow_factor;
 	}
 	color = float4(color.xyz, exposure);
-	
+
 	return (color);
 }

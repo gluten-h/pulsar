@@ -55,10 +55,22 @@ void	pulsar::cubemap::convert_to_dds(LPCWSTR *files, LPCWSTR output_dds_path)
 
 	uint8_t *pix_data = NULL;
 
-	for (size_t i = 0; i < 6; i++)
+	for (size_t i = 0; i < 6u; i++)
 	{
 		scratch_img[i] = std::make_unique<ScratchImage>();
-		GFX_ASSERT(LoadFromWICFile(pulsar::filesystem::absolute_path(files[i]).c_str(), WIC_FLAGS_NONE, NULL, *scratch_img[i]));
+
+
+		std::filesystem::path path = pulsar::filesystem::path(files[i]);
+		std::filesystem::path extension = path.extension();
+
+		if (extension.empty() || extension == L".")
+			THROW_GFX_EXC(E_INVALIDARG);
+		if (extension == L".dds")
+			GFX_ASSERT(LoadFromDDSFile(path.c_str(), DDS_FLAGS_NONE, NULL, *scratch_img[i]));
+		else
+			GFX_ASSERT(LoadFromWICFile(path.c_str(), WIC_FLAGS_NONE, NULL, *scratch_img[i]));
+
+
 		img[i] = *scratch_img[i]->GetImage(0, 0, 0);
 	}
 

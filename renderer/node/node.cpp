@@ -17,8 +17,3 @@ bool	pulsar::node::is_valid() const
 {
 	return (this->m_id != pulsar::ecs::null);
 }
-
-pulsar::node::operator bool() const
-{
-	return (this->is_valid());
-}

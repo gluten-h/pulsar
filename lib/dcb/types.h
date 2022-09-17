@@ -64,7 +64,7 @@ namespace pulsar
 		{
 			static const bool is_valid = true;
 
-			using sys_type = XMMATRIX;
+			using sys_type = XMFLOAT4X4;
 			static const size_t hlsl_size = sizeof(sys_type);
 		};
 		template<> struct type_attr<Bool>

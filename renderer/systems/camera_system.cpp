@@ -10,14 +10,8 @@
 
 pulsar::camera_system::camera_system()
 {
-	this->mp_vert_camera_cbuffer = new vert_camera_cbuffer(&this->m_vert_camera, pulsar::CBUFFER_TYPE::DYNAMIC, 0u);
-	this->mp_frag_camera_cbuffer = new frag_camera_cbuffer(&this->m_frag_camera, pulsar::CBUFFER_TYPE::DYNAMIC, 0u);
-}
-
-pulsar::camera_system::~camera_system()
-{
-	delete this->mp_vert_camera_cbuffer;
-	delete this->mp_frag_camera_cbuffer;
+	this->m_vert_camera_cbuffer.set(&this->m_vert_camera, pulsar::CBUFFER_TYPE::DYNAMIC);
+	this->m_frag_camera_cbuffer.set(&this->m_frag_camera, pulsar::CBUFFER_TYPE::DYNAMIC);
 }
 
 void	pulsar::camera_system::execute(pulsar::ecs::registry &registry, float delta_time)
@@ -29,22 +23,32 @@ void	pulsar::camera_system::execute(pulsar::ecs::registry &registry, float delta
 	pulsar::transform &transform = main_camera->get_component<pulsar::transform_component>().transform;
 	pulsar::camera_component &camera = main_camera->get_component<pulsar::camera_component>();
 
-	const XMMATRIX &transform_mat = transform.get_matrix();
-	XMVECTOR forward_vec = XMVector3NormalizeEst(transform_mat.r[2]);
-	XMVECTOR up_vec = XMVector3NormalizeEst(transform_mat.r[1]);
+	const XMFLOAT4X4 &mat_f4x4 = transform.get_matrix();
+	const XMFLOAT3 &pos_f3 = transform.get_position();
+	const XMFLOAT3 forward_f3 = transform.forward();
+	const XMFLOAT3 up_f3 = transform.up();
+	const XMFLOAT4X4 &cam_proj_f4x4 = camera.camera->projection();
 
-	this->m_vert_camera.view = XMMatrixTranspose(XMMatrixLookToLH(transform_mat.r[3], forward_vec, up_vec));
-	this->m_vert_camera.proj = XMMatrixTranspose(camera.camera->get_projection());
+	XMMATRIX mat = XMLoadFloat4x4(&mat_f4x4);
+	XMVECTOR pos = XMLoadFloat3(&pos_f3);
+	XMVECTOR forward = XMLoadFloat3(&forward_f3);
+	XMVECTOR up = XMLoadFloat3(&up_f3);
 
-	this->m_frag_camera.pos = transform.get_position();
+	XMMATRIX view = XMMatrixTranspose(XMMatrixLookToLH(pos, forward, up));
+	XMMATRIX proj = XMMatrixTranspose(XMLoadFloat4x4(&cam_proj_f4x4));
+
+	XMStoreFloat4x4(&this->m_vert_camera.view, view);
+	XMStoreFloat4x4(&this->m_vert_camera.proj, proj);
+
+	this->m_frag_camera.pos = pos_f3;
 	this->m_frag_camera.gamma = camera.gamma;
-	this->m_frag_camera.dir = transform.forward();
+	this->m_frag_camera.dir = forward_f3;
 	this->m_frag_camera.exposure = camera.exposure;
 
-	this->mp_vert_camera_cbuffer->update();
-	this->mp_frag_camera_cbuffer->update();
+	this->m_vert_camera_cbuffer.update();
+	this->m_frag_camera_cbuffer.update();
 
 	pulsar::renderer::instance().submit_main_camera_viewport(&camera.camera->viewport());
-	pulsar::renderer::instance().submit_vert_camera_cbuffer(this->mp_vert_camera_cbuffer);
-	pulsar::renderer::instance().submit_frag_camera_cbuffer(this->mp_frag_camera_cbuffer);
+	pulsar::renderer::instance().submit_vert_camera_cbuffer(&this->m_vert_camera_cbuffer);
+	pulsar::renderer::instance().submit_frag_camera_cbuffer(&this->m_frag_camera_cbuffer);
 }

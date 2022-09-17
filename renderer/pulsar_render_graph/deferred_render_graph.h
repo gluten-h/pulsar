@@ -12,7 +12,13 @@ namespace pulsar
 	class depth_stencil_view;
 	class render_texture;
 
+	class viewport_rq;
+	class shadows_rq;
+
+	class viewport;
+
 	class clear_buffers_pass;
+	class shadow_mapping_pass;
 	class g_buffer_pass;
 	class deferred_pass;
 	class skybox_pass;
@@ -27,13 +33,20 @@ namespace pulsar
 		pulsar::render_texture *mp_hdr_buffer = NULL;
 		pulsar::render_texture *mp_g_buffers[pulsar::G_BUFFERS_COUNT] = { NULL };
 
+		pulsar::viewport_rq *mp_viewport_rq = NULL;
+		pulsar::shadows_rq *mp_shadows_rq = NULL;
+
 		pulsar::rg::sync_source<pulsar::framebuffer> *mp_framebuffer_source = NULL;
 		pulsar::rg::sync_source<pulsar::depth_stencil_view> *mp_ds_view_source = NULL;
 		pulsar::rg::sync_source<pulsar::render_texture> *mp_hdr_buffer_source;
 		pulsar::rg::sync_source<pulsar::render_texture> *mp_g_buffers_sources[pulsar::G_BUFFERS_COUNT] = { NULL };
 
+		pulsar::rg::async_source<pulsar::viewport_rq> *mp_viewport_rq_source = NULL;
+		pulsar::rg::async_source<pulsar::shadows_rq> *mp_shadows_rq_source = NULL;
+
 
 		pulsar::clear_buffers_pass *mp_clear_buffers_pass = NULL;
+		pulsar::shadow_mapping_pass *mp_shadow_mapping_pass = NULL;
 		pulsar::g_buffer_pass *mp_g_buffer_pass = NULL;
 		pulsar::deferred_pass *mp_deferred_pass = NULL;
 		pulsar::skybox_pass *mp_skybox_pass = NULL;
