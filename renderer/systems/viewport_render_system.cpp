@@ -6,7 +6,7 @@
 #include "transform/transform_component.h"
 #include "mesh/mesh_component.h"
 #include "material/material_component.h"
-#include "render_queue/render_queue.h"
+#include "renderer/renderer.h"
 
 
 void	pulsar::viewport_render_system::execute(pulsar::ecs::registry &registry, float delta_time)
@@ -16,9 +16,10 @@ void	pulsar::viewport_render_system::execute(pulsar::ecs::registry &registry, fl
 		return;
 	pulsar::metadata_component &camera_metadata = main_camera->get_component<pulsar::metadata_component>();
 
-	pulsar::render_queue::instance().clear();
-	auto view = registry.view<pulsar::metadata_component, pulsar::transform_component, pulsar::mesh_component, pulsar::material_component>();
+	pulsar::viewport_rq &viewport_rq = pulsar::renderer::instance().viewport_rq();
+	viewport_rq.clear();
 
+	auto view = registry.view<pulsar::metadata_component, pulsar::transform_component, pulsar::mesh_component, pulsar::material_component>();
 	for (auto entity : view)
 	{
 		pulsar::metadata_component &metadata = view.get<pulsar::metadata_component>(entity);
@@ -30,6 +31,6 @@ void	pulsar::viewport_render_system::execute(pulsar::ecs::registry &registry, fl
 		auto &rq_materials = view.get<pulsar::material_component>(entity).rq_materials;
 
 		for (pulsar::rq_material &mat : rq_materials)
-			pulsar::render_queue::instance().add_job(mat.mode, pulsar::job(&transform, mesh, mat.material));
+			viewport_rq.submit_job(mat.mode, pulsar::viewport_job(&transform, mesh, mat.material));
 	}
 }

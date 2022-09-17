@@ -19,7 +19,7 @@ void	**pulsar::rg::source::get_async_data()
 	return (NULL);
 }
 
-pulsar::sync_resource	**pulsar::rg::source::yield_sync_data()
+void	**pulsar::rg::source::yield_sync_data()
 {
 	THROW_RG_EXC("Invalid source: " + this->m_name);
 	return (NULL);

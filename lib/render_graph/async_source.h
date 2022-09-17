@@ -26,7 +26,7 @@ namespace pulsar
 			}
 			~async_source() = default;
 
-			void	**yield_async_data() override
+			void	**get_async_data() override
 			{
 				return ((void**)this->mp_buffer);
 			}

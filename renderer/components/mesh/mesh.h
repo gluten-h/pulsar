@@ -64,7 +64,7 @@ namespace pulsar
 		void	set(LPCWSTR file, MESH_FILE_FORMAT file_format);
 		void	set_primitive_topology(D3D_PRIMITIVE_TOPOLOGY primitive_topology);
 
-		UINT	get_index_count() const noexcept;
+		UINT	get_index_count() const;
 
 		void	bind() const;
 		void	unbind() const;

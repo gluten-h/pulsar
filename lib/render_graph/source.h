@@ -28,7 +28,7 @@ namespace pulsar
 			const std::string	&name() const;
 
 			virtual void	**get_async_data();
-			virtual pulsar::sync_resource	**yield_sync_data();
+			virtual void	**yield_sync_data();
 
 			virtual void	validate() const;
 		};

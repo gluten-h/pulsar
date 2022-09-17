@@ -1,6 +1,7 @@
 #pragma once
 
 #include "script/script.h"
+#include "node/node.h"
 #include "utils/math.h"
 
 
@@ -9,6 +10,7 @@ namespace pulsar
 	class node_rotation : public pulsar::script
 	{
 	private:
+		pulsar::node *mp_node = NULL;
 		float m_speed;
 		XMFLOAT3 m_rot_axis;
 
@@ -21,6 +23,6 @@ namespace pulsar
 		node_rotation(pulsar::node *node, float speed, const XMFLOAT3 &rotation_axis = XMFLOAT3(1.0f, 1.0f, 1.0f));
 		~node_rotation() = default;
 
-		void	execute(float delta_time);
+		void	execute(float delta_time) override;
 	};
 }

@@ -5,7 +5,7 @@
 
 pulsar::sampler::sampler(UINT slot)
 {
-	this->create_sampler(D3D11_FILTER_MIN_MAG_MIP_LINEAR, D3D11_TEXTURE_ADDRESS_WRAP);
+	this->set();
 	this->m_slot = slot;
 }
 

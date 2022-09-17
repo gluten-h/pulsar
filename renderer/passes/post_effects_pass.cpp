@@ -13,7 +13,7 @@
 pulsar::post_effects_pass::post_effects_pass(const std::string &name) : pulsar::fullscreen_pass(name)
 {
 	this->mp_post_effects_fs = new pulsar::frag_shader(pulsar::POST_EFFECTS_FS_PATH);
-	this->mp_sampler = new pulsar::sampler(pulsar::POST_EFFECTS_FRAG_SAMPLER_SLOT);
+	this->mp_sampler = new pulsar::sampler(pulsar::FRAG_POST_EFFECTS_SAMPLER_SLOT);
 
 	this->mp_frambuffer_input = new pulsar::rg::sync_input<pulsar::framebuffer>(pulsar::RG_G_FRAMEBUFFER, this->mp_framebuffer);
 	this->mp_framebuffer_source = new pulsar::rg::sync_source<pulsar::framebuffer>(pulsar::RG_G_FRAMEBUFFER, this->mp_framebuffer);
@@ -66,7 +66,7 @@ void	pulsar::post_effects_pass::execute()
 		this->mp_hdr_buffer->bind_srv();
 		this->mp_framebuffer->bind();
 
-		frag_camera_cbuffer->set_slot(pulsar::POST_EFFECTS_FRAG_CAMERA_SLOT);
+		frag_camera_cbuffer->set_slot(pulsar::FRAG_POST_EFFECTS_CAMERA_SLOT);
 		frag_camera_cbuffer->bind();
 	}
 

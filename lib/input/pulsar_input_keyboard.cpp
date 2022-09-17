@@ -23,7 +23,7 @@ void	pulsar::input::set_key_down(pulsar::keycode key, bool E0_prefix)
 
 void	pulsar::input::set_key_up(pulsar::keycode key, bool E0_prefix)
 {
-	uint16_t &key_up = input::m_keys_down[key];
+	uint16_t &key_up = input::m_keys_up[key];
 	uint16_t &key_pressed = input::m_keys_pressed[key];
 
 	uint16_t layer0_pressed = (key_pressed & 0x00FF) >> 0;

@@ -27,7 +27,7 @@ pulsar::skybox_pass::skybox_pass(const std::string &name) : pulsar::rg::pass(nam
 	this->mp_skybox_vs = new pulsar::vert_shader(pulsar::SKYBOX_VS_PATH);
 	this->mp_skybox_fs = new pulsar::frag_shader(pulsar::SKYBOX_FS_PATH);
 	this->mp_dss = new pulsar::depth_stencil_state(TRUE, D3D11_COMPARISON_LESS_EQUAL, D3D11_DEPTH_WRITE_MASK_ZERO);
-	this->mp_sampler = new pulsar::sampler(pulsar::SKYBOX_FRAG_SAMPLER_SLOT);
+	this->mp_sampler = new pulsar::sampler(pulsar::FRAG_SKYBOX_SAMPLER_SLOT);
 	this->mp_input_layout = new pulsar::input_layout(this->mp_skybox_vs->blob(), ied, (UINT)std::size(ied));
 
 	this->mp_hdr_buffer_input = new pulsar::rg::sync_input<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
@@ -91,10 +91,10 @@ void	pulsar::skybox_pass::execute()
 		camera_viewport->bind();
 		this->mp_hdr_buffer->bind_rtv(this->mp_dsv->dsv());
 
-		vert_camera_cbuffer->set_slot(pulsar::SKYBOX_VERT_CAMERA_SLOT);
+		vert_camera_cbuffer->set_slot(pulsar::VERT_SKYBOX_CAMERA_SLOT);
 		vert_camera_cbuffer->bind();
 		skybox_material.bind();
-		frag_camera_cbuffer->set_slot(pulsar::SKYBOX_FRAG_CAMERA_SLOT);
+		frag_camera_cbuffer->set_slot(pulsar::FRAG_SKYBOX_CAMERA_SLOT);
 		frag_camera_cbuffer->bind();
 	}
 

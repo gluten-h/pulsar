@@ -1,13 +1,17 @@
 
 #include "camera_controller.h"
+#include "utils/math.h"
+#include "node/node.h"
 #include "window/window.h"
 #include "input/pulsar_input.h"
 #include "transform/transform_component.h"
 
 
-pulsar::camera_controller::camera_controller(pulsar::node *node, float movement_speed, float lift_speed, float rotation_speed) : pulsar::script(node)
+pulsar::camera_controller::camera_controller(pulsar::node *node, float movement_speed, float acceleration_speed, float lift_speed, float rotation_speed)
 {
+	this->mp_node = node;
 	this->m_movement_speed = movement_speed;
+	this->m_acc_speed = acceleration_speed;
 	this->m_lift_speed = lift_speed;
 	this->m_rotation_speed = rotation_speed;
 }
@@ -32,19 +36,22 @@ void	pulsar::camera_controller::execute(float delta_time)
 	}
 
 	pulsar::transform &transform = this->mp_node->get_component<pulsar::transform_component>().transform;
-	XMFLOAT3 rot = transform.get_rotation();
+	XMFLOAT4 rot_f4 = transform.get_rotation();
+	XMVECTOR rot = XMLoadFloat4(&rot_f4);
+	XMFLOAT3 right = transform.right();
 	XMFLOAT3 pos = transform.get_position();
 
-	float is_rot = is_rmb_pressed * this->m_rotation_speed * delta_time;	
-	float is_mov = is_rmb_pressed * this->m_movement_speed * delta_time;
+	float is_rot = is_rmb_pressed * this->m_rotation_speed * delta_time;
+	float is_mov = is_rmb_pressed * pulsar::lerp(this->m_movement_speed, this->m_acc_speed, (float)pulsar::input::is_key_pressed(pulsar::KEY_LSHIFT)) * delta_time;
 
-	rot.x += is_rot * mouse_delta.y;
-	rot.y += is_rot * mouse_delta.x;
+	rot = XMQuaternionMultiply(rot, XMQuaternionRotationNormal(XMLoadFloat3(&right), is_rot * mouse_delta.y));
+	rot = XMQuaternionMultiply(rot, XMQuaternionRotationNormal(XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f), is_rot * mouse_delta.x));
 
 	pos = pos + transform.forward() * is_mov * (pulsar::input::is_key_pressed(pulsar::KEY_W) - pulsar::input::is_key_pressed(pulsar::KEY_S));
 	pos = pos + transform.right() * is_mov * (pulsar::input::is_key_pressed(pulsar::KEY_D) - pulsar::input::is_key_pressed(pulsar::KEY_A));
 	pos = pos + transform.up() * is_mov * (pulsar::input::is_key_pressed(pulsar::KEY_E) - pulsar::input::is_key_pressed(pulsar::KEY_Q));
 
-	transform.set_rotation(rot);
+	XMStoreFloat4(&rot_f4, rot);
+	transform.set_rotation(rot_f4);
 	transform.set_position(pos);
 }

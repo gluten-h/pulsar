@@ -14,6 +14,7 @@
 #include "utils/math.h"
 #include "window/window.h"
 #include "pulsar_render_graph/deferred_render_graph.h"
+#include "filesystem/filesystem.h"
 
 
 namespace pulsar
@@ -24,7 +25,6 @@ namespace pulsar
 		
 		// singletons init
 		pulsar::gfx::instance();
-		pulsar::render_queue::instance();
 		pulsar::renderer::instance();
 	}
 

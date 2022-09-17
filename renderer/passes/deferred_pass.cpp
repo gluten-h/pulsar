@@ -16,7 +16,8 @@
 pulsar::deferred_pass::deferred_pass(const std::string &name) : pulsar::fullscreen_pass(name)
 {
 	this->mp_deferred_fs = new pulsar::frag_shader(pulsar::DEFERRED_FS_PATH);
-	this->mp_sampler = new pulsar::sampler(pulsar::DEFERRED_FRAG_SAMPLER_SLOT);
+	this->mp_sampler = new pulsar::sampler(pulsar::FRAG_DEFERRED_SAMPLER_SLOT);
+	this->mp_shadow_sampler = new pulsar::sampler(D3D11_FILTER_ANISOTROPIC, D3D11_TEXTURE_ADDRESS_CLAMP, pulsar::FRAG_DEFERRED_SHADOW_SAMPLER_SLOT);
 
 	this->mp_hdr_buffer_input = new pulsar::rg::sync_input<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
 	this->mp_hdr_buffer_source = new pulsar::rg::sync_source<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
@@ -45,6 +46,7 @@ pulsar::deferred_pass::~deferred_pass()
 {
 	delete this->mp_deferred_fs;
 	delete this->mp_sampler;
+	delete this->mp_shadow_sampler;
 
 	delete this->mp_hdr_buffer_input;
 	delete this->mp_hdr_buffer_source;
@@ -75,6 +77,8 @@ void	pulsar::deferred_pass::validate() const
 	}
 }
 
+#include "light/light_component.h"
+
 void	pulsar::deferred_pass::execute()
 {
 	pulsar::renderer &renderer = pulsar::renderer::instance();
@@ -92,10 +96,11 @@ void	pulsar::deferred_pass::execute()
 		this->mp_deferred_fs->bind();
 		this->mp_hdr_buffer->bind_rtv();
 		this->mp_sampler->bind();
+		this->mp_shadow_sampler->bind();
 		camera_viewport->bind();
 
 		deferred_frag_lights_cbuffer->bind();
-		frag_camera_cbuffer->set_slot(pulsar::DEFERRED_FRAG_CAMERA_SLOT);
+		frag_camera_cbuffer->set_slot(pulsar::FRAG_DEFERRED_CAMERA_SLOT);
 		frag_camera_cbuffer->bind();
 
 		int i = -1;
@@ -103,7 +108,16 @@ void	pulsar::deferred_pass::execute()
 			this->mp_g_buffers[i]->bind_srv();
 	}
 
+	auto &submitted_lights = *renderer.get_submitted_lights();
+	pulsar::ecs::entity light = submitted_lights[0];
+	pulsar::shadow_map *shadow_map = active_scene->registry().get<pulsar::light_component>(light).light->shadow_map();
+
+	shadow_map->set_slot(6u);
+	shadow_map->bind_srv();
+
 	pulsar::fullscreen_pass::execute();
+
+	shadow_map->unbind_srv();
 
 	{
 		int i = pulsar::G_BUFFERS_COUNT;
@@ -114,6 +128,7 @@ void	pulsar::deferred_pass::execute()
 		deferred_frag_lights_cbuffer->unbind();
 
 		camera_viewport->unbind();
+		this->mp_shadow_sampler->unbind();
 		this->mp_sampler->unbind();
 		this->mp_hdr_buffer->unbind_rtv();
 		this->mp_deferred_fs->unbind();

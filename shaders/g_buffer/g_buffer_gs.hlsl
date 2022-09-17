@@ -42,6 +42,7 @@ void	geom(triangle gs_in input[3], inout TriangleStream<gs_out> output)
 	b.z = f * (-delta_uv2.x * edge1.z + delta_uv1.x * edge2.z);
 	b = normalize(b);
 
+	[unroll]
 	for (uint i = 0; i < 3; i++)
 	{
 		tri[i].pos = input[i].pos;

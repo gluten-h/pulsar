@@ -20,7 +20,6 @@ namespace pulsar
 
 		void	destroy();
 		bool	is_valid() const;
-		operator bool() const;
 
 		template <typename T>
 		bool	has_component() const

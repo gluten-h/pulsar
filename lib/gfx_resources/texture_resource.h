@@ -10,7 +10,7 @@ namespace pulsar
 	protected:
 		ID3D11Texture2D *mp_texture = NULL;
 
-		void	create_texture(D3D11_TEXTURE2D_DESC &td);
+		void	create_texture(D3D11_TEXTURE2D_DESC *td);
 		void	destroy_texture();
 
 	public:

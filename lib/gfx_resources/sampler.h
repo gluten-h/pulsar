@@ -21,10 +21,10 @@ namespace pulsar
 		sampler(sampler&&) = delete;
 		sampler() = delete;
 		sampler(UINT slot);
-		sampler(D3D11_FILTER filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR, D3D11_TEXTURE_ADDRESS_MODE address_mode = D3D11_TEXTURE_ADDRESS_WRAP, UINT slot = 0u);
+		sampler(D3D11_FILTER filter = D3D11_FILTER_ANISOTROPIC, D3D11_TEXTURE_ADDRESS_MODE address_mode = D3D11_TEXTURE_ADDRESS_WRAP, UINT slot = 0u);
 		~sampler();
 
-		void	set(D3D11_FILTER filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR, D3D11_TEXTURE_ADDRESS_MODE address_mode = D3D11_TEXTURE_ADDRESS_WRAP);
+		void	set(D3D11_FILTER filter = D3D11_FILTER_ANISOTROPIC, D3D11_TEXTURE_ADDRESS_MODE address_mode = D3D11_TEXTURE_ADDRESS_WRAP);
 		void	set_slot(UINT slot);
 
 		void	bind() const;

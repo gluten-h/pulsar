@@ -18,7 +18,5 @@ namespace pulsar
 		perspective_camera() = default;
 		perspective_camera(UINT width, UINT height, float fov_rad, float near_z, float far_z);
 		~perspective_camera() = default;
-
-		const XMMATRIX	&get_projection() const override;
 	};
 }

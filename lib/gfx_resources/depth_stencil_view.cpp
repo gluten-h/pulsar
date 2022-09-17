@@ -30,7 +30,7 @@ void	pulsar::depth_stencil_view::create_dsv(UINT width, UINT height)
 	td.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 	td.CPUAccessFlags = 0u;
 	td.MiscFlags = 0u;
-	this->create_texture(td);
+	this->create_texture(&td);
 
 	dsvd.Format = DXGI_FORMAT_D32_FLOAT;
 	dsvd.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;

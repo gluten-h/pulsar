@@ -21,6 +21,7 @@ namespace pulsar
 
 		pulsar::ecs::registry m_registry;
 		std::vector<pulsar::ecs::system*> m_systems;
+		std::vector<pulsar::ecs::system*> m_render_systems;
 
 		pulsar::skybox_material m_skybox_material;
 		pulsar::node *mp_main_camera = NULL;
@@ -45,7 +46,7 @@ namespace pulsar
 		pulsar::skybox_material		&skybox_material();
 
 		pulsar::node	create_node(const char *name = pulsar::DEFAULT_ENTITY_NAME);
-		
+
 		template <typename T, typename... Args>
 		void	register_system(Args&&... args)
 		{
@@ -53,6 +54,14 @@ namespace pulsar
 			this->m_systems.push_back((pulsar::ecs::system*)(new T(args...)));
 		}
 
+		template <typename T, typename... Args>
+		void	register_render_system(Args&&... args)
+		{
+			static_assert(std::is_base_of_v<pulsar::ecs::system, T>, "Invalid system-type");
+			this->m_render_systems.push_back((pulsar::ecs::system*)(new T(args...)));
+		}
+
 		void	update(float delta_time);
+		void	update_render(float delta_time);
 	};
 }
