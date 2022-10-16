@@ -56,6 +56,10 @@ void	pulsar::light_system::execute(pulsar::ecs::registry &registry, float delta_
 				break;
 			}
 		}
+		int i = -1;
+		while (++i < light->shadow_map()->draw_calls())
+			this->m_deferred_frag_lights.lights[light_id].shadow_map_uv[i] = light->shadow_map()->uv(i);
+
 		this->m_submitted_lights.push_back(entity);
 
 		light_id++;

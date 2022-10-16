@@ -15,6 +15,7 @@ namespace pulsar
 		float pd0;
 
 		XMFLOAT4 attenuation;
+		XMFLOAT4 shadow_map_uv[6];
 	};
 
 	struct deferred_frag_lights

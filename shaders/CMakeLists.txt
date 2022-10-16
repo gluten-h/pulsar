@@ -11,6 +11,8 @@ set(SHADER_SOURCES
 						misc/brdf/cook_torrance.hlsli
 						misc/brdf/oren_nayar.hlsli
 						misc/normal_mapping.hlsli
+						misc/cubemap.hlsli
+						misc/texture_atlas.hlsli
 
 						post_effects/gamma_correction.hlsli
 						post_effects/post_effects_fs.hlsl
@@ -18,6 +20,7 @@ set(SHADER_SOURCES
 
 						shadows/shadow_mapping_vs.hlsl
 						shadows/shadow_mapping_fs.hlsl
+						shadows/variance_shadow_mapping.hlsli
 
 						skybox/skybox_fs.hlsl
 						skybox/skybox_vs.hlsl
@@ -34,6 +37,8 @@ SET(SHADER_INCLUDE_DIRS
 						misc
 
 						post_effects
+
+						shadows
 
 						utils
 

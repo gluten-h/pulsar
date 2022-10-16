@@ -3,6 +3,10 @@
 #include "oren_nayar.hlsli"
 #include "cook_torrance.hlsli"
 
+#include "cubemap.hlsli"
+#include "texture_atlas.hlsli"
+#include "variance_shadow_mapping.hlsli"
+
 
 Texture2D gb_position : register(t0);
 Texture2D gb_albedo : register(t1);
@@ -10,13 +14,13 @@ Texture2D gb_normal : register(t2);
 Texture2D gb_rmae : register(t3);
 Texture2D gb_irradiance : register(t4);
 
-TextureCube shadow_map : register(t5);
+Texture2D shadow_atlas : register(t5);
 
 SamplerState smplr : register(s0);
 SamplerState shadow_smplr : register(s1);
 
 
-#define MAX_LIGHTS_COUNT 1024
+#define MAX_LIGHTS_COUNT 256
 
 #define POINT_LIGHT 0
 #define DIR_LIGHT 1
@@ -36,13 +40,15 @@ struct light_specs
 	float linear_att;
 	float quad_att;
 	float pd1;
+
+	float4 shadow_map_uv[6];
 };
 
 struct light_scene
 {
 	int lights_count;
 	float3 pd0;
-	
+
 	light_specs lights[MAX_LIGHTS_COUNT];
 };
 
@@ -56,26 +62,10 @@ cbuffer camera_cb : register(b1)
 {
 	float3 cam_pos;
 	float cam_gamma;
-	
+
 	float3 cam_dir;
 	float cam_exposure;
 };
-
-
-float	linstep(float min, float max, float v)
-{
-	return (clamp((v - min) / (max - min), 0.0f, 1.0f));
-}
-
-float	shadow_mapping(float2 moments, float light_dist)
-{
-	float p = step(light_dist, moments.x);
-	float variance = max(0.00002f, moments.y - moments.x * moments.x);
-	float d = light_dist - moments.x;
-	float p_max = linstep(0.3f, 1.0f, variance / (variance + d * d));// 0.3 isn't supposed to be hardcoded, it should be loaded to the shader
-
-	return (max(p, p_max));
-}
 
 
 float4	frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
@@ -139,8 +129,11 @@ float4	frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 
 
 		float light_dist = length(l_scene.lights[i].pos_dir - pos);
-		float2 shadow_moments = shadow_map.Sample(shadow_smplr, -light_dir).xy;
-		float shadow_factor = shadow_mapping(shadow_moments, light_dist);
+
+		uint face_id;
+		float2 shadow_uv = sample_cubemap(-light_dir, face_id);
+		float2 moments = linear_sample_texture_atlas(shadow_atlas, shadow_smplr, l_scene.lights[i].shadow_map_uv[face_id], shadow_uv).xy;
+		float shadow_factor = variance_shadow_mapping(moments, light_dist);
 
 		//color = float4(shadow_factor, shadow_factor, shadow_factor, 1.0f);
 

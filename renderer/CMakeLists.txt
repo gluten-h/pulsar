@@ -20,8 +20,8 @@ set(REN_SOURCES
 						components/light/light.cpp
 						components/light/point_light.cpp
 						components/light/dir_light.cpp
-						components/light/shadow_map.cpp
 						components/light/point_shadow_map.cpp
+						components/light/shadow_atlas.cpp
 
 						components/skybox_material/skybox_material.cpp
 						components/skybox_material/skybox_material_props.cpp
@@ -79,6 +79,7 @@ set(REN_INCLUDES
 						components/light/dir_light.h
 						components/light/shadow_map.h
 						components/light/point_shadow_map.h
+						components/light/shadow_atlas.h
 						components/light/light_component.h
 
 						components/skybox_material/skybox_material.h

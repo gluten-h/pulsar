@@ -22,10 +22,12 @@ namespace pulsar
 	void	init(HINSTANCE h_instance)
 	{
 		pulsar::window::init(h_instance);
-		
+
 		// singletons init
 		pulsar::gfx::instance();
 		pulsar::renderer::instance();
+
+		pulsar::shadow_atlas::instance();
 	}
 
 	void	terminate()

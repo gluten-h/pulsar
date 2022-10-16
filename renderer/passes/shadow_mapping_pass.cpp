@@ -6,7 +6,7 @@
 #include "gfx_resources/vert_shader.h"
 #include "gfx_resources/frag_shader.h"
 #include "gfx_resources/input_layout.h"
-#include "config/rasterizer_state.h"
+#include "gfx_resources/rasterizer_state.h"
 #include "renderer/renderer.h"
 #include "rq/shadows_rq.h"
 #include "light/point_shadow_map.h"
@@ -31,6 +31,8 @@ pulsar::shadow_mapping_pass::shadow_mapping_pass(const std::string &name) : puls
 	this->mp_shadow_mapping_vs = new pulsar::vert_shader(pulsar::SHADOW_MAPPING_VS_PATH);
 	this->mp_shadow_mapping_fs = new pulsar::frag_shader(pulsar::SHADOW_MAPPING_FS_PATH);
 	this->mp_input_layout = new pulsar::input_layout(this->mp_shadow_mapping_vs->blob(), ied, (UINT)std::size(ied));
+
+	this->mp_rs = new pulsar::rasterizer_state(D3D11_CULL_BACK, TRUE);
 
 	this->mp_shadows_rq_input = new pulsar::rg::async_input<pulsar::shadows_rq>(pulsar::RG_G_SHADOWS_RQ, this->mp_shadows_rq);
 	this->mp_shadows_rq_source = new pulsar::rg::async_source<pulsar::shadows_rq>(pulsar::RG_G_SHADOWS_RQ, this->mp_shadows_rq);
@@ -96,7 +98,7 @@ void	pulsar::shadow_mapping_pass::execute()
 		}
 
 		{
-			pulsar::BACK_FACE_CULL_RS.bind();
+			this->mp_rs->bind();
 			this->mp_dss->bind();
 			this->mp_shadow_mapping_vs->bind();
 			this->mp_shadow_mapping_fs->bind();
@@ -116,7 +118,7 @@ void	pulsar::shadow_mapping_pass::execute()
 			this->mp_shadow_mapping_fs->unbind();
 			this->mp_shadow_mapping_vs->unbind();
 			this->mp_dss->unbind();
-			pulsar::BACK_FACE_CULL_RS.unbind();
+			this->mp_rs->unbind();
 		}
 	}
 }

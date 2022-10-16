@@ -5,6 +5,6 @@
 
 namespace pulsar
 {
-	const pulsar::rasterizer_state BACK_FACE_CULL_RS(D3D11_CULL_BACK, D3D11_FILL_SOLID);
-	const pulsar::rasterizer_state FRONT_FACE_CULL_RS(D3D11_CULL_FRONT, D3D11_FILL_SOLID);
+	const pulsar::rasterizer_state BACK_FACE_CULL_RS(D3D11_CULL_BACK);
+	const pulsar::rasterizer_state FRONT_FACE_CULL_RS(D3D11_CULL_FRONT);
 }

@@ -4,6 +4,8 @@
 #include <esent.h>
 #include <tchar.h>
 #include <Windows.h>
+#include "utils/math.h"
+#include <dxgiformat.h>
 
 
 namespace pulsar
@@ -50,6 +52,9 @@ namespace pulsar
 		SHADOWS_RQ_MODES_COUNT
 	};
 
+	const XMUINT2 SHADOW_ATLAS_SIZE = { 4096u, 4096u };
+	const DXGI_FORMAT SHADOW_ATLAS_FORMAT = DXGI_FORMAT_R32G32_FLOAT;
+
 	const char *const RG_G_FRAMEBUFFER = "framebuffer";
 	const char *const RG_G_DSV = "dsv";
 	const char *const RG_G_HDR_BUFFER = "hdr_buffer";
@@ -85,7 +90,7 @@ namespace pulsar
 	const char *const RG_POST_EFFECTS_PASS_NAME = "post_effects";
 	const char *const RG_PRESENT_PASS_NAME = "present";
 
-	const uint16_t MAX_SCENE_LIGHTS_COUNT = 1024u;
+	const uint16_t MAX_SCENE_LIGHTS_COUNT = 256u;
 
 	const uint8_t DELTA_TIME_FRAMES_SKIP_COUNT = 8u;
 	const struct
@@ -123,6 +128,7 @@ namespace pulsar
 	const uint8_t VERT_G_BUFFER_CAMERA_SLOT = 1u;
 	const uint8_t FRAG_DEFERRED_LIGHTS_SLOT = 0u;
 	const uint8_t FRAG_DEFERRED_CAMERA_SLOT = 1u;
+	const uint8_t FRAG_DEFERRED_SHADOW_ATLAS_SLOT = 5u;
 	const uint8_t VERT_SKYBOX_CAMERA_SLOT = 0u;
 	const uint8_t FRAG_SKYBOX_SKYBOX_MATERIAL_SLOT = 0u;
 	const uint8_t FRAG_SKYBOX_CAMERA_SLOT = 1u;

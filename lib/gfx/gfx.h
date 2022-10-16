@@ -18,6 +18,7 @@
 #include <wrl.h>
 #include <tchar.h>
 #include <d3d11.h>
+#include <d3d11_1.h>
 #include <d3dx11.h>
 #include <dxgi1_2.h>
 #include <dxgi.h>
@@ -39,16 +40,16 @@ namespace pulsar
 	{
 	private:
 		IDXGIFactory *mp_idxgi_factory = NULL;
-		ID3D11Device *mp_device = NULL;
-		ID3D11DeviceContext *mp_device_context = NULL;
+		ID3D11Device1 *mp_device = NULL;
+		ID3D11DeviceContext1 *mp_device_context = NULL;
 
 	public:
 		gfx();
 		~gfx();
 
 		IDXGIFactory	*idxgi_factory();
-		ID3D11Device	*device();
-		ID3D11DeviceContext		*device_context();
+		ID3D11Device1	*device();
+		ID3D11DeviceContext1	*device_context();
 
 		void	draw_indexed(UINT index_count) const;
 	};

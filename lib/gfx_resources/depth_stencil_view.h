@@ -27,6 +27,7 @@ namespace pulsar
 		~depth_stencil_view();
 
 		void	clear();
+		void	clear(D3D11_RECT *rect);
 
 		ID3D11DepthStencilView	*dsv();
 	};

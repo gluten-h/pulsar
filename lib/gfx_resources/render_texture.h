@@ -35,6 +35,9 @@ namespace pulsar
 		void	set_slot(UINT slot);
 
 		void	clear();
+		void	clear(float *clear_color);
+		void	clear(D3D11_RECT *rect);
+		void	clear(D3D11_RECT *rect, float *clear_color);
 
 		void	bind_srv() const;
 		void	bind_rtv(ID3D11DepthStencilView *dsv = NULL) const;

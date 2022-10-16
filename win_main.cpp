@@ -24,7 +24,6 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 
 	pulsar::node camera_node = scene.create_node();
 	pulsar::perspective_camera camera(1280u, 720u, pulsar::deg2rad(90.0f), 0.001f, 1000.0f);
-	//pulsar::camera_controller camera_controller(&camera_node, 5.0f, 6.0f, 0.7f);
 	pulsar::camera_controller camera_controller(&camera_node, 0.75f, 4.0f, 6.0f, 0.7f);
 	{
 		camera_node.add_component<pulsar::camera_component>(&camera);
