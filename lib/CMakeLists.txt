@@ -166,7 +166,6 @@ set(LIB_INCLUDES ${LIB_INCLUDES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDE_DIRS	
-						#bindables
 						./)
 
 target_sources(${PROJECT_NAME} PUBLIC ${LIB_SOURCES} ${LIB_INCLUDES})

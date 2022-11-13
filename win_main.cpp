@@ -68,8 +68,8 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		quad.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(0.0f, -0.5f, 0.0f));
 		quad.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(10.0f, 10.0f, 10.0f));
 		quad.add_component<pulsar::mesh_component>(&quad_mesh);
-		quad.add_component<pulsar::material_component>(pulsar::rq_material(&quad_mat));
-		quad.get_component<pulsar::metadata_component>().mask.shadows = 0x0;
+		quad.add_component<pulsar::material_component>(pulsar::rq_material(&quad_mat, pulsar::VIEWPORT_RQ_OPAQUE));
+		//quad.get_component<pulsar::metadata_component>().mask.shadows = 0x0;
 	}
 
 	pulsar::node sphere = scene.create_node();
@@ -87,7 +87,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(0.0f, 0.0f, 1.75f));
 		sphere.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.5f, 0.5f, 0.5f));
 		sphere.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
-		sphere.add_component<pulsar::material_component>(pulsar::rq_material(&brick_mat));
+		sphere.add_component<pulsar::material_component>(pulsar::rq_material(&brick_mat, pulsar::VIEWPORT_RQ_OPAQUE));
 		//sphere.add_component<pulsar::script_component>(&sphere_nr);
 	}
 
@@ -106,7 +106,7 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere1.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(1.25f, 0.0f, 1.75f));
 		sphere1.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.5f, 0.5f, 0.5f));
 		sphere1.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
-		sphere1.add_component<pulsar::material_component>(pulsar::rq_material(&metal_mat));
+		sphere1.add_component<pulsar::material_component>(pulsar::rq_material(&metal_mat, pulsar::VIEWPORT_RQ_OPAQUE));
 		//sphere1.add_component<pulsar::script_component>(&sphere1_nr);
 	}
 
@@ -126,21 +126,45 @@ int CALLBACK	WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_c
 		sphere2.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(-1.25f, 0.0f, 1.75f));
 		sphere2.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.5f, 0.5f, 0.5f));
 		sphere2.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
-		sphere2.add_component<pulsar::material_component>(pulsar::rq_material(&wood_mat));
+		sphere2.add_component<pulsar::material_component>(pulsar::rq_material(&wood_mat, pulsar::VIEWPORT_RQ_OPAQUE));
 		//sphere2.add_component<pulsar::script_component>(&sphere2_nr);
 	}
 
 
 	pulsar::node pl_node = scene.create_node();
 	pulsar::point_light pl(XMFLOAT3(0.15f, 0.1f, 1.0f), 0.1f, 0.005f, 0.0007f);
-	pulsar::node_rotation_orbit pl_nro(&pl_node, 0.25f, XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	pulsar::node_rotation_orbit pl_nro(&pl_node, 0.15f, XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f));
+	pulsar::material pl_mat;
 	{
+		pl_mat.albedo_color() = XMFLOAT3(0.15f, 0.1f, 1.0f);
+		pl_mat.irradiance_map() = pulsar::WHITE_CUBEMAP;
+
 		pl_node.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(3.0f, 1.5f, 1.0f));
 		//pl_node.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(0.0f, 1.5f, -1.0f));
 		pl_node.add_component<pulsar::light_component>().light = &pl;
 		pl_node.get_component<pulsar::light_component>().light->shadow_map()->set(1024u, 1024u);
 
 		pl_node.add_component<pulsar::script_component>(&pl_nro);
+
+		pl_node.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.2f, 0.2f, 0.2f));
+		pl_node.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
+		pl_node.add_component<pulsar::material_component>(pulsar::rq_material(&pl_mat, pulsar::VIEWPORT_RQ_OPAQUE));
+	}
+
+	pulsar::node pl1_node = scene.create_node();
+	pulsar::point_light pl1(XMFLOAT3(1.0f, 1.0f, 0.5f));
+	pulsar::material pl1_mat;
+	{
+		pl1_mat.albedo_color() = XMFLOAT3(1.0f, 1.0f, 0.5f);
+		pl1_mat.irradiance_map() = pulsar::WHITE_CUBEMAP;
+
+		pl1_node.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(-2.0f, 1.0f, 0.5f));
+		pl1_node.add_component<pulsar::light_component>().light = &pl1;
+		pl1_node.get_component<pulsar::light_component>().light->shadow_map()->set(1024u, 1024u);
+
+		pl1_node.get_component<pulsar::transform_component>().transform.set_scale(XMFLOAT3(0.2f, 0.2f, 0.2f));
+		pl1_node.add_component<pulsar::mesh_component>((pulsar::mesh*)&pulsar::SPHERE64);
+		pl1_node.add_component<pulsar::material_component>(pulsar::rq_material(&pl1_mat, pulsar::VIEWPORT_RQ_OPAQUE));
 	}
 
 	//pulsar::node dl_node = scene.create_node();

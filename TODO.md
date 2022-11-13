@@ -1,4 +1,7 @@
 
+- [ ] try to optimize all the branching inside texture atlas linear sample function
+- [ ] no need to store scene pointer inside each node, registry pointer will be enough
+- [ ] make node class constructor private
 - [x] the new g-buffer was added to store raw vertex normals, I don't think it is needed
 - [x] geometry cbuffers
 - [ ] mip maps

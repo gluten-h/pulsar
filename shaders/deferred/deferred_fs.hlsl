@@ -127,7 +127,6 @@ float4	frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 		float3 diff_brdf = oren_nayar(view_dir, light_dir, normal, albedo, roughness);
 		float3 spec_brdf = cook_torrance(view_dir, light_dir, halfway_dir, normal, F, roughness);
 
-
 		float light_dist = length(l_scene.lights[i].pos_dir - pos);
 
 		uint face_id;
@@ -136,7 +135,7 @@ float4	frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 		float shadow_factor = variance_shadow_mapping(moments, light_dist);
 
 		//color = float4(shadow_factor, shadow_factor, shadow_factor, 1.0f);
-
+		//color = float4(shadow_uv.x, shadow_uv.x, shadow_uv.x, 1.0f);
 
 		color += float4((k_diff * diff_brdf + spec_brdf) * radiance * n_dot_l, 1.0f) * shadow_factor;
 	}

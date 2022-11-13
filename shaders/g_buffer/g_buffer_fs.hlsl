@@ -3,38 +3,38 @@
 #include "normal_mapping.hlsli"
 
 
-Texture2D   mat_albedo_map : register(t0);
-Texture2D	mat_normal_map : register(t1);
-Texture2D	mat_roughness_map : register(t2);
-Texture2D	mat_metalness_map : register(t3);
-Texture2D	mat_ao_map : register(t4);
-Texture2D	mat_exposure_map :register(t5);
+Texture2D mat_albedo_map : register(t0);
+Texture2D mat_normal_map : register(t1);
+Texture2D mat_roughness_map : register(t2);
+Texture2D mat_metalness_map : register(t3);
+Texture2D mat_ao_map : register(t4);
+Texture2D mat_exposure_map :register(t5);
 TextureCube mat_irradiance_map : register(t6);
 
 SamplerState smplr : register(s0);
 
 cbuffer material_cb : register(b0)
 {
-	float3	mat_albedo_color;
-	bool	mat_albedo_map_srgb;
+	float3 mat_albedo_color;
+	bool mat_albedo_map_srgb;
 
-	float	mat_normal_factor;
-	float	mat_roughness;
-	float	mat_metalness;
-	float	mat_ao;
-	float	mat_exposure;
-	float	mat_irradiance_color;
+	float mat_normal_factor;
+	float mat_roughness;
+	float mat_metalness;
+	float mat_ao;
+	float mat_exposure;
+	float mat_irradiance_color;
 
-	float2	pd;
+	float2 pd;
 };
 
 struct fs_out
 {
-	float4	position : SV_Target0;
-	float4	albedo : SV_Target1;
-	float4	normal : SV_Target2;
-	float4	rmae : SV_Target3;
-	float4	irradiance : SV_Target4;
+	float4 position : SV_Target0;
+	float4 albedo : SV_Target1;
+	float4 normal : SV_Target2;
+	float4 rmae : SV_Target3;
+	float4 irradiance : SV_Target4;
 };
 
 

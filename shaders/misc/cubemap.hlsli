@@ -24,5 +24,5 @@ float2	sample_cubemap(float3 d, out uint face_id)
 		uv = float2(d.x < 0.0f ? d.z : -d.z, -d.y);
 	}
 
-	return uv * ma + 0.5f;
+	return (uv * ma + 0.5f);
 }
