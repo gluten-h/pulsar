@@ -93,7 +93,7 @@ void	pulsar::cubemap::create_srv(LPCWSTR dds_file)
 	GFX_ASSERT(CreateDDSTextureFromFileEx(pulsar::gfx::instance().device(),
 											pulsar::filesystem::absolute_path(dds_file).c_str(), 6u,
 											D3D11_USAGE_IMMUTABLE, D3D11_BIND_SHADER_RESOURCE, 0u,
-											D3D11_RESOURCE_MISC_TEXTURECUBE, false,
+											D3D11_RESOURCE_MISC_TEXTURECUBE, DDS_LOADER_DEFAULT,
 											(ID3D11Resource**)&this->mp_texture, &this->mp_srv));
 }
 

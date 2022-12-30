@@ -1,7 +1,6 @@
 #pragma once
 
 #include "base_exception.h"
-#include <DxErr.h>
 
 
 namespace pulsar

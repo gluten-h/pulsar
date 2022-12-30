@@ -8,11 +8,9 @@ set(CMAKE_SUPPRESS_REGENERATION true)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-
-set(CMAKE_VS_SDK_INCLUDE_DIRECTORIES "$(IncludePath)" "$(DXSDK_DIR)Include")
-set(CMAKE_VS_SDK_LIBRARY_DIRECTORIES "$(LibraryPath)" "$(DXSDK_DIR)Lib/x64")
-
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 
 set(ADDITIONAL_FILES "TODO.md" "CMakeLists.txt" "lib/CMakeLists.txt" "renderer/CMakeLists.txt" "shaders/CMakeLists.txt")
 
@@ -21,7 +19,6 @@ add_executable(${PROJECT_NAME} WIN32 win_main.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${ADDITIONAL_FILES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "/MP /Ot /JMC")
-set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 add_subdirectory(lib)
 add_subdirectory(renderer)
@@ -29,18 +26,15 @@ add_subdirectory(shaders)
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
 
+set(DIRECTX_DIR $ENV{DXSDK_DIR})
+include(${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake)
 
-find_program(NUGET_EXE NAMES nuget)
-if (NOT NUGET_EXE)
-	message(WARNING "Cannot find NuGet command line tool.\nInstall it with 'choco install nuget.commandline' or built-in VS-NuGet.")
-else()
-	exec_program(${NUGET_EXE} ARGS install "directxtex_desktop_2017" -Version 2021.8.2.1 -ExcludeVersion -OutputDirectory ${CMAKE_BINARY_DIR}/packages)
-	exec_program(${NUGET_EXE} ARGS install "directxtk_desktop_2017" -Version 2021.8.2.1 -ExcludeVersion -OutputDirectory ${CMAKE_BINARY_DIR}/packages)
+find_package(directxmath REQUIRED)
+find_package(directxtex CONFIG REQUIRED)
+find_package(directxtk CONFIG REQUIRED)
 
-	target_link_libraries(${PROJECT_NAME} PRIVATE ${CMAKE_BINARY_DIR}/packages/directxtex_desktop_2017/build/native/directxtex_desktop_2017.targets)
-	target_link_libraries(${PROJECT_NAME} PRIVATE ${CMAKE_BINARY_DIR}/packages/directxtk_desktop_2017/build/native/directxtk_desktop_2017.targets)
-endif()
-
+target_link_libraries(${PROJECT_NAME} PRIVATE d3d11 dxgi dxguid d3dcompiler uuid
+												Microsoft::DirectXTex Microsoft::DirectXTK)
 
 list(TRANSFORM LIB_SOURCES PREPEND "lib/")
 list(TRANSFORM LIB_INCLUDES PREPEND "lib/")

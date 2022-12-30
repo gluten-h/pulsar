@@ -1,7 +1,8 @@
-bin/*
+build/*
 
 .vs
 .vscode
+out/*
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
