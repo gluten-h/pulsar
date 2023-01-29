@@ -1,12 +1,12 @@
 #pragma once
 
-#include "texture_resource.h"
+#include "texture2d_resource.h"
 #include "sync_resource.h"
 
 
 namespace pulsar
 {
-	class framebuffer : public pulsar::texture_resource, public pulsar::sync_resource
+	class framebuffer : public pulsar::texture2d_resource, public pulsar::sync_resource
 	{
 	private:
 		IDXGISwapChain *mp_swap_chain = NULL;

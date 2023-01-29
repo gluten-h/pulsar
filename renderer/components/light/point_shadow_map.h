@@ -25,7 +25,6 @@ namespace pulsar
 	private:
 		D3D11_RECT m_rects[6u];
 		pulsar::viewport m_viewports[6u];
-
 		XMFLOAT4 m_uvs[6u];
 
 		float m_z_near = 0.0f;

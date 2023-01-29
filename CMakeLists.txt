@@ -1,4 +1,3 @@
-
 cmake_minimum_required(VERSION 3.20)
 
 project(pulsar LANGUAGES CXX)
@@ -14,7 +13,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 
 set(ADDITIONAL_FILES "TODO.md" "CMakeLists.txt" "lib/CMakeLists.txt" "renderer/CMakeLists.txt" "shaders/CMakeLists.txt")
 
-
 add_executable(${PROJECT_NAME} WIN32 win_main.cpp)
 target_sources(${PROJECT_NAME} PUBLIC ${ADDITIONAL_FILES})
 
@@ -26,9 +24,7 @@ add_subdirectory(shaders)
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
 
-set(DIRECTX_DIR $ENV{DXSDK_DIR})
 include(${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake)
-
 find_package(directxmath REQUIRED)
 find_package(directxtex CONFIG REQUIRED)
 find_package(directxtk CONFIG REQUIRED)
@@ -45,7 +41,7 @@ list(TRANSFORM SHADER_INCLUDE_DIRS PREPEND "shaders/")
 
 set_property(SOURCE ${SHADER_SOURCES} PROPERTY VS_SETTINGS "ExcludedFromBuild=true")
 
-set(ALL_SOURCE_FILES win_main.cpp ${ADDITIONAL_FILES} ${LIB_SOURCES} ${LIB_INCLUDES} ${REN_SOURCES} ${REN_INCLUDES} ${SHADER_SOURCES})
+set(ALL_SOURCE_FILES ${ADDITIONAL_FILES} ${LIB_SOURCES} ${LIB_INCLUDES} ${REN_SOURCES} ${REN_INCLUDES} ${SHADER_SOURCES})
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${ALL_SOURCE_FILES})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)

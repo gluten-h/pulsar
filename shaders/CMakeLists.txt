@@ -18,9 +18,8 @@ set(SHADER_SOURCES
 						post_effects/post_effects_fs.hlsl
 						post_effects/tone_mapping.hlsli
 
-						shadows/shadow_mapping_vs.hlsl
-						shadows/shadow_mapping_fs.hlsl
-						shadows/variance_shadow_mapping.hlsli
+						shadows/shadow_pass_vs.hlsl
+						shadows/shadow_pass_fs.hlsl
 
 						skybox/skybox_fs.hlsl
 						skybox/skybox_vs.hlsl

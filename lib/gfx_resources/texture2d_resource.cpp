@@ -1,19 +1,19 @@
 
-#include "texture_resource.h"
+#include "texture2d_resource.h"
 #include "exceptions/gfx_exception.h"
 
 
-pulsar::texture_resource::~texture_resource()
+pulsar::texture2d_resource::~texture2d_resource()
 {
 	this->destroy_texture();
 }
 
-void	pulsar::texture_resource::create_texture(D3D11_TEXTURE2D_DESC *td)
+void	pulsar::texture2d_resource::create_texture(D3D11_TEXTURE2D_DESC *td)
 {
 	GFX_ASSERT(pulsar::gfx::instance().device()->CreateTexture2D(td, NULL, &this->mp_texture));
 }
 
-void	pulsar::texture_resource::destroy_texture()
+void	pulsar::texture2d_resource::destroy_texture()
 {
 	if (this->mp_texture)
 	{
@@ -22,12 +22,12 @@ void	pulsar::texture_resource::destroy_texture()
 	}
 }
 
-ID3D11Texture2D		*pulsar::texture_resource::texture()
+ID3D11Texture2D		*pulsar::texture2d_resource::texture()
 {
 	return (this->mp_texture);
 }
 
-XMUINT2		pulsar::texture_resource::size() const
+XMUINT2		pulsar::texture2d_resource::size() const
 {
 	XMUINT2 size{ 0u, 0u };
 	D3D11_TEXTURE2D_DESC td;

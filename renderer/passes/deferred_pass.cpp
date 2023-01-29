@@ -12,6 +12,7 @@
 #include "gfx_resources/frag_cbuffer.h"
 #include "scene/scene.h"
 #include "light/shadow_atlas.h"
+#include "misc/shadow_filter.h"
 
 
 pulsar::deferred_pass::deferred_pass(const std::string &name) : pulsar::fullscreen_pass(name)
@@ -19,6 +20,8 @@ pulsar::deferred_pass::deferred_pass(const std::string &name) : pulsar::fullscre
 	this->mp_deferred_fs = new pulsar::frag_shader(pulsar::DEFERRED_FS_PATH);
 	this->mp_sampler = new pulsar::sampler(pulsar::FRAG_DEFERRED_SAMPLER_SLOT);
 	this->mp_shadow_sampler = new pulsar::sampler(D3D11_FILTER_MIN_MAG_MIP_POINT, D3D11_TEXTURE_ADDRESS_CLAMP, pulsar::FRAG_DEFERRED_SHADOW_SAMPLER_SLOT);
+
+	this->mp_shadow_filter = new pulsar::shadow_filter(pulsar::SHADOW_FILTER_SIZE, pulsar::SHADOW_FILTER_SAMPLES, pulsar::FRAG_DEFERRED_SHADOW_FILTER_SLOT);
 
 	this->mp_hdr_buffer_input = new pulsar::rg::sync_input<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
 	this->mp_hdr_buffer_source = new pulsar::rg::sync_source<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
@@ -48,6 +51,8 @@ pulsar::deferred_pass::~deferred_pass()
 	delete this->mp_deferred_fs;
 	delete this->mp_sampler;
 	delete this->mp_shadow_sampler;
+
+	delete this->mp_shadow_filter;
 
 	delete this->mp_hdr_buffer_input;
 	delete this->mp_hdr_buffer_source;
@@ -109,11 +114,13 @@ void	pulsar::deferred_pass::execute()
 			this->mp_g_buffers[i]->bind_srv();
 
 		pulsar::shadow_atlas::instance().bind_srv();
+		this->mp_shadow_filter->bind();
 	}
 
 	pulsar::fullscreen_pass::execute();
 
 	{
+		this->mp_shadow_filter->unbind();
 		pulsar::shadow_atlas::instance().unbind_srv();
 
 		int i = pulsar::G_BUFFERS_COUNT;

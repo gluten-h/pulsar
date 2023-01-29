@@ -7,6 +7,7 @@
 - [ ] mip maps
 - [ ] store all shader constants inside immutable cbuffers
 - [ ] bind_group: a class with an array of one-type bindables stored inside to bind them per one call (shader_textures, render_textures, samplers, viewports, cbuffers, dynamic_cbuffers)
+	- [ ] move bind_groups outside of gfx_resources directory
 	- [ ] viewport_bind_group
 	- [x] geom_cbuffer_bind_group
 - [x] entity:

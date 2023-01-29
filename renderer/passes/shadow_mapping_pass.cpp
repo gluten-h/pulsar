@@ -28,8 +28,8 @@ pulsar::shadow_mapping_pass::shadow_mapping_pass(const std::string &name) : puls
 	};
 
 	this->mp_dss = new pulsar::depth_stencil_state(TRUE, D3D11_COMPARISON_LESS, D3D11_DEPTH_WRITE_MASK_ALL);
-	this->mp_shadow_mapping_vs = new pulsar::vert_shader(pulsar::SHADOW_MAPPING_VS_PATH);
-	this->mp_shadow_mapping_fs = new pulsar::frag_shader(pulsar::SHADOW_MAPPING_FS_PATH);
+	this->mp_shadow_mapping_vs = new pulsar::vert_shader(pulsar::SHADOW_PASS_VS_PATH);
+	this->mp_shadow_mapping_fs = new pulsar::frag_shader(pulsar::SHADOW_PASS_FS_PATH);
 	this->mp_input_layout = new pulsar::input_layout(this->mp_shadow_mapping_vs->blob(), ied, (UINT)std::size(ied));
 
 	this->mp_rs = new pulsar::rasterizer_state(D3D11_CULL_BACK, TRUE);

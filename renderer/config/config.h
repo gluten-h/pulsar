@@ -23,8 +23,8 @@ namespace pulsar
 	const WCHAR *const G_BUFFER_GS_PATH = L"shaders/g_buffer/g_buffer_gs.hlsl";
 	const WCHAR *const OPAQUE_G_BUFFER_FS_PATH = L"shaders/g_buffer/g_buffer_fs.hlsl";
 	const WCHAR *const DEFERRED_FS_PATH = L"shaders/deferred/deferred_fs.hlsl";
-	const WCHAR *const SHADOW_MAPPING_VS_PATH = L"shaders/shadows/shadow_mapping_vs.hlsl";
-	const WCHAR *const SHADOW_MAPPING_FS_PATH = L"shaders/shadows/shadow_mapping_fs.hlsl";
+	const WCHAR *const SHADOW_PASS_VS_PATH = L"shaders/shadows/shadow_pass_vs.hlsl";
+	const WCHAR *const SHADOW_PASS_FS_PATH = L"shaders/shadows/shadow_pass_fs.hlsl";
 
 	const WCHAR *const SKYBOX_VS_PATH = L"shaders/skybox/skybox_vs.hlsl";
 	const WCHAR *const SKYBOX_FS_PATH = L"shaders/skybox/skybox_fs.hlsl";
@@ -52,8 +52,11 @@ namespace pulsar
 		SHADOWS_RQ_MODES_COUNT
 	};
 
-	const XMUINT2 SHADOW_ATLAS_SIZE = { 4096u, 4096u };
-	const DXGI_FORMAT SHADOW_ATLAS_FORMAT = DXGI_FORMAT_R32G32_FLOAT;
+	const XMUINT2 SHADOW_ATLAS_SIZE = { 6144u, 6144u };
+	const DXGI_FORMAT SHADOW_ATLAS_FORMAT = DXGI_FORMAT_R32_FLOAT;
+
+	const uint8_t SHADOW_FILTER_SIZE = 32u;
+	const uint8_t SHADOW_FILTER_SAMPLES = 8u;
 
 	const char *const RG_G_FRAMEBUFFER = "framebuffer";
 	const char *const RG_G_DSV = "dsv";
@@ -63,12 +66,13 @@ namespace pulsar
 	{
 		G_BUFFER_POS,
 		G_BUFFER_ALBEDO,
+		G_BUFFER_SURFACE_NORMAL,
 		G_BUFFER_NORMAL,
 		G_BUFFER_RMAE,				//roughness, metalness, ambient, exposure
 		G_BUFFER_IRRADIANCE,
 		G_BUFFERS_COUNT,
 	};
-	const char *const RG_G_G_BUFFERS[G_BUFFERS_COUNT] = { "g_buffer_pos", "g_buffer_albedo", "g_buffer_normal", "g_buffer_rmae", "g_buffer_irradiance" };
+	const char *const RG_G_G_BUFFERS[G_BUFFERS_COUNT] = { "g_buffer_pos", "g_buffer_albedo", "g_buffer_surface_normal", "g_buffer_normal", "g_buffer_rmae", "g_buffer_irradiance" };
 	const char *const RG_G_VIEWPORT_RQ = "viewport_rq";
 	const char *const RG_G_SHADOWS_RQ = "shadows_rq";
 
@@ -128,7 +132,8 @@ namespace pulsar
 	const uint8_t VERT_G_BUFFER_CAMERA_SLOT = 1u;
 	const uint8_t FRAG_DEFERRED_LIGHTS_SLOT = 0u;
 	const uint8_t FRAG_DEFERRED_CAMERA_SLOT = 1u;
-	const uint8_t FRAG_DEFERRED_SHADOW_ATLAS_SLOT = 5u;
+	const uint8_t FRAG_DEFERRED_SHADOW_ATLAS_SLOT = 6u;
+	const uint8_t FRAG_DEFERRED_SHADOW_FILTER_SLOT = 7u;
 	const uint8_t VERT_SKYBOX_CAMERA_SLOT = 0u;
 	const uint8_t FRAG_SKYBOX_SKYBOX_MATERIAL_SLOT = 0u;
 	const uint8_t FRAG_SKYBOX_CAMERA_SLOT = 1u;

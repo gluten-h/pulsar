@@ -26,6 +26,8 @@ set(REN_SOURCES
 						components/skybox_material/skybox_material.cpp
 						components/skybox_material/skybox_material_props.cpp
 
+						misc/shadow_filter.cpp
+
 						node/node.cpp
 
 						renderer/renderer.cpp
@@ -101,6 +103,8 @@ set(REN_INCLUDES
 						config/shader_texture.h
 
 						mask/mask.h
+
+						misc/shadow_filter.h
 
 						node/node.h
 
