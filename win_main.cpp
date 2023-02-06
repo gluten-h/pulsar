@@ -43,7 +43,7 @@ int CALLBACK	WinMain(_In_ HINSTANCE h_instance, _In_opt_ HINSTANCE h_prev_instan
 		pepega_mat.normal_factor() = 1.0f;
 		//pepega_mat.irradiance_map().set(L"cm00/cm00_irradiance.dds");
 
-		cube.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(1.0f, 1.0f, 5.5f));
+		cube.get_component<pulsar::transform_component>().transform.set_position(XMFLOAT3(1.0f, -0.5f + sqrtf(3.0f), 5.5f));
 		cube.add_component<pulsar::mesh_component>(&cube_mesh);
 		cube.add_component<pulsar::material_component>(pulsar::rq_material(&pepega_mat));
 		cube.add_component<pulsar::script_component>(&cube_nr);
