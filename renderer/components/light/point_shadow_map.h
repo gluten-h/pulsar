@@ -2,14 +2,13 @@
 
 #include "shadow_map.h"
 #include "utils/math.h"
-#include "gfx_resources/texture_resource.h"
 #include "gfx_resources/viewport.h"
 #include "gfx_resources/vert_cbuffer.h"
 
 
 namespace pulsar
 {
-	class point_shadow_map : public pulsar::shadow_map, public pulsar::texture_resource
+	class point_shadow_map : public pulsar::shadow_map
 	{
 		struct shadow_transform
 		{
@@ -24,15 +23,10 @@ namespace pulsar
 		};
 
 	private:
-		ID3D11Texture2D *mp_dsv_texture = NULL;
-		ID3D11DepthStencilView *mp_dsv = NULL;
-		ID3D11ShaderResourceView *mp_srv = NULL;
-		ID3D11RenderTargetView *mp_rtv[6u] = { NULL };
+		D3D11_RECT m_rects[6u];
+		pulsar::viewport m_viewports[6u];
+		XMFLOAT4 m_uvs[6u];
 
-		pulsar::viewport m_viewport;
-
-		float m_width = 0.0f;
-		float m_height = 0.0f;
 		float m_z_near = 0.0f;
 		float m_z_far = 0.0f;
 
@@ -57,6 +51,7 @@ namespace pulsar
 
 		void	clear() override;
 		uint8_t	draw_calls() const override;
+		XMFLOAT4	uv(uint8_t id) const override;
 
 		void	bind_rtv(uint8_t id, const pulsar::transform *transform) override;
 		void	bind_srv() override;

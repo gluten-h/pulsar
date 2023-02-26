@@ -1,12 +1,12 @@
 #pragma once
 
-#include "texture_resource.h"
+#include "texture2d_resource.h"
 #include "sync_resource.h"
 
 
 namespace pulsar
 {
-	class render_texture : public pulsar::texture_resource, public pulsar::sync_resource
+	class render_texture : public pulsar::texture2d_resource, public pulsar::sync_resource
 	{
 	private:
 		ID3D11RenderTargetView *mp_rtv = NULL;
@@ -35,6 +35,9 @@ namespace pulsar
 		void	set_slot(UINT slot);
 
 		void	clear();
+		void	clear(float *clear_color);
+		void	clear(D3D11_RECT *rect);
+		void	clear(D3D11_RECT *rect, float *clear_color);
 
 		void	bind_srv() const;
 		void	bind_rtv(ID3D11DepthStencilView *dsv = NULL) const;

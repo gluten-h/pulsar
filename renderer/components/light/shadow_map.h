@@ -10,8 +10,6 @@ namespace pulsar
 	class shadow_map
 	{
 	protected:
-		UINT m_slot = 0u;
-
 		shadow_map &operator=(const shadow_map&) = delete;
 		shadow_map &operator=(shadow_map&&) = delete;
 		shadow_map(const shadow_map&) = delete;
@@ -20,10 +18,9 @@ namespace pulsar
 		virtual ~shadow_map() = default;
 
 	public:
-		void	set_slot(UINT slot);
-
 		virtual void	clear() = 0;
 		virtual uint8_t	draw_calls() const = 0;
+		virtual XMFLOAT4	uv(uint8_t id) const = 0;
 
 		virtual void	bind_rtv(uint8_t id, const pulsar::transform *transform) = 0;
 		virtual void	bind_srv() = 0;

@@ -19,7 +19,8 @@ set(LIB_SOURCES
 						gfx/gfx.cpp
 
 
-						gfx_resources/texture_resource.cpp
+						gfx_resources/texture2d_resource.cpp
+						gfx_resources/texture3d_resource.cpp
 						gfx_resources/depth_stencil_view.cpp
 						gfx_resources/shader_texture.cpp
 						gfx_resources/render_texture.cpp
@@ -98,7 +99,8 @@ set(LIB_INCLUDES
 
 
 						gfx_resources/gfx_resources.h
-						gfx_resources/texture_resource.h
+						gfx_resources/texture2d_resource.h
+						gfx_resources/texture3d_resource.h
 						gfx_resources/shader_texture.h
 						gfx_resources/depth_stencil_view.h
 						gfx_resources/render_texture.h
@@ -129,7 +131,6 @@ set(LIB_INCLUDES
 						gfx_resources/bind_group/rtv_bind_group.h
 						gfx_resources/bind_group/srv_bind_group.h
 						gfx_resources/bind_group/sampler_bind_group.h
-						gfx_resources/bind_group/viewport_bind_group.h
 						gfx_resources/bind_group/cbuffer_bind_group.h
 						gfx_resources/bind_group/vert_cbuffer_bind_group.h
 						gfx_resources/bind_group/geom_cbuffer_bind_group.h
@@ -166,7 +167,6 @@ set(LIB_INCLUDES ${LIB_INCLUDES} PARENT_SCOPE)
 
 
 set(LIB_INCLUDE_DIRS	
-						#bindables
 						./)
 
 target_sources(${PROJECT_NAME} PUBLIC ${LIB_SOURCES} ${LIB_INCLUDES})

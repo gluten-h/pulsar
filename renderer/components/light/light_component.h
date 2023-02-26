@@ -2,6 +2,7 @@
 
 #include "point_light.h"
 #include "dir_light.h"
+#include "shadow_atlas.h"
 
 
 namespace pulsar

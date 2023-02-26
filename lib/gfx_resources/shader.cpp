@@ -16,7 +16,7 @@ void	pulsar::shader::create_shader_blob(const LPCWSTR shader_file, const LPCSTR 
 
 	UINT flags = D3DCOMPILE_ENABLE_STRICTNESS;
 #ifdef _DEBUG
-	flags |= D3DCOMPILE_DEBUG;
+	flags |= D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
 #endif
 
 	GFX_ASSERT(D3DCompileFromFile(pulsar::filesystem::absolute_path(shader_file).c_str(), NULL, &shader_inc, entry, target, flags, 0u, &this->mp_blob, NULL));

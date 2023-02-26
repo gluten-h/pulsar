@@ -97,6 +97,22 @@ void	pulsar::render_texture::clear()
 	pulsar::gfx::instance().device_context()->ClearRenderTargetView(this->mp_rtv, clear_color);
 }
 
+void	pulsar::render_texture::clear(float *clear_color)
+{
+	pulsar::gfx::instance().device_context()->ClearRenderTargetView(this->mp_rtv, clear_color);
+}
+
+void	pulsar::render_texture::clear(D3D11_RECT *rect)
+{
+	float clear_color[4] = { 0.0f, 0.0f, 0.0f, 1.0 };
+	pulsar::gfx::instance().device_context()->ClearView(this->mp_rtv, clear_color, rect, 1u);
+}
+
+void	pulsar::render_texture::clear(D3D11_RECT *rect, float *clear_color)
+{
+	pulsar::gfx::instance().device_context()->ClearView(this->mp_rtv, clear_color, rect, 1u);
+}
+
 void	pulsar::render_texture::bind_srv() const
 {
 	pulsar::gfx::instance().device_context()->PSSetShaderResources(this->m_slot, 1u, &this->mp_srv);

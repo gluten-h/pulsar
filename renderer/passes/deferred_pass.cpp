@@ -11,13 +11,17 @@
 #include "gfx_resources/sampler.h"
 #include "gfx_resources/frag_cbuffer.h"
 #include "scene/scene.h"
+#include "light/shadow_atlas.h"
+#include "misc/shadow_filter.h"
 
 
 pulsar::deferred_pass::deferred_pass(const std::string &name) : pulsar::fullscreen_pass(name)
 {
 	this->mp_deferred_fs = new pulsar::frag_shader(pulsar::DEFERRED_FS_PATH);
 	this->mp_sampler = new pulsar::sampler(pulsar::FRAG_DEFERRED_SAMPLER_SLOT);
-	this->mp_shadow_sampler = new pulsar::sampler(D3D11_FILTER_ANISOTROPIC, D3D11_TEXTURE_ADDRESS_CLAMP, pulsar::FRAG_DEFERRED_SHADOW_SAMPLER_SLOT);
+	this->mp_shadow_sampler = new pulsar::sampler(D3D11_FILTER_MIN_MAG_MIP_POINT, D3D11_TEXTURE_ADDRESS_CLAMP, pulsar::FRAG_DEFERRED_SHADOW_SAMPLER_SLOT);
+
+	this->mp_shadow_filter = new pulsar::shadow_filter(pulsar::SHADOW_FILTER_SIZE, pulsar::SHADOW_FILTER_SAMPLES, pulsar::FRAG_DEFERRED_SHADOW_FILTER_SLOT);
 
 	this->mp_hdr_buffer_input = new pulsar::rg::sync_input<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
 	this->mp_hdr_buffer_source = new pulsar::rg::sync_source<pulsar::render_texture>(pulsar::RG_G_HDR_BUFFER, this->mp_hdr_buffer);
@@ -47,6 +51,8 @@ pulsar::deferred_pass::~deferred_pass()
 	delete this->mp_deferred_fs;
 	delete this->mp_sampler;
 	delete this->mp_shadow_sampler;
+
+	delete this->mp_shadow_filter;
 
 	delete this->mp_hdr_buffer_input;
 	delete this->mp_hdr_buffer_source;
@@ -106,20 +112,17 @@ void	pulsar::deferred_pass::execute()
 		int i = -1;
 		while (++i < pulsar::G_BUFFERS_COUNT)
 			this->mp_g_buffers[i]->bind_srv();
+
+		pulsar::shadow_atlas::instance().bind_srv();
+		this->mp_shadow_filter->bind();
 	}
-
-	auto &submitted_lights = *renderer.get_submitted_lights();
-	pulsar::ecs::entity light = submitted_lights[0];
-	pulsar::shadow_map *shadow_map = active_scene->registry().get<pulsar::light_component>(light).light->shadow_map();
-
-	shadow_map->set_slot(5u);
-	shadow_map->bind_srv();
 
 	pulsar::fullscreen_pass::execute();
 
-	shadow_map->unbind_srv();
-
 	{
+		this->mp_shadow_filter->unbind();
+		pulsar::shadow_atlas::instance().unbind_srv();
+
 		int i = pulsar::G_BUFFERS_COUNT;
 		while (--i >= 0)
 			this->mp_g_buffers[i]->unbind_srv();

@@ -15,6 +15,7 @@ namespace pulsar
 	class depth_stencil_view;
 	class render_texture;
 	class sampler;
+	class shadow_filter;
 
 	class deferred_pass : public pulsar::fullscreen_pass
 	{
@@ -26,6 +27,8 @@ namespace pulsar
 		pulsar::render_texture *mp_hdr_buffer = NULL;
 		pulsar::depth_stencil_view *mp_dsv = NULL;
 		pulsar::render_texture *mp_g_buffers[pulsar::G_BUFFERS_COUNT] = { NULL };
+
+		pulsar::shadow_filter *mp_shadow_filter = NULL;
 
 		pulsar::rg::sync_input<pulsar::render_texture> *mp_hdr_buffer_input = NULL;
 		pulsar::rg::sync_source<pulsar::render_texture> *mp_hdr_buffer_source = NULL;

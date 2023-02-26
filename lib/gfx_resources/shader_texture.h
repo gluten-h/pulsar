@@ -1,11 +1,11 @@
 #pragma once
 
-#include "texture_resource.h"
+#include "texture2d_resource.h"
 
 
 namespace pulsar
 {
-	class shader_texture : public pulsar::texture_resource
+	class shader_texture : public pulsar::texture2d_resource
 	{
 	protected:
 		ID3D11ShaderResourceView *mp_srv = NULL;

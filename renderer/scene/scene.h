@@ -51,14 +51,14 @@ namespace pulsar
 		void	register_system(Args&&... args)
 		{
 			static_assert(std::is_base_of_v<pulsar::ecs::system, T>, "Invalid system-type");
-			this->m_systems.push_back((pulsar::ecs::system*)(new T(args...)));
+			this->m_systems.push_back((pulsar::ecs::system*)(new T(std::forward<Args>(args)...)));
 		}
 
 		template <typename T, typename... Args>
 		void	register_render_system(Args&&... args)
 		{
 			static_assert(std::is_base_of_v<pulsar::ecs::system, T>, "Invalid system-type");
-			this->m_render_systems.push_back((pulsar::ecs::system*)(new T(args...)));
+			this->m_render_systems.push_back((pulsar::ecs::system*)(new T(std::forward<Args>(args)...)));
 		}
 
 		void	update(float delta_time);

@@ -58,6 +58,12 @@ void	pulsar::depth_stencil_view::clear()
 	pulsar::gfx::instance().device_context()->ClearDepthStencilView(this->mp_dsv, D3D11_CLEAR_DEPTH, 1.0f, 0u);
 }
 
+void	pulsar::depth_stencil_view::clear(D3D11_RECT *rect)
+{
+	float clear_color[4] = { 1.0f, 1.0f, 1.0f, 1.0 };
+	pulsar::gfx::instance().device_context()->ClearView(this->mp_dsv, clear_color, rect, 1u);
+}
+
 ID3D11DepthStencilView	*pulsar::depth_stencil_view::dsv()
 {
 	return (this->mp_dsv);

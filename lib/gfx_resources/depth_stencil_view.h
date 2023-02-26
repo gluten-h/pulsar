@@ -1,12 +1,12 @@
 #pragma once
 
-#include "texture_resource.h"
+#include "texture2d_resource.h"
 #include "sync_resource.h"
 
 
 namespace pulsar
 {
-	class depth_stencil_view : public pulsar::texture_resource, public pulsar::sync_resource
+	class depth_stencil_view : public pulsar::texture2d_resource, public pulsar::sync_resource
 	{
 	private:
 		ID3D11DepthStencilView *mp_dsv = NULL;
@@ -27,6 +27,7 @@ namespace pulsar
 		~depth_stencil_view();
 
 		void	clear();
+		void	clear(D3D11_RECT *rect);
 
 		ID3D11DepthStencilView	*dsv();
 	};

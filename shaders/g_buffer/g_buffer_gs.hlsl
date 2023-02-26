@@ -11,7 +11,8 @@ struct gs_out
 {
 	float4	pos : SV_POSITION;
 	float4	world_pos : POSITION;
-	float3	normal : NORMAL;
+	float3	surface_normal : NORMAL0;
+	float3	normal : NORMAL1;
 	float2	uv : UV;
 
 	nointerpolation float3	t : TANGENT0;
@@ -42,11 +43,14 @@ void	geom(triangle gs_in input[3], inout TriangleStream<gs_out> output)
 	b.z = f * (-delta_uv2.x * edge1.z + delta_uv1.x * edge2.z);
 	b = normalize(b);
 
+	float3 surface_normal = normalize(cross(edge1, edge2));
+
 	[unroll]
 	for (uint i = 0; i < 3; i++)
 	{
 		tri[i].pos = input[i].pos;
 		tri[i].world_pos = input[i].world_pos;
+		tri[i].surface_normal = surface_normal;
 		tri[i].normal = input[i].normal;
 		tri[i].uv = input[i].uv;
 

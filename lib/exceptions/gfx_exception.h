@@ -1,7 +1,6 @@
 #pragma once
 
 #include "base_exception.h"
-#include <DxErr.h>
 
 
 namespace pulsar
@@ -19,7 +18,6 @@ namespace pulsar
 
 		const char		*what() const noexcept override;
 		std::string		get_type() const noexcept override;
-		std::string		get_error_string() const noexcept;
 		std::string		get_error_descriprtion() const noexcept;
 	};
 }

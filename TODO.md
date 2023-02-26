@@ -1,9 +1,13 @@
 
+- [ ] try to optimize all the branching inside texture atlas linear sample function
+- [ ] no need to store scene pointer inside each node, registry pointer will be enough
+- [ ] make node class constructor private
 - [x] the new g-buffer was added to store raw vertex normals, I don't think it is needed
 - [x] geometry cbuffers
 - [ ] mip maps
 - [ ] store all shader constants inside immutable cbuffers
 - [ ] bind_group: a class with an array of one-type bindables stored inside to bind them per one call (shader_textures, render_textures, samplers, viewports, cbuffers, dynamic_cbuffers)
+	- [ ] move bind_groups outside of gfx_resources directory
 	- [ ] viewport_bind_group
 	- [x] geom_cbuffer_bind_group
 - [x] entity:

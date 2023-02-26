@@ -15,6 +15,7 @@ namespace pulsar
 	class frag_shader;
 	class input_layout;
 	class shadows_rq;
+	class rasterizer_state;
 
 	class shadow_mapping_pass : public pulsar::rg::pass
 	{
@@ -24,6 +25,8 @@ namespace pulsar
 		pulsar::frag_shader *mp_shadow_mapping_fs = NULL;
 		pulsar::input_layout *mp_input_layout = NULL;
 		pulsar::shadows_rq *mp_shadows_rq = NULL;
+
+		pulsar::rasterizer_state *mp_rs = NULL;
 
 		pulsar::rg::async_input<pulsar::shadows_rq> *mp_shadows_rq_input = NULL;
 		pulsar::rg::async_source<pulsar::shadows_rq> *mp_shadows_rq_source = NULL;
