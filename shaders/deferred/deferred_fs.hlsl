@@ -75,8 +75,8 @@ static const float2 TEXEL_SIZE = float2(1.0f / 2048.0f, 1.0f / 2048.0f);
 static const int SHADOW_FILTER_SIZE = 32;
 static const int SHADOW_FILTER_SAMPLES = 8;
 static const float SHADOW_FILTER_TEXEL_SIZE = 1.0f / float(SHADOW_FILTER_SAMPLES * SHADOW_FILTER_SAMPLES);
-static const float SHADOW_FILTER_RADIUS = 8.0f;
-static const float PCSS_SEARCH_RADIUS = 64.0f;
+static const float PCSS_SEARCH_RADIUS = 32.0f;
+static const float PCSS_PENUMBRA_SIZE_THRESHOLD = 0.1f;
 
 
 float pcf_random(float2 frag_coord, float light_dist, float2 shadow_uv, float4 shadow_uv_rect, float filter_radius, float n_dot_l)
@@ -172,8 +172,7 @@ float pcss(float2 frag_coord, float light_dist, float2 shadow_uv, float4 shadow_
 		return (1.0f);
 
 	float penumbra_size = 1.0f * (light_dist - avg_blockers_dist) / avg_blockers_dist;
-	//penumbra_size = 1.0f - pow(1.0f - penumbra_size, 0.25f);
-	penumbra_size = saturate(penumbra_size);
+	penumbra_size = clamp(penumbra_size, PCSS_PENUMBRA_SIZE_THRESHOLD, 1.0f);
 	float shadow_factor = pcf_random(frag_coord, light_dist, shadow_uv, shadow_uv_rect, penumbra_size * PCSS_SEARCH_RADIUS, n_dot_l);
 
 	return (shadow_factor);
@@ -218,12 +217,12 @@ float4 frag(float4 sv_pos : SV_POSITION, float2 uv : UV) : SV_TARGET
 					radiance = l_scene.lights[i].color.xyz * attenuation;
 
 					break;
-			}
+				}
 			case DIR_LIGHT:
 			{
 					light_dir = -l_scene.lights[i].pos_dir;
 					break;
-			}
+				}
 			default:
 				break;
 		}
