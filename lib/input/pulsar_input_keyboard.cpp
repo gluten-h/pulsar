@@ -85,7 +85,7 @@ void	pulsar::input::full_reset_keyboard()
 		uint16_t layer0_up = (key_up & 0x00FF) >> 0;
 		uint16_t layer1_up = (key_up & 0xFF00) >> 8;
 
-		key_down = ((layer0_pressed * E0_prefix) << 0) | ((layer1_pressed * !E0_prefix) << 8);
+		key_pressed = ((layer0_pressed * E0_prefix) << 0) | ((layer1_pressed * !E0_prefix) << 8);
 		key_down = ((layer0_down * E0_prefix) << 0) | ((layer1_down * !E0_prefix) << 8);
 		key_up = ((layer0_up * E0_prefix) << 0) | ((layer1_up * !E0_prefix) << 8);
 	}
